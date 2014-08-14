@@ -1,0 +1,65 @@
+﻿using System;
+using System.Collections.Generic;
+using AutoMapper;
+using FilmOverflow.DAL.Models;
+using FilmOverflow.DAL.UnitOfWork;
+using FilmOverflow.Domain.Models;
+using FilmOverflow.Services.Interfaces;
+
+namespace FilmOverflow.Services
+{
+    public class FilmService : BaseService, IFilmService
+    {
+        public FilmService(IUnitOfWork unitOfWork)
+            : base(unitOfWork)
+        {
+        }
+
+
+
+        public void Add(FilmDomainModel entity)
+        {
+            if (entity == null) throw new ArgumentNullException("entity");
+            var film = Mapper.Map<FilmDomainModel, Film>(entity);
+            Uow.FilmRepository.Add(film);
+        }
+
+        public IEnumerable<FilmDomainModel> Read()
+        {
+            var films = Uow.FilmRepository.Read();
+            var filmsDomain = Mapper.Map<IEnumerable<Film>, IEnumerable<FilmDomainModel>>(films);
+            return filmsDomain;
+        }
+
+        public FilmDomainModel ReadById(int id)
+        {
+            var film = Uow.FilmRepository.ReadById(id);
+            var filmDomain = Mapper.Map<Film, FilmDomainModel>(film);
+            return filmDomain;
+        }
+
+        public void Update(FilmDomainModel entity)
+        {
+            if (entity == null) throw new ArgumentNullException("entity");
+            var film = Mapper.Map<FilmDomainModel, Film>(entity);
+            Uow.FilmRepository.Update(film);
+        }
+
+        public void Delete(FilmDomainModel entity)
+        {
+            if (entity == null) throw new ArgumentNullException("entity");
+            var film = Mapper.Map<FilmDomainModel, Film>(entity);
+            Uow.FilmRepository.Delete(film);
+        }
+
+        public void Save()
+        {
+            Uow.Save();
+        }
+
+        public void DisableValidationOnSave()
+        {
+            Uow.DisableValidationOnSave();
+        }
+    }
+}
