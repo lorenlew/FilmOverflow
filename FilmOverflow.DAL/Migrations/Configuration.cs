@@ -25,7 +25,7 @@ namespace FilmOverflow.DAL.Migrations
             const string moderatorRoleName = "Moderator";
             const string administratorName = "admin@admin.net";
             const string administratorPassword = "1q2w3eQ`";
-
+            
             if (!roleManager.RoleExists(administratorRoleName))
             {
                 var adminRole = roleManager.Create(new IdentityRole(administratorRoleName));

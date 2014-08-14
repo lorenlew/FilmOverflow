@@ -1,13 +1,10 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace FilmOverflow.DAL.Models
 {
     public class Film : Entity
     {
-        public string ReviewId { get; set; }
-
-        public string SeanceId { get; set; }
-
         [Required]
         public string Title { get; set; }
 
@@ -17,5 +14,9 @@ namespace FilmOverflow.DAL.Models
         public string TrailerPath { get; set; }
 
         public string Duration { get; set; }
+
+        public virtual ICollection<Review> Tickets { get; set; }
+
+        public virtual ICollection<Seance> Seances { get; set; }
     }
 }
