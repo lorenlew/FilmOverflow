@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Web;
 
@@ -6,10 +7,6 @@ namespace FilmOverflow.DAL.Models
 {
     public class Film : Entity
     {
-        public string ReviewId { get; set; }
-
-        public string SeanceId { get; set; }
-
         [Required]
         [StringLength(60)]
         public string Title { get; set; }
@@ -27,5 +24,9 @@ namespace FilmOverflow.DAL.Models
         [Required]
         [StringLength(60)]
         public string Duration { get; set; }
+
+        public virtual ICollection<Review> Reviews { get; set; }
+
+        public virtual ICollection<Seance> Seances { get; set; }
     }
 }

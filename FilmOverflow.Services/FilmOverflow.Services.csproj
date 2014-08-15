@@ -44,6 +44,10 @@
     <Reference Include="EntityFramework.SqlServer">
       <HintPath>..\packages\EntityFramework.6.1.1\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
+    <Reference Include="FilmOverflow.Services, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\FilmOverflow.WebUI\Bin\FilmOverflow.Services.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.AspNet.Identity.Core">
       <HintPath>..\packages\Microsoft.AspNet.Identity.Core.2.1.0\lib\net45\Microsoft.AspNet.Identity.Core.dll</HintPath>
     </Reference>
@@ -86,7 +90,17 @@
     <Compile Include="BaseService.cs" />
     <Compile Include="Config\MapperConfig.cs" />
     <Compile Include="Config\NinjectWebCommon.cs" />
+    <Compile Include="PaymentMethodService .cs" />
+    <Compile Include="ReviewService .cs" />
+    <Compile Include="SeanceService.cs" />
+    <Compile Include="TicketService.cs" />
+    <Compile Include="CinemaService.cs" />
     <Compile Include="IdentityServices.cs" />
+    <Compile Include="Interfaces\IPaymentMethodService.cs" />
+    <Compile Include="Interfaces\IReviewService.cs" />
+    <Compile Include="Interfaces\ISeanceService.cs" />
+    <Compile Include="Interfaces\ITicketService.cs" />
+    <Compile Include="Interfaces\ICinemaService.cs" />
     <Compile Include="Interfaces\IFilmService.cs" />
     <Compile Include="Interfaces\IRoleManagerService.cs" />
     <Compile Include="Interfaces\IService.cs" />

@@ -39,6 +39,8 @@ namespace FilmOverflow.DAL.Migrations
             {
                 UserName = administratorName,
                 Email = administratorName,
+                FirstName = administratorName,
+                LastName = administratorName,
                 EmailConfirmed = true,
             };
             userManager.Create(user, administratorPassword);

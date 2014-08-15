@@ -13,12 +13,14 @@ namespace FilmOverflow.DAL
         public DbSet<Review> Reviews { get; set; }
 
         public DbSet<Seance> Seances { get; set; }
+
         public DbSet<Ticket> Tickets { get; set; }
 
+        public DbSet<PaymentMethod> PaymentMethods { get; set; }
 
         public ApplicationDbContext()
-            // while using localDB
-            //: base("", throwIfV1Schema: false)
+        // while using localDB
+        //: base("", throwIfV1Schema: false)
         {
         }
 

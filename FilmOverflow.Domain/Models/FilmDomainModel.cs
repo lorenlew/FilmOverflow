@@ -24,7 +24,7 @@ namespace FilmOverflow.Domain.Models
         [StringLength(60)]
         public string Duration { get; set; }
 
-        public ICollection<ReviewDomainModel> Tickets { get; set; }
+        public ICollection<ReviewDomainModel> Reviews { get; set; }
 
         public ICollection<SeanceDomainModel> Seances { get; set; }
     }

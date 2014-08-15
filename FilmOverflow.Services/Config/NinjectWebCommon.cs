@@ -64,9 +64,14 @@ namespace FilmOverflow.Services.Config
         /// <param name="kernel">The kernel.</param>
         private static void RegisterServices(IKernel kernel)
         {
-            //add services
             kernel.Bind<IUserManagerService>().To<UserManagerService>().InRequestScope();
             kernel.Bind<IRoleManagerService>().To<RoleManagerService>().InRequestScope();
+            kernel.Bind<ICinemaService>().To<CinemaService>().InRequestScope();
+            kernel.Bind<IFilmService>().To<FilmService>().InRequestScope();
+            kernel.Bind<IPaymentMethodService>().To<PaymentMethodService>().InRequestScope();
+            kernel.Bind<IReviewService>().To<ReviewService>().InRequestScope();
+            kernel.Bind<ISeanceService>().To<SeanceService>().InRequestScope();
+            kernel.Bind<ITicketService>().To<TicketService>().InRequestScope();
         }
     }
 }

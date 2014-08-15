@@ -1,6 +1,21 @@
-﻿namespace FilmOverflow.WebUI.ViewModels
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using FilmOverflow.Domain.Models;
+
+namespace FilmOverflow.WebUI.ViewModels
 {
-    public class SeanceViewModel
+    public class SeanceViewModel : EntityViewModel
     {
+        public string FilmId { get; set; }
+
+        public string CinemaId { get; set; }
+
+        public ICollection<TicketDomainModel> Tickets { get; set; }
+
+        [Display(Name = "Seance date")]
+        public DateTime SeanceDate { get; set; }
+
+        public decimal Price { get; set; }
     }
 }

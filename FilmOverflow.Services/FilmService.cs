@@ -15,8 +15,6 @@ namespace FilmOverflow.Services
         {
         }
 
-
-
         public void Add(FilmDomainModel entity)
         {
             if (entity == null) throw new ArgumentNullException("entity");
