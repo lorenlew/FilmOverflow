@@ -5,7 +5,7 @@ using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace FilmOverflow.DAL.UnitOfWork
 {
-    public interface IUnitOfWork : IDisposable
+    public interface IUnitOfWork: IDisposable 
     {
         ApplicationDbContext Context { get; }
 
@@ -13,15 +13,7 @@ namespace FilmOverflow.DAL.UnitOfWork
 
         RoleManager<IdentityRole> RoleManager { get; }
 
-        IRepository<Cinema> CinemaRepository { get; }
-
-        IRepository<Film> FilmRepository { get; }
-
-        IRepository<Review> ReviewRepository { get; }
-
-        IRepository<Seance> SeanceRepository { get; }
-
-        IRepository<Ticket> TicketRepository { get; }
+        IRepository<TEntity> GetRepository<TEntity>() where TEntity : Entity;
 
         void DisableValidationOnSave();
 

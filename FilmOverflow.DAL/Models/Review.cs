@@ -12,6 +12,7 @@ namespace FilmOverflow.DAL.Models
         public int Rate { get; set; }
 
         [Required]
+        [StringLength(1000)]
         public string Description { get; set; }
 
         public DateTime ReviewDate { get; set; }

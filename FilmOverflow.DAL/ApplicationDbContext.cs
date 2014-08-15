@@ -17,7 +17,7 @@ namespace FilmOverflow.DAL
 
 
         public ApplicationDbContext()
-            // because using localDB
+            // while using localDB
             //: base("", throwIfV1Schema: false)
         {
         }

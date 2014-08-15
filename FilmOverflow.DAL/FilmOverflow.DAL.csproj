@@ -52,6 +52,7 @@
       <HintPath>..\..\..\..\..\..\..\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5\System.ComponentModel.DataAnnotations.dll</HintPath>
     </Reference>
     <Reference Include="System.Core" />
+    <Reference Include="System.Web" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -69,6 +70,7 @@
     <Compile Include="Models\Cinema.cs" />
     <Compile Include="Models\Entity.cs" />
     <Compile Include="Models\Film.cs" />
+    <Compile Include="Models\PaymentMethod.cs" />
     <Compile Include="Models\Seance.cs" />
     <Compile Include="Models\Ticket.cs" />
     <Compile Include="Models\Review.cs" />

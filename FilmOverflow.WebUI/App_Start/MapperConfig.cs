@@ -26,7 +26,8 @@ namespace FilmOverflow.WebUI
             Mapper.CreateMap<TicketDomainModel, TicketViewModel>();
             Mapper.CreateMap<TicketViewModel, TicketDomainModel>();
 
-
+            Mapper.CreateMap<PaymentMethodDomainModel, PaymentMethodViewModel>();
+            Mapper.CreateMap<PaymentMethodViewModel, PaymentMethodDomainModel>();
         }
     }
 }

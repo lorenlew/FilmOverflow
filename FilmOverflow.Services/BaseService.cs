@@ -6,14 +6,19 @@ namespace FilmOverflow.Services
 {
     public class BaseService : IService
     {
-        private bool _disposed;
-
         protected readonly IUnitOfWork Uow;
+        private bool _disposed;
 
         public BaseService(IUnitOfWork unitOfWork)
         {
             if (unitOfWork == null) throw new ArgumentNullException("unitOfWork");
             Uow = unitOfWork;
+        }
+
+        public void Dispose()
+        {
+            Dispose(true);
+            GC.SuppressFinalize(this);
         }
 
         private void Dispose(bool disposing)
@@ -27,12 +32,6 @@ namespace FilmOverflow.Services
                 Uow.Dispose();
             }
             _disposed = true;
-        }
-
-        public void Dispose()
-        {
-            Dispose(true);
-            GC.SuppressFinalize(this);
         }
     }
 }

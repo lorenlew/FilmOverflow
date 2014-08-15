@@ -56,6 +56,7 @@
     <Compile Include="Models\CinemaDomainModel.cs" />
     <Compile Include="Models\EntityDomainModel.cs" />
     <Compile Include="Models\FilmDomainModel.cs" />
+    <Compile Include="Models\PaymentMethodDomainModel.cs" />
     <Compile Include="Models\ReviewDomainModel.cs" />
     <Compile Include="Models\SeanceDomainModel.cs" />
     <Compile Include="Models\TicketDomainModel.cs" />

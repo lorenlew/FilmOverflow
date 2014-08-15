@@ -21,19 +21,19 @@ namespace FilmOverflow.Services
         {
             if (entity == null) throw new ArgumentNullException("entity");
             var film = Mapper.Map<FilmDomainModel, Film>(entity);
-            Uow.FilmRepository.Add(film);
+            Uow.GetRepository<Film>().Add(film);
         }
 
         public IEnumerable<FilmDomainModel> Read()
         {
-            var films = Uow.FilmRepository.Read();
+            var films = Uow.GetRepository<Film>().Read();
             var filmsDomain = Mapper.Map<IEnumerable<Film>, IEnumerable<FilmDomainModel>>(films);
             return filmsDomain;
         }
 
         public FilmDomainModel ReadById(int id)
         {
-            var film = Uow.FilmRepository.ReadById(id);
+            var film = Uow.GetRepository<Film>().ReadById(id);
             var filmDomain = Mapper.Map<Film, FilmDomainModel>(film);
             return filmDomain;
         }
@@ -42,14 +42,14 @@ namespace FilmOverflow.Services
         {
             if (entity == null) throw new ArgumentNullException("entity");
             var film = Mapper.Map<FilmDomainModel, Film>(entity);
-            Uow.FilmRepository.Update(film);
+            Uow.GetRepository<Film>().Update(film);
         }
 
         public void Delete(FilmDomainModel entity)
         {
             if (entity == null) throw new ArgumentNullException("entity");
             var film = Mapper.Map<FilmDomainModel, Film>(entity);
-            Uow.FilmRepository.Delete(film);
+            Uow.GetRepository<Film>().Delete(film);
         }
 
         public void Save()

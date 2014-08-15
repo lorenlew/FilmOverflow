@@ -7,14 +7,14 @@ namespace FilmOverflow.Services
 {
     public class RoleManagerService : BaseService, IRoleManagerService
     {
-        public RoleManagerService(IUnitOfWork unitOfWork)
-            : base(unitOfWork)
-        {
-        }
-
         public RoleManager<IdentityRole> RoleManager
         {
             get { return Uow.RoleManager; }
+        }
+
+        public RoleManagerService(IUnitOfWork unitOfWork)
+            : base(unitOfWork)
+        {
         }
     }
 }

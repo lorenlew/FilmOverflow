@@ -190,6 +190,7 @@
     <Compile Include="ViewModels\CinemaViewModel.cs" />
     <Compile Include="ViewModels\EntityViewModel.cs" />
     <Compile Include="ViewModels\FilmViewModel.cs" />
+    <Compile Include="ViewModels\PaymentMethodViewModel.cs" />
     <Compile Include="ViewModels\ReviewViewModel.cs" />
     <Compile Include="ViewModels\SeanceViewModel.cs" />
     <Compile Include="ViewModels\TicketViewModel.cs" />
@@ -201,6 +202,7 @@
     </Content>
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\font-awesome.css" />
+    <Content Include="Content\Images\Background-images\Elegant_Background-8.jpg" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\fontawesome-webfont.svg" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
@@ -273,6 +275,10 @@
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="packages.config" />
     <None Include="Project_Readme.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Content\Images\Cinema-images\" />
+    <Folder Include="Content\Images\Film-images\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

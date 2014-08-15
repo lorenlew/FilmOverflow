@@ -11,58 +11,16 @@ namespace FilmOverflow.DAL.UnitOfWork
     {
         private bool _disposed;
 
-        private IRepository<Cinema> _cinemaRepository;
-        private IRepository<Film> _filmRepository;
-        private IRepository<Review> _reviewRepository;
-        private IRepository<Seance> _seanceRepository;
-        private IRepository<Ticket> _ticketRepository;
-
-
         public ApplicationDbContext Context { get; private set; }
 
         public UserManager<ApplicationUser> UserManager { get; set; }
 
         public RoleManager<IdentityRole> RoleManager { get; private set; }
 
-
-        public IRepository<Cinema> CinemaRepository
+        public UnitOfWork()
         {
-            get
-            {
-                return _cinemaRepository ?? (_cinemaRepository = new BaseRepository<Cinema>(Context));
-            }
-        }
-
-        public IRepository<Film> FilmRepository
-        {
-            get
-            {
-                return _filmRepository ?? (_filmRepository = new BaseRepository<Film>(Context));
-            }
-        }
-
-        public IRepository<Review> ReviewRepository
-        {
-            get
-            {
-                return _reviewRepository ?? (_reviewRepository = new BaseRepository<Review>(Context));
-            }
-        }
-
-        public IRepository<Seance> SeanceRepository
-        {
-            get
-            {
-                return _seanceRepository ?? (_seanceRepository = new BaseRepository<Seance>(Context));
-            }
-        }
-
-        public IRepository<Ticket> TicketRepository
-        {
-            get
-            {
-                return _ticketRepository ?? (_ticketRepository = new BaseRepository<Ticket>(Context));
-            }
+            Database.SetInitializer(new MigrateDatabaseToLatestVersion<ApplicationDbContext, Configuration>());
+            Init();
         }
 
         private void Init()
@@ -75,15 +33,25 @@ namespace FilmOverflow.DAL.UnitOfWork
             RoleManager = RoleManager ?? roleManager;
         }
 
-        public UnitOfWork()
+        public IRepository<TEntity> GetRepository<TEntity>() where TEntity : Entity
         {
-            Database.SetInitializer(new MigrateDatabaseToLatestVersion<ApplicationDbContext, Configuration>());
-            Init();
+            return new BaseRepository<TEntity>(Context);
+        }
+
+        public void DisableValidationOnSave()
+        {
+            Context.Configuration.ValidateOnSaveEnabled = false;
         }
 
         public void Save()
         {
             Context.SaveChanges();
+        }
+
+        public void Dispose()
+        {
+            Dispose(true);
+            GC.SuppressFinalize(this);
         }
 
         protected virtual void Dispose(bool disposing)
@@ -100,17 +68,5 @@ namespace FilmOverflow.DAL.UnitOfWork
             }
             _disposed = true;
         }
-
-        public void Dispose()
-        {
-            Dispose(true);
-            GC.SuppressFinalize(this);
-        }
-
-        public void DisableValidationOnSave()
-        {
-            Context.Configuration.ValidateOnSaveEnabled = false;
-        }
-
     }
 }
