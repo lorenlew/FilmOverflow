@@ -9,7 +9,7 @@ namespace FilmOverflow.Domain.Models
 
         public string CinemaId { get; set; }
 
-        public virtual ICollection<TicketDomainModel> Tickets { get; set; }
+        public ICollection<TicketDomainModel> Tickets { get; set; }
 
         public DateTime SeanceDate { get; set; }
 
