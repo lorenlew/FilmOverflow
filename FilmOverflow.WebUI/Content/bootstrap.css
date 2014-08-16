@@ -333,11 +333,7 @@ body {
     font-size: 14px;
     line-height: 1.428571429;
     color: #333333;
-    background: url('Images/Background-images/Elegant_Background-8.jpg') no-repeat;
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
-    background-size: cover;
+    background: url('Images/Background-images/bg.png');
 }
 
 input,
