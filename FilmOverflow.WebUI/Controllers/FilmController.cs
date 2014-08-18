@@ -24,57 +24,54 @@ namespace FilmOverflow.WebUI.Controllers
 
         public ActionResult Index()
         {
-            var films = _filmService.Read();
-            var model = films.Select(Mapper.Map<FilmDomainModel, FilmViewModel>);
+            var filmsDomaiModel = _filmService.Read();
+            var filmsViewModel = Mapper.Map<IEnumerable<FilmDomainModel>, IEnumerable<FilmViewModel>>(filmsDomaiModel);
 
-            return View("Index", model);
+            return View("Index", filmsViewModel);
         }
 
         public ActionResult Create()
         {
-            return PartialView("_CreatePartial");
+            return View("Create");
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(FilmViewModel model)
+        public ActionResult Create(FilmViewModel filmViewModel)
         {
-            if (model == null)
+            if (filmViewModel == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            
-            if (!ModelState.IsValid) return PartialView("_CreatePartial", model);
 
-            var image = Convert.FromBase64String(model.ImageEncodedBase64);
-            
-            //var extension = Path.GetExtension((model.Image.FileName));
-            //if (extension == null)
-            //{
-            //    return PartialView("_CreatePartial", model);
-            //}
-            
-            //var fileName = Guid.NewGuid() + "." + extension.Substring(1);
-            //var virtualPath = "/Content/Images/Film-Images/" + fileName;
-            //var physicalPath = HttpContext.Server.MapPath(virtualPath);
-            //model.ImagePath = virtualPath;
+            if (!ModelState.IsValid) return View("Create", filmViewModel);
 
-            //var film = Mapper.Map<FilmViewModel, FilmDomainModel>(model);
-            //_filmService.Add(film);
-            //model.Image.SaveAs(physicalPath);
+            var extension = Path.GetExtension((filmViewModel.Image.FileName));
+            if (extension == null)
+            {
+                return View("Create", filmViewModel);
+            }
 
-            var url = Url.Action("Index", "Film");
-            return Json(new { success = true, url = url, replaceTarget = "#FilmManagement" });
+            var fileName = Guid.NewGuid() + "." + extension.Substring(1);
+            var virtualPath = "/Content/Images/Film-Images/" + fileName;
+            var physicalPath = HttpContext.Server.MapPath(virtualPath);
+            filmViewModel.ImagePath = virtualPath;
+
+            var filmDomainModel = Mapper.Map<FilmViewModel, FilmDomainModel>(filmViewModel);
+            _filmService.Add(filmDomainModel);
+            filmViewModel.Image.SaveAs(physicalPath);
+
+            return RedirectToAction("Index", "Film");
         }
 
         public ActionResult Edit(long filmId)
         {
-            return PartialView();
+            return View();
         }
 
         public ActionResult Details(long filmId)
         {
-            return PartialView();
-        }        
+            return View();
+        }
     }
 }

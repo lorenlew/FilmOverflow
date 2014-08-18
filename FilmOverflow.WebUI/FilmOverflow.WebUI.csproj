@@ -346,7 +346,7 @@
     <Content Include="Views\UserManipulation\UserManagement.cshtml" />
     <Content Include="Views\UserManipulation\_UserManipulation.cshtml" />
     <Content Include="Views\Film\Index.cshtml" />
-    <Content Include="Views\Film\_CreatePartial.cshtml" />
+    <Content Include="Views\Film\Create.cshtml" />
     <Content Include="Views\UserManipulation\_UserManagementLayout.cshtml" />
   </ItemGroup>
   <ItemGroup>
