@@ -4,6 +4,6 @@ namespace FilmOverflow.WebUI.ViewModels
 {
     public class EntityViewModel
     {
-        public Guid Id { get; set; }
+        public long Id { get; set; }
     }
 }

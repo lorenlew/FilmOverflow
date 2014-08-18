@@ -16,7 +16,7 @@ namespace FilmOverflow.DAL.Models
         public string Description { get; set; }
 
         [NotMapped]
-        public HttpPostedFileBase Image { get; set; }
+        public string ImageEncodedBase64 { get; set; }
 
         [Required]
         public string ImagePath { get; set; }

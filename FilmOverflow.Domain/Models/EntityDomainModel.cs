@@ -4,6 +4,6 @@ namespace FilmOverflow.Domain.Models
 {
     public class EntityDomainModel
     {
-        public Guid Id { get; set; }
+        public long Id { get; set; }
     }
 }

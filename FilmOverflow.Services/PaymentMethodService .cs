@@ -20,6 +20,7 @@ namespace FilmOverflow.Services
             if (entity == null) throw new ArgumentNullException("entity");
             var paymentMethod = Mapper.Map<PaymentMethodDomainModel, PaymentMethod>(entity);
             Uow.GetRepository<PaymentMethod>().Add(paymentMethod);
+            Uow.Save();
         }
 
         public IEnumerable<PaymentMethodDomainModel> Read()
@@ -29,7 +30,7 @@ namespace FilmOverflow.Services
             return paymentMethodsDomain;
         }
 
-        public PaymentMethodDomainModel ReadById(int id)
+        public PaymentMethodDomainModel ReadById(object id)
         {
             var paymentMethod = Uow.GetRepository<PaymentMethod>().ReadById(id);
             var paymentMethodDomain = Mapper.Map<PaymentMethod, PaymentMethodDomainModel>(paymentMethod);
@@ -41,6 +42,7 @@ namespace FilmOverflow.Services
             if (entity == null) throw new ArgumentNullException("entity");
             var paymentMethod = Mapper.Map<PaymentMethodDomainModel, PaymentMethod>(entity);
             Uow.GetRepository<PaymentMethod>().Update(paymentMethod);
+            Uow.Save();
         }
 
         public void Delete(PaymentMethodDomainModel entity)
@@ -48,10 +50,6 @@ namespace FilmOverflow.Services
             if (entity == null) throw new ArgumentNullException("entity");
             var paymentMethod = Mapper.Map<PaymentMethodDomainModel, PaymentMethod>(entity);
             Uow.GetRepository<PaymentMethod>().Delete(paymentMethod);
-        }
-
-        public void Save()
-        {
             Uow.Save();
         }
 

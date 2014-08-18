@@ -9,13 +9,11 @@ namespace FilmOverflow.Services.Interfaces
 
         IEnumerable<PaymentMethodDomainModel> Read();
 
-        PaymentMethodDomainModel ReadById(int id);
+        PaymentMethodDomainModel ReadById(object id);
 
         void Update(PaymentMethodDomainModel entity);
 
         void Delete(PaymentMethodDomainModel entity);
-
-        void Save();
 
         void DisableValidationOnSave();
 

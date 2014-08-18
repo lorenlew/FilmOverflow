@@ -1,0 +1,59 @@
+﻿@model IEnumerable<FilmOverflow.WebUI.ViewModels.FilmViewModel>
+
+@{
+    ViewBag.Title = "Film management";
+    Layout = "~/Views/UserManipulation/_UserManagementLayout.cshtml";
+}
+
+<!-- modal placeholder-->
+<div id="filmModal" class="modal fade in" tabindex="-1" role="dialog" aria-labelledby="filmModalLabel" aria-hidden="true">
+    <div id="filmModalContent"></div>
+</div>
+
+<h1 class="text-center well well-lg">@ViewBag.Title</h1>
+<div class="form-group pull-right">
+    @Ajax.ActionLink(" ", "Create", "Film", null, new AjaxOptions
+    {
+        UpdateTargetId = "filmModalContent",
+        InsertionMode = InsertionMode.Replace,
+        HttpMethod = "Get",
+    }, new { @class = "btn btn-success fa fa-plus", data_toggle = "modal", data_target = "#filmModal" })
+</div>
+
+<div class="table-responsive">
+    <table class="table tab-content table-hover table-condensed table-striped">
+        <tr>
+            <th>@Html.DisplayNameFor(x => x.Title)</th>
+            <th>@Html.DisplayNameFor(x => x.Duration)</th>
+            <th></th>
+        </tr>
+
+        <tbody class="no-shadow">
+            @foreach (var film in Model)
+            {
+                <tr>
+                    <td>@film.Title</td>
+                    <td>@film.Duration</td>
+                    <td>
+                        <div class="pull-right">
+                            @Ajax.ActionLink(" ", "Edit", "Film", new { filmId = film.Id }, new AjaxOptions
+                            {
+                                UpdateTargetId = "filmModalContent",
+                                InsertionMode = InsertionMode.Replace,
+                                HttpMethod = "Post",
+                            }, new { @class = "btn btn-default fa fa-pencil-square-o", data_toggle = "modal", data_target = "#filmModal" })
+                            @Ajax.ActionLink(" ", "Details", "Film", new { filmId = film.Id }, new AjaxOptions
+                            {
+                                UpdateTargetId = "filmModalContent",
+                                InsertionMode = InsertionMode.Replace,
+                                HttpMethod = "Post",
+                            }, new { @class = "btn btn-info fa fa-info", data_toggle = "modal", data_target = "#filmModal" })
+                        </div>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+<script src="~/Scripts/modalform.js"></script>

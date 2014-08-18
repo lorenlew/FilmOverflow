@@ -9,13 +9,11 @@ namespace FilmOverflow.Services.Interfaces
 
         IEnumerable<ReviewDomainModel> Read();
 
-        ReviewDomainModel ReadById(int id);
+        ReviewDomainModel ReadById(object id);
 
         void Update(ReviewDomainModel entity);
 
         void Delete(ReviewDomainModel entity);
-
-        void Save();
 
         void DisableValidationOnSave();
 

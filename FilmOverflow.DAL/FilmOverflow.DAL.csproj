@@ -63,13 +63,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ApplicationDbContext.cs" />
-    <Compile Include="Migrations\201408141923291_initial.cs" />
-    <Compile Include="Migrations\201408141923291_initial.Designer.cs">
-      <DependentUpon>201408141923291_initial.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201408151442113_fixed-misstapes.cs" />
-    <Compile Include="Migrations\201408151442113_fixed-misstapes.Designer.cs">
-      <DependentUpon>201408151442113_fixed-misstapes.cs</DependentUpon>
+    <Compile Include="Migrations\201408161757571_initial.cs" />
+    <Compile Include="Migrations\201408161757571_initial.Designer.cs">
+      <DependentUpon>201408161757571_initial.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\ApplicationUser.cs" />
@@ -91,11 +87,8 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201408141923291_initial.resx">
-      <DependentUpon>201408141923291_initial.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201408151442113_fixed-misstapes.resx">
-      <DependentUpon>201408151442113_fixed-misstapes.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201408161757571_initial.resx">
+      <DependentUpon>201408161757571_initial.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

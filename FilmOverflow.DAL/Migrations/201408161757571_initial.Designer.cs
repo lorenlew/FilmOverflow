@@ -7,13 +7,13 @@ namespace FilmOverflow.DAL.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.1-30610")]
-    public sealed partial class fixedmisstapes : IMigrationMetadata
+    public sealed partial class initial : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(fixedmisstapes));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(initial));
         
         string IMigrationMetadata.Id
         {
-            get { return "201408151442113_fixed-misstapes"; }
+            get { return "201408161757571_initial"; }
         }
         
         string IMigrationMetadata.Source

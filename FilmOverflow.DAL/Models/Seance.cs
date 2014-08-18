@@ -5,9 +5,9 @@ namespace FilmOverflow.DAL.Models
 {
     public class Seance : Entity
     {
-        public string FilmId { get; set; }
+        public long FilmId { get; set; }
 
-        public string CinemaId { get; set; }
+        public long CinemaId { get; set; }
 
         public virtual ICollection<Ticket> Tickets { get; set; }
 

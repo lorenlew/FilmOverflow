@@ -7,7 +7,7 @@ namespace FilmOverflow.Domain.Models
     {
         public string ApplicationUserId { get; set; }
 
-        public string FilmId { get; set; }
+        public long FilmId { get; set; }
 
         public int Rate { get; set; }
 

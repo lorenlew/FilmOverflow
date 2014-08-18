@@ -9,7 +9,7 @@ namespace FilmOverflow.WebUI.ViewModels
     {
         public string FilmId { get; set; }
 
-        public string CinemaId { get; set; }
+        public long CinemaId { get; set; }
 
         public ICollection<TicketDomainModel> Tickets { get; set; }
 

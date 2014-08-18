@@ -46,6 +46,16 @@ namespace FilmOverflow.DAL.Migrations
             userManager.Create(user, administratorPassword);
 
             userManager.AddToRole(user.Id, administratorRoleName);
+
+            //var films = new Film[]
+            //{
+            //    new Film(){ Title = "Title1", Description = "Description1", Duration = "120 min", ImagePath = "path1"},
+            //    new Film(){ Title = "Title2", Description = "Description2", Duration = "180 min", ImagePath = "path2"},
+            //    new Film(){ Title = "Title3", Description = "Description3", Duration = "90 min", ImagePath = "path3"}
+            //};
+
+            //context.Films.AddOrUpdate(x => x.Title, films);
+            //context.SaveChanges();
         }
     }
 }

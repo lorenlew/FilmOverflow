@@ -5,9 +5,9 @@ namespace FilmOverflow.Domain.Models
 {
     public class SeanceDomainModel : EntityDomainModel
     {
-        public string FilmId { get; set; }
+        public long FilmId { get; set; }
 
-        public string CinemaId { get; set; }
+        public long CinemaId { get; set; }
 
         public ICollection<TicketDomainModel> Tickets { get; set; }
 

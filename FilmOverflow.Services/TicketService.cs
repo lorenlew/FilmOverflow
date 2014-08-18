@@ -20,6 +20,7 @@ namespace FilmOverflow.Services
             if (entity == null) throw new ArgumentNullException("entity");
             var ticket = Mapper.Map<TicketDomainModel, Ticket>(entity);
             Uow.GetRepository<Ticket>().Add(ticket);
+            Uow.Save();
         }
 
         public IEnumerable<TicketDomainModel> Read()
@@ -29,7 +30,7 @@ namespace FilmOverflow.Services
             return ticketsDomain;
         }
 
-        public TicketDomainModel ReadById(int id)
+        public TicketDomainModel ReadById(object id)
         {
             var ticket = Uow.GetRepository<Ticket>().ReadById(id);
             var ticketDomain = Mapper.Map<Ticket, TicketDomainModel>(ticket);
@@ -41,6 +42,7 @@ namespace FilmOverflow.Services
             if (entity == null) throw new ArgumentNullException("entity");
             var ticket = Mapper.Map<TicketDomainModel, Ticket>(entity);
             Uow.GetRepository<Ticket>().Update(ticket);
+            Uow.Save();
         }
 
         public void Delete(TicketDomainModel entity)
@@ -48,10 +50,6 @@ namespace FilmOverflow.Services
             if (entity == null) throw new ArgumentNullException("entity");
             var ticket = Mapper.Map<TicketDomainModel, Ticket>(entity);
             Uow.GetRepository<Ticket>().Delete(ticket);
-        }
-
-        public void Save()
-        {
             Uow.Save();
         }
 

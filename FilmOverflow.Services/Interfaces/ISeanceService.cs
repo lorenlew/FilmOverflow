@@ -9,13 +9,11 @@ namespace FilmOverflow.Services.Interfaces
 
         IEnumerable<SeanceDomainModel> Read();
 
-        SeanceDomainModel ReadById(int id);
+        SeanceDomainModel ReadById(object id);
 
         void Update(SeanceDomainModel entity);
 
         void Delete(SeanceDomainModel entity);
-
-        void Save();
 
         void DisableValidationOnSave();
 

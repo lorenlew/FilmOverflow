@@ -20,6 +20,7 @@ namespace FilmOverflow.Services
             if (entity == null) throw new ArgumentNullException("entity");
             var review = Mapper.Map<ReviewDomainModel, Review>(entity);
             Uow.GetRepository<Review>().Add(review);
+            Uow.Save();
         }
 
         public IEnumerable<ReviewDomainModel> Read()
@@ -29,7 +30,7 @@ namespace FilmOverflow.Services
             return reviewsDomain;
         }
 
-        public ReviewDomainModel ReadById(int id)
+        public ReviewDomainModel ReadById(object id)
         {
             var review = Uow.GetRepository<Review>().ReadById(id);
             var reviewDomain = Mapper.Map<Review, ReviewDomainModel>(review);
@@ -41,6 +42,7 @@ namespace FilmOverflow.Services
             if (entity == null) throw new ArgumentNullException("entity");
             var review = Mapper.Map<ReviewDomainModel, Review>(entity);
             Uow.GetRepository<Review>().Update(review);
+            Uow.Save();
         }
 
         public void Delete(ReviewDomainModel entity)
@@ -48,10 +50,6 @@ namespace FilmOverflow.Services
             if (entity == null) throw new ArgumentNullException("entity");
             var review = Mapper.Map<ReviewDomainModel, Review>(entity);
             Uow.GetRepository<Review>().Delete(review);
-        }
-
-        public void Save()
-        {
             Uow.Save();
         }
 

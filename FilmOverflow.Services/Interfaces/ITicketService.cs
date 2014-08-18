@@ -9,13 +9,11 @@ namespace FilmOverflow.Services.Interfaces
 
         IEnumerable<TicketDomainModel> Read();
 
-        TicketDomainModel ReadById(int id);
+        TicketDomainModel ReadById(object id);
 
         void Update(TicketDomainModel entity);
 
         void Delete(TicketDomainModel entity);
-
-        void Save();
 
         void DisableValidationOnSave();
 
