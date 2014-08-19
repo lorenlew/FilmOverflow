@@ -348,6 +348,7 @@
     <Content Include="Views\Film\Index.cshtml" />
     <Content Include="Views\Film\Create.cshtml" />
     <Content Include="Views\UserManipulation\_UserManagementLayout.cshtml" />
+    <Content Include="Views\Film\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\FilmOverflow.Domain\FilmOverflow.Domain.csproj">
