@@ -5,7 +5,9 @@ namespace FilmOverflow.DAL.Models
 {
 	public class Seance : Entity
 	{
-		public DateTime SeanceDate { get; set; }
+		public DateTime Date { get; set; }
+
+		public DateTime Time { get; set; }
 
 		public decimal Price { get; set; }
 
