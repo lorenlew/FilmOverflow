@@ -4,30 +4,39 @@ using FilmOverflow.WebUI.ViewModels;
 
 namespace FilmOverflow.WebUI
 {
-    public static class MapperConfig
-    {
-        public static void RegisterMaps()
-        {
-            Mapper.CreateMap<ApplicationUserDomainModel, ApplicationUserViewModel>();
-            Mapper.CreateMap<ApplicationUserViewModel, ApplicationUserDomainModel>();
+	public static class MapperConfig
+	{
+		public static void RegisterMaps()
+		{
+			Mapper.CreateMap<ApplicationUserDomainModel, ApplicationUserViewModel>();
+			Mapper.CreateMap<ApplicationUserViewModel, ApplicationUserDomainModel>();
 
-            Mapper.CreateMap<CinemaDomainModel, CinemaViewModel>();
-            Mapper.CreateMap<CinemaViewModel, CinemaDomainModel>();
+			Mapper.CreateMap<CinemaDomainModel, CinemaViewModel>();
+			Mapper.CreateMap<CinemaViewModel, CinemaDomainModel>();
 
-            Mapper.CreateMap<FilmDomainModel, FilmViewModel>();
-            Mapper.CreateMap<FilmViewModel, FilmDomainModel>();
+			Mapper.CreateMap<FilmDomainModel, FilmViewModel>();
+			Mapper.CreateMap<FilmViewModel, FilmDomainModel>();
 
-            Mapper.CreateMap<ReviewDomainModel, ReviewViewModel>();
-            Mapper.CreateMap<ReviewViewModel, ReviewDomainModel>();
+			Mapper.CreateMap<ReviewDomainModel, ReviewViewModel>();
+			Mapper.CreateMap<ReviewViewModel, ReviewDomainModel>();
 
-            Mapper.CreateMap<SeanceDomainModel, SeanceViewModel>();
-            Mapper.CreateMap<SeanceViewModel, SeanceDomainModel>();
+			Mapper.CreateMap<SeanceDomainModel, SeanceViewModel>();
+			Mapper.CreateMap<SeanceViewModel, SeanceDomainModel>();
 
-            Mapper.CreateMap<TicketDomainModel, TicketViewModel>();
-            Mapper.CreateMap<TicketViewModel, TicketDomainModel>();
+			Mapper.CreateMap<TicketDomainModel, TicketViewModel>();
+			Mapper.CreateMap<TicketViewModel, TicketDomainModel>();
 
-            Mapper.CreateMap<PaymentMethodDomainModel, PaymentMethodViewModel>();
-            Mapper.CreateMap<PaymentMethodViewModel, PaymentMethodDomainModel>();
-        }
-    }
+			Mapper.CreateMap<PaymentMethodDomainModel, PaymentMethodViewModel>();
+			Mapper.CreateMap<PaymentMethodViewModel, PaymentMethodDomainModel>();
+
+			Mapper.CreateMap<SeatDomainModel, SeatViewModel>();
+			Mapper.CreateMap<SeatViewModel, SeatDomainModel>();
+
+			Mapper.CreateMap<HallDomainModel, HallViewModel>();
+			Mapper.CreateMap<HallViewModel, HallDomainModel>();
+
+			Mapper.CreateMap<ReservedSeatDomainModel, ReservedSeatViewModel>();
+			Mapper.CreateMap<ReservedSeatViewModel, ReservedSeatDomainModel>();
+		}
+	}
 }

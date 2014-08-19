@@ -195,9 +195,12 @@
     <Compile Include="ViewModels\CinemaViewModel.cs" />
     <Compile Include="ViewModels\EntityViewModel.cs" />
     <Compile Include="ViewModels\FilmViewModel.cs" />
+    <Compile Include="ViewModels\HallViewModel.cs" />
     <Compile Include="ViewModels\PaymentMethodViewModel.cs" />
+    <Compile Include="ViewModels\ReservedSeatViewModel.cs" />
     <Compile Include="ViewModels\ReviewViewModel.cs" />
     <Compile Include="ViewModels\SeanceViewModel.cs" />
+    <Compile Include="ViewModels\SeatViewModel.cs" />
     <Compile Include="ViewModels\TicketViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -354,6 +357,10 @@
     <ProjectReference Include="..\FilmOverflow.Domain\FilmOverflow.Domain.csproj">
       <Project>{845DA3B6-2958-4DBE-A4E1-80122186AFF5}</Project>
       <Name>FilmOverflow.Domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\FilmOverflow.IoC\FilmOverflow.IoC.csproj">
+      <Project>{c1c1505a-3c86-480d-b4e0-587cfd393969}</Project>
+      <Name>FilmOverflow.IoC</Name>
     </ProjectReference>
     <ProjectReference Include="..\FilmOverflow.Services\FilmOverflow.Services.csproj">
       <Project>{f791c483-1c3d-4d46-a39b-c7d7bcdbcbea}</Project>

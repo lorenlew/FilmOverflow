@@ -3,19 +3,19 @@ using FilmOverflow.Domain.Models;
 
 namespace FilmOverflow.Services.Interfaces
 {
-    public interface ITicketService : IService
-    {
-        void Add(TicketDomainModel entity);
+	public interface ITicketService : IService
+	{
+		void Add(TicketDomainModel entity);
 
-        IEnumerable<TicketDomainModel> Read();
+		IEnumerable<TicketDomainModel> Read();
 
-        TicketDomainModel ReadById(object id);
+		TicketDomainModel ReadById(object id);
 
-        void Update(TicketDomainModel entity);
+		void Update(TicketDomainModel entity);
 
-        void Delete(TicketDomainModel entity);
+		void Delete(TicketDomainModel entity);
 
-        void DisableValidationOnSave();
+		void DisableValidationOnSave();
 
-    }
+	}
 }

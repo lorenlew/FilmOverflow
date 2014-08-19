@@ -8,54 +8,54 @@ using FilmOverflow.Services.Interfaces;
 
 namespace FilmOverflow.Services
 {
-    public class TicketService : BaseService, ITicketService
-    {
-        public TicketService(IUnitOfWork unitOfWork)
-            : base(unitOfWork)
-        {
-        }
+	public class TicketService : BaseService, ITicketService
+	{
+		public TicketService(IUnitOfWork unitOfWork)
+			: base(unitOfWork)
+		{
+		}
 
-        public void Add(TicketDomainModel entity)
-        {
-            if (entity == null) throw new ArgumentNullException("entity");
-            var ticket = Mapper.Map<TicketDomainModel, Ticket>(entity);
-            Uow.GetRepository<Ticket>().Add(ticket);
-            Uow.Save();
-        }
+		public void Add(TicketDomainModel entity)
+		{
+			if (entity == null) throw new ArgumentNullException("entity");
+			var ticket = Mapper.Map<TicketDomainModel, Ticket>(entity);
+			Uow.GetRepository<Ticket>().Add(ticket);
+			Uow.Save();
+		}
 
-        public IEnumerable<TicketDomainModel> Read()
-        {
-            var tickets = Uow.GetRepository<Ticket>().Read();
-            var ticketsDomain = Mapper.Map<IEnumerable<Ticket>, IEnumerable<TicketDomainModel>>(tickets);
-            return ticketsDomain;
-        }
+		public IEnumerable<TicketDomainModel> Read()
+		{
+			var tickets = Uow.GetRepository<Ticket>().Read();
+			var ticketsDomain = Mapper.Map<IEnumerable<Ticket>, IEnumerable<TicketDomainModel>>(tickets);
+			return ticketsDomain;
+		}
 
-        public TicketDomainModel ReadById(object id)
-        {
-            var ticket = Uow.GetRepository<Ticket>().ReadById(id);
-            var ticketDomain = Mapper.Map<Ticket, TicketDomainModel>(ticket);
-            return ticketDomain;
-        }
+		public TicketDomainModel ReadById(object id)
+		{
+			var ticket = Uow.GetRepository<Ticket>().ReadById(id);
+			var ticketDomain = Mapper.Map<Ticket, TicketDomainModel>(ticket);
+			return ticketDomain;
+		}
 
-        public void Update(TicketDomainModel entity)
-        {
-            if (entity == null) throw new ArgumentNullException("entity");
-            var ticket = Mapper.Map<TicketDomainModel, Ticket>(entity);
-            Uow.GetRepository<Ticket>().Update(ticket);
-            Uow.Save();
-        }
+		public void Update(TicketDomainModel entity)
+		{
+			if (entity == null) throw new ArgumentNullException("entity");
+			var ticket = Mapper.Map<TicketDomainModel, Ticket>(entity);
+			Uow.GetRepository<Ticket>().Update(ticket);
+			Uow.Save();
+		}
 
-        public void Delete(TicketDomainModel entity)
-        {
-            if (entity == null) throw new ArgumentNullException("entity");
-            var ticket = Mapper.Map<TicketDomainModel, Ticket>(entity);
-            Uow.GetRepository<Ticket>().Delete(ticket);
-            Uow.Save();
-        }
+		public void Delete(TicketDomainModel entity)
+		{
+			if (entity == null) throw new ArgumentNullException("entity");
+			var ticket = Mapper.Map<TicketDomainModel, Ticket>(entity);
+			Uow.GetRepository<Ticket>().Delete(ticket);
+			Uow.Save();
+		}
 
-        public void DisableValidationOnSave()
-        {
-            Uow.DisableValidationOnSave();
-        }
-    }
+		public void DisableValidationOnSave()
+		{
+			Uow.DisableValidationOnSave();
+		}
+	}
 }

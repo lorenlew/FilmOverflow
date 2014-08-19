@@ -3,17 +3,20 @@ using System.ComponentModel.DataAnnotations;
 
 namespace FilmOverflow.DAL.Models
 {
-    public class Ticket : Entity
-    {
-        public string ApplicationUserId { get; set; }
+	public class Ticket : Entity
+	{
+		public DateTime PaymentDate { get; set; }
 
-        public long SeanceId { get; set; }
+		public virtual ApplicationUser ApplicationUser { get; set; }
+		public string ApplicationUserId { get; set; }
 
-        public int SeatNumber { get; set; }
+		public virtual Seance Seance { get; set; }
+		public long SeanceId { get; set; }
 
-        public long PaymentMethodId { get; set; }
+		public virtual PaymentMethod PaymentMethod { get; set; }
+		public long PaymentMethodId { get; set; }
 
-        public DateTime PaymentDate { get; set; }
+		public virtual ReservedSeat ReservedSeat { get; set; }
 
-    }
+	}
 }

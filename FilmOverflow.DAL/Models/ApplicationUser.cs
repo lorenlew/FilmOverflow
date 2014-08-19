@@ -8,28 +8,28 @@ using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace FilmOverflow.DAL.Models
 {
-    public class ApplicationUser : IdentityUser
-    {
-        [Required]
-        [StringLength(30)]
-        public string FirstName { get; set; }
+	public class ApplicationUser : IdentityUser
+	{
+		[Required]
+		[StringLength(30)]
+		public string FirstName { get; set; }
 
-        [Required]
-        [StringLength(30)]
-        public string LastName { get; set; }
+		[Required]
+		[StringLength(30)]
+		public string LastName { get; set; }
 
-        public bool IsBanned { get; set; }
+		public bool IsBanned { get; set; }
 
-        public virtual ICollection<Ticket> Tickets { get; set; }
+		public virtual ICollection<Ticket> Tickets { get; set; }
 
-        public virtual ICollection<Review> Reviews { get; set; }
+		public virtual ICollection<Review> Reviews { get; set; }
 
 
-        public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager)
-        {
-            if (manager == null) throw new ArgumentNullException("manager");
-            var userIdentity = await manager.CreateIdentityAsync(this, DefaultAuthenticationTypes.ApplicationCookie);
-            return userIdentity;
-        }
-    }
+		public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager)
+		{
+			if (manager == null) throw new ArgumentNullException("manager");
+			var userIdentity = await manager.CreateIdentityAsync(this, DefaultAuthenticationTypes.ApplicationCookie);
+			return userIdentity;
+		}
+	}
 }

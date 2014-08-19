@@ -8,54 +8,54 @@ using FilmOverflow.Services.Interfaces;
 
 namespace FilmOverflow.Services
 {
-    public class PaymentMethodService : BaseService, IPaymentMethodService
-    {
-        public PaymentMethodService(IUnitOfWork unitOfWork)
-            : base(unitOfWork)
-        {
-        }
+	public class PaymentMethodService : BaseService, IPaymentMethodService
+	{
+		public PaymentMethodService(IUnitOfWork unitOfWork)
+			: base(unitOfWork)
+		{
+		}
 
-        public void Add(PaymentMethodDomainModel entity)
-        {
-            if (entity == null) throw new ArgumentNullException("entity");
-            var paymentMethod = Mapper.Map<PaymentMethodDomainModel, PaymentMethod>(entity);
-            Uow.GetRepository<PaymentMethod>().Add(paymentMethod);
-            Uow.Save();
-        }
+		public void Add(PaymentMethodDomainModel entity)
+		{
+			if (entity == null) throw new ArgumentNullException("entity");
+			var paymentMethod = Mapper.Map<PaymentMethodDomainModel, PaymentMethod>(entity);
+			Uow.GetRepository<PaymentMethod>().Add(paymentMethod);
+			Uow.Save();
+		}
 
-        public IEnumerable<PaymentMethodDomainModel> Read()
-        {
-            var paymentMethods = Uow.GetRepository<PaymentMethod>().Read();
-            var paymentMethodsDomain = Mapper.Map<IEnumerable<PaymentMethod>, IEnumerable<PaymentMethodDomainModel>>(paymentMethods);
-            return paymentMethodsDomain;
-        }
+		public IEnumerable<PaymentMethodDomainModel> Read()
+		{
+			var paymentMethods = Uow.GetRepository<PaymentMethod>().Read();
+			var paymentMethodsDomain = Mapper.Map<IEnumerable<PaymentMethod>, IEnumerable<PaymentMethodDomainModel>>(paymentMethods);
+			return paymentMethodsDomain;
+		}
 
-        public PaymentMethodDomainModel ReadById(object id)
-        {
-            var paymentMethod = Uow.GetRepository<PaymentMethod>().ReadById(id);
-            var paymentMethodDomain = Mapper.Map<PaymentMethod, PaymentMethodDomainModel>(paymentMethod);
-            return paymentMethodDomain;
-        }
+		public PaymentMethodDomainModel ReadById(object id)
+		{
+			var paymentMethod = Uow.GetRepository<PaymentMethod>().ReadById(id);
+			var paymentMethodDomain = Mapper.Map<PaymentMethod, PaymentMethodDomainModel>(paymentMethod);
+			return paymentMethodDomain;
+		}
 
-        public void Update(PaymentMethodDomainModel entity)
-        {
-            if (entity == null) throw new ArgumentNullException("entity");
-            var paymentMethod = Mapper.Map<PaymentMethodDomainModel, PaymentMethod>(entity);
-            Uow.GetRepository<PaymentMethod>().Update(paymentMethod);
-            Uow.Save();
-        }
+		public void Update(PaymentMethodDomainModel entity)
+		{
+			if (entity == null) throw new ArgumentNullException("entity");
+			var paymentMethod = Mapper.Map<PaymentMethodDomainModel, PaymentMethod>(entity);
+			Uow.GetRepository<PaymentMethod>().Update(paymentMethod);
+			Uow.Save();
+		}
 
-        public void Delete(PaymentMethodDomainModel entity)
-        {
-            if (entity == null) throw new ArgumentNullException("entity");
-            var paymentMethod = Mapper.Map<PaymentMethodDomainModel, PaymentMethod>(entity);
-            Uow.GetRepository<PaymentMethod>().Delete(paymentMethod);
-            Uow.Save();
-        }
+		public void Delete(PaymentMethodDomainModel entity)
+		{
+			if (entity == null) throw new ArgumentNullException("entity");
+			var paymentMethod = Mapper.Map<PaymentMethodDomainModel, PaymentMethod>(entity);
+			Uow.GetRepository<PaymentMethod>().Delete(paymentMethod);
+			Uow.Save();
+		}
 
-        public void DisableValidationOnSave()
-        {
-            Uow.DisableValidationOnSave();
-        }
-    }
+		public void DisableValidationOnSave()
+		{
+			Uow.DisableValidationOnSave();
+		}
+	}
 }

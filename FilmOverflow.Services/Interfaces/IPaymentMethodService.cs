@@ -3,19 +3,19 @@ using FilmOverflow.Domain.Models;
 
 namespace FilmOverflow.Services.Interfaces
 {
-    public interface IPaymentMethodService : IService
-    {
-        void Add(PaymentMethodDomainModel entity);
+	public interface IPaymentMethodService : IService
+	{
+		void Add(PaymentMethodDomainModel entity);
 
-        IEnumerable<PaymentMethodDomainModel> Read();
+		IEnumerable<PaymentMethodDomainModel> Read();
 
-        PaymentMethodDomainModel ReadById(object id);
+		PaymentMethodDomainModel ReadById(object id);
 
-        void Update(PaymentMethodDomainModel entity);
+		void Update(PaymentMethodDomainModel entity);
 
-        void Delete(PaymentMethodDomainModel entity);
+		void Delete(PaymentMethodDomainModel entity);
 
-        void DisableValidationOnSave();
+		void DisableValidationOnSave();
 
-    }
+	}
 }

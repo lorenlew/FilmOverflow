@@ -2,7 +2,7 @@
 
 namespace FilmOverflow.Services.Interfaces
 {
-    public interface IService: IDisposable
-    {
-    }
+	public interface IService
+	{
+	}
 }

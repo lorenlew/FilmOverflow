@@ -3,19 +3,19 @@ using FilmOverflow.Domain.Models;
 
 namespace FilmOverflow.Services.Interfaces
 {
-    public interface ICinemaService : IService
-    {
-        void Add(CinemaDomainModel entity);
+	public interface ICinemaService : IService
+	{
+		void Add(CinemaDomainModel entity);
 
-        IEnumerable<CinemaDomainModel> Read();
+		IEnumerable<CinemaDomainModel> Read();
 
-        CinemaDomainModel ReadById(object id);
+		CinemaDomainModel ReadById(object id);
 
-        void Update(CinemaDomainModel entity);
+		void Update(CinemaDomainModel entity);
 
-        void Delete(CinemaDomainModel entity);
+		void Delete(CinemaDomainModel entity);
 
-        void DisableValidationOnSave();
+		void DisableValidationOnSave();
 
-    }
+	}
 }
