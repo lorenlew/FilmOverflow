@@ -12,69 +12,68 @@ using FilmOverflow.WebUI.ViewModels;
 
 namespace FilmOverflow.WebUI.Controllers
 {
-    public class FilmController : Controller
-    {
-        private readonly IFilmService _filmService;
+	public class FilmController : Controller
+	{
+		private readonly IFilmService _filmService;
 
-        public FilmController(IFilmService filmService)
-        {
-            if (filmService == null) throw new ArgumentNullException("filmService");
-            _filmService = filmService;
-        }
+		public FilmController(IFilmService filmService)
+		{
+			_filmService = filmService;
+		}
 
-        public ActionResult Index()
-        {
-            var films = _filmService.Read();
-            var filmsViewModel = Mapper.Map<IEnumerable<FilmDomainModel>, IEnumerable<FilmViewModel>>(films);
+		public ActionResult Index()
+		{
+			var films = _filmService.Read();
+			var filmsViewModel = Mapper.Map<IEnumerable<FilmDomainModel>, IEnumerable<FilmViewModel>>(films);
 
-            return View("Index", filmsViewModel);
-        }
+			return View("Index", filmsViewModel);
+		}
 
-        public ActionResult Create()
-        {
-            return PartialView("_CreatePartial");
-        }
+		public ActionResult Create()
+		{
+			return PartialView("_CreatePartial");
+		}
 
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create(FilmViewModel model)
-        {
-            if (model == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            
-            if (!ModelState.IsValid) return PartialView("_CreatePartial", model);
+		[HttpPost]
+		[ValidateAntiForgeryToken]
+		public ActionResult Create(FilmViewModel model)
+		{
+			if (model == null)
+			{
+				return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+			}
 
-            //var image = Convert.FromBase64String(model.ImageEncodedBase64);
-            
-            //var extension = Path.GetExtension((model.Image.FileName));
-            //if (extension == null)
-            //{
-            //    return PartialView("_CreatePartial", model);
-            //}
-            
-            //var fileName = Guid.NewGuid() + "." + extension.Substring(1);
-            //var virtualPath = "/Content/Images/Film-Images/" + fileName;
-            //var physicalPath = HttpContext.Server.MapPath(virtualPath);
-            //model.ImagePath = virtualPath;
+			if (!ModelState.IsValid) return PartialView("_CreatePartial", model);
 
-            //var film = Mapper.Map<FilmViewModel, FilmDomainModel>(model);
-            //_filmService.Add(film);
-            //model.Image.SaveAs(physicalPath);
+			//var image = Convert.FromBase64String(model.ImageEncodedBase64);
 
-            var url = Url.Action("Index", "Film");
-            return Json(new { success = true, url = url, replaceTarget = "#FilmManagement" });
-        }
+			//var extension = Path.GetExtension((model.Image.FileName));
+			//if (extension == null)
+			//{
+			//    return PartialView("_CreatePartial", model);
+			//}
 
-        public ActionResult Edit(long filmId)
-        {
-            return PartialView();
-        }
+			//var fileName = Guid.NewGuid() + "." + extension.Substring(1);
+			//var virtualPath = "/Content/Images/Film-Images/" + fileName;
+			//var physicalPath = HttpContext.Server.MapPath(virtualPath);
+			//model.ImagePath = virtualPath;
 
-        public ActionResult Details(long filmId)
-        {
-            return PartialView();
-        }        
-    }
+			//var film = Mapper.Map<FilmViewModel, FilmDomainModel>(model);
+			//_filmService.Add(film);
+			//model.Image.SaveAs(physicalPath);
+
+			var url = Url.Action("Index", "Film");
+			return Json(new { success = true, url = url, replaceTarget = "#FilmManagement" });
+		}
+
+		public ActionResult Edit(long filmId)
+		{
+			return PartialView();
+		}
+
+		public ActionResult Details(long filmId)
+		{
+			return PartialView();
+		}
+	}
 }

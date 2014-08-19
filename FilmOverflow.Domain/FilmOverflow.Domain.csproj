@@ -59,9 +59,12 @@
     <Compile Include="Models\CinemaDomainModel.cs" />
     <Compile Include="Models\EntityDomainModel.cs" />
     <Compile Include="Models\FilmDomainModel.cs" />
+    <Compile Include="Models\HallDomainModel.cs" />
     <Compile Include="Models\PaymentMethodDomainModel.cs" />
+    <Compile Include="Models\ReservedSeatDomainModel.cs" />
     <Compile Include="Models\ReviewDomainModel.cs" />
     <Compile Include="Models\SeanceDomainModel.cs" />
+    <Compile Include="Models\SeatDomainModel.cs" />
     <Compile Include="Models\TicketDomainModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

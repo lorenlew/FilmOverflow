@@ -89,10 +89,15 @@
   <ItemGroup>
     <Compile Include="BaseService.cs" />
     <Compile Include="Config\MapperConfig.cs" />
-    <Compile Include="Config\NinjectWebCommon.cs" />
+    <Compile Include="HallService.cs" />
+    <Compile Include="Interfaces\IHallService.cs" />
+    <Compile Include="Interfaces\IReservedSeatService.cs" />
+    <Compile Include="Interfaces\ISeatService.cs" />
     <Compile Include="PaymentMethodService .cs" />
+    <Compile Include="ReservedSeatService.cs" />
     <Compile Include="ReviewService .cs" />
     <Compile Include="SeanceService.cs" />
+    <Compile Include="SeatService.cs" />
     <Compile Include="TicketService.cs" />
     <Compile Include="CinemaService.cs" />
     <Compile Include="IdentityServices.cs" />

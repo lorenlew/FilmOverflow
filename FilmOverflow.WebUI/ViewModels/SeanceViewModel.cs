@@ -5,17 +5,17 @@ using FilmOverflow.Domain.Models;
 
 namespace FilmOverflow.WebUI.ViewModels
 {
-    public class SeanceViewModel : EntityViewModel
-    {
-        public string FilmId { get; set; }
+	public class SeanceViewModel : EntityViewModel
+	{
+		public string FilmId { get; set; }
 
-        public long CinemaId { get; set; }
+		public long CinemaId { get; set; }
 
-        public ICollection<TicketDomainModel> Tickets { get; set; }
+		public ICollection<TicketViewModel> Tickets { get; set; }
 
-        [Display(Name = "Seance date")]
-        public DateTime SeanceDate { get; set; }
+		[Display(Name = "Seance date")]
+		public DateTime SeanceDate { get; set; }
 
-        public decimal Price { get; set; }
-    }
+		public decimal Price { get; set; }
+	}
 }
