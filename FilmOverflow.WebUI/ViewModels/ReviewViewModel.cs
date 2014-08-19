@@ -5,10 +5,6 @@ namespace FilmOverflow.WebUI.ViewModels
 {
 	public class ReviewViewModel : EntityViewModel
 	{
-		public string ApplicationUserId { get; set; }
-
-		public long FilmId { get; set; }
-
 		public int Rate { get; set; }
 
 		[Required(ErrorMessage = "Add description")]
@@ -16,5 +12,9 @@ namespace FilmOverflow.WebUI.ViewModels
 		public string Description { get; set; }
 
 		public DateTime ReviewDate { get; set; }
+
+		public string ApplicationUserId { get; set; }
+
+		public long FilmId { get; set; }
 	}
 }
