@@ -18,7 +18,10 @@ namespace FilmOverflow.WebUI.Controllers
 
 		public FilmController(IFilmService filmService)
 		{
-			if (filmService == null) throw new ArgumentNullException("filmService");
+			if (filmService == null)
+			{
+				throw new ArgumentNullException("filmService");
+			}
 			_filmService = filmService;
 		}
 

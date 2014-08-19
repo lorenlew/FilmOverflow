@@ -184,6 +184,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\FilmController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\SeanceController.cs" />
     <Compile Include="Controllers\UserManipulationController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -352,6 +353,7 @@
     <Content Include="Views\Film\Create.cshtml" />
     <Content Include="Views\UserManipulation\_UserManagementLayout.cshtml" />
     <Content Include="Views\Film\Edit.cshtml" />
+    <Content Include="Views\Seance\_IndexPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\FilmOverflow.Domain\FilmOverflow.Domain.csproj">

@@ -13,7 +13,7 @@
 
 	<div class="row">
 		<div class="col-md-2">
-			<img src="@Model.ImagePath" alt="" />
+			<img src="@Model.ImagePath" class="img-thumbnail" alt="No image" />
 		</div>
 		<div class="col-md-10">
 			<div class="form-group">
@@ -54,3 +54,7 @@
 		</div>
 	</div>
 }
+
+<div id="SeanceManagement">
+	@{ Html.RenderAction("Index", "Seance"); }
+</div>
