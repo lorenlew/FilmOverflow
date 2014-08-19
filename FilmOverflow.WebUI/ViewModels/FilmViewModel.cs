@@ -17,8 +17,11 @@ namespace FilmOverflow.WebUI.ViewModels
         [StringLength(1000)]
         public string Description { get; set; }
 
-        [NotMapped]        
-        public string ImageEncodedBase64 { get; set; }
+        [NotMapped]
+        [FileSize(15360000)]
+        [FileTypes("jpg,jpeg,png")]
+        [Required(ErrorMessage = "Upload image")]
+        public HttpPostedFileBase Image { get; set; }
 
         [Display(Name = "Image")]
         public string ImagePath { get; set; }

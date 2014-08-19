@@ -46,7 +46,7 @@ namespace FilmOverflow.WebUI.Controllers
             
             if (!ModelState.IsValid) return PartialView("_CreatePartial", model);
 
-            var image = Convert.FromBase64String(model.ImageEncodedBase64);
+            //var image = Convert.FromBase64String(model.ImageEncodedBase64);
             
             //var extension = Path.GetExtension((model.Image.FileName));
             //if (extension == null)
