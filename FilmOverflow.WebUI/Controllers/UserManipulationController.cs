@@ -22,6 +22,7 @@ namespace FilmOverflow.WebUI.Controllers
 		[Authorize(Roles = "Administrator, Moderator")]
 		public ActionResult UserManagement()
 		{
+			var test = Request.IsAjaxRequest();
 			var users = _userManagerService.GetUsers();
 			ViewBag.userManagerService = _userManagerService;
 			var usersViewModel = Mapper.Map<IEnumerable<ApplicationUserDomainModel>, IEnumerable<ApplicationUserViewModel>>(users);
@@ -35,6 +36,7 @@ namespace FilmOverflow.WebUI.Controllers
 		[Authorize(Roles = "Administrator")]
 		public ActionResult SetToRole(string name)
 		{
+			var test = Request.IsAjaxRequest();
 			if (name == null)
 			{
 				return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
