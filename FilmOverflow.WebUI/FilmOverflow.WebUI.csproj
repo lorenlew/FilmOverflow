@@ -207,7 +207,7 @@
     </Content>
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\font-awesome.css" />
-    <Content Include="Content\Images\Background-images\bg.png" />
+    <Content Include="Content\Images\Background-images\Elegant_Background-4.jpg" />
     <Content Include="Content\jQuery.FileUpload\css\jquery.fileupload-noscript.css" />
     <Content Include="Content\jQuery.FileUpload\css\jquery.fileupload-ui-noscript.css" />
     <Content Include="Content\jQuery.FileUpload\css\jquery.fileupload-ui.css" />
