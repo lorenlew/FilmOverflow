@@ -25,9 +25,9 @@ namespace FilmOverflow.WebUI.Controllers
         public ActionResult Index()
         {
             var films = _filmService.Read();
-            var model = films.Select(Mapper.Map<FilmDomainModel, FilmViewModel>);
+            var filmsViewModel = Mapper.Map<IEnumerable<FilmDomainModel>, IEnumerable<FilmViewModel>>(films);
 
-            return View("Index", model);
+            return View("Index", filmsViewModel);
         }
 
         public ActionResult Create()

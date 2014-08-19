@@ -333,7 +333,8 @@ body {
     font-size: 14px;
     line-height: 1.428571429;
     color: #333333;
-    background: url('Images/Background-images/bg.png');
+    background: url('Images/Background-images/Elegant_Background-4.jpg') no-repeat;
+    background-size: cover;
 }
 
 input,
@@ -4687,7 +4688,7 @@ textarea.input-group-sm > .input-group-btn > .btn {
     }
 
 .navbar-inverse {
-    background-color: #222222;
+    background-color: rgba(34, 34, 34, 0.90);
     border-color: #080808;
 }
 
