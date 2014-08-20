@@ -77,6 +77,10 @@
     <Compile Include="Migrations\201408192149323_AddedInfoFieldsIntoSeanceAndHallEntities.Designer.cs">
       <DependentUpon>201408192149323_AddedInfoFieldsIntoSeanceAndHallEntities.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201408200844394_DbModelFixApplied.cs" />
+    <Compile Include="Migrations\201408200844394_DbModelFixApplied.Designer.cs">
+      <DependentUpon>201408200844394_DbModelFixApplied.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\ApplicationUser.cs" />
     <Compile Include="Models\Cinema.cs" />
@@ -108,6 +112,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201408192149323_AddedInfoFieldsIntoSeanceAndHallEntities.resx">
       <DependentUpon>201408192149323_AddedInfoFieldsIntoSeanceAndHallEntities.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201408200844394_DbModelFixApplied.resx">
+      <DependentUpon>201408200844394_DbModelFixApplied.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
