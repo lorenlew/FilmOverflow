@@ -13,8 +13,11 @@
 <div class="table-responsive">
 	<table class="table tab-content table-hover table-condensed table-striped">
 		<tr>
-			<th>@Html.DisplayNameFor(x => x.SeanceDate)</th>
+			<th>@Html.DisplayNameFor(x => x.Date)</th>
+			<th>@Html.DisplayNameFor(x => x.Time)</th>
 			<th>@Html.DisplayNameFor(x => x.Price)</th>
+			<th>Cinema</th>
+			<th>Hall</th>
 			<th></th>
 		</tr>
 
@@ -22,8 +25,11 @@
 			@foreach (var seance in Model)
 			{
 				<tr>
-					<td>@seance.SeanceDate</td>
+					<td>@seance.Date</td>
+					<td>@seance.Time</td>
 					<td>@seance.Price</td>
+					<td></td>
+					<td></td>
 					<td>
 						<div class="pull-right">
 							@Html.ActionLink(" ", "Edit", "Seance", new { seanceId = seance.Id }, new { @class = "btn btn-default fa fa-pencil-square-o" })
