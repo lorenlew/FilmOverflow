@@ -73,6 +73,10 @@
     <Compile Include="Migrations\201408191343346_AddedHallsAndSeats.Designer.cs">
       <DependentUpon>201408191343346_AddedHallsAndSeats.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201408192149323_AddedInfoFieldsIntoSeanceAndHallEntities.cs" />
+    <Compile Include="Migrations\201408192149323_AddedInfoFieldsIntoSeanceAndHallEntities.Designer.cs">
+      <DependentUpon>201408192149323_AddedInfoFieldsIntoSeanceAndHallEntities.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\ApplicationUser.cs" />
     <Compile Include="Models\Cinema.cs" />
@@ -101,6 +105,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201408191343346_AddedHallsAndSeats.resx">
       <DependentUpon>201408191343346_AddedHallsAndSeats.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201408192149323_AddedInfoFieldsIntoSeanceAndHallEntities.resx">
+      <DependentUpon>201408192149323_AddedInfoFieldsIntoSeanceAndHallEntities.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

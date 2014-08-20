@@ -8,6 +8,8 @@ namespace FilmOverflow.DAL.Models
 {
 	public class Hall : Entity
 	{
+		public int HallNumber { get; set; }
+
 		public int RowAmount { get; set; }
 
 		public int ColumnAmount { get; set; }

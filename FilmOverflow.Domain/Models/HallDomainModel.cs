@@ -8,6 +8,8 @@ namespace FilmOverflow.Domain.Models
 {
 	public class HallDomainModel : EntityDomainModel
 	{
+		public int HallNumber { get; set; }
+
 		public int RowAmount { get; set; }
 
 		public int ColumnAmount { get; set; }
