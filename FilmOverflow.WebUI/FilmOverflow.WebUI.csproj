@@ -400,6 +400,7 @@
   <ItemGroup>
     <Folder Include="Content\Images\Cinema-images\" />
     <Folder Include="Content\Images\Film-images\" />
+    <Folder Include="Scripts\Halls\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

@@ -45,18 +45,18 @@ ul {
 
 .no-shadow {
 	text-shadow: none;
-	color: #000000;
 }
 
 .img-content {
 	height: 150px;
-	border-radius: 20%;
+	border-radius: 5%;
 	display: block;
 	margin: 0 auto;
+	border: 7px solid #ffffff;
 }
 
-	.img-content:hover {
-		opacity: 0.9;
+	.img-content.big {
+		height: 300px;
 	}
 
 .table th, td {
@@ -69,69 +69,6 @@ ul {
 .glass {
 	opacity: 0.6;
 }
-
-@-moz-keyframes blink {
-	25% {
-		opacity: 0.7;
-	}
-
-	50% {
-		opacity: 0.8;
-	}
-
-	75% {
-		opacity: 0.9;
-	}
-
-	100% {
-		opacity: 1;
-	}
-}
-
-@-webkit-keyframes blink {
-	25% {
-		opacity: 0.7;
-	}
-
-	50% {
-		opacity: 0.8;
-	}
-
-	75% {
-		opacity: 0.9;
-	}
-
-	100% {
-		opacity: 1;
-	}
-}
-
-@keyframes blink {
-	25% {
-		opacity: 0.7;
-	}
-
-	50% {
-		opacity: 0.8;
-	}
-
-	75% {
-		opacity: 0.9;
-	}
-
-	100% {
-		opacity: 1;
-	}
-}
-
-.blink {
-	-webkit-animation: blink 5s ease-in-out infinite;
-	-moz-animation: blink 5s ease-in-out infinite;
-	-o-animation: blink 5s ease-in-out infinite;
-	-ms-animation: blink 5s ease-in-out infinite;
-	animation: blink 5s ease-in-out infinite;
-}
-
 
 .img-main {
 	width: 75%;
@@ -151,4 +88,24 @@ ul {
 	-moz-box-shadow: 0px 0px 177px 50px #ffffff;
 	box-shadow: 0px 0px 177px 50px #ffffff;
 	box-shadow: 0px 0px 177px 50px rgba(255, 255, 255, 0.40);
+}
+
+.tile {
+	width: 520px;
+	float: left;
+	background-color: #000000;
+	background-color: rgba(0, 0, 0, 0.31);
+	margin: 20px;
+	padding: 20px;
+}
+
+.clear {
+	overflow: hidden;
+}
+
+article.tile:hover {
+	-webkit-box-shadow: 0px 0px 0px 20px #ffffff;
+	-moz-box-shadow: 0px 0px 0px 20px #ffffff;
+	box-shadow: 0px 0px 0px 20px #ffffff;
+	box-shadow: 0px 0px 0px 20px rgba(255, 255, 255, 0.40);
 }

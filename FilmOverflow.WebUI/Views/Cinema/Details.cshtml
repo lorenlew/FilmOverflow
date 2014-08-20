@@ -1,50 +1,36 @@
 ﻿@model FilmOverflow.WebUI.ViewModels.CinemaViewModel
 
 @{
-    ViewBag.Title = "Details";
+	ViewBag.Title = "Details";
 }
 
-<h2>Details</h2>
+<div class="well well-lg">
+	<article class="dl-horizontal">
+		<h1 class="text-center text-warning">
+			@Html.DisplayFor(model => model.Name)
+		</h1>
 
-<div>
-    <h4>CinemaViewModel</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Name)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Name)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Address)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Address)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.ImagePath)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.ImagePath)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.PhoneNumber)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.PhoneNumber)
-        </dd>
-
-    </dl>
+		<h4>
+			<label class="text-info">
+				@Html.DisplayNameFor(model => model.Address)
+			</label>
+			@Html.DisplayFor(model => model.Address)
+		</h4>
+		<h4>
+			<label class="text-info">
+				@Html.DisplayNameFor(model => model.PhoneNumber)
+			</label>
+			@Html.DisplayFor(model => model.PhoneNumber)
+		</h4>
+		<div>
+			@Html.ActionLink(" ", "Edit", new { id = Model.Id }, new { @class = "btn btn-warning fa fa-pencil-square-o", title = "Edit" })
+			@Html.ActionLink(" ", "Delete", new { id = Model.Id }, new { @class = "btn btn-danger fa fa-trash-o", title = "Delete" })
+			@Html.ActionLink(" ", "Create", "Hall", new { id = Model.Id }, new { @class = "btn btn-success fa fa-cube", title = "Add hall" })
+		</div>
+		<img class="img-content big" src=@Model.ImagePath />
+	</article>
+	<div>
+		@Html.ActionLink(" ", "Index", null, new { @class = "fa fa-backward fa-2x", title = "Back to cinemas" })
+	</div>
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+

@@ -85,6 +85,10 @@
     <Compile Include="Migrations\201408201514402_SmallFixesToSeats.Designer.cs">
       <DependentUpon>201408201514402_SmallFixesToSeats.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201408201555432_SmallFixesToSeats2.cs" />
+    <Compile Include="Migrations\201408201555432_SmallFixesToSeats2.Designer.cs">
+      <DependentUpon>201408201555432_SmallFixesToSeats2.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\ApplicationUser.cs" />
     <Compile Include="Models\Cinema.cs" />
@@ -122,6 +126,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201408201514402_SmallFixesToSeats.resx">
       <DependentUpon>201408201514402_SmallFixesToSeats.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201408201555432_SmallFixesToSeats2.resx">
+      <DependentUpon>201408201555432_SmallFixesToSeats2.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

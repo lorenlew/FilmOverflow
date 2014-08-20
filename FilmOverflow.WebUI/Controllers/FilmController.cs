@@ -90,7 +90,6 @@ namespace FilmOverflow.WebUI.Controllers
 		[HttpPost]
 		[ValidateAntiForgeryToken]
 		public ActionResult Edit(FilmViewModel filmViewModel)
-		{
 			if (filmViewModel == null)
 			{
 				return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -184,6 +183,5 @@ namespace FilmOverflow.WebUI.Controllers
 			_filmService.Delete(filmDomainModel);
 
 			return RedirectToAction("Index");
-		}
 	}
 }
