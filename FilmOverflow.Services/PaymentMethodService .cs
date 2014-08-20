@@ -52,10 +52,5 @@ namespace FilmOverflow.Services
 			Uow.GetRepository<PaymentMethod>().Delete(paymentMethod);
 			Uow.Save();
 		}
-
-		public void DisableValidationOnSave()
-		{
-			Uow.DisableValidationOnSave();
-		}
 	}
 }

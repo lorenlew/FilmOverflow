@@ -14,8 +14,5 @@ namespace FilmOverflow.Services.Interfaces
 		void Update(PaymentMethodDomainModel entity);
 
 		void Delete(PaymentMethodDomainModel entity);
-
-		void DisableValidationOnSave();
-
 	}
 }

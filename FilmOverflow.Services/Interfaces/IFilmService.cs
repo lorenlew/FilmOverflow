@@ -14,8 +14,5 @@ namespace FilmOverflow.Services.Interfaces
 		void Update(FilmDomainModel entity);
 
 		void Delete(FilmDomainModel entity);
-
-		void DisableValidationOnSave();
-
 	}
 }

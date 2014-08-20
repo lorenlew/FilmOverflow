@@ -15,10 +15,10 @@ namespace FilmOverflow.WebUI
 
 			bundles.Add(new ScriptBundle("~/bundles/ajax").Include(
 			"~/Scripts/jquery.unobtrusive-ajax.js"));
-			
+
 			bundles.Add(new ScriptBundle("~/bundles/jqueryui").Include(
 						"~/Scripts/jquery-ui-{version}.js"));
-			
+
 			bundles.Add(new ScriptBundle("~/bundles/jqueryfileupload").Include(
 						"~/Scripts/jQuery.FileUpload/jquery.fileupload.js",
 						"~/Scripts/jQuery.FileUpload/jquery.fileupload-ui.js",

@@ -52,10 +52,5 @@ namespace FilmOverflow.Services
 			Uow.GetRepository<Ticket>().Delete(ticket);
 			Uow.Save();
 		}
-
-		public void DisableValidationOnSave()
-		{
-			Uow.DisableValidationOnSave();
-		}
 	}
 }

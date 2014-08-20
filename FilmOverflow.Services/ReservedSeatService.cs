@@ -55,10 +55,5 @@ namespace FilmOverflow.Services
 			Uow.GetRepository<ReservedSeat>().Delete(reservedSeat);
 			Uow.Save();
 		}
-
-		public void DisableValidationOnSave()
-		{
-			Uow.DisableValidationOnSave();
-		}
 	}
 }

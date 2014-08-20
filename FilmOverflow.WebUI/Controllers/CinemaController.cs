@@ -91,13 +91,14 @@ namespace FilmOverflow.WebUI.Controllers
 		[ValidateAntiForgeryToken]
 		public ActionResult Edit([Bind(Include = "Id,Name,Address,ImagePath,PhoneNumber")] CinemaViewModel cinemaViewModel)
 		{
-			if (ModelState.IsValid)
+			ModelState.Remove("Image");
+			if (!ModelState.IsValid)
 			{
-				CinemaDomainModel cinemaDomainModel = Mapper.Map<CinemaViewModel, CinemaDomainModel>(cinemaViewModel);
-				_cinemaService.Update(cinemaDomainModel);
 				return RedirectToAction("Index");
 			}
-			return View(cinemaViewModel);
+			CinemaDomainModel cinemaDomainModel = Mapper.Map<CinemaViewModel, CinemaDomainModel>(cinemaViewModel);
+			_cinemaService.Update(cinemaDomainModel);
+			return RedirectToAction("Index");
 		}
 
 		public ActionResult Delete(long? id)
