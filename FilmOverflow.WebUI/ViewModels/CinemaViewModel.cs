@@ -17,7 +17,6 @@ namespace FilmOverflow.WebUI.ViewModels
 		[StringLength(60)]
 		public string Address { get; set; }
 
-		[NotMapped]
 		[FileSize(15360000)]
 		[FileTypes("jpg,jpeg,png")]
 		[Required(ErrorMessage = "Upload image")]
@@ -26,8 +25,8 @@ namespace FilmOverflow.WebUI.ViewModels
 		[Display(Name = "Image")]
 		public string ImagePath { get; set; }
 
-		[Required]
-		[Display(Name = "Enter phone number")]
+		[Required(ErrorMessage = "Enter phone number")]
+		[Display(Name = "Phone number")]
 		public string PhoneNumber { get; set; }
 
 		public ICollection<SeanceViewModel> Seances { get; set; }

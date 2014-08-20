@@ -13,9 +13,13 @@ namespace FilmOverflow.WebUI.ViewModels
 
 		public decimal Price { get; set; }
 
-		public string FilmId { get; set; }
+		public long FilmId { get; set; }
 
+		public CinemaViewModel Cinema { get; set; }
 		public long CinemaId { get; set; }
+
+		public HallViewModel Hall { get; set; }
+		public long HallId { get; set; }
 
 		public ICollection<TicketViewModel> Tickets { get; set; }		
 	}

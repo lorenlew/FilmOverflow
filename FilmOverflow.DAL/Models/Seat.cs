@@ -15,6 +15,6 @@ namespace FilmOverflow.DAL.Models
 		public bool IsProcessing { get; set; }
 
 		public virtual Hall Hall { get; set; }
-		public int HallId { get; set; }
+		public long HallId { get; set; }
 	}
 }

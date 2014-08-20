@@ -14,6 +14,6 @@ namespace FilmOverflow.Domain.Models
 
 		public bool IsProcessing { get; set; }
 
-		public int HallId { get; set; }
+		public long HallId { get; set; }
 	}
 }
