@@ -14,6 +14,10 @@ namespace FilmOverflow.DAL.Models
 
 		public int ColumnNumber { get; set; }
 
+		public bool IsSold { get; set; }
+
+		public DateTime ReservationTime { get; set; }
+
 		[Key, ForeignKey("Ticket")]
 		public new long Id { get; set; }
 		public virtual Ticket Ticket { get; set; }

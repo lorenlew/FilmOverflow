@@ -1,0 +1,42 @@
+﻿@model FilmOverflow.WebUI.ViewModels.HallViewModel
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>HallDomainModel</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.HallNumber)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.HallNumber)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.RowAmount)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RowAmount)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ColumnAmount)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ColumnAmount)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

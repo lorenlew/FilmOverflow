@@ -11,8 +11,6 @@ namespace FilmOverflow.WebUI.ViewModels
 
 		public int ColumnNumber { get; set; }
 
-		public bool IsProcessing { get; set; }
-
-		public long HallId { get; set; }
+		public int HallId { get; set; }
 	}
 }

@@ -52,10 +52,5 @@ namespace FilmOverflow.Services
 			Uow.GetRepository<Review>().Delete(review);
 			Uow.Save();
 		}
-
-		public void DisableValidationOnSave()
-		{
-			Uow.DisableValidationOnSave();
-		}
 	}
 }

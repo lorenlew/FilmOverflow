@@ -184,6 +184,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\CinemaController.cs" />
     <Compile Include="Controllers\FilmController.cs" />
+    <Compile Include="Controllers\HallController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\SeanceController.cs" />
     <Compile Include="Controllers\UserManipulationController.cs" />
@@ -315,11 +316,15 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\custom\modalform.js" />
+    <Content Include="Scripts\knockout-3.1.0.debug.js" />
+    <Content Include="Scripts\knockout-3.1.0.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\_references.js" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
@@ -363,6 +368,11 @@
     <Content Include="Views\Cinema\Index.cshtml" />
     <Content Include="Views\Seance\_ListPartial.cshtml" />
     <Content Include="Views\Seance\_CreatePartial.cshtml" />
+    <Content Include="Views\Hall\Create.cshtml" />
+    <Content Include="Views\Hall\Delete.cshtml" />
+    <Content Include="Views\Hall\Details.cshtml" />
+    <Content Include="Views\Hall\Edit.cshtml" />
+    <Content Include="Views\Hall\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\FilmOverflow.Domain\FilmOverflow.Domain.csproj">

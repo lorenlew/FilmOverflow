@@ -14,11 +14,14 @@ namespace FilmOverflow.WebUI
 						"~/Scripts/jquery.validate*"));
 
 			bundles.Add(new ScriptBundle("~/bundles/ajax").Include(
-			"~/Scripts/jquery.unobtrusive-ajax.js"));
-			
+						"~/Scripts/jquery.unobtrusive-ajax.js"));
+
+			bundles.Add(new ScriptBundle("~/bundles/knockout").Include(
+						"~/Scripts/knockout-3.1.0.debug"));
+
 			bundles.Add(new ScriptBundle("~/bundles/jqueryui").Include(
 						"~/Scripts/jquery-ui-{version}.js"));
-			
+
 			bundles.Add(new ScriptBundle("~/bundles/jqueryfileupload").Include(
 						"~/Scripts/jQuery.FileUpload/jquery.fileupload.js",
 						"~/Scripts/jQuery.FileUpload/jquery.fileupload-ui.js",
