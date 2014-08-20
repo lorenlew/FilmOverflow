@@ -14,8 +14,8 @@ namespace FilmOverflow.DAL.Models
 
 		public int ColumnAmount { get; set; }
 
-		public ICollection<Seat> Seats { get; set; }
+		public virtual ICollection<Seat> Seats { get; set; }
 
-		public ICollection<Cinema> Cinemas { get; set; }
+		public virtual ICollection<Cinema> Cinemas { get; set; }
 	}
 }
