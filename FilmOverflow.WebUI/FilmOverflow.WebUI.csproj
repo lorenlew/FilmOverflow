@@ -182,12 +182,14 @@
     <Compile Include="Attributes\FileSizeAttribute.cs" />
     <Compile Include="Attributes\FileTypesAttribute.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\CinemaController.cs" />
     <Compile Include="Controllers\FilmController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\UserManipulationController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\FilmOverflowWebUIContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="ViewModels\AccountViewModels.cs" />
@@ -210,7 +212,8 @@
     </Content>
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\font-awesome.css" />
-    <Content Include="Content\Images\Background-images\Elegant_Background-4.jpg" />
+    <Content Include="Content\Images\Background-images\Elegant_Background-6.jpg" />
+    <Content Include="Content\Images\Background-images\main.jpg" />
     <Content Include="Content\jQuery.FileUpload\css\jquery.fileupload-noscript.css" />
     <Content Include="Content\jQuery.FileUpload\css\jquery.fileupload-ui-noscript.css" />
     <Content Include="Content\jQuery.FileUpload\css\jquery.fileupload-ui.css" />
@@ -351,6 +354,11 @@
     <Content Include="Views\Film\Index.cshtml" />
     <Content Include="Views\Film\_CreatePartial.cshtml" />
     <Content Include="Views\UserManipulation\_UserManagementLayout.cshtml" />
+    <Content Include="Views\Cinema\Create.cshtml" />
+    <Content Include="Views\Cinema\Delete.cshtml" />
+    <Content Include="Views\Cinema\Details.cshtml" />
+    <Content Include="Views\Cinema\Edit.cshtml" />
+    <Content Include="Views\Cinema\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\FilmOverflow.Domain\FilmOverflow.Domain.csproj">
