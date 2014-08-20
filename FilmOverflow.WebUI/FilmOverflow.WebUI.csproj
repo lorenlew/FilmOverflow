@@ -373,6 +373,8 @@
     <Content Include="Views\Hall\Details.cshtml" />
     <Content Include="Views\Hall\Edit.cshtml" />
     <Content Include="Views\Hall\Index.cshtml" />
+    <Content Include="Views\Film\Details.cshtml" />
+    <Content Include="Views\Film\Delete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\FilmOverflow.Domain\FilmOverflow.Domain.csproj">

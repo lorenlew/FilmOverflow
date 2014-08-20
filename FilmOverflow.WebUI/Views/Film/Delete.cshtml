@@ -1,0 +1,56 @@
+﻿@model FilmOverflow.WebUI.ViewModels.FilmViewModel
+
+@{
+	ViewBag.Title = "Are you sure you want to delete this?";
+}
+
+<h2>@ViewBag.Title</h2>
+
+<div>
+	<hr />
+
+	<div class="row">
+		<div class="col-md-2">
+			<div class="form-group">
+				<img src="@Model.ImagePath" class="img-responsive img-thumbnail" alt="No image" />
+			</div>
+		</div>
+		<dl class="dl-horizontal col-md-10">
+			<dt>
+				@Html.DisplayNameFor(model => model.Title)
+			</dt>
+
+			<dd>
+				@Html.DisplayFor(model => model.Title)
+			</dd>
+
+			<dt>
+				@Html.DisplayNameFor(model => model.Description)
+			</dt>
+
+			<dd>
+				@Html.DisplayFor(model => model.Description)
+			</dd>
+
+			<dt>
+				@Html.DisplayNameFor(model => model.Duration)
+			</dt>
+
+			<dd>
+				@Html.DisplayFor(model => model.Duration)
+			</dd>
+		</dl>
+	</div>
+
+	@using (Html.BeginForm("Delete", "Film", new { filmId = Model.Id }, FormMethod.Post))
+	{
+		@Html.AntiForgeryToken()
+
+		<div class="form-group">
+			<div class="col-sm-offset-2 col-sm-10">
+				@Html.ActionLink("No", "Index", "Film", null, new { @class = "btn btn-default no-shadow" })				
+				<button type="submit" class="btn btn-danger no-shadow">Yes</button>
+			</div>
+		</div>
+	}
+</div>

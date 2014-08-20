@@ -13,14 +13,21 @@ namespace FilmOverflow.WebUI.Controllers
 	public class SeanceController : Controller
 	{
 		private readonly ISeanceService _seanceService;
+		private readonly IHallService _hallService;
 
-		public SeanceController(ISeanceService seanceService)
+		public SeanceController(ISeanceService seanceService, IHallService hallService)
 		{
 			if (seanceService == null)
 			{
 				throw new ArgumentNullException("seanceService");
 			}
+			if (hallService == null)
+			{
+				throw new ArgumentNullException("hallService");
+			}
+
 			_seanceService = seanceService;
+			_hallService = hallService;
 		}
 
 		public ActionResult Index(long filmId)
@@ -34,29 +41,23 @@ namespace FilmOverflow.WebUI.Controllers
 		{
 			var seancesDomainModel = _seanceService.Read();
 			var seancesViewModel = Mapper.Map<IEnumerable<SeanceDomainModel>, IEnumerable<SeanceViewModel>>(seancesDomainModel);
-
+			
 			return PartialView("_ListPartial", seancesViewModel);
 		}
 
 		public ActionResult Create()
 		{
+			var hallsCinemas = _hallService.GetHallsCinemas();
+			ViewBag.HallsCinemas = hallsCinemas;
+			
 			return PartialView("_CreatePartial");
 		}
 
 		[HttpPost]
 		[ValidateAntiForgeryToken]
-		public ActionResult Create(FormCollection collection)
+		public ActionResult Create(SeanceViewModel seanceViewModel)
 		{
-			try
-			{
-				// TODO: Add insert logic here
-
-				return RedirectToAction("Index");
-			}
-			catch
-			{
-				return View();
-			}
+			return View();			
 		}
 
 		public ActionResult Edit(long id)
@@ -79,7 +80,7 @@ namespace FilmOverflow.WebUI.Controllers
 				return View();
 			}
 		}
-		
+
 		public ActionResult Details(long id)
 		{
 			return View();

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web.Mvc;
 using FilmOverflow.Domain.Models;
 
 namespace FilmOverflow.Services.Interfaces
@@ -19,5 +20,6 @@ namespace FilmOverflow.Services.Interfaces
 
 		void Delete(HallDomainModel entity);
 
+		IEnumerable<SelectListItem> GetHallsCinemas();
 	}
 }

@@ -14,7 +14,7 @@ namespace FilmOverflow.DAL.Models
 		public virtual Film Film { get; set; }
 		public long FilmId { get; set; }
 
-		public Hall Hall { get; set; }
+		public virtual Hall Hall { get; set; }
 		public long HallId { get; set; }
 
 		public virtual ICollection<Ticket> Tickets { get; set; }

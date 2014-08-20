@@ -16,6 +16,7 @@ namespace FilmOverflow.WebUI.ViewModels
 
 		public int ColumnAmount { get; set; }
 
+		public CinemaViewModel Cinema { get; set; }
 		public long CinemaId { get; set; }
 
 		public ICollection<SeatViewModel> Seats { get; set; }

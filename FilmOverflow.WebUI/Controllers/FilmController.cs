@@ -27,8 +27,9 @@ namespace FilmOverflow.WebUI.Controllers
 
 		public ActionResult Index()
 		{
-			var filmsDomainModel = _filmService.Read();
-			var filmsViewModel = Mapper.Map<IEnumerable<FilmDomainModel>, IEnumerable<FilmViewModel>>(filmsDomainModel);
+			IEnumerable<FilmDomainModel> filmsDomainModel = _filmService.Read();
+			IEnumerable<FilmViewModel> filmsViewModel =
+				Mapper.Map<IEnumerable<FilmDomainModel>, IEnumerable<FilmViewModel>>(filmsDomainModel);
 
 			return View("Index", filmsViewModel);
 		}
@@ -49,6 +50,7 @@ namespace FilmOverflow.WebUI.Controllers
 
 			if (!ModelState.IsValid) return View("Create", filmViewModel);
 
+			//TODO: have to put this code in a separate helper (type of FileManager)
 			var extension = Path.GetExtension((filmViewModel.Image.FileName));
 			if (extension == null)
 			{
@@ -67,10 +69,20 @@ namespace FilmOverflow.WebUI.Controllers
 			return RedirectToAction("Index", "Film");
 		}
 
-		public ActionResult Edit(long filmId)
+		public ActionResult Edit(long? filmId)
 		{
-			var filmDomainModel = _filmService.ReadById(filmId);
-			var filmViewModel = Mapper.Map<FilmDomainModel, FilmViewModel>(filmDomainModel);
+			if (filmId == null)
+			{
+				return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+			}
+
+			FilmDomainModel filmDomainModel = _filmService.ReadById(filmId);
+			FilmViewModel filmViewModel = Mapper.Map<FilmDomainModel, FilmViewModel>(filmDomainModel);
+
+			if (filmViewModel == null)
+			{
+				return HttpNotFound();
+			}
 
 			return View("Edit", filmViewModel);
 		}
@@ -89,6 +101,7 @@ namespace FilmOverflow.WebUI.Controllers
 
 			if (filmViewModel.Image != null)
 			{
+				//TODO: have to put this code in a separate helper (type of FileManager)
 				var extension = Path.GetExtension((filmViewModel.Image.FileName));
 				if (extension == null)
 				{
@@ -111,15 +124,66 @@ namespace FilmOverflow.WebUI.Controllers
 				filmViewModel.Image.SaveAs(newPhysicalPath);
 			}
 
-			var filmDomainModel = Mapper.Map<FilmViewModel, FilmDomainModel>(filmViewModel);
+			FilmDomainModel filmDomainModel = Mapper.Map<FilmViewModel, FilmDomainModel>(filmViewModel);
 			_filmService.Update(filmDomainModel);
 
 			return RedirectToAction("Index", "Film");
 		}
 
-		public ActionResult Details(long filmId)
+		public ActionResult Details(long? filmId)
 		{
-			return View();
+			if (filmId == null)
+			{
+				return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+			}
+
+			FilmDomainModel filmDomainModel = _filmService.ReadById(filmId);
+			FilmViewModel filmViewModel = Mapper.Map<FilmDomainModel, FilmViewModel>(filmDomainModel);
+			
+			if (filmViewModel == null)
+			{
+				return HttpNotFound();
+			}
+
+			return View("Details", filmViewModel);
+		}
+
+		public ActionResult Delete(long? filmId)
+		{
+			if (filmId == null)
+			{
+				return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+			}
+
+			FilmDomainModel filmDomainModel = _filmService.ReadById(filmId);
+			FilmViewModel filmViewModel = Mapper.Map<FilmDomainModel, FilmViewModel>(filmDomainModel);
+
+			if (filmViewModel == null)
+			{
+				return HttpNotFound();
+			}
+
+			return View("Delete", filmViewModel);
+		}
+
+		[HttpPost]
+		[ValidateAntiForgeryToken]
+		public ActionResult Delete(long filmId)
+		{
+			FilmDomainModel filmDomainModel = _filmService.ReadById(filmId);
+
+			//TODO: have to put this code in a separate helper (type of FileManager)
+			var virtualPath = filmDomainModel.ImagePath;
+			var physicalPath = HttpContext.Server.MapPath(virtualPath);
+
+			if (System.IO.File.Exists(physicalPath))
+			{
+				System.IO.File.Delete(physicalPath);
+			}
+
+			_filmService.Delete(filmDomainModel);
+
+			return RedirectToAction("Index");
 		}
 	}
 }

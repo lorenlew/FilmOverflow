@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web.Mvc;
 using AutoMapper;
 using FilmOverflow.DAL.Models;
 using FilmOverflow.DAL.UnitOfWork;
@@ -54,6 +55,23 @@ namespace FilmOverflow.Services
 			var hall = Mapper.Map<HallDomainModel, Hall>(entity);
 			Uow.GetRepository<Hall>().Delete(hall);
 			Uow.Save();
+		}
+
+		public IEnumerable<SelectListItem> GetHallsCinemas()
+		{
+			var halls = Uow.GetRepository<Hall>().Read();
+			var cinemas = Uow.GetRepository<Cinema>().Read();
+
+			IEnumerable<SelectListItem> hallsCinemas = from hall in halls
+				join cinema in cinemas on hall.CinemaId equals cinema.Id
+				orderby cinema.Id
+				select (new SelectListItem()
+				{
+					Value = hall.Id.ToString(),
+					Text = cinema.Name + " - " + hall.Name
+				});
+
+			return hallsCinemas;
 		}
 	}
 }
