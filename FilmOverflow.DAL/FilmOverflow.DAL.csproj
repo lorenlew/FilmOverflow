@@ -77,6 +77,14 @@
     <Compile Include="Migrations\201408192149323_AddedInfoFieldsIntoSeanceAndHallEntities.Designer.cs">
       <DependentUpon>201408192149323_AddedInfoFieldsIntoSeanceAndHallEntities.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201408201146144_FixReservedSeatCollection.cs" />
+    <Compile Include="Migrations\201408201146144_FixReservedSeatCollection.Designer.cs">
+      <DependentUpon>201408201146144_FixReservedSeatCollection.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201408201514402_SmallFixesToSeats.cs" />
+    <Compile Include="Migrations\201408201514402_SmallFixesToSeats.Designer.cs">
+      <DependentUpon>201408201514402_SmallFixesToSeats.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\ApplicationUser.cs" />
     <Compile Include="Models\Cinema.cs" />
@@ -108,6 +116,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201408192149323_AddedInfoFieldsIntoSeanceAndHallEntities.resx">
       <DependentUpon>201408192149323_AddedInfoFieldsIntoSeanceAndHallEntities.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201408201146144_FixReservedSeatCollection.resx">
+      <DependentUpon>201408201146144_FixReservedSeatCollection.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201408201514402_SmallFixesToSeats.resx">
+      <DependentUpon>201408201514402_SmallFixesToSeats.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

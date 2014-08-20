@@ -115,5 +115,6 @@ namespace FilmOverflow.WebUI.Controllers
 			_hallService.Delete(hallDomainModel);
 			return RedirectToAction("Index");
 		}
+
 	}
 }

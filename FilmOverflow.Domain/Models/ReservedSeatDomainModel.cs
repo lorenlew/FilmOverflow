@@ -12,6 +12,10 @@ namespace FilmOverflow.Domain.Models
 
 		public int ColumnNumber { get; set; }
 
+		public bool IsSold { get; set; }
+
+		public DateTime ReservationTime { get; set; }
+
 		public long SeanceId { get; set; }
 	}
 }

@@ -13,8 +13,10 @@ namespace FilmOverflow.Domain.Models
 
 		public long FilmId { get; set; }
 
-		public long CinemaId { get; set; }
+		public long HallId { get; set; }
 
 		public ICollection<TicketDomainModel> Tickets { get; set; }
+
+		public  ICollection<ReservedSeatDomainModel> Seats { get; set; }
 	}
 }

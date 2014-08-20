@@ -15,8 +15,10 @@ namespace FilmOverflow.WebUI.ViewModels
 
 		public string FilmId { get; set; }
 
-		public long CinemaId { get; set; }
+		public long HallId { get; set; }
 
-		public ICollection<TicketViewModel> Tickets { get; set; }		
+		public ICollection<TicketViewModel> Tickets { get; set; }
+
+		public ICollection<ReservedSeatViewModel> Seats { get; set; }
 	}
 }
