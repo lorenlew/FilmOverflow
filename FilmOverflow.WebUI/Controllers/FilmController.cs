@@ -75,6 +75,48 @@ namespace FilmOverflow.WebUI.Controllers
 			return View("Edit", filmViewModel);
 		}
 
+		[HttpPost]
+		[ValidateAntiForgeryToken]
+		public ActionResult Edit(FilmViewModel filmViewModel)
+		{
+			if (filmViewModel == null)
+			{
+				return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+			}
+
+			ModelState.Remove("Image");
+			if (!ModelState.IsValid) return View("Edit", filmViewModel);
+
+			if (filmViewModel.Image != null)
+			{
+				var extension = Path.GetExtension((filmViewModel.Image.FileName));
+				if (extension == null)
+				{
+					return View("Create", filmViewModel);
+				}
+
+				var newFileName = Guid.NewGuid() + "." + extension.Substring(1);
+				var newVirtualPath = "/Content/Images/Film-Images/" + newFileName;
+				var newPhysicalPath = HttpContext.Server.MapPath(newVirtualPath);
+
+				var oldVirtualPath = filmViewModel.ImagePath;
+				var oldPhysicalPath = HttpContext.Server.MapPath(oldVirtualPath);
+
+				if (System.IO.File.Exists(oldPhysicalPath))
+				{
+					System.IO.File.Delete(oldPhysicalPath);
+				}
+
+				filmViewModel.ImagePath = newVirtualPath;
+				filmViewModel.Image.SaveAs(newPhysicalPath);
+			}
+
+			var filmDomainModel = Mapper.Map<FilmViewModel, FilmDomainModel>(filmViewModel);
+			_filmService.Update(filmDomainModel);
+
+			return RedirectToAction("Index", "Film");
+		}
+
 		public ActionResult Details(long filmId)
 		{
 			return View();

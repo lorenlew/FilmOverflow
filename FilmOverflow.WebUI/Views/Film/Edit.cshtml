@@ -9,6 +9,8 @@
 @using (Html.BeginForm("Edit", "Film", FormMethod.Post, new { @class = "form-horizontal", role = "form", enctype = "multipart/form-data" }))
 {
 	@Html.AntiForgeryToken()
+	@Html.HiddenFor(m => m.Id)
+	@Html.HiddenFor(m => m.ImagePath)
 	@Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
 	<div class="row">
@@ -48,7 +50,7 @@
 			<div class="form-group">
 				<div class="col-sm-offset-2 col-sm-10">
 					@Html.ActionLink("Cancel", "Index", "Film", null, new { @class = "btn btn-default no-shadow" })
-					<button type="submit" class="btn btn-primary no-shadow">Create</button>
+					<button type="submit" class="btn btn-primary no-shadow">Save</button>
 				</div>
 			</div>
 		</div>
@@ -56,5 +58,5 @@
 }
 
 <div id="SeanceManagement">
-	@{ Html.RenderAction("Index", "Seance"); }
+	@{ Html.RenderAction("Index", "Seance", routeValues: new {filmId = Model.Id}); }
 </div>

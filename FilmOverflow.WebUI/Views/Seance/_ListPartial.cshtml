@@ -1,23 +1,13 @@
 ﻿@model IEnumerable<FilmOverflow.WebUI.ViewModels.SeanceViewModel>
 
-@{
-	ViewBag.Title = "Seance management";
-}
-
-<h1 class="text-center well well-lg">@ViewBag.Title</h1>
-
-<div class="form-group pull-right">
-	@Html.ActionLink(" ", "Create", "Seance", null, new { @class = "btn btn-success fa fa-plus" })
-</div>
-
 <div class="table-responsive">
 	<table class="table tab-content table-hover table-condensed table-striped">
 		<tr>
 			<th>@Html.DisplayNameFor(x => x.Date)</th>
 			<th>@Html.DisplayNameFor(x => x.Time)</th>
 			<th>@Html.DisplayNameFor(x => x.Price)</th>
-			<th>Cinema</th>
-			<th>Hall</th>
+			<th>@Html.DisplayNameFor(x => x.Cinema)</th>
+			<th>@Html.DisplayNameFor(x => x.Hall)</th>
 			<th></th>
 		</tr>
 
@@ -28,7 +18,8 @@
 					<td>@seance.Date</td>
 					<td>@seance.Time</td>
 					<td>@seance.Price</td>
-					<td></td>
+					<td>@seance.Cinema.Name</td>
+					<td>@seance.Hall.HallNumber</td>
 					<td></td>
 					<td>
 						<div class="pull-right">

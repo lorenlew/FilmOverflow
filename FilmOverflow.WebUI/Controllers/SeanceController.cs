@@ -23,20 +23,28 @@ namespace FilmOverflow.WebUI.Controllers
 			_seanceService = seanceService;
 		}
 
-		public ActionResult Index()
+		public ActionResult Index(long filmId)
+		{
+			ViewBag.FilmId = filmId;
+
+			return View("Index");
+		}
+
+		public ActionResult List()
 		{
 			var seancesDomainModel = _seanceService.Read();
 			var seancesViewModel = Mapper.Map<IEnumerable<SeanceDomainModel>, IEnumerable<SeanceViewModel>>(seancesDomainModel);
 
-			return PartialView("_IndexPartial", seancesViewModel);
+			return PartialView("_ListPartial", seancesViewModel);
 		}
 
 		public ActionResult Create()
 		{
-			return View();
+			return PartialView("_CreatePartial");
 		}
 
 		[HttpPost]
+		[ValidateAntiForgeryToken]
 		public ActionResult Create(FormCollection collection)
 		{
 			try
@@ -51,13 +59,14 @@ namespace FilmOverflow.WebUI.Controllers
 			}
 		}
 
-		public ActionResult Edit(int id)
+		public ActionResult Edit(long id)
 		{
 			return View();
 		}
 
 		[HttpPost]
-		public ActionResult Edit(int id, FormCollection collection)
+		[ValidateAntiForgeryToken]
+		public ActionResult Edit(long id, FormCollection collection)
 		{
 			try
 			{
@@ -71,18 +80,18 @@ namespace FilmOverflow.WebUI.Controllers
 			}
 		}
 		
-		public ActionResult Details(int id)
+		public ActionResult Details(long id)
 		{
 			return View();
 		}
-		
-		public ActionResult Delete(int id)
+
+		public ActionResult Delete(long id)
 		{
 			return View();
 		}
 
 		[HttpPost]
-		public ActionResult Delete(int id, FormCollection collection)
+		public ActionResult Delete(long id, FormCollection collection)
 		{
 			try
 			{

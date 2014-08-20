@@ -314,7 +314,7 @@
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
-    <Content Include="Scripts\modalform.js" />
+    <Content Include="Scripts\custom\modalform.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
@@ -355,12 +355,14 @@
     <Content Include="Views\Film\Create.cshtml" />
     <Content Include="Views\UserManipulation\_UserManagementLayout.cshtml" />
     <Content Include="Views\Film\Edit.cshtml" />
-    <Content Include="Views\Seance\_IndexPartial.cshtml" />
+    <Content Include="Views\Seance\Index.cshtml" />
     <Content Include="Views\Cinema\Create.cshtml" />
     <Content Include="Views\Cinema\Delete.cshtml" />
     <Content Include="Views\Cinema\Details.cshtml" />
     <Content Include="Views\Cinema\Edit.cshtml" />
     <Content Include="Views\Cinema\Index.cshtml" />
+    <Content Include="Views\Seance\_ListPartial.cshtml" />
+    <Content Include="Views\Seance\_CreatePartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\FilmOverflow.Domain\FilmOverflow.Domain.csproj">
