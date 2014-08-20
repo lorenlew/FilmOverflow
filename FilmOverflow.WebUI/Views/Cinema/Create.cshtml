@@ -6,8 +6,8 @@
 
 <h2 class="text-center">
 	@ViewBag.Title
-</h2>
-
+</h2>  
+ 
 <div class="well well-lg">
 	@using (Html.BeginForm("Create", "Cinema", FormMethod.Post, new { enctype = "multipart/form-data" }))
 	{
@@ -54,8 +54,11 @@
 			</div>
 		</div>
 	}
-</div>
+</div>	
 
+<div>
+	@Html.ActionLink("Add new cinema schema", "Create", "Hall", null, new { @class = "btn btn-info", title = "" })
+</div> 
 <div>
 	@Html.ActionLink(" ", "Index", null, new { @class = "fa fa-backward fa-2x", title = "Back to cinemas" })
 </div>

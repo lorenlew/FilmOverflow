@@ -94,7 +94,7 @@ namespace FilmOverflow.WebUI.Controllers
 			ModelState.Remove("Image");
 			if (!ModelState.IsValid)
 			{
-				return RedirectToAction("Index");
+				return View(cinemaViewModel);
 			}
 			CinemaDomainModel cinemaDomainModel = Mapper.Map<CinemaViewModel, CinemaDomainModel>(cinemaViewModel);
 			_cinemaService.Update(cinemaDomainModel);
