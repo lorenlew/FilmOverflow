@@ -7,6 +7,6 @@
 		public int ColumnNumber { get; set; }
 
 		public virtual Hall Hall { get; set; }
-		public int HallId { get; set; }
+		public long HallId { get; set; }
 	}
 }
