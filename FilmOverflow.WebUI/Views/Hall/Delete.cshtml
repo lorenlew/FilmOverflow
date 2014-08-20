@@ -1,48 +1,47 @@
 ﻿@model FilmOverflow.WebUI.ViewModels.HallViewModel
 
 @{
-    ViewBag.Title = "Delete";
+	ViewBag.Title = "Delete";
 }
 
 <h2>Delete</h2>
 
 <h3>Are you sure you want to delete this?</h3>
 <div>
-    <h4>HallDomainModel</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.HallNumber)
-        </dt>
+	<h4>HallDomainModel</h4>
+	<hr />
+	<dl class="dl-horizontal">
 
-        <dd>
-            @Html.DisplayFor(model => model.HallNumber)
-        </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.RowAmount)
-        </dt>
+		<dd>
+			@Html.DisplayFor(model => model.Name)
+		</dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.RowAmount)
-        </dd>
+		<dt>
+			@Html.DisplayNameFor(model => model.RowAmount)
+		</dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.ColumnAmount)
-        </dt>
+		<dd>
+			@Html.DisplayFor(model => model.RowAmount)
+		</dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.ColumnAmount)
-        </dd>
+		<dt>
+			@Html.DisplayNameFor(model => model.ColumnAmount)
+		</dt>
 
-    </dl>
+		<dd>
+			@Html.DisplayFor(model => model.ColumnAmount)
+		</dd>
 
-    @using (Html.BeginForm()) {
-        @Html.AntiForgeryToken()
+	</dl>
 
-        <div class="form-actions no-color">
-            <input type="submit" value="Delete" class="btn btn-default" /> |
-            @Html.ActionLink("Back to List", "Index")
-        </div>
-    }
+	@using (Html.BeginForm())
+	{
+		@Html.AntiForgeryToken()
+
+		<div class="form-actions no-color">
+			<input type="submit" value="Delete" class="btn btn-default" /> |
+			@Html.ActionLink("Back to List", "Index")
+		</div>
+	}
 </div>

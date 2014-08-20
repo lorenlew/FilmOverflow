@@ -66,14 +66,14 @@ namespace FilmOverflow.WebUI.Controllers
 			return Json(new { success = true, url = url, replaceTarget = "#FilmManagement" });
 		}
 
-		public ActionResult Edit(long filmId)
-		{
-			return PartialView();
-		}
+		//public ActionResult Edit(long filmId)
+		//{
+		//	return PartialView();
+		//}
 
-		public ActionResult Details(long filmId)
-		{
-			return PartialView();
-		}
+		//public ActionResult Details(long filmId)
+		//{
+		//	return PartialView();
+		//}
 	}
 }

@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Data.Entity;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Net;
-using System.Web;
 using System.Web.Mvc;
 using AutoMapper;
 using FilmOverflow.Domain.Models;
@@ -46,14 +42,19 @@ namespace FilmOverflow.WebUI.Controllers
 			return View(hallViewModel);
 		}
 
-		public ActionResult Create()
+		public ActionResult Create(long? id)
 		{
+			if (id == null)
+			{
+				return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+			}
+			ViewBag.CinemaId = id;
 			return View();
 		}
 
 		[HttpPost]
 		[ValidateAntiForgeryToken]
-		public ActionResult Create([Bind(Include = "Id,HallNumber,RowAmount,ColumnAmount")] HallViewModel hallViewModel)
+		public ActionResult Create([Bind(Include = "Id,Name,RowAmount,ColumnAmount,CinemaId")] HallViewModel hallViewModel)
 		{
 			if (!ModelState.IsValid)
 			{
@@ -61,7 +62,7 @@ namespace FilmOverflow.WebUI.Controllers
 			}
 			HallDomainModel hallDomainModel = Mapper.Map<HallViewModel, HallDomainModel>(hallViewModel);
 			_hallService.Add(hallDomainModel);
-			return RedirectToAction("Create","Cinema");
+			return RedirectToAction("Details", "Cinema", new { id = hallDomainModel.CinemaId });
 		}
 
 		public ActionResult Edit(long? id)
@@ -81,7 +82,7 @@ namespace FilmOverflow.WebUI.Controllers
 
 		[HttpPost]
 		[ValidateAntiForgeryToken]
-		public ActionResult Edit([Bind(Include = "Id,HallNumber,RowAmount,ColumnAmount")] HallViewModel hallViewModel)
+		public ActionResult Edit([Bind(Include = "Id,Name,RowAmount,ColumnAmoun,CinemaId")] HallViewModel hallViewModel)
 		{
 			if (!ModelState.IsValid)
 			{
