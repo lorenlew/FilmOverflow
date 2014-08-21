@@ -56,22 +56,5 @@ namespace FilmOverflow.Services
 			Uow.GetRepository<Hall>().Delete(hall);
 			Uow.Save();
 		}
-
-		public IEnumerable<SelectListItem> GetHallsCinemas()
-		{
-			var halls = Uow.GetRepository<Hall>().Read();
-			var cinemas = Uow.GetRepository<Cinema>().Read();
-
-			IEnumerable<SelectListItem> hallsCinemas = from hall in halls
-				join cinema in cinemas on hall.CinemaId equals cinema.Id
-				orderby cinema.Id
-				select (new SelectListItem()
-				{
-					Value = hall.Id.ToString(),
-					Text = cinema.Name + " - " + hall.Name
-				});
-
-			return hallsCinemas;
-		}
 	}
 }

@@ -19,7 +19,5 @@ namespace FilmOverflow.Services.Interfaces
 		void Update(HallDomainModel entity);
 
 		void Delete(HallDomainModel entity);
-
-		IEnumerable<SelectListItem> GetHallsCinemas();
 	}
 }

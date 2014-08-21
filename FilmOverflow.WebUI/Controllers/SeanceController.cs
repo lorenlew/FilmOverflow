@@ -50,11 +50,18 @@ namespace FilmOverflow.WebUI.Controllers
 
 		public ActionResult Create(long filmId)
 		{
-			var hallsCinemas = _hallService.GetHallsCinemas();
-			ViewBag.HallsCinemas = hallsCinemas;
-			var seanceViewModel = new SeanceViewModel() { FilmId = filmId };
+			IEnumerable<SelectListItem> hallsCinemas = _hallService
+				.Read()
+				.Select(x => new SelectListItem()
+			{
+				Value = x.Id.ToString(),
+				Text = x.Cinema.Name + " " + x.Name
+			});
 
-			return PartialView("_CreatePartial", seanceViewModel);
+			ViewBag.HallsCinemas = hallsCinemas;
+			ViewBag.FilmId = filmId;
+
+			return PartialView("_CreatePartial");
 		}
 
 		[HttpPost]
@@ -74,7 +81,7 @@ namespace FilmOverflow.WebUI.Controllers
 			SeanceDomainModel seanceDomainModel = Mapper.Map<SeanceViewModel, SeanceDomainModel>(seanceViewModel);
 			_seanceService.Add(seanceDomainModel);
 
-			var url = Url.Action("List", "Seance");
+			var url = Url.Action("List", "Seance", routeValues: new { filmId = seanceViewModel.FilmId });
 			return Json(new { success = true, url = url, replaceTarget = "#SeanceList" });
 		}
 
