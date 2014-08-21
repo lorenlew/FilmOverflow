@@ -5,21 +5,20 @@
 	Layout = "~/Views/UserManipulation/_UserManagementLayout.cshtml";
 }
 
-<div class="panel panel-primary">
-	<div class="panel-heading text-center">@ViewBag.Title</div>
-	<div class="table-responsive">
-		<table class="table table-bordered tab-content table-hover table-condensed">
-			<tr>
-				<th>@Html.DisplayNameFor(x => x.Title)</th>
-				<th>@Html.DisplayNameFor(x => x.Duration)</th>
-				<th>
-					<div class="pull-right">
-						@Html.ActionLink(" ", "Create", "Film", null, new { @class = "btn btn-success fa fa-plus" })
-					</div>
-				</th>
-			</tr>
-
-			<tbody class="no-shadow">
+<div class="well">
+	<div class="panel panel-primary">
+		<div class="panel-heading text-center">@ViewBag.Title</div>
+		<div class="table-responsive">
+			<table class="table table-bordered tab-content table-hover table-condensed">
+				<tr>
+					<th>@Html.DisplayNameFor(x => x.Title)</th>
+					<th>@Html.DisplayNameFor(x => x.Duration)</th>
+					<th>
+						<div class="pull-right">
+							@Html.ActionLink(" ", "Create", "Film", null, new { @class = "btn btn-success fa fa-plus" })
+						</div>
+					</th>
+				</tr>
 				@foreach (var film in Model)
 				{
 					<tr>
@@ -34,8 +33,9 @@
 						</td>
 					</tr>
 				}
-			</tbody>
-		</table>
+			</table>
+		</div>
 	</div>
 </div>
+
 

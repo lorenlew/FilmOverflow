@@ -11,15 +11,11 @@
 	</div>
 </div>
 
-<h1 class="text-center well well-lg">@ViewBag.Title</h1>
-
-<div class="form-group pull-right">
-	@Html.ActionLink(" ", "Create", "Seance", routeValues: new { filmId = ViewBag.FilmId },
-	htmlAttributes: new { @class = "btn btn-success fa fa-plus", data_modal = "" })	
-</div>
-
-<div id="SeanceList">
-	@{ Html.RenderAction("List", "Seance", routeValues: new { filmId = ViewBag.FilmId }); }
+<div class="panel panel-primary">
+	<div class="panel-heading text-center">@ViewBag.Title</div>
+	<div id="SeanceList">
+		@{ Html.RenderAction("List", "Seance", routeValues: new { filmId = ViewBag.FilmId }); }
+	</div>
 </div>
 
 <script src="~/Scripts/Seance/modalform.js"></script>

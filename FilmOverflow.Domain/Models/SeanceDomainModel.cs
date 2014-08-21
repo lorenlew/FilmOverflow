@@ -18,6 +18,6 @@ namespace FilmOverflow.Domain.Models
 
 		public ICollection<TicketDomainModel> Tickets { get; set; }
 
-		public  ICollection<ReservedSeatDomainModel> Seats { get; set; }
+		public ICollection<ReservedSeatDomainModel> ReservedSeats { get; set; }
 	}
 }

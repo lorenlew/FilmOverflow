@@ -1,7 +1,7 @@
 ﻿(function ($) {
 	'use strict';
 
-	$('#SeanceManagement').on('click', 'a[data-modal]', function (e) {
+	$('#SeanceManagement').on('click', 'a[data-modal]', function () {
 		$('#seanceModalContent').load(this.href, function () {
 			$('#seanceModal').modal({
 				keyboard: true
@@ -32,5 +32,4 @@
 			});
 		});
 	}
-
 })(jQuery);

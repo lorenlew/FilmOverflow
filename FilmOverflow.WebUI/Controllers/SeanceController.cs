@@ -78,14 +78,14 @@ namespace FilmOverflow.WebUI.Controllers
 			return Json(new { success = true, url = url, replaceTarget = "#SeanceList" });
 		}
 
-		public ActionResult Edit(long id)
+		public ActionResult Edit(long? id)
 		{
 			return View();
 		}
 
 		[HttpPost]
 		[ValidateAntiForgeryToken]
-		public ActionResult Edit(long id, FormCollection collection)
+		public ActionResult Edit(SeanceViewModel seanceViewModel)
 		{
 			try
 			{
@@ -99,18 +99,18 @@ namespace FilmOverflow.WebUI.Controllers
 			}
 		}
 
-		public ActionResult Details(long id)
+		public ActionResult Details(long? id)
 		{
 			return View();
 		}
 
-		public ActionResult Delete(long id)
+		public ActionResult Delete(long? id)
 		{
 			return View();
 		}
 
 		[HttpPost]
-		public ActionResult Delete(long id, FormCollection collection)
+		public ActionResult Delete(long id)
 		{
 			try
 			{

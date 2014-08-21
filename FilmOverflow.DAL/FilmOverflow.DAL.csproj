@@ -89,6 +89,10 @@
     <Compile Include="Migrations\201408201555432_SmallFixesToSeats2.Designer.cs">
       <DependentUpon>201408201555432_SmallFixesToSeats2.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201408211901145_FilmTableDurationToIntAndSeanceTableFix.cs" />
+    <Compile Include="Migrations\201408211901145_FilmTableDurationToIntAndSeanceTableFix.Designer.cs">
+      <DependentUpon>201408211901145_FilmTableDurationToIntAndSeanceTableFix.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\ApplicationUser.cs" />
     <Compile Include="Models\Cinema.cs" />
@@ -129,6 +133,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201408201555432_SmallFixesToSeats2.resx">
       <DependentUpon>201408201555432_SmallFixesToSeats2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201408211901145_FilmTableDurationToIntAndSeanceTableFix.resx">
+      <DependentUpon>201408211901145_FilmTableDurationToIntAndSeanceTableFix.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

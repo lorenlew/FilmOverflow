@@ -20,6 +20,6 @@ namespace FilmOverflow.WebUI.ViewModels
 
 		public ICollection<TicketViewModel> Tickets { get; set; }
 
-		public ICollection<ReservedSeatViewModel> Seats { get; set; }
+		public ICollection<ReservedSeatViewModel> ReservedSeats { get; set; }
 	}
 }

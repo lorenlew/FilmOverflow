@@ -23,7 +23,7 @@ namespace FilmOverflow.DAL.Models
 		public string PhoneNumber { get; set; }
 
 		public virtual ICollection<Seance> Seances { get; set; }
-
+		
 		public virtual ICollection<Hall> Halls { get; set; }
 	}
 }

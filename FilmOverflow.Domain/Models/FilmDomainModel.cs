@@ -18,8 +18,9 @@ namespace FilmOverflow.Domain.Models
 		[Required]
 		public string ImagePath { get; set; }
 
-		[StringLength(60)]
-		public string Duration { get; set; }
+		[Required]
+		[Range(0, 300)]
+		public int Duration { get; set; }
 
 		public ICollection<ReviewDomainModel> Reviews { get; set; }
 

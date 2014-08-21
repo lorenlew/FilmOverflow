@@ -19,6 +19,6 @@ namespace FilmOverflow.DAL.Models
 
 		public virtual ICollection<Ticket> Tickets { get; set; }
 
-		public virtual ICollection<ReservedSeat> Seats { get; set; }
+		public virtual ICollection<ReservedSeat> ReservedSeats { get; set; }
 	}
 }

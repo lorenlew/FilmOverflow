@@ -1,0 +1,1129 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Edmx Version="3.0" xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <Runtime>
+    <ConceptualModels>
+      <Schema Namespace="FilmOverflow.DAL" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Cinema" customannotation:ClrType="FilmOverflow.DAL.Models.Cinema, FilmOverflow.DAL, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ImagePath" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Address" Type="String" MaxLength="60" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="PhoneNumber" Type="String" MaxLength="60" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Halls" Relationship="Self.Hall_Cinema" FromRole="Hall_Cinema_Target" ToRole="Hall_Cinema_Source" />
+          <NavigationProperty Name="Seances" Relationship="Self.Cinema_Seances" FromRole="Cinema_Seances_Source" ToRole="Cinema_Seances_Target" />
+        </EntityType>
+        <EntityType Name="Hall" customannotation:ClrType="FilmOverflow.DAL.Models.Hall, FilmOverflow.DAL, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="60" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="RowAmount" Type="Int32" Nullable="false" />
+          <Property Name="ColumnAmount" Type="Int32" Nullable="false" />
+          <Property Name="CinemaId" Type="Int64" Nullable="false" />
+          <NavigationProperty Name="Cinema" Relationship="Self.Hall_Cinema" FromRole="Hall_Cinema_Source" ToRole="Hall_Cinema_Target" />
+          <NavigationProperty Name="Seances" Relationship="Self.Seance_Hall" FromRole="Seance_Hall_Target" ToRole="Seance_Hall_Source" />
+          <NavigationProperty Name="Seats" Relationship="Self.Seat_Hall" FromRole="Seat_Hall_Target" ToRole="Seat_Hall_Source" />
+        </EntityType>
+        <EntityType Name="Seance" customannotation:ClrType="FilmOverflow.DAL.Models.Seance, FilmOverflow.DAL, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Date" Type="DateTime" Nullable="false" />
+          <Property Name="Time" Type="DateTime" Nullable="false" />
+          <Property Name="Price" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="FilmId" Type="Int64" Nullable="false" />
+          <Property Name="HallId" Type="Int64" Nullable="false" />
+          <NavigationProperty Name="Film" Relationship="Self.Film_Seances" FromRole="Film_Seances_Target" ToRole="Film_Seances_Source" />
+          <NavigationProperty Name="Hall" Relationship="Self.Seance_Hall" FromRole="Seance_Hall_Source" ToRole="Seance_Hall_Target" />
+          <NavigationProperty Name="Seats" Relationship="Self.ReservedSeat_Seance" FromRole="ReservedSeat_Seance_Target" ToRole="ReservedSeat_Seance_Source" />
+          <NavigationProperty Name="Tickets" Relationship="Self.Ticket_Seance" FromRole="Ticket_Seance_Target" ToRole="Ticket_Seance_Source" />
+        </EntityType>
+        <EntityType Name="Film" customannotation:ClrType="FilmOverflow.DAL.Models.Film, FilmOverflow.DAL, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Title" Type="String" MaxLength="60" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ImagePath" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Duration" Type="String" MaxLength="60" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Reviews" Relationship="Self.Review_Film" FromRole="Review_Film_Target" ToRole="Review_Film_Source" />
+          <NavigationProperty Name="Seances" Relationship="Self.Film_Seances" FromRole="Film_Seances_Source" ToRole="Film_Seances_Target" />
+        </EntityType>
+        <EntityType Name="Review" customannotation:ClrType="FilmOverflow.DAL.Models.Review, FilmOverflow.DAL, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Rate" Type="Int32" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ReviewDate" Type="DateTime" Nullable="false" />
+          <Property Name="ApplicationUserId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="FilmId" Type="Int64" Nullable="false" />
+          <NavigationProperty Name="ApplicationUser" Relationship="Self.ApplicationUser_Reviews" FromRole="ApplicationUser_Reviews_Target" ToRole="ApplicationUser_Reviews_Source" />
+          <NavigationProperty Name="Film" Relationship="Self.Review_Film" FromRole="Review_Film_Source" ToRole="Review_Film_Target" />
+        </EntityType>
+        <EntityType Name="ApplicationUser" customannotation:ClrType="FilmOverflow.DAL.Models.ApplicationUser, FilmOverflow.DAL, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="FirstName" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="LastName" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="IsBanned" Type="Boolean" Nullable="false" />
+          <Property Name="Email" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="EmailConfirmed" Type="Boolean" Nullable="false" />
+          <Property Name="PasswordHash" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="SecurityStamp" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PhoneNumber" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PhoneNumberConfirmed" Type="Boolean" Nullable="false" />
+          <Property Name="TwoFactorEnabled" Type="Boolean" Nullable="false" />
+          <Property Name="LockoutEndDateUtc" Type="DateTime" />
+          <Property Name="LockoutEnabled" Type="Boolean" Nullable="false" />
+          <Property Name="AccessFailedCount" Type="Int32" Nullable="false" />
+          <Property Name="UserName" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Claims" Relationship="Self.ApplicationUser_Claims" FromRole="ApplicationUser_Claims_Source" ToRole="ApplicationUser_Claims_Target" />
+          <NavigationProperty Name="Logins" Relationship="Self.ApplicationUser_Logins" FromRole="ApplicationUser_Logins_Source" ToRole="ApplicationUser_Logins_Target" />
+          <NavigationProperty Name="Reviews" Relationship="Self.ApplicationUser_Reviews" FromRole="ApplicationUser_Reviews_Source" ToRole="ApplicationUser_Reviews_Target" />
+          <NavigationProperty Name="Roles" Relationship="Self.ApplicationUser_Roles" FromRole="ApplicationUser_Roles_Source" ToRole="ApplicationUser_Roles_Target" />
+          <NavigationProperty Name="Tickets" Relationship="Self.Ticket_ApplicationUser" FromRole="Ticket_ApplicationUser_Target" ToRole="Ticket_ApplicationUser_Source" />
+        </EntityType>
+        <EntityType Name="IdentityUserClaim" customannotation:ClrType="Microsoft.AspNet.Identity.EntityFramework.IdentityUserClaim, Microsoft.AspNet.Identity.EntityFramework, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ClaimType" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ClaimValue" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="IdentityUserLogin" customannotation:ClrType="Microsoft.AspNet.Identity.EntityFramework.IdentityUserLogin, Microsoft.AspNet.Identity.EntityFramework, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35">
+          <Key>
+            <PropertyRef Name="LoginProvider" />
+            <PropertyRef Name="ProviderKey" />
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="LoginProvider" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ProviderKey" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="UserId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityType Name="IdentityUserRole" customannotation:ClrType="Microsoft.AspNet.Identity.EntityFramework.IdentityUserRole, Microsoft.AspNet.Identity.EntityFramework, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35">
+          <Key>
+            <PropertyRef Name="UserId" />
+            <PropertyRef Name="RoleId" />
+          </Key>
+          <Property Name="UserId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="RoleId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Ticket" customannotation:ClrType="FilmOverflow.DAL.Models.Ticket, FilmOverflow.DAL, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PaymentDate" Type="DateTime" Nullable="false" />
+          <Property Name="ApplicationUserId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="SeanceId" Type="Int64" Nullable="false" />
+          <Property Name="PaymentMethodId" Type="Int64" Nullable="false" />
+          <NavigationProperty Name="ApplicationUser" Relationship="Self.Ticket_ApplicationUser" FromRole="Ticket_ApplicationUser_Source" ToRole="Ticket_ApplicationUser_Target" />
+          <NavigationProperty Name="PaymentMethod" Relationship="Self.PaymentMethod_Tickets" FromRole="PaymentMethod_Tickets_Target" ToRole="PaymentMethod_Tickets_Source" />
+          <NavigationProperty Name="ReservedSeat" Relationship="Self.ReservedSeat_Ticket" FromRole="ReservedSeat_Ticket_Target" ToRole="ReservedSeat_Ticket_Source" />
+          <NavigationProperty Name="Seance" Relationship="Self.Ticket_Seance" FromRole="Ticket_Seance_Source" ToRole="Ticket_Seance_Target" />
+        </EntityType>
+        <EntityType Name="PaymentMethod" customannotation:ClrType="FilmOverflow.DAL.Models.PaymentMethod, FilmOverflow.DAL, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Tickets" Relationship="Self.PaymentMethod_Tickets" FromRole="PaymentMethod_Tickets_Source" ToRole="PaymentMethod_Tickets_Target" />
+        </EntityType>
+        <EntityType Name="ReservedSeat" customannotation:ClrType="FilmOverflow.DAL.Models.ReservedSeat, FilmOverflow.DAL, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" />
+          <Property Name="RowNumber" Type="Int32" Nullable="false" />
+          <Property Name="ColumnNumber" Type="Int32" Nullable="false" />
+          <Property Name="IsSold" Type="Boolean" Nullable="false" />
+          <Property Name="ReservationTime" Type="DateTime" Nullable="false" />
+          <Property Name="SeanceId" Type="Int64" Nullable="false" />
+          <NavigationProperty Name="Seance" Relationship="Self.ReservedSeat_Seance" FromRole="ReservedSeat_Seance_Source" ToRole="ReservedSeat_Seance_Target" />
+          <NavigationProperty Name="Ticket" Relationship="Self.ReservedSeat_Ticket" FromRole="ReservedSeat_Ticket_Source" ToRole="ReservedSeat_Ticket_Target" />
+        </EntityType>
+        <EntityType Name="Seat" customannotation:ClrType="FilmOverflow.DAL.Models.Seat, FilmOverflow.DAL, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RowNumber" Type="Int32" Nullable="false" />
+          <Property Name="ColumnNumber" Type="Int32" Nullable="false" />
+          <Property Name="HallId" Type="Int64" Nullable="false" />
+          <NavigationProperty Name="Hall" Relationship="Self.Seat_Hall" FromRole="Seat_Hall_Source" ToRole="Seat_Hall_Target" />
+        </EntityType>
+        <EntityType Name="IdentityRole" customannotation:ClrType="Microsoft.AspNet.Identity.EntityFramework.IdentityRole, Microsoft.AspNet.Identity.EntityFramework, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Users" Relationship="Self.IdentityRole_Users" FromRole="IdentityRole_Users_Source" ToRole="IdentityRole_Users_Target" />
+        </EntityType>
+        <Association Name="Hall_Cinema">
+          <End Role="Hall_Cinema_Source" Type="Self.Hall" Multiplicity="*" />
+          <End Role="Hall_Cinema_Target" Type="Self.Cinema" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <ReferentialConstraint>
+            <Principal Role="Hall_Cinema_Target">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Hall_Cinema_Source">
+              <PropertyRef Name="CinemaId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="ApplicationUser_Claims">
+          <End Role="ApplicationUser_Claims_Source" Type="Self.ApplicationUser" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="ApplicationUser_Claims_Target" Type="Self.IdentityUserClaim" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ApplicationUser_Claims_Source">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ApplicationUser_Claims_Target">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="ApplicationUser_Logins">
+          <End Role="ApplicationUser_Logins_Source" Type="Self.ApplicationUser" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="ApplicationUser_Logins_Target" Type="Self.IdentityUserLogin" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ApplicationUser_Logins_Source">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ApplicationUser_Logins_Target">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="ApplicationUser_Reviews">
+          <End Role="ApplicationUser_Reviews_Source" Type="Self.ApplicationUser" Multiplicity="0..1" />
+          <End Role="ApplicationUser_Reviews_Target" Type="Self.Review" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ApplicationUser_Reviews_Source">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ApplicationUser_Reviews_Target">
+              <PropertyRef Name="ApplicationUserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="ApplicationUser_Roles">
+          <End Role="ApplicationUser_Roles_Source" Type="Self.ApplicationUser" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="ApplicationUser_Roles_Target" Type="Self.IdentityUserRole" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ApplicationUser_Roles_Source">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ApplicationUser_Roles_Target">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Ticket_ApplicationUser">
+          <End Role="Ticket_ApplicationUser_Source" Type="Self.Ticket" Multiplicity="*" />
+          <End Role="Ticket_ApplicationUser_Target" Type="Self.ApplicationUser" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Ticket_ApplicationUser_Target">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Ticket_ApplicationUser_Source">
+              <PropertyRef Name="ApplicationUserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="PaymentMethod_Tickets">
+          <End Role="PaymentMethod_Tickets_Source" Type="Self.PaymentMethod" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="PaymentMethod_Tickets_Target" Type="Self.Ticket" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PaymentMethod_Tickets_Source">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PaymentMethod_Tickets_Target">
+              <PropertyRef Name="PaymentMethodId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="ReservedSeat_Seance">
+          <End Role="ReservedSeat_Seance_Source" Type="Self.ReservedSeat" Multiplicity="*" />
+          <End Role="ReservedSeat_Seance_Target" Type="Self.Seance" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <ReferentialConstraint>
+            <Principal Role="ReservedSeat_Seance_Target">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ReservedSeat_Seance_Source">
+              <PropertyRef Name="SeanceId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="ReservedSeat_Ticket">
+          <End Role="ReservedSeat_Ticket_Source" Type="Self.ReservedSeat" Multiplicity="0..1" />
+          <End Role="ReservedSeat_Ticket_Target" Type="Self.Ticket" Multiplicity="1" />
+          <ReferentialConstraint>
+            <Principal Role="ReservedSeat_Ticket_Target">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ReservedSeat_Ticket_Source">
+              <PropertyRef Name="Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Ticket_Seance">
+          <End Role="Ticket_Seance_Source" Type="Self.Ticket" Multiplicity="*" />
+          <End Role="Ticket_Seance_Target" Type="Self.Seance" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <ReferentialConstraint>
+            <Principal Role="Ticket_Seance_Target">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Ticket_Seance_Source">
+              <PropertyRef Name="SeanceId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Review_Film">
+          <End Role="Review_Film_Source" Type="Self.Review" Multiplicity="*" />
+          <End Role="Review_Film_Target" Type="Self.Film" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <ReferentialConstraint>
+            <Principal Role="Review_Film_Target">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Review_Film_Source">
+              <PropertyRef Name="FilmId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Film_Seances">
+          <End Role="Film_Seances_Source" Type="Self.Film" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Film_Seances_Target" Type="Self.Seance" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Film_Seances_Source">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Film_Seances_Target">
+              <PropertyRef Name="FilmId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Seance_Hall">
+          <End Role="Seance_Hall_Source" Type="Self.Seance" Multiplicity="*" />
+          <End Role="Seance_Hall_Target" Type="Self.Hall" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <ReferentialConstraint>
+            <Principal Role="Seance_Hall_Target">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Seance_Hall_Source">
+              <PropertyRef Name="HallId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Seat_Hall">
+          <End Role="Seat_Hall_Source" Type="Self.Seat" Multiplicity="*" />
+          <End Role="Seat_Hall_Target" Type="Self.Hall" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <ReferentialConstraint>
+            <Principal Role="Seat_Hall_Target">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Seat_Hall_Source">
+              <PropertyRef Name="HallId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Cinema_Seances">
+          <End Role="Cinema_Seances_Source" Type="Self.Cinema" Multiplicity="0..1" />
+          <End Role="Cinema_Seances_Target" Type="Self.Seance" Multiplicity="*" />
+        </Association>
+        <Association Name="IdentityRole_Users">
+          <End Role="IdentityRole_Users_Source" Type="Self.IdentityRole" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="IdentityRole_Users_Target" Type="Self.IdentityUserRole" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="IdentityRole_Users_Source">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="IdentityRole_Users_Target">
+              <PropertyRef Name="RoleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ApplicationDbContext" customannotation:UseClrTypes="true">
+          <EntitySet Name="Cinemas" EntityType="Self.Cinema" />
+          <EntitySet Name="Halls" EntityType="Self.Hall" />
+          <EntitySet Name="Seances" EntityType="Self.Seance" />
+          <EntitySet Name="Films" EntityType="Self.Film" />
+          <EntitySet Name="Reviews" EntityType="Self.Review" />
+          <EntitySet Name="Users" EntityType="Self.ApplicationUser" />
+          <EntitySet Name="IdentityUserClaims" EntityType="Self.IdentityUserClaim" />
+          <EntitySet Name="IdentityUserLogins" EntityType="Self.IdentityUserLogin" />
+          <EntitySet Name="IdentityUserRoles" EntityType="Self.IdentityUserRole" />
+          <EntitySet Name="Tickets" EntityType="Self.Ticket" />
+          <EntitySet Name="PaymentMethods" EntityType="Self.PaymentMethod" />
+          <EntitySet Name="ReservedSeats" EntityType="Self.ReservedSeat" />
+          <EntitySet Name="Seats" EntityType="Self.Seat" />
+          <EntitySet Name="Roles" EntityType="Self.IdentityRole" />
+          <AssociationSet Name="Hall_Cinema" Association="Self.Hall_Cinema">
+            <End Role="Hall_Cinema_Source" EntitySet="Halls" />
+            <End Role="Hall_Cinema_Target" EntitySet="Cinemas" />
+          </AssociationSet>
+          <AssociationSet Name="ApplicationUser_Claims" Association="Self.ApplicationUser_Claims">
+            <End Role="ApplicationUser_Claims_Source" EntitySet="Users" />
+            <End Role="ApplicationUser_Claims_Target" EntitySet="IdentityUserClaims" />
+          </AssociationSet>
+          <AssociationSet Name="ApplicationUser_Logins" Association="Self.ApplicationUser_Logins">
+            <End Role="ApplicationUser_Logins_Source" EntitySet="Users" />
+            <End Role="ApplicationUser_Logins_Target" EntitySet="IdentityUserLogins" />
+          </AssociationSet>
+          <AssociationSet Name="ApplicationUser_Reviews" Association="Self.ApplicationUser_Reviews">
+            <End Role="ApplicationUser_Reviews_Source" EntitySet="Users" />
+            <End Role="ApplicationUser_Reviews_Target" EntitySet="Reviews" />
+          </AssociationSet>
+          <AssociationSet Name="ApplicationUser_Roles" Association="Self.ApplicationUser_Roles">
+            <End Role="ApplicationUser_Roles_Source" EntitySet="Users" />
+            <End Role="ApplicationUser_Roles_Target" EntitySet="IdentityUserRoles" />
+          </AssociationSet>
+          <AssociationSet Name="Ticket_ApplicationUser" Association="Self.Ticket_ApplicationUser">
+            <End Role="Ticket_ApplicationUser_Source" EntitySet="Tickets" />
+            <End Role="Ticket_ApplicationUser_Target" EntitySet="Users" />
+          </AssociationSet>
+          <AssociationSet Name="PaymentMethod_Tickets" Association="Self.PaymentMethod_Tickets">
+            <End Role="PaymentMethod_Tickets_Source" EntitySet="PaymentMethods" />
+            <End Role="PaymentMethod_Tickets_Target" EntitySet="Tickets" />
+          </AssociationSet>
+          <AssociationSet Name="ReservedSeat_Seance" Association="Self.ReservedSeat_Seance">
+            <End Role="ReservedSeat_Seance_Source" EntitySet="ReservedSeats" />
+            <End Role="ReservedSeat_Seance_Target" EntitySet="Seances" />
+          </AssociationSet>
+          <AssociationSet Name="ReservedSeat_Ticket" Association="Self.ReservedSeat_Ticket">
+            <End Role="ReservedSeat_Ticket_Source" EntitySet="ReservedSeats" />
+            <End Role="ReservedSeat_Ticket_Target" EntitySet="Tickets" />
+          </AssociationSet>
+          <AssociationSet Name="Ticket_Seance" Association="Self.Ticket_Seance">
+            <End Role="Ticket_Seance_Source" EntitySet="Tickets" />
+            <End Role="Ticket_Seance_Target" EntitySet="Seances" />
+          </AssociationSet>
+          <AssociationSet Name="Review_Film" Association="Self.Review_Film">
+            <End Role="Review_Film_Source" EntitySet="Reviews" />
+            <End Role="Review_Film_Target" EntitySet="Films" />
+          </AssociationSet>
+          <AssociationSet Name="Film_Seances" Association="Self.Film_Seances">
+            <End Role="Film_Seances_Source" EntitySet="Films" />
+            <End Role="Film_Seances_Target" EntitySet="Seances" />
+          </AssociationSet>
+          <AssociationSet Name="Seance_Hall" Association="Self.Seance_Hall">
+            <End Role="Seance_Hall_Source" EntitySet="Seances" />
+            <End Role="Seance_Hall_Target" EntitySet="Halls" />
+          </AssociationSet>
+          <AssociationSet Name="Seat_Hall" Association="Self.Seat_Hall">
+            <End Role="Seat_Hall_Source" EntitySet="Seats" />
+            <End Role="Seat_Hall_Target" EntitySet="Halls" />
+          </AssociationSet>
+          <AssociationSet Name="Cinema_Seances" Association="Self.Cinema_Seances">
+            <End Role="Cinema_Seances_Source" EntitySet="Cinemas" />
+            <End Role="Cinema_Seances_Target" EntitySet="Seances" />
+          </AssociationSet>
+          <AssociationSet Name="IdentityRole_Users" Association="Self.IdentityRole_Users">
+            <End Role="IdentityRole_Users_Source" EntitySet="Roles" />
+            <End Role="IdentityRole_Users_Target" EntitySet="IdentityUserRoles" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </ConceptualModels>
+    <Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="CodeFirstDatabase" CdmEntityContainer="ApplicationDbContext">
+          <EntitySetMapping Name="Cinemas">
+            <EntityTypeMapping TypeName="FilmOverflow.DAL.Cinema">
+              <MappingFragment StoreEntitySet="Cinema">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ImagePath" ColumnName="ImagePath" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Halls">
+            <EntityTypeMapping TypeName="FilmOverflow.DAL.Hall">
+              <MappingFragment StoreEntitySet="Hall">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="RowAmount" ColumnName="RowAmount" />
+                <ScalarProperty Name="ColumnAmount" ColumnName="ColumnAmount" />
+                <ScalarProperty Name="CinemaId" ColumnName="CinemaId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Seances">
+            <EntityTypeMapping TypeName="FilmOverflow.DAL.Seance">
+              <MappingFragment StoreEntitySet="Seance">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="Time" ColumnName="Time" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="FilmId" ColumnName="FilmId" />
+                <ScalarProperty Name="HallId" ColumnName="HallId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Films">
+            <EntityTypeMapping TypeName="FilmOverflow.DAL.Film">
+              <MappingFragment StoreEntitySet="Film">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="ImagePath" ColumnName="ImagePath" />
+                <ScalarProperty Name="Duration" ColumnName="Duration" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Reviews">
+            <EntityTypeMapping TypeName="FilmOverflow.DAL.Review">
+              <MappingFragment StoreEntitySet="Review">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Rate" ColumnName="Rate" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="ReviewDate" ColumnName="ReviewDate" />
+                <ScalarProperty Name="ApplicationUserId" ColumnName="ApplicationUserId" />
+                <ScalarProperty Name="FilmId" ColumnName="FilmId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="FilmOverflow.DAL.ApplicationUser">
+              <MappingFragment StoreEntitySet="ApplicationUser">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="IsBanned" ColumnName="IsBanned" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="EmailConfirmed" ColumnName="EmailConfirmed" />
+                <ScalarProperty Name="PasswordHash" ColumnName="PasswordHash" />
+                <ScalarProperty Name="SecurityStamp" ColumnName="SecurityStamp" />
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="PhoneNumberConfirmed" ColumnName="PhoneNumberConfirmed" />
+                <ScalarProperty Name="TwoFactorEnabled" ColumnName="TwoFactorEnabled" />
+                <ScalarProperty Name="LockoutEndDateUtc" ColumnName="LockoutEndDateUtc" />
+                <ScalarProperty Name="LockoutEnabled" ColumnName="LockoutEnabled" />
+                <ScalarProperty Name="AccessFailedCount" ColumnName="AccessFailedCount" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="IdentityUserClaims">
+            <EntityTypeMapping TypeName="FilmOverflow.DAL.IdentityUserClaim">
+              <MappingFragment StoreEntitySet="IdentityUserClaim">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="ClaimType" ColumnName="ClaimType" />
+                <ScalarProperty Name="ClaimValue" ColumnName="ClaimValue" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="IdentityUserLogins">
+            <EntityTypeMapping TypeName="FilmOverflow.DAL.IdentityUserLogin">
+              <MappingFragment StoreEntitySet="IdentityUserLogin">
+                <ScalarProperty Name="LoginProvider" ColumnName="LoginProvider" />
+                <ScalarProperty Name="ProviderKey" ColumnName="ProviderKey" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="IdentityUserRoles">
+            <EntityTypeMapping TypeName="FilmOverflow.DAL.IdentityUserRole">
+              <MappingFragment StoreEntitySet="IdentityUserRole">
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tickets">
+            <EntityTypeMapping TypeName="FilmOverflow.DAL.Ticket">
+              <MappingFragment StoreEntitySet="Ticket">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="PaymentDate" ColumnName="PaymentDate" />
+                <ScalarProperty Name="ApplicationUserId" ColumnName="ApplicationUserId" />
+                <ScalarProperty Name="SeanceId" ColumnName="SeanceId" />
+                <ScalarProperty Name="PaymentMethodId" ColumnName="PaymentMethodId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PaymentMethods">
+            <EntityTypeMapping TypeName="FilmOverflow.DAL.PaymentMethod">
+              <MappingFragment StoreEntitySet="PaymentMethod">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ReservedSeats">
+            <EntityTypeMapping TypeName="FilmOverflow.DAL.ReservedSeat">
+              <MappingFragment StoreEntitySet="ReservedSeat">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="RowNumber" ColumnName="RowNumber" />
+                <ScalarProperty Name="ColumnNumber" ColumnName="ColumnNumber" />
+                <ScalarProperty Name="IsSold" ColumnName="IsSold" />
+                <ScalarProperty Name="ReservationTime" ColumnName="ReservationTime" />
+                <ScalarProperty Name="SeanceId" ColumnName="SeanceId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Seats">
+            <EntityTypeMapping TypeName="FilmOverflow.DAL.Seat">
+              <MappingFragment StoreEntitySet="Seat">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="RowNumber" ColumnName="RowNumber" />
+                <ScalarProperty Name="ColumnNumber" ColumnName="ColumnNumber" />
+                <ScalarProperty Name="HallId" ColumnName="HallId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Roles">
+            <EntityTypeMapping TypeName="FilmOverflow.DAL.IdentityRole">
+              <MappingFragment StoreEntitySet="IdentityRole">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="Cinema_Seances" TypeName="FilmOverflow.DAL.Cinema_Seances" StoreEntitySet="Seance">
+            <EndProperty Name="Cinema_Seances_Source">
+              <ScalarProperty Name="Id" ColumnName="Cinema_Id" />
+            </EndProperty>
+            <EndProperty Name="Cinema_Seances_Target">
+              <ScalarProperty Name="Id" ColumnName="Id" />
+            </EndProperty>
+            <Condition IsNull="false" ColumnName="Cinema_Id" />
+          </AssociationSetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </Mappings>
+    <StorageModels>
+      <Schema Namespace="CodeFirstDatabaseSchema" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Cinema">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="ImagePath" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Address" Type="nvarchar" MaxLength="60" Nullable="false" />
+          <Property Name="PhoneNumber" Type="nvarchar" MaxLength="60" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Hall">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="60" Nullable="false" />
+          <Property Name="RowAmount" Type="int" Nullable="false" />
+          <Property Name="ColumnAmount" Type="int" Nullable="false" />
+          <Property Name="CinemaId" Type="bigint" customannotation:Index="{ Name: IX_CinemaId, Order: 0 }" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Seance">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Date" Type="datetime" Nullable="false" />
+          <Property Name="Time" Type="datetime" Nullable="false" />
+          <Property Name="Price" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="FilmId" Type="bigint" customannotation:Index="{ Name: IX_FilmId, Order: 0 }" Nullable="false" />
+          <Property Name="HallId" Type="bigint" customannotation:Index="{ Name: IX_HallId, Order: 0 }" Nullable="false" />
+          <Property Name="Cinema_Id" Type="bigint" customannotation:Index="{ Name: IX_Cinema_Id, Order: 0 }" Nullable="true" />
+        </EntityType>
+        <EntityType Name="Film">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Title" Type="nvarchar" MaxLength="60" Nullable="false" />
+          <Property Name="Description" Type="nvarchar" MaxLength="1000" Nullable="false" />
+          <Property Name="ImagePath" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Duration" Type="nvarchar" MaxLength="60" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Review">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Rate" Type="int" Nullable="false" />
+          <Property Name="Description" Type="nvarchar" MaxLength="1000" Nullable="false" />
+          <Property Name="ReviewDate" Type="datetime" Nullable="false" />
+          <Property Name="ApplicationUserId" Type="nvarchar" customannotation:Index="{ Name: IX_ApplicationUserId, Order: 0 }" MaxLength="128" Nullable="true" />
+          <Property Name="FilmId" Type="bigint" customannotation:Index="{ Name: IX_FilmId, Order: 0 }" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ApplicationUser">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="FirstName" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="LastName" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="IsBanned" Type="bit" Nullable="false" />
+          <Property Name="Email" Type="nvarchar" MaxLength="256" Nullable="true" />
+          <Property Name="EmailConfirmed" Type="bit" Nullable="false" />
+          <Property Name="PasswordHash" Type="nvarchar(max)" Nullable="true" />
+          <Property Name="SecurityStamp" Type="nvarchar(max)" Nullable="true" />
+          <Property Name="PhoneNumber" Type="nvarchar(max)" Nullable="true" />
+          <Property Name="PhoneNumberConfirmed" Type="bit" Nullable="false" />
+          <Property Name="TwoFactorEnabled" Type="bit" Nullable="false" />
+          <Property Name="LockoutEndDateUtc" Type="datetime" Nullable="true" />
+          <Property Name="LockoutEnabled" Type="bit" Nullable="false" />
+          <Property Name="AccessFailedCount" Type="int" Nullable="false" />
+          <Property Name="UserName" Type="nvarchar" customannotation:Index="{ Name: UserNameIndex, IsUnique: True }" MaxLength="256" Nullable="false" />
+        </EntityType>
+        <EntityType Name="IdentityUserClaim">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserId" Type="nvarchar" customannotation:Index="{ Name: IX_UserId, Order: 0 }" MaxLength="128" Nullable="false" />
+          <Property Name="ClaimType" Type="nvarchar(max)" Nullable="true" />
+          <Property Name="ClaimValue" Type="nvarchar(max)" Nullable="true" />
+        </EntityType>
+        <EntityType Name="IdentityUserLogin">
+          <Key>
+            <PropertyRef Name="LoginProvider" />
+            <PropertyRef Name="ProviderKey" />
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="LoginProvider" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="ProviderKey" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="UserId" Type="nvarchar" customannotation:Index="{ Name: IX_UserId, Order: 0 }" MaxLength="128" Nullable="false" />
+        </EntityType>
+        <EntityType Name="IdentityUserRole">
+          <Key>
+            <PropertyRef Name="UserId" />
+            <PropertyRef Name="RoleId" />
+          </Key>
+          <Property Name="UserId" Type="nvarchar" customannotation:Index="{ Name: IX_UserId, Order: 0 }" MaxLength="128" Nullable="false" />
+          <Property Name="RoleId" Type="nvarchar" customannotation:Index="{ Name: IX_RoleId, Order: 0 }" MaxLength="128" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Ticket">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PaymentDate" Type="datetime" Nullable="false" />
+          <Property Name="ApplicationUserId" Type="nvarchar" customannotation:Index="{ Name: IX_ApplicationUserId, Order: 0 }" MaxLength="128" Nullable="true" />
+          <Property Name="SeanceId" Type="bigint" customannotation:Index="{ Name: IX_SeanceId, Order: 0 }" Nullable="false" />
+          <Property Name="PaymentMethodId" Type="bigint" customannotation:Index="{ Name: IX_PaymentMethodId, Order: 0 }" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PaymentMethod">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="30" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ReservedSeat">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="bigint" customannotation:Index="{ Name: IX_Id, Order: 0 }" Nullable="false" />
+          <Property Name="RowNumber" Type="int" Nullable="false" />
+          <Property Name="ColumnNumber" Type="int" Nullable="false" />
+          <Property Name="IsSold" Type="bit" Nullable="false" />
+          <Property Name="ReservationTime" Type="datetime" Nullable="false" />
+          <Property Name="SeanceId" Type="bigint" customannotation:Index="{ Name: IX_SeanceId, Order: 0 }" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Seat">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="RowNumber" Type="int" Nullable="false" />
+          <Property Name="ColumnNumber" Type="int" Nullable="false" />
+          <Property Name="HallId" Type="bigint" customannotation:Index="{ Name: IX_HallId, Order: 0 }" Nullable="false" />
+        </EntityType>
+        <EntityType Name="IdentityRole">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" customannotation:Index="{ Name: RoleNameIndex, IsUnique: True }" MaxLength="256" Nullable="false" />
+        </EntityType>
+        <Association Name="Hall_Cinema">
+          <End Role="Cinema" Type="Self.Cinema" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Hall" Type="Self.Hall" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cinema">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Hall">
+              <PropertyRef Name="CinemaId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="ApplicationUser_Claims">
+          <End Role="ApplicationUser" Type="Self.ApplicationUser" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="IdentityUserClaim" Type="Self.IdentityUserClaim" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ApplicationUser">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="IdentityUserClaim">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="ApplicationUser_Logins">
+          <End Role="ApplicationUser" Type="Self.ApplicationUser" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="IdentityUserLogin" Type="Self.IdentityUserLogin" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ApplicationUser">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="IdentityUserLogin">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="ApplicationUser_Reviews">
+          <End Role="ApplicationUser" Type="Self.ApplicationUser" Multiplicity="0..1" />
+          <End Role="Review" Type="Self.Review" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ApplicationUser">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Review">
+              <PropertyRef Name="ApplicationUserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="ApplicationUser_Roles">
+          <End Role="ApplicationUser" Type="Self.ApplicationUser" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="IdentityUserRole" Type="Self.IdentityUserRole" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ApplicationUser">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="IdentityUserRole">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Ticket_ApplicationUser">
+          <End Role="ApplicationUser" Type="Self.ApplicationUser" Multiplicity="0..1" />
+          <End Role="Ticket" Type="Self.Ticket" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ApplicationUser">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Ticket">
+              <PropertyRef Name="ApplicationUserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="PaymentMethod_Tickets">
+          <End Role="PaymentMethod" Type="Self.PaymentMethod" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Ticket" Type="Self.Ticket" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PaymentMethod">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Ticket">
+              <PropertyRef Name="PaymentMethodId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="ReservedSeat_Seance">
+          <End Role="Seance" Type="Self.Seance" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="ReservedSeat" Type="Self.ReservedSeat" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Seance">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ReservedSeat">
+              <PropertyRef Name="SeanceId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="ReservedSeat_Ticket">
+          <End Role="Ticket" Type="Self.Ticket" Multiplicity="1" />
+          <End Role="ReservedSeat" Type="Self.ReservedSeat" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Ticket">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ReservedSeat">
+              <PropertyRef Name="Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Ticket_Seance">
+          <End Role="Seance" Type="Self.Seance" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Ticket" Type="Self.Ticket" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Seance">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Ticket">
+              <PropertyRef Name="SeanceId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Review_Film">
+          <End Role="Film" Type="Self.Film" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Review" Type="Self.Review" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Film">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Review">
+              <PropertyRef Name="FilmId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Film_Seances">
+          <End Role="Film" Type="Self.Film" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Seance" Type="Self.Seance" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Film">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Seance">
+              <PropertyRef Name="FilmId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Seance_Hall">
+          <End Role="Hall" Type="Self.Hall" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Seance" Type="Self.Seance" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Hall">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Seance">
+              <PropertyRef Name="HallId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Seat_Hall">
+          <End Role="Hall" Type="Self.Hall" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Seat" Type="Self.Seat" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Hall">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Seat">
+              <PropertyRef Name="HallId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Cinema_Seances">
+          <End Role="Cinema" Type="Self.Cinema" Multiplicity="0..1" />
+          <End Role="Seance" Type="Self.Seance" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cinema">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Seance">
+              <PropertyRef Name="Cinema_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="IdentityRole_Users">
+          <End Role="IdentityRole" Type="Self.IdentityRole" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="IdentityUserRole" Type="Self.IdentityUserRole" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="IdentityRole">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="IdentityUserRole">
+              <PropertyRef Name="RoleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="CodeFirstDatabase">
+          <EntitySet Name="Cinema" EntityType="Self.Cinema" Schema="dbo" Table="Cinemas" />
+          <EntitySet Name="Hall" EntityType="Self.Hall" Schema="dbo" Table="Halls" />
+          <EntitySet Name="Seance" EntityType="Self.Seance" Schema="dbo" Table="Seances" />
+          <EntitySet Name="Film" EntityType="Self.Film" Schema="dbo" Table="Films" />
+          <EntitySet Name="Review" EntityType="Self.Review" Schema="dbo" Table="Reviews" />
+          <EntitySet Name="ApplicationUser" EntityType="Self.ApplicationUser" Schema="dbo" Table="AspNetUsers" />
+          <EntitySet Name="IdentityUserClaim" EntityType="Self.IdentityUserClaim" Schema="dbo" Table="AspNetUserClaims" />
+          <EntitySet Name="IdentityUserLogin" EntityType="Self.IdentityUserLogin" Schema="dbo" Table="AspNetUserLogins" />
+          <EntitySet Name="IdentityUserRole" EntityType="Self.IdentityUserRole" Schema="dbo" Table="AspNetUserRoles" />
+          <EntitySet Name="Ticket" EntityType="Self.Ticket" Schema="dbo" Table="Tickets" />
+          <EntitySet Name="PaymentMethod" EntityType="Self.PaymentMethod" Schema="dbo" Table="PaymentMethods" />
+          <EntitySet Name="ReservedSeat" EntityType="Self.ReservedSeat" Schema="dbo" Table="ReservedSeats" />
+          <EntitySet Name="Seat" EntityType="Self.Seat" Schema="dbo" Table="Seats" />
+          <EntitySet Name="IdentityRole" EntityType="Self.IdentityRole" Schema="dbo" Table="AspNetRoles" />
+          <AssociationSet Name="Hall_Cinema" Association="Self.Hall_Cinema">
+            <End Role="Cinema" EntitySet="Cinema" />
+            <End Role="Hall" EntitySet="Hall" />
+          </AssociationSet>
+          <AssociationSet Name="ApplicationUser_Claims" Association="Self.ApplicationUser_Claims">
+            <End Role="ApplicationUser" EntitySet="ApplicationUser" />
+            <End Role="IdentityUserClaim" EntitySet="IdentityUserClaim" />
+          </AssociationSet>
+          <AssociationSet Name="ApplicationUser_Logins" Association="Self.ApplicationUser_Logins">
+            <End Role="ApplicationUser" EntitySet="ApplicationUser" />
+            <End Role="IdentityUserLogin" EntitySet="IdentityUserLogin" />
+          </AssociationSet>
+          <AssociationSet Name="ApplicationUser_Reviews" Association="Self.ApplicationUser_Reviews">
+            <End Role="ApplicationUser" EntitySet="ApplicationUser" />
+            <End Role="Review" EntitySet="Review" />
+          </AssociationSet>
+          <AssociationSet Name="ApplicationUser_Roles" Association="Self.ApplicationUser_Roles">
+            <End Role="ApplicationUser" EntitySet="ApplicationUser" />
+            <End Role="IdentityUserRole" EntitySet="IdentityUserRole" />
+          </AssociationSet>
+          <AssociationSet Name="Ticket_ApplicationUser" Association="Self.Ticket_ApplicationUser">
+            <End Role="ApplicationUser" EntitySet="ApplicationUser" />
+            <End Role="Ticket" EntitySet="Ticket" />
+          </AssociationSet>
+          <AssociationSet Name="PaymentMethod_Tickets" Association="Self.PaymentMethod_Tickets">
+            <End Role="PaymentMethod" EntitySet="PaymentMethod" />
+            <End Role="Ticket" EntitySet="Ticket" />
+          </AssociationSet>
+          <AssociationSet Name="ReservedSeat_Seance" Association="Self.ReservedSeat_Seance">
+            <End Role="Seance" EntitySet="Seance" />
+            <End Role="ReservedSeat" EntitySet="ReservedSeat" />
+          </AssociationSet>
+          <AssociationSet Name="ReservedSeat_Ticket" Association="Self.ReservedSeat_Ticket">
+            <End Role="Ticket" EntitySet="Ticket" />
+            <End Role="ReservedSeat" EntitySet="ReservedSeat" />
+          </AssociationSet>
+          <AssociationSet Name="Ticket_Seance" Association="Self.Ticket_Seance">
+            <End Role="Seance" EntitySet="Seance" />
+            <End Role="Ticket" EntitySet="Ticket" />
+          </AssociationSet>
+          <AssociationSet Name="Review_Film" Association="Self.Review_Film">
+            <End Role="Film" EntitySet="Film" />
+            <End Role="Review" EntitySet="Review" />
+          </AssociationSet>
+          <AssociationSet Name="Film_Seances" Association="Self.Film_Seances">
+            <End Role="Film" EntitySet="Film" />
+            <End Role="Seance" EntitySet="Seance" />
+          </AssociationSet>
+          <AssociationSet Name="Seance_Hall" Association="Self.Seance_Hall">
+            <End Role="Hall" EntitySet="Hall" />
+            <End Role="Seance" EntitySet="Seance" />
+          </AssociationSet>
+          <AssociationSet Name="Seat_Hall" Association="Self.Seat_Hall">
+            <End Role="Hall" EntitySet="Hall" />
+            <End Role="Seat" EntitySet="Seat" />
+          </AssociationSet>
+          <AssociationSet Name="Cinema_Seances" Association="Self.Cinema_Seances">
+            <End Role="Cinema" EntitySet="Cinema" />
+            <End Role="Seance" EntitySet="Seance" />
+          </AssociationSet>
+          <AssociationSet Name="IdentityRole_Users" Association="Self.IdentityRole_Users">
+            <End Role="IdentityRole" EntitySet="IdentityRole" />
+            <End Role="IdentityUserRole" EntitySet="IdentityUserRole" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </StorageModels>
+  </Runtime>
+  <Designer>
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="False" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+        <DesignerProperty Name="ProcessDependentTemplatesOnSave" Value="False" />
+        <DesignerProperty Name="UseLegacyProvider" Value="False" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <Diagrams >
+      <Diagram DiagramId="807027910d73484f85deb1914f590d8d" Name="Diagram1">
+        <EntityTypeShape EntityType="FilmOverflow.DAL.Cinema" Width="1.5" PointX="7.25" PointY="5.25" IsExpanded="false" />
+        <EntityTypeShape EntityType="FilmOverflow.DAL.Hall" Width="1.5" PointX="4.75" PointY="5.25" IsExpanded="false" />
+        <EntityTypeShape EntityType="FilmOverflow.DAL.Seance" Width="1.5" PointX="6" PointY="4.125" IsExpanded="false" />
+        <EntityTypeShape EntityType="FilmOverflow.DAL.Film" Width="1.5" PointX="3.875" PointY="4.125" IsExpanded="false" />
+        <EntityTypeShape EntityType="FilmOverflow.DAL.Review" Width="1.5" PointX="3.875" PointY="2" IsExpanded="false" />
+        <EntityTypeShape EntityType="FilmOverflow.DAL.ApplicationUser" Width="1.5" PointX="6.375" PointY="2" IsExpanded="false" />
+        <EntityTypeShape EntityType="FilmOverflow.DAL.IdentityUserClaim" Width="1.5" PointX="5.25" PointY="0.875" IsExpanded="false" />
+        <EntityTypeShape EntityType="FilmOverflow.DAL.IdentityUserLogin" Width="1.5" PointX="7.875" PointY="0.875" IsExpanded="false" />
+        <EntityTypeShape EntityType="FilmOverflow.DAL.IdentityUserRole" Width="1.5" PointX="9.625" PointY="0.875" IsExpanded="false" />
+        <EntityTypeShape EntityType="FilmOverflow.DAL.Ticket" Width="1.5" PointX="7.125" PointY="2.875" IsExpanded="false" />
+        <EntityTypeShape EntityType="FilmOverflow.DAL.PaymentMethod" Width="1.5" PointX="9.625" PointY="2.875" IsExpanded="false" />
+        <EntityTypeShape EntityType="FilmOverflow.DAL.ReservedSeat" Width="1.5" PointX="8.25" PointY="4.125" IsExpanded="false" />
+        <EntityTypeShape EntityType="FilmOverflow.DAL.Seat" Width="1.5" PointX="4.75" PointY="6.375" IsExpanded="false" />
+        <EntityTypeShape EntityType="FilmOverflow.DAL.IdentityRole" Width="1.5" PointX="11.625" PointY="0.875" IsExpanded="false" />
+        <AssociationConnector Association="FilmOverflow.DAL.Hall_Cinema" ManuallyRouted="false" />
+        <AssociationConnector Association="FilmOverflow.DAL.ApplicationUser_Claims" ManuallyRouted="false" />
+        <AssociationConnector Association="FilmOverflow.DAL.ApplicationUser_Logins" ManuallyRouted="false" />
+        <AssociationConnector Association="FilmOverflow.DAL.ApplicationUser_Reviews" ManuallyRouted="false" />
+        <AssociationConnector Association="FilmOverflow.DAL.ApplicationUser_Roles" ManuallyRouted="false" />
+        <AssociationConnector Association="FilmOverflow.DAL.Ticket_ApplicationUser" ManuallyRouted="false" />
+        <AssociationConnector Association="FilmOverflow.DAL.PaymentMethod_Tickets" ManuallyRouted="false" />
+        <AssociationConnector Association="FilmOverflow.DAL.ReservedSeat_Seance" ManuallyRouted="false" />
+        <AssociationConnector Association="FilmOverflow.DAL.ReservedSeat_Ticket" ManuallyRouted="false" />
+        <AssociationConnector Association="FilmOverflow.DAL.Ticket_Seance" ManuallyRouted="false" />
+        <AssociationConnector Association="FilmOverflow.DAL.Review_Film" ManuallyRouted="false" />
+        <AssociationConnector Association="FilmOverflow.DAL.Film_Seances" ManuallyRouted="false" />
+        <AssociationConnector Association="FilmOverflow.DAL.Seance_Hall" ManuallyRouted="false" />
+        <AssociationConnector Association="FilmOverflow.DAL.Seat_Hall" ManuallyRouted="false" />
+        <AssociationConnector Association="FilmOverflow.DAL.Cinema_Seances" ManuallyRouted="false" />
+        <AssociationConnector Association="FilmOverflow.DAL.IdentityRole_Users" ManuallyRouted="false" />
+      </Diagram>
+    </Diagrams>
+  </Designer>
+</Edmx>

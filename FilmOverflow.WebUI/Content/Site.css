@@ -12,14 +12,14 @@
 /*input,
 select {
 	max-width: 280px;
-}
+}*/
 
 textarea {
-	min-width: 500px;
-	max-width: 800px;
-	min-height: 100px;
-	max-height: 180px;
-}*/
+	-moz-resize: vertical;
+	-ms-resize: vertical;
+	-o-resize: vertical;
+	resize: vertical;
+}
 
 footer {
 	padding-top: 20px;
