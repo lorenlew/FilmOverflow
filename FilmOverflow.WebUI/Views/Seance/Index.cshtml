@@ -15,17 +15,11 @@
 
 <div class="form-group pull-right">
 	@Html.ActionLink(" ", "Create", "Seance", routeValues: new { filmId = ViewBag.FilmId },
-	htmlAttributes: new { @class = "btn btn-success fa fa-plus", data_modal = "" })
-	@*@Ajax.ActionLink(" ", "Create", "Seance", routeValues: new { filmId = ViewBag.FilmId }, ajaxOptions: new AjaxOptions()
-		{
-			HttpMethod = "Get",
-			InsertionMode = InsertionMode.Replace,
-			UpdateTargetId = "seanceModalContent"
-		}, htmlAttributes: new { @class = "btn btn-success fa fa-plus", data_toggle = "modal", data_target = "#seanceModal" })*@
+	htmlAttributes: new { @class = "btn btn-success fa fa-plus", data_modal = "" })	
 </div>
 
 <div id="SeanceList">
-	@{ Html.RenderAction("List", "Seance"); }
+	@{ Html.RenderAction("List", "Seance", routeValues: new { filmId = ViewBag.FilmId }); }
 </div>
 
-<script src="~/Scripts/custom/modalform.js"></script>
+<script src="~/Scripts/Seance/modalform.js"></script>

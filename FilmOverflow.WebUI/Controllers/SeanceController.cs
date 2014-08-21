@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using AutoMapper;
@@ -37,27 +38,44 @@ namespace FilmOverflow.WebUI.Controllers
 			return View("Index");
 		}
 
-		public ActionResult List()
+		public ActionResult List(long filmId)
 		{
-			var seancesDomainModel = _seanceService.Read();
+			var seancesDomainModel = _seanceService
+				.Read()
+				.Where(x => x.FilmId == filmId);
 			var seancesViewModel = Mapper.Map<IEnumerable<SeanceDomainModel>, IEnumerable<SeanceViewModel>>(seancesDomainModel);
-			
+
 			return PartialView("_ListPartial", seancesViewModel);
 		}
 
-		public ActionResult Create()
+		public ActionResult Create(long filmId)
 		{
 			var hallsCinemas = _hallService.GetHallsCinemas();
 			ViewBag.HallsCinemas = hallsCinemas;
-			
-			return PartialView("_CreatePartial");
+			var seanceViewModel = new SeanceViewModel() { FilmId = filmId };
+
+			return PartialView("_CreatePartial", seanceViewModel);
 		}
 
 		[HttpPost]
 		[ValidateAntiForgeryToken]
 		public ActionResult Create(SeanceViewModel seanceViewModel)
 		{
-			return View();			
+			if (seanceViewModel == null)
+			{
+				return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+			}
+
+			if (!ModelState.IsValid)
+			{
+				return PartialView("_CreatePartial", seanceViewModel);
+			}
+
+			SeanceDomainModel seanceDomainModel = Mapper.Map<SeanceViewModel, SeanceDomainModel>(seanceViewModel);
+			_seanceService.Add(seanceDomainModel);
+
+			var url = Url.Action("List", "Seance");
+			return Json(new { success = true, url = url, replaceTarget = "#SeanceList" });
 		}
 
 		public ActionResult Edit(long id)

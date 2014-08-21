@@ -48,7 +48,10 @@ namespace FilmOverflow.WebUI.Controllers
 				return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
 			}
 
-			if (!ModelState.IsValid) return View("Create", filmViewModel);
+			if (!ModelState.IsValid)
+			{
+				return View("Create", filmViewModel);
+			}
 
 			//TODO: have to put this code in a separate helper (type of FileManager)
 			var extension = Path.GetExtension((filmViewModel.Image.FileName));
@@ -62,7 +65,7 @@ namespace FilmOverflow.WebUI.Controllers
 			var physicalPath = HttpContext.Server.MapPath(virtualPath);
 			filmViewModel.ImagePath = virtualPath;
 
-			var filmDomainModel = Mapper.Map<FilmViewModel, FilmDomainModel>(filmViewModel);
+			FilmDomainModel filmDomainModel = Mapper.Map<FilmViewModel, FilmDomainModel>(filmViewModel);
 			_filmService.Add(filmDomainModel);
 			filmViewModel.Image.SaveAs(physicalPath);
 
@@ -97,7 +100,10 @@ namespace FilmOverflow.WebUI.Controllers
 			}
 
 			ModelState.Remove("Image");
-			if (!ModelState.IsValid) return View("Edit", filmViewModel);
+			if (!ModelState.IsValid)
+			{
+				return View("Edit", filmViewModel);
+			}
 
 			if (filmViewModel.Image != null)
 			{

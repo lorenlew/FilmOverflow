@@ -6,7 +6,7 @@
 			<th>@Html.DisplayNameFor(x => x.Date)</th>
 			<th>@Html.DisplayNameFor(x => x.Time)</th>
 			<th>@Html.DisplayNameFor(x => x.Price)</th>
-			<th>Cinema - Hall</th>
+			<th>@Html.DisplayNameFor(x => x.Hall.Cinema) - @Html.DisplayNameFor(x => x.Hall)</th>
 			<th></th>
 		</tr>
 
@@ -18,11 +18,11 @@
 					<td>@seance.Time</td>
 					<td>@seance.Price</td>
 					<td>@seance.Hall.Name + " - " + @seance.Hall.Cinema.Name</td>
-					<td></td>
 					<td>
 						<div class="pull-right">
 							@Html.ActionLink(" ", "Edit", "Seance", new { seanceId = seance.Id }, new { @class = "btn btn-default fa fa-pencil-square-o" })
 							@Html.ActionLink(" ", "Details", "Seance", new { seanceId = seance.Id }, new { @class = "btn btn-info fa fa-info" })
+							@Html.ActionLink(" ", "Delete", "Seance", new { seanceId = seance.Id }, new { @class = "btn btn-info fa fa-trash-o" })
 						</div>
 					</td>
 				</tr>
