@@ -1,11 +1,9 @@
 ﻿@model IEnumerable<FilmOverflow.WebUI.ViewModels.ApplicationUserViewModel>
 
 @{
-	ViewBag.Title = "Admin section";
 	Layout = "~/Views/UserManipulation/_UserManagementLayout.cshtml";
 }
 
-<h1 class="text-center well well-lg">@ViewBag.Title</h1>
 <div id="UsersAndRoles">
 	@Html.Partial("_UserManipulation", Model)
 </div>

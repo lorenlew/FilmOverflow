@@ -17,12 +17,12 @@
 					<td>@seance.Date</td>
 					<td>@seance.Time</td>
 					<td>@seance.Price</td>
-					<td>@seance.Hall.Name + " - " + @seance.Hall.Cinema.Name</td>
+					<td>@seance.Hall.Cinema.Name - @seance.Hall.Name</td>
 					<td>
 						<div class="pull-right">
 							@Html.ActionLink(" ", "Edit", "Seance", new { seanceId = seance.Id }, new { @class = "btn btn-default fa fa-pencil-square-o" })
 							@Html.ActionLink(" ", "Details", "Seance", new { seanceId = seance.Id }, new { @class = "btn btn-info fa fa-info" })
-							@Html.ActionLink(" ", "Delete", "Seance", new { seanceId = seance.Id }, new { @class = "btn btn-info fa fa-trash-o" })
+							@Html.ActionLink(" ", "Delete", "Seance", new { seanceId = seance.Id }, new { @class = "btn btn-danger fa fa-trash-o" })
 						</div>
 					</td>
 				</tr>
