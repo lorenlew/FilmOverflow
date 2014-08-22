@@ -16,7 +16,7 @@
 	@Html.ActionLink(" ", "Index", "Cinema", null, new { @class = "fa fa-backward fa-2x", title = "Back to hall create" })
 </div>
 
-@Html.HiddenFor(model => model.CinemaId, new { Value = ViewBag.CinemaId })
+@Html.HiddenFor(model => model.CinemaId, new { data_id = ViewBag.CinemaId })
 
 
 <div class="form-horizontal well well-lg clear">
@@ -64,7 +64,7 @@
 
 	<span data-bind="css: { selected: $root.isSeatIncluded($data), deselected: !$root.isSeatIncluded($data)},
 						click: $root.toogleSeatStatus,
-						style:{top: $data.rowNumber()*20+'px', left: $data.columnNumber()*20+'px'}" class=" seat"></span>
+						style:{top: $data.rowNumber()*20+'px', left: $data.columnNumber()*20+'px'}" class=" seat fa  fa-user"></span>
 </span>
 
 

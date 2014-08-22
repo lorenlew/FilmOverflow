@@ -5,6 +5,7 @@ using System.Web.Mvc;
 using AutoMapper;
 using FilmOverflow.Domain.Models;
 using FilmOverflow.Services.Interfaces;
+using FilmOverflow.WebUI.Attributes;
 using FilmOverflow.WebUI.ViewModels;
 
 namespace FilmOverflow.WebUI.Controllers
@@ -53,8 +54,7 @@ namespace FilmOverflow.WebUI.Controllers
 		}
 
 		[HttpPost]
-		[ValidateAntiForgeryToken]
-		public ActionResult Create([Bind(Include = "Id,Name,RowAmount,ColumnAmount,CinemaId")] HallViewModel hallViewModel)
+		public ActionResult Create([FromJson] HallViewModel hallViewModel)
 		{
 			if (!ModelState.IsValid)
 			{

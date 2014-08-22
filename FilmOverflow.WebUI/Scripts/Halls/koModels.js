@@ -67,7 +67,14 @@
 		};
 
 		self.submit = function () {
-			//$post
+			var koHallModel = {};
+			koHallModel.Name = self.Name();
+			koHallModel.RowAmount = self.RowAmount();
+			koHallModel.ColumnAmount = self.ColumnAmount();
+			koHallModel.CinemaId = $('#CinemaId').attr('data-id');
+			koHallModel.Seats = self.Seats();
+			var hallModel = ko.mapping.toJS(koHallModel);
+			ko.utils.postJson(' ', { hallViewModel: hallModel });
 		};
 	};
 
