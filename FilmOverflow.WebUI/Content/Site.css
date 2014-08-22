@@ -115,22 +115,34 @@ article.tile:hover {
 }
 
 .selected {
-	background-color: #00ff00;
-	background-color: rgba(0, 255, 0, 0.6);
+	color: #00ff00;
+	color: rgba(0, 255, 0, 0.6);
 }
 
 .deselected {
-	background-color: #a9a9a9;
-	background-color: rgba(169, 169, 169, 0.6);
+	color: #a9a9a9;
+	color: rgba(169, 169, 169, 0.6);
 }
 
 .cinema {
 	position: relative;
+	cursor: pointer;
 }
 
 .seat {
 	position: absolute;
-	width: 17px;
-	height: 17px;
-	border-radius: 50%;
+	-webkit-box-shadow: 0px 0px 0px 3px #ffffff;
+	-moz-box-shadow: 0px 0px 0px 3px #ffffff;
+	box-shadow: 0px 0px 0px 3px #ffffff;
+	box-shadow: 0px 0px 0px 3px rgba(255, 255, 255, 0.6);
+}
+
+.back-nav {
+	position: fixed;
+	top: 50%;
+	left: 0;
+}
+
+.validationMessage {
+	color: rgb(247, 105, 105);
 }

@@ -18,7 +18,8 @@ namespace FilmOverflow.WebUI
 
 			bundles.Add(new ScriptBundle("~/bundles/knockout").Include(
 						"~/Scripts/knockout-3.1.0.debug.js",
-						"~/Scripts/knockout.mapping-latest.debug.js"));
+						"~/Scripts/knockout.mapping-latest.debug.js",
+						"~/Scripts/knockout.validation.js"));
 
 			bundles.Add(new ScriptBundle("~/bundles/jqueryui").Include(
 						"~/Scripts/jquery-ui-{version}.js"));

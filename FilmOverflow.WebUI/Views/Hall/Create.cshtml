@@ -1,30 +1,26 @@
 ﻿@model FilmOverflow.WebUI.ViewModels.HallViewModel
 
 @{
-	ViewBag.Title = "Create hall";
+	ViewBag.Title = "Create Hall";
 }
 
 <h2 class="text-center">
-	@ViewBag.Title	 
-</h2>		
+	@ViewBag.Title
+</h2>
 
-<div data-bind="visible: IsProcessing" class="text-center">
-	<span class="fa fa-refresh fa-spin fa-3x"></span>
-</div>
-
-<div>
-	@Html.ActionLink(" ", "Index", "Cinema", null, new { @class = "fa fa-backward fa-2x", title = "Back to hall create" })
-</div>
+<aside>
+	@Html.ActionLink(" ", "Details", "Cinema", new { id = ViewBag.CinemaId }, new { @class = "fa fa-caret-left fa-4x back-nav", title = "Back to hall create" })
+</aside>
 
 @Html.HiddenFor(model => model.CinemaId, new { data_id = ViewBag.CinemaId })
 
 
 <div class="form-horizontal well well-lg clear">
 	<button data-bind="click: createHallTemplate,
-					 visible: isHallConfigured" type="button" class="btn btn-warning fa fa-edit" title="Generate hall"></button>   
+					 visible: isHallConfigured" type="button" class="btn btn-primary fa fa-magic" title="Generate hall"></button>
 
 	<span data-bind="visible: HallTemplate().length > 0 && isHallConfigured" class="clear">
-		<span class="pull-right">
+		<span class="pull-right fa fa-2x">
 			Number of seats  <span data-bind="text: seatNumber" class="label label-info"></span>
 		</span>
 	</span>
@@ -33,21 +29,21 @@
 	<div class="form-group">
 		@Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-2" })
 		<div class="col-md-10">
-			<input data-bind="value: Name" class="form-control" type="text" />
+			<input data-bind="value: Name" class="form-control" type="text" required />
 		</div>
 	</div>
 
 	<div class="form-group">
 		@Html.LabelFor(model => model.RowAmount, htmlAttributes: new { @class = "control-label col-md-2" })
 		<div class="col-md-10">
-			<input data-bind="value: RowAmount" class="form-control" type="number" />
+			<input data-bind="value: RowAmount" class="form-control" type="number" required />
 		</div>
 	</div>
 
 	<div class="form-group">
 		@Html.LabelFor(model => model.ColumnAmount, htmlAttributes: new { @class = "control-label col-md-2" })
 		<div class="col-md-10">
-			<input data-bind="value: ColumnAmount" class="form-control" type="number" />
+			<input data-bind="value: ColumnAmount" class="form-control" type="number" required />
 		</div>
 	</div>
 	<button data-bind="click: addAllSeats,
@@ -58,14 +54,17 @@
 					 visible: HallTemplate().length > 0 && isHallConfigured" type="button" class="btn btn-success fa fa-check pull-right" title="Create"></button>
 </div>
 
+<div data-bind="visible: IsProcessing" class="text-center">
+	<span class="fa fa-refresh fa-spin fa-3x"></span>
+</div>
 
-<span data-bind="foreach: HallTemplate,
-				visible: isHallConfigured" class="cinema">
+<div data-bind="foreach: HallTemplate,
+				visible: isHallConfigured" class="cinema col-md-offset-2">
 
 	<span data-bind="css: { selected: $root.isSeatIncluded($data), deselected: !$root.isSeatIncluded($data)},
 						click: $root.toogleSeatStatus,
-						style:{top: $data.rowNumber()*20+'px', left: $data.columnNumber()*20+'px'}" class=" seat fa  fa-user"></span>
-</span>
+						style:{top: $data.rowNumber()*20+'px', left: $data.columnNumber()*20+'px'}" class="seat fa fa-user"></span>
+</div>
 
 
 

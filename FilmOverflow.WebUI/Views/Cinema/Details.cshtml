@@ -29,18 +29,20 @@
 		</div>
 		<img class="img-content big" src=@Model.ImagePath />
 	</article>
-	<article class="row">
+	<article>
 		<h3>Halls</h3>
 		@foreach (var hall in Model.Halls)
 		{
+			<div>
 				<p class="label label-success">@hall.Name</p>
 				<p class="label label-info">@hall.RowAmount</p>
 				<p class="label label-info">@hall.ColumnAmount</p>
+			</div>
 		}
 	</article>
-	<div>
-		@Html.ActionLink(" ", "Index", null, new { @class = "fa fa-backward fa-2x", title = "Back to cinemas" })
-	</div>
+	<aside>
+		@Html.ActionLink(" ", "Index", "Cinema", null, new { @class = "fa fa-caret-left fa-4x back-nav", title = "Back to cinemas" })
+	</aside>
 </div>
 
 
