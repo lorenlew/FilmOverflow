@@ -15,12 +15,11 @@ namespace FilmOverflow.DAL.Models
 		[StringLength(1000)]
 		public string Description { get; set; }
 
-		[Required]
 		public string ImagePath { get; set; }
 
 		[Required]
-		[StringLength(60)]
-		public string Duration { get; set; }
+		[Range(0, 300)]
+		public int Duration { get; set; }
 
 		public virtual ICollection<Review> Reviews { get; set; }
 

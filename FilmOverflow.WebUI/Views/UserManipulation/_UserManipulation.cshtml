@@ -1,7 +1,10 @@
 ﻿@model IEnumerable<FilmOverflow.WebUI.ViewModels.ApplicationUserViewModel>
+
 @{
 	var userManagerService = ViewBag.userManagerService;
+	ViewBag.Title = "Admin section";
 }
+
 <h1 class="text-center">
 	@if (User.IsInRole("Administrator"))
 	{
@@ -13,91 +16,96 @@
 	}
 </h1>
 
-<table class="table  table-bordered tab-content table-hover table-responsive table-condensed table-striped">
-	<tr>
-		<th>User name</th>
-		<th>State</th>
-		@if (User.IsInRole("Administrator"))
-		{
-			<th>Action</th>
-		}
-		<th>Role</th>
-	</tr>
-	@foreach (var item in Model)
-	{
-		<tbody class="no-shadow">
-			<tr>
-				@if (item.UserName != User.Identity.Name)
-				{
-					<td class="fixed-cell">
-						@item.UserName
+<div class="panel panel-primary">
+	<div class="panel-heading text-center">@ViewBag.Title</div>
 
-					</td>
-					<td class="fixed-cell">
-						@*You can ban if you are admin or if you are moderator and target is not admin or moderator*@
-						@if (!userManagerService.IsInRole(item.Id, "Administrator")
+	<div class="table-responsive">
+		<table class="table table-bordered tab-content table-hover table-condensed">
+			<tr>
+				<th>User name</th>
+				<th>State</th>
+				@if (User.IsInRole("Administrator"))
+				{
+					<th>Action</th>
+				}
+				<th>Role</th>
+			</tr>
+			@foreach (var item in Model)
+			{
+				<tr>
+					@if (item.UserName != User.Identity.Name)
+					{
+						<td class="fixed-cell">
+							@item.UserName
+
+						</td>
+						<td class="fixed-cell">
+							@*You can ban if you are admin or if you are moderator and target is not admin or moderator*@
+							@if (!userManagerService.IsInRole(item.Id, "Administrator")
 							 && !userManagerService.IsInRole(item.Id, "Moderator")
 							 || User.IsInRole("Administrator"))
-						{
-							if (!item.IsBanned)
 							{
-								@Ajax.ActionLink(" ", "ChangeUserAccess", "UserManipulation", new { name = item.UserName }, new AjaxOptions
+								if (!item.IsBanned)
+								{
+									@Ajax.ActionLink(" ", "ChangeUserAccess", "UserManipulation", new { name = item.UserName }, new AjaxOptions
 								{
 									UpdateTargetId = "UsersAndRoles",
 									InsertionMode = InsertionMode.Replace,
 									HttpMethod = "Post",
 								}, new { @class = "btn btn-success fa fa-unlock" })
-							}
-							else
-							{
-								@Ajax.ActionLink(" ", "ChangeUserAccess", "UserManipulation", new { name = item.UserName }, new AjaxOptions
+								}
+								else
+								{
+									@Ajax.ActionLink(" ", "ChangeUserAccess", "UserManipulation", new { name = item.UserName }, new AjaxOptions
 								{
 									UpdateTargetId = "UsersAndRoles",
 									InsertionMode = InsertionMode.Replace,
 									HttpMethod = "Post",
 								}, new { @class = "btn btn-default fa fa-lock" })
+								}
 							}
-						}
-					</td>
+						</td>
 
-					if (User.IsInRole("Administrator"))
-					{
-						<td class="fixed-cell">
-							@if (!userManagerService.IsInRole(item.Id, "Moderator"))
-							{
-								@Ajax.ActionLink(" ", "SetToRole", "UserManipulation", new { name = item.UserName }, new AjaxOptions
+						if (User.IsInRole("Administrator"))
+						{
+							<td class="fixed-cell">
+								@if (!userManagerService.IsInRole(item.Id, "Moderator"))
+								{
+									@Ajax.ActionLink(" ", "SetToRole", "UserManipulation", new { name = item.UserName }, new AjaxOptions
 								{
 									UpdateTargetId = "UsersAndRoles",
 									InsertionMode = InsertionMode.Replace,
 									HttpMethod = "Post",
 								}, new { @class = "btn btn-default fa fa-arrow-up" })
-							}
-							else
-							{
-								@Ajax.ActionLink(" ", "SetToRole", "UserManipulation", new { name = item.UserName }, new AjaxOptions
+								}
+								else
+								{
+									@Ajax.ActionLink(" ", "SetToRole", "UserManipulation", new { name = item.UserName }, new AjaxOptions
 								{
 									UpdateTargetId = "UsersAndRoles",
 									InsertionMode = InsertionMode.Replace,
 									HttpMethod = "Post",
 								}, new { @class = "btn btn-success fa fa-arrow-down" })
+								}
+							</td>
+						}
+						<td class="fixed-cell">
+							<div class="text-success">
+								@foreach (var role in (userManagerService.GetRoles(item.Id)))
+								{
+									@role
+								}
+								@if (!userManagerService.IsInRole(item.Id, "Administrator") &&
+								 !userManagerService.IsInRole(item.Id, "Moderator"))
+								{
+									@:User
 							}
+							</div>
 						</td>
 					}
-					<td class="fixed-cell">
-						<div class="text-success">
-							@foreach (var role in (userManagerService.GetRoles(item.Id)))
-							{
-								@role
-							}
-							@if (!userManagerService.IsInRole(item.Id, "Administrator") &&
-								 !userManagerService.IsInRole(item.Id, "Moderator"))
-							{
-								@:User
-							}
-						</div>
-					</td>
-				}
-			</tr>
-		</tbody>
-	}
-</table>
+				</tr>
+
+			}
+		</table>
+	</div>
+</div>

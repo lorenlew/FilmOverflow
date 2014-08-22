@@ -1,0 +1,21 @@
+﻿@{
+	ViewBag.Title = "Seance management";
+}
+
+<!-- modal placeholder-->
+<div id="seanceModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="seanceModalLabel" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div id="seanceModalContent"></div>
+		</div>
+	</div>
+</div>
+
+<div class="panel panel-primary">
+	<div class="panel-heading text-center">@ViewBag.Title</div>
+	<div id="SeanceList">
+		@{ Html.RenderAction("List", "Seance", routeValues: new { filmId = ViewBag.FilmId }); }
+	</div>
+</div>
+
+<script src="~/Scripts/Seance/modalform.js"></script>

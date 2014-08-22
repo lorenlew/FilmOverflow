@@ -17,18 +17,16 @@ namespace FilmOverflow.WebUI.ViewModels
 		[StringLength(1000)]
 		public string Description { get; set; }
 
-		[NotMapped]
 		[FileSize(15360000)]
 		[FileTypes("jpg,jpeg,png")]
-		[Required(ErrorMessage = "Upload image")]
 		public HttpPostedFileBase Image { get; set; }
 
 		[Display(Name = "Image")]
 		public string ImagePath { get; set; }
 
 		[Required(ErrorMessage = "Add duration")]
-		[StringLength(60)]
-		public string Duration { get; set; }
+		[Range(0, 300, ErrorMessage = "Out of range")]
+		public int Duration { get; set; }
 
 		public ICollection<ReviewViewModel> Reviews { get; set; }
 

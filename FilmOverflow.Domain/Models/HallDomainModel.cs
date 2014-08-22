@@ -17,6 +17,7 @@ namespace FilmOverflow.Domain.Models
 
 		public int ColumnAmount { get; set; }
 
+		public CinemaDomainModel Cinema { get; set; }
 		public long CinemaId { get; set; }
 
 		public ICollection<SeatDomainModel> Seats { get; set; }
