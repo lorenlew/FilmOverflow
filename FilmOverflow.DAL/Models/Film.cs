@@ -15,7 +15,6 @@ namespace FilmOverflow.DAL.Models
 		[StringLength(1000)]
 		public string Description { get; set; }
 
-		[Required]
 		public string ImagePath { get; set; }
 
 		[Required]
