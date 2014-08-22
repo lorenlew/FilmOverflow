@@ -5,7 +5,7 @@
 }
 
 <div class="well well-lg">
-	<article class="dl-horizontal">
+	<article>
 		<h1 class="text-center text-warning">
 			@Html.DisplayFor(model => model.Name)
 		</h1>
@@ -29,8 +29,20 @@
 		</div>
 		<img class="img-content big" src=@Model.ImagePath />
 	</article>
+	<article class="small-block">
+		<h3>Halls</h3>
+		@foreach (var hall in Model.Halls)
+		{
+				<p class="label label-success">@hall.Name</p>
+				<p class="label label-info">@hall.RowAmount</p>
+				<p class="label label-info">@hall.ColumnAmount</p>
+		}
+	</article>
 	<div>
 		@Html.ActionLink(" ", "Index", null, new { @class = "fa fa-backward fa-2x", title = "Back to cinemas" })
 	</div>
 </div>
+
+
+
 

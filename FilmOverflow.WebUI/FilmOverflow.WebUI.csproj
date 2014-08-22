@@ -292,6 +292,8 @@
     <Content Include="fonts\fontawesome-webfont.eot" />
     <Content Include="fonts\FontAwesome.otf" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="Scripts\Halls\app.js" />
+    <Content Include="Scripts\Halls\koModels.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
@@ -393,7 +395,6 @@
   <ItemGroup>
     <Folder Include="Content\Images\Cinema-images\" />
     <Folder Include="Content\Images\Film-images\" />
-    <Folder Include="Scripts\Halls\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

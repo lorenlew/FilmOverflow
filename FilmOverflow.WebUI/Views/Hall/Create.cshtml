@@ -5,56 +5,77 @@
 }
 
 <h2 class="text-center">
-	@ViewBag.Title
-</h2>
+	@ViewBag.Title	 
+</h2>		
 
-<div class="well well-lg">
-	@using (Html.BeginForm())
-	{
-		@Html.AntiForgeryToken()
-
-		<div class="form-horizontal">
-			@Html.ValidationSummary(true, "", new { @class = "text-danger" })
-			<div class="form-group">
-				@Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-2" })
-				<div class="col-md-10">
-					@Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
-					@Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
-				</div>
-			</div>
-
-			<div class="form-group">
-				@Html.LabelFor(model => model.RowAmount, htmlAttributes: new { @class = "control-label col-md-2" })
-				<div class="col-md-10">
-					@Html.EditorFor(model => model.RowAmount, new { htmlAttributes = new { @class = "form-control" } })
-					@Html.ValidationMessageFor(model => model.RowAmount, "", new { @class = "text-danger" })
-				</div>
-			</div>
-
-			<div class="form-group">
-				@Html.LabelFor(model => model.ColumnAmount, htmlAttributes: new { @class = "control-label col-md-2" })
-				<div class="col-md-10">
-					@Html.EditorFor(model => model.ColumnAmount, new { htmlAttributes = new { @class = "form-control" } })
-					@Html.ValidationMessageFor(model => model.ColumnAmount, "", new { @class = "text-danger" })
-				</div>
-			</div>
-			@Html.HiddenFor(model => model.CinemaId, new { Value = ViewBag.CinemaId })
-			<div class="form-group">
-				<div class="col-md-offset-2 col-md-10">
-					<input type="submit" value="Create" class="btn btn-default" />
-				</div>
-			</div>
-		</div>
-	}
+<div data-bind="visible: IsProcessing" class="text-center">
+	<span class="fa fa-refresh fa-spin fa-3x"></span>
 </div>
+
 <div>
-	@Html.ActionLink(" ", "Index", null, new { @class = "fa fa-backward fa-2x", title = "Back to hall create" })
+	@Html.ActionLink(" ", "Index", "Cinema", null, new { @class = "fa fa-backward fa-2x", title = "Back to hall create" })
 </div>
+
+@Html.HiddenFor(model => model.CinemaId, new { Value = ViewBag.CinemaId })
+
+
+<div class="form-horizontal well well-lg clear">
+	<button data-bind="click: createHallTemplate,
+					 visible: isHallConfigured" type="button" class="btn btn-warning fa fa-edit" title="Generate hall"></button>   
+
+	<span data-bind="visible: HallTemplate().length > 0 && isHallConfigured" class="clear">
+		<span class="pull-right">
+			Number of seats  <span data-bind="text: seatNumber" class="label label-info"></span>
+		</span>
+	</span>
+
+
+	<div class="form-group">
+		@Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-2" })
+		<div class="col-md-10">
+			<input data-bind="value: Name" class="form-control" type="text" />
+		</div>
+	</div>
+
+	<div class="form-group">
+		@Html.LabelFor(model => model.RowAmount, htmlAttributes: new { @class = "control-label col-md-2" })
+		<div class="col-md-10">
+			<input data-bind="value: RowAmount" class="form-control" type="number" />
+		</div>
+	</div>
+
+	<div class="form-group">
+		@Html.LabelFor(model => model.ColumnAmount, htmlAttributes: new { @class = "control-label col-md-2" })
+		<div class="col-md-10">
+			<input data-bind="value: ColumnAmount" class="form-control" type="number" />
+		</div>
+	</div>
+	<button data-bind="click: addAllSeats,
+					 visible: HallTemplate().length > 0 && isHallConfigured" type="button" class="btn btn-success fa fa-plus-square" title="Add all seats"></button>
+	<button data-bind="click: removeAllSeats,
+					 visible: HallTemplate().length > 0 && isHallConfigured" type="button" class="btn btn-danger fa fa-minus-square" title="Remove all seats"></button>
+	<button data-bind="click: submit,
+					 visible: HallTemplate().length > 0 && isHallConfigured" type="button" class="btn btn-success fa fa-check pull-right" title="Create"></button>
+</div>
+
+
+<span data-bind="foreach: HallTemplate,
+				visible: isHallConfigured" class="cinema">
+
+	<span data-bind="css: { selected: $root.isSeatIncluded($data), deselected: !$root.isSeatIncluded($data)},
+						click: $root.toogleSeatStatus,
+						style:{top: $data.rowNumber()*20+'px', left: $data.columnNumber()*20+'px'}" class=" seat"></span>
+</span>
+
+
+
+
+
+
+
 
 @section Scripts {
-	@if (ViewBag.CinemaId != null)
-	{
-		@*<script src="~/Scripts/Halls/AttachCinemaToHall.js"></script>*@
-	}
+	<script src="~/Scripts/Halls/koModels.js"></script>
+	<script src="~/Scripts/Halls/app.js"></script>
 	@Scripts.Render("~/bundles/jqueryval")
 }
