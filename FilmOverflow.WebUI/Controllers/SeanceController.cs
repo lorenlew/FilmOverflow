@@ -44,20 +44,14 @@ namespace FilmOverflow.WebUI.Controllers
 				.Read()
 				.Where(x => x.FilmId == filmId);
 			var seancesViewModel = Mapper.Map<IEnumerable<SeanceDomainModel>, IEnumerable<SeanceViewModel>>(seancesDomainModel);
+			ViewBag.FilmId = filmId;
 
 			return PartialView("_ListPartial", seancesViewModel);
 		}
 
 		public ActionResult Create(long filmId)
 		{
-			IEnumerable<SelectListItem> hallsCinemas = _hallService
-				.Read()
-				.Select(x => new SelectListItem()
-			{
-				Value = x.Id.ToString(),
-				Text = x.Cinema.Name + " " + x.Name
-			});
-
+			IEnumerable<SelectListItem> hallsCinemas = GetHallsCinemas();
 			ViewBag.HallsCinemas = hallsCinemas;
 			ViewBag.FilmId = filmId;
 
@@ -75,6 +69,7 @@ namespace FilmOverflow.WebUI.Controllers
 
 			if (!ModelState.IsValid)
 			{
+				ViewBag.HallsCinemas = GetHallsCinemas();
 				return PartialView("_CreatePartial", seanceViewModel);
 			}
 
@@ -85,50 +80,121 @@ namespace FilmOverflow.WebUI.Controllers
 			return Json(new { success = true, url = url, replaceTarget = "#SeanceList" });
 		}
 
-		public ActionResult Edit(long? id)
+		public ActionResult Edit(long? seanceId)
 		{
-			return View();
+			if (seanceId == null)
+			{
+				return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+			}
+
+			SeanceDomainModel seanceDomianModel = _seanceService.ReadById(seanceId);
+			SeanceViewModel seanceViewModel = Mapper.Map<SeanceDomainModel, SeanceViewModel>(seanceDomianModel);
+			
+			if (seanceViewModel == null)
+			{
+				return HttpNotFound();
+			}
+
+			IEnumerable<SelectListItem> hallsCinemas = GetHallsCinemas();
+			ViewBag.HallsCinemas = hallsCinemas;
+			
+			return PartialView("_EditPartial", seanceViewModel);
 		}
 
 		[HttpPost]
 		[ValidateAntiForgeryToken]
 		public ActionResult Edit(SeanceViewModel seanceViewModel)
 		{
-			try
+			if (seanceViewModel == null)
 			{
-				// TODO: Add update logic here
+				return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+			}
 
-				return RedirectToAction("Index");
-			}
-			catch
+			if (!ModelState.IsValid)
 			{
-				return View();
+				return PartialView("_EditPartial", seanceViewModel);
 			}
+
+			SeanceDomainModel seanceDomainModel = Mapper.Map<SeanceViewModel, SeanceDomainModel>(seanceViewModel);
+			_seanceService.Update(seanceDomainModel);
+
+			var url = Url.Action("List", "Seance", routeValues: new { filmId = seanceViewModel.FilmId });
+			return Json(new { success = true, url = url, replaceTarget = "#SeanceList" });
 		}
 
-		public ActionResult Details(long? id)
+		public ActionResult Details(long? seanceId)
 		{
-			return View();
+			if (seanceId == null)
+			{
+				return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+			}
+
+			SeanceDomainModel seanceDomianModel = _seanceService.ReadById(seanceId);
+			SeanceViewModel seanceViewModel = Mapper.Map<SeanceDomainModel, SeanceViewModel>(seanceDomianModel);
+
+			if (seanceViewModel == null)
+			{
+				return HttpNotFound();
+			}
+
+			return PartialView("_DetailsPartial", seanceViewModel);
 		}
 
-		public ActionResult Delete(long? id)
+		public ActionResult Delete(long? seanceId)
 		{
-			return View();
+			if (seanceId == null)
+			{
+				return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+			}
+
+			SeanceDomainModel seanceDomainModel = _seanceService.ReadById(seanceId);
+			SeanceViewModel seanceViewModel = Mapper.Map<SeanceDomainModel, SeanceViewModel>(seanceDomainModel);
+
+			if (seanceViewModel == null)
+			{
+				return HttpNotFound();
+			}
+
+			return PartialView("_DeletePartial", seanceViewModel);
 		}
 
 		[HttpPost]
-		public ActionResult Delete(long id)
+		[ValidateAntiForgeryToken]
+		public ActionResult Delete(long seanceId)
 		{
-			try
+			SeanceDomainModel seanceDomainModel = _seanceService.ReadById(seanceId);
+			
+			if (seanceDomainModel == null)
 			{
-				// TODO: Add delete logic here
+				return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+			}
+			
+			SeanceViewModel seanceViewModel = Mapper.Map<SeanceDomainModel, SeanceViewModel>(seanceDomainModel);
+			
+			if (!ModelState.IsValid)
+			{
+				return PartialView("_DeletePartial", seanceViewModel);
+			}
 
-				return RedirectToAction("Index");
-			}
-			catch
-			{
-				return View();
-			}
+			_seanceService.Delete(seanceDomainModel);
+
+			var url = Url.Action("List", "Seance", routeValues: new { filmId = seanceViewModel.FilmId });
+			return Json(new { success = true, url = url, replaceTarget = "#SeanceList" });
 		}
+
+		#region Helpers
+		private IEnumerable<SelectListItem> GetHallsCinemas()
+		{
+			IEnumerable<SelectListItem> hallsCinemas = _hallService
+				.Read()
+				.Select(x => new SelectListItem()
+				{
+					Value = x.Id.ToString(),
+					Text = x.Cinema.Name + " " + x.Name
+				});
+
+			return hallsCinemas;
+		} 
+		#endregion
 	}
 }

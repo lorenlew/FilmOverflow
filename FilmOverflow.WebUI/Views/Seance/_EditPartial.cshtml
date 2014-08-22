@@ -1,7 +1,7 @@
 ﻿@model FilmOverflow.WebUI.ViewModels.SeanceViewModel
 
 @{
-	ViewBag.Title = "Create seance";
+	ViewBag.Title = "Edit seance";
 }
 
 <div class="modal-header">
@@ -9,12 +9,14 @@
 	<h4 class="modal-title" id="seanceModalLabel">@ViewBag.Title</h4>
 </div>
 
-@using (Html.BeginForm("Create", "Seance", new { filmId = ViewBag.FilmId }, FormMethod.Post, new { @class = "form-horizontal" }))
+@using (Html.BeginForm("Edit", "Seance", null, FormMethod.Post, new { @class = "form-horizontal" }))
 {
 	<div class="modal-body">
 		@Html.AntiForgeryToken()
-
 		@Html.ValidationSummary(true, "", new { @class = "text-danger" })
+		
+		@Html.HiddenFor(m => m.Id)
+		@Html.HiddenFor(m => m.FilmId)
 
 		<div class="form-group">
 			@Html.LabelFor(m => m.Date, new { @class = "col-md-2 control-label" })
@@ -48,6 +50,6 @@
 
 	<div class="modal-footer">
 		<button class="btn btn-default" type="button" data-dismiss="modal">Cancel</button>
-		<input class="btn btn-primary" type="submit" value="Create" />
+		<input class="btn btn-primary" type="submit" value="Save" />
 	</div>
 }

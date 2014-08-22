@@ -178,6 +178,18 @@ namespace FilmOverflow.WebUI.Controllers
 		{
 			FilmDomainModel filmDomainModel = _filmService.ReadById(filmId);
 
+			if (filmDomainModel == null)
+			{
+				return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+			}
+
+			FilmViewModel filmViewModel = Mapper.Map<FilmDomainModel, FilmViewModel>(filmDomainModel);
+
+			if (!ModelState.IsValid)
+			{
+				return View("Delete", filmViewModel);
+			}
+
 			//TODO: have to put this code in a separate helper (type of FileManager)
 			var virtualPath = filmDomainModel.ImagePath;
 			var physicalPath = HttpContext.Server.MapPath(virtualPath);

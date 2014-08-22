@@ -1,0 +1,56 @@
+﻿@model FilmOverflow.WebUI.ViewModels.SeanceViewModel
+
+@{
+	ViewBag.Title = "Are you sure you want to delete this seance?";
+}
+
+<div class="modal-header">
+	<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+	<h4 class="modal-title" id="advertModalLabel">@ViewBag.Title</h4>
+</div>
+
+<div class="modal-body">
+	<dl class="dl-horizontal">
+		<dt>
+			@Html.DisplayNameFor(model => model.Date)
+		</dt>
+
+		<dd>
+			@Html.DisplayFor(model => model.Date)
+		</dd>
+
+		<dt>
+			@Html.DisplayNameFor(model => model.Time)
+		</dt>
+
+		<dd>
+			@Html.DisplayFor(model => model.Time)
+		</dd>
+
+		<dt>
+			@Html.DisplayNameFor(model => model.Price)
+		</dt>
+
+		<dd>
+			@Html.DisplayFor(model => model.Price)
+		</dd>
+
+		<dt>
+			@Html.DisplayNameFor(x => x.Hall.Cinema) - @Html.DisplayNameFor(x => x.Hall)
+		</dt>
+
+		<dd>
+			@Model.Hall.Cinema.Name - @Model.Hall.Name
+		</dd>
+	</dl>
+</div>
+
+@using (Html.BeginForm("Delete", "Seance", new { seanceId = Model.Id }, FormMethod.Post))
+{
+	@Html.AntiForgeryToken()
+
+	<div class="modal-footer">
+		<button class="btn btn-default" type="button" data-dismiss="modal">No</button>
+		<input class="btn btn-danger" type="submit" value="Yes" />
+	</div>
+}
