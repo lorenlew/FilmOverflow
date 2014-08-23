@@ -1,7 +1,7 @@
 ﻿@model FilmOverflow.WebUI.ViewModels.CinemaViewModel
 
 @{
-	ViewBag.Title = "Delete";
+	ViewBag.Title = "Delete Cinema";
 }
 
 
@@ -14,9 +14,9 @@
 	{
 		@Html.AntiForgeryToken()
 
-		<div class="form-actions no-color">
-			@Html.ActionLink(" ", "Index", null, new { @class = "fa fa-backward fa-2x", title = "Back to cinemas" })
-			<input type="submit" value="Delete" class="btn btn-danger fa fa-trash-o" />
+		<div>
+			@Html.ActionLink(" ", "Index", null, new { @class = "fa fa-caret-left fa-4x back-nav", title = "Back to cinemas" })
+			<button class="btn btn-danger fa fa-trash-o" > </button>
 		</div>
 	}
 </div>

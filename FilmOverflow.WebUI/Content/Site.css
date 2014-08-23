@@ -9,10 +9,10 @@
 	padding-right: 15px;
 }
 
-/*input,
+input,
 select {
 	max-width: 280px;
-}*/
+}
 
 textarea {
 	-moz-resize: vertical;
@@ -37,11 +37,17 @@ ul {
 	list-style: none;
 }
 
-/*.font-bordered {
+	ul.small > li {
+		width: 200px;
+		background-color: gray;
+		background-color: rgba(0, 0, 0, 0.15);
+	}
+
+.font-bordered {
 	color: #ffffff;
 	-ms-text-shadow: #000 2px 0px 2px, #000 0px 2px 2px, #000 0px -2px 2px, #000 -2px 0px 2px;
 	text-shadow: #000 2px 0px 2px, #000 0px 2px 2px, #000 0px -2px 2px, #000 -2px 0px 2px;
-}*/
+}
 
 .no-shadow {
 	text-shadow: none;
