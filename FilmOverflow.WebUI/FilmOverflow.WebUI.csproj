@@ -192,6 +192,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Helpers\StringHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="ViewModels\AccountViewModels.cs" />
@@ -308,6 +309,8 @@
     <Content Include="Views\Seance\_EditPartial.cshtml" />
     <Content Include="Views\Seance\_DetailsPartial.cshtml" />
     <Content Include="Views\Seance\_DeletePartial.cshtml" />
+    <Content Include="Views\Home\_ListPartial.cshtml" />
+    <Content Include="Views\Home\Details.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\FilmOverflow.Domain\FilmOverflow.Domain.csproj">
