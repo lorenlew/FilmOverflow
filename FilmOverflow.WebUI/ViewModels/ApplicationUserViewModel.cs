@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using FilmOverflow.Domain.Models;
 using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace FilmOverflow.WebUI.ViewModels

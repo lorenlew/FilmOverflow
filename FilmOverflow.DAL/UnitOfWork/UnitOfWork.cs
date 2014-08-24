@@ -1,5 +1,4 @@
-﻿using System;
-using System.Data.Entity;
+﻿using System.Data.Entity;
 using FilmOverflow.DAL.Migrations;
 using FilmOverflow.DAL.Models;
 using Microsoft.AspNet.Identity;

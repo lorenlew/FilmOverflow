@@ -23,9 +23,9 @@
 			@Html.DisplayFor(model => model.PhoneNumber)
 		</h4>
 		<div>
-			@Html.ActionLink(" ", "Edit", new { id = Model.Id }, new { @class = "btn btn-warning fa fa-pencil-square-o", title = "Edit" })
-			@Html.ActionLink(" ", "Delete", new { id = Model.Id }, new { @class = "btn btn-danger fa fa-trash-o", title = "Delete" })
-			@Html.ActionLink(" ", "Create", "Hall", new { id = Model.Id }, new { @class = "btn btn-success fa fa-cube", title = "Add hall" })
+			@Html.ActionLink(" ", "Edit", new {id = Model.Id}, new {@class = "btn btn-warning fa fa-pencil-square-o", title = "Edit"})
+			@Html.ActionLink(" ", "Delete", new {id = Model.Id}, new {@class = "btn btn-danger fa fa-trash-o", title = "Delete"})
+			@Html.ActionLink(" ", "Create", "Hall", new {id = Model.Id}, new {@class = "btn btn-success fa fa-cube", title = "Add hall"})
 		</div>
 		<img class="img-content big" src=@Model.ImagePath />
 	</article>
@@ -41,10 +41,6 @@
 		}
 	</article>
 	<aside>
-		@Html.ActionLink(" ", "Index", "Cinema", null, new { @class = "fa fa-caret-left fa-4x back-nav", title = "Back to cinemas" })
+		@Html.ActionLink(" ", "Index", "Cinema", null, new {@class = "fa fa-caret-left fa-4x back-nav", title = "Back to cinemas"})
 	</aside>
 </div>
-
-
-
-

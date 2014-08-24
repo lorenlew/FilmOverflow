@@ -1,8 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Net;
-using System.Web;
 using System.Web.Mvc;
 using AutoMapper;
 using FilmOverflow.Domain.Models;
@@ -18,15 +16,6 @@ namespace FilmOverflow.WebUI.Controllers
 
 		public SeanceController(ISeanceService seanceService, IHallService hallService)
 		{
-			if (seanceService == null)
-			{
-				throw new ArgumentNullException("seanceService");
-			}
-			if (hallService == null)
-			{
-				throw new ArgumentNullException("hallService");
-			}
-
 			_seanceService = seanceService;
 			_hallService = hallService;
 		}

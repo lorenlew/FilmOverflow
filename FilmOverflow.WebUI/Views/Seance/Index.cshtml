@@ -14,7 +14,7 @@
 <div class="panel panel-primary">
 	<div class="panel-heading text-center">@ViewBag.Title</div>
 	<div id="SeanceList">
-		@{ Html.RenderAction("List", "Seance", routeValues: new { filmId = ViewBag.FilmId }); }
+		@{ Html.RenderAction("List", "Seance", routeValues: new {filmId = ViewBag.FilmId}); }
 	</div>
 </div>
 
@@ -22,5 +22,3 @@
 @section Scripts {
 	<script src="~/Scripts/Seance/modalform.js"></script>
 }
-
-

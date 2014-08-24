@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Web.Mvc;
 using FilmOverflow.Domain.Models;
 
 namespace FilmOverflow.Services.Interfaces
@@ -14,5 +15,7 @@ namespace FilmOverflow.Services.Interfaces
 		void Update(PaymentMethodDomainModel entity);
 
 		void Delete(PaymentMethodDomainModel entity);
+
+		IEnumerable<SelectListItem> GetSelectListItems();
 	}
 }

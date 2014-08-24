@@ -1,5 +1,4 @@
-﻿using System;
-using FilmOverflow.DAL.Models;
+﻿using FilmOverflow.DAL.Models;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 

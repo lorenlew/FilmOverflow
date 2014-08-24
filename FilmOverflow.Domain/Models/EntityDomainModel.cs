@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace FilmOverflow.Domain.Models
+﻿namespace FilmOverflow.Domain.Models
 {
 	public class EntityDomainModel
 	{

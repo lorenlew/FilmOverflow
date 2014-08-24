@@ -1,9 +1,8 @@
+using System.Data.Entity.Migrations;
+
 namespace FilmOverflow.DAL.Migrations
 {
-    using System;
-    using System.Data.Entity.Migrations;
-    
-    public partial class SmallFixesToSeats2 : DbMigration
+	public partial class SmallFixesToSeats2 : DbMigration
     {
         public override void Up()
         {

@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Web.Mvc;
 using AutoMapper;
 using FilmOverflow.DAL.Models;
 using FilmOverflow.DAL.UnitOfWork;
@@ -51,6 +53,17 @@ namespace FilmOverflow.Services
 			var paymentMethod = Mapper.Map<PaymentMethodDomainModel, PaymentMethod>(entity);
 			Uow.GetRepository<PaymentMethod>().Delete(paymentMethod);
 			Uow.Save();
+		}
+
+		public IEnumerable<SelectListItem> GetSelectListItems()
+		{
+			IEnumerable<SelectListItem> paymentMethods = from cat in Uow.GetRepository<PaymentMethod>().Read()
+														 select (new SelectListItem
+														 {
+															 Value = cat.Id.ToString(),
+															 Text = cat.Name
+														 });
+			return paymentMethods;
 		}
 	}
 }

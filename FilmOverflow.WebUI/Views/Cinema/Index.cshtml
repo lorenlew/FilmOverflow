@@ -4,12 +4,12 @@
 	ViewBag.Title = "Cinemas";
 }
 
-<h2 class="text-center">
+<h2 class="text-center well well-lg">
 	@ViewBag.Title
 </h2>
 
 <p>
-	@Html.ActionLink(" ", "Create", null, new { @class = "btn btn-success fa fa-plus-square", title = "Add new cinema" })
+	@Html.ActionLink(" ", "Create", null, new {@class = "btn btn-success fa fa-plus-square", title = "Add new cinema"})
 </p>
 
 <div class="clear">
@@ -36,10 +36,10 @@
 				@Html.DisplayFor(modelItem => item.PhoneNumber)
 			</p>
 			<div>
-				@Html.ActionLink(" ", "Edit", new { id = item.Id }, new { @class = "btn btn-warning fa fa-pencil-square-o", title = "Edit" })
-				@Html.ActionLink(" ", "Details", new { id = item.Id }, new { @class = "btn btn-primary fa fa-info", title = "Details" })
-				@Html.ActionLink(" ", "Delete", new { id = item.Id }, new { @class = "btn btn-danger fa fa-trash-o", title = "Delete" })
-				@Html.ActionLink(" ", "Create", "Hall", new { id = item.Id }, new { @class = "btn btn-success fa fa-cube", title = "Add hall" })
+				@Html.ActionLink(" ", "Edit", new {id = item.Id}, new {@class = "btn btn-warning fa fa-pencil-square-o", title = "Edit"})
+				@Html.ActionLink(" ", "Details", new {id = item.Id}, new {@class = "btn btn-primary fa fa-info", title = "Details"})
+				@Html.ActionLink(" ", "Delete", new {id = item.Id}, new {@class = "btn btn-danger fa fa-trash-o", title = "Delete"})
+				@Html.ActionLink(" ", "Create", "Hall", new {id = item.Id}, new {@class = "btn btn-success fa fa-cube", title = "Add hall"})
 			</div>
 		</article>
 	}

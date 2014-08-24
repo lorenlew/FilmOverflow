@@ -45,7 +45,7 @@
 	</dl>
 </div>
 
-@using (Html.BeginForm("Delete", "Seance", new { seanceId = Model.Id }, FormMethod.Post))
+@using (Html.BeginForm("Delete", "Seance", new {seanceId = Model.Id}, FormMethod.Post))
 {
 	@Html.AntiForgeryToken()
 

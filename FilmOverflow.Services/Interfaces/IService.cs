@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace FilmOverflow.Services.Interfaces
+﻿namespace FilmOverflow.Services.Interfaces
 {
 	public interface IService
 	{

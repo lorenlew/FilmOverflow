@@ -10,7 +10,7 @@ namespace FilmOverflow.WebUI.ViewModels
 
 		public long SeanceId { get; set; }
 
-		public ReservedSeatViewModel ReservedSeat { get; set; }
+		public long SeatId { get; set; }
 
 		public long PaymentMethodId { get; set; }
 	}

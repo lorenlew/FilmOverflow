@@ -1,5 +1,4 @@
 ﻿using System;
-using System.ComponentModel.DataAnnotations;
 
 namespace FilmOverflow.DAL.Models
 {
@@ -16,7 +15,7 @@ namespace FilmOverflow.DAL.Models
 		public virtual PaymentMethod PaymentMethod { get; set; }
 		public long PaymentMethodId { get; set; }
 
-		public virtual ReservedSeat ReservedSeat { get; set; }
+		public long SeatId { get; set; }
 
 	}
 }

@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace FilmOverflow.WebUI.ViewModels
+﻿namespace FilmOverflow.WebUI.ViewModels
 {
 	public class EntityViewModel
 	{

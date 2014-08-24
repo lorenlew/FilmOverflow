@@ -10,8 +10,8 @@
 			<th>
 				<div class="pull-right">
 					@Html.ActionLink(" ", "Create", "Seance",
-					routeValues: new { filmId = ViewBag.FilmId },
-					htmlAttributes: new { @class = "btn btn-success fa fa-plus", data_modal = "" })
+						routeValues: new {filmId = ViewBag.FilmId},
+						htmlAttributes: new {@class = "btn btn-success fa fa-plus", data_modal = ""})
 				</div>
 			</th>
 		</tr>
@@ -24,9 +24,9 @@
 				<td>@seance.Hall.Cinema.Name - @seance.Hall.Name</td>
 				<td>
 					<div class="pull-right">
-						@Html.ActionLink(" ", "Edit", "Seance", new { seanceId = seance.Id }, new { @class = "btn btn-default fa fa-pencil-square-o", data_modal = "" })
-						@Html.ActionLink(" ", "Details", "Seance", new { seanceId = seance.Id }, new { @class = "btn btn-info fa fa-info", data_modal = "" })
-						@Html.ActionLink(" ", "Delete", "Seance", new { seanceId = seance.Id }, new { @class = "btn btn-danger fa fa-trash-o", data_modal = "" })
+						@Html.ActionLink(" ", "Edit", "Seance", new {seanceId = seance.Id}, new {@class = "btn btn-default fa fa-pencil-square-o", data_modal = ""})
+						@Html.ActionLink(" ", "Details", "Seance", new {seanceId = seance.Id}, new {@class = "btn btn-info fa fa-info", data_modal = ""})
+						@Html.ActionLink(" ", "Delete", "Seance", new {seanceId = seance.Id}, new {@class = "btn btn-danger fa fa-trash-o", data_modal = ""})
 					</div>
 				</td>
 			</tr>

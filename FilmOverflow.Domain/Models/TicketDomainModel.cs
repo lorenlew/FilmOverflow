@@ -6,7 +6,7 @@ namespace FilmOverflow.Domain.Models
 	{
 		public DateTime PaymentDate { get; set; }
 
-		public  ReservedSeatDomainModel ReservedSeat { get; set; }
+		public long SeatId { get; set; }
 
 		public string ApplicationUserId { get; set; }
 

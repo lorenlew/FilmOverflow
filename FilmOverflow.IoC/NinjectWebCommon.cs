@@ -4,6 +4,8 @@ using FilmOverflow.DAL.UnitOfWork;
 using FilmOverflow.IoC;
 using FilmOverflow.Services;
 using FilmOverflow.Services.Interfaces;
+using Microsoft.AspNet.SignalR;
+using Microsoft.AspNet.SignalR.Hubs;
 using Microsoft.Web.Infrastructure.DynamicModuleHelper;
 using Ninject;
 using Ninject.Web.Common;
@@ -65,6 +67,7 @@ namespace FilmOverflow.IoC
 		/// <param name="kernel">The kernel.</param>
 		private static void RegisterServices(IKernel kernel)
 		{
+			GlobalHost.DependencyResolver.Register(typeof(IHubActivator), () => new HubActivator(kernel));
 			kernel.Bind<IUserManagerService>().To<UserManagerService>().InRequestScope();
 			kernel.Bind<IRoleManagerService>().To<RoleManagerService>().InRequestScope();
 			kernel.Bind<ICinemaService>().To<CinemaService>().InRequestScope();

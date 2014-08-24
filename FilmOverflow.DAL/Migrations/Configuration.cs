@@ -1,14 +1,10 @@
+using System.Data.Entity.Migrations;
 using FilmOverflow.DAL.Models;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace FilmOverflow.DAL.Migrations
 {
-	using System;
-	using System.Data.Entity;
-	using System.Data.Entity.Migrations;
-	using System.Linq;
-
 	internal sealed class Configuration : DbMigrationsConfiguration<FilmOverflow.DAL.ApplicationDbContext>
 	{
 		public Configuration()

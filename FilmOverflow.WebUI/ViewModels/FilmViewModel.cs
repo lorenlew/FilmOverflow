@@ -1,8 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 using System.Web;
-using FilmOverflow.Domain.Models;
 using FilmOverflow.WebUI.Attributes;
 
 namespace FilmOverflow.WebUI.ViewModels

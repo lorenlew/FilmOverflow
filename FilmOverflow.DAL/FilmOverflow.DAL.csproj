@@ -93,6 +93,18 @@
     <Compile Include="Migrations\201408211901145_FilmTableDurationToIntAndSeanceTableFix.Designer.cs">
       <DependentUpon>201408211901145_FilmTableDurationToIntAndSeanceTableFix.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201408241512048_ticket-reservedSeat.cs" />
+    <Compile Include="Migrations\201408241512048_ticket-reservedSeat.Designer.cs">
+      <DependentUpon>201408241512048_ticket-reservedSeat.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201408241518236_ticket-reservedSeat2.cs" />
+    <Compile Include="Migrations\201408241518236_ticket-reservedSeat2.Designer.cs">
+      <DependentUpon>201408241518236_ticket-reservedSeat2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201408241639491_ticketSeatChange.cs" />
+    <Compile Include="Migrations\201408241639491_ticketSeatChange.Designer.cs">
+      <DependentUpon>201408241639491_ticketSeatChange.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\ApplicationUser.cs" />
     <Compile Include="Models\Cinema.cs" />
@@ -136,6 +148,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201408211901145_FilmTableDurationToIntAndSeanceTableFix.resx">
       <DependentUpon>201408211901145_FilmTableDurationToIntAndSeanceTableFix.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201408241512048_ticket-reservedSeat.resx">
+      <DependentUpon>201408241512048_ticket-reservedSeat.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201408241518236_ticket-reservedSeat2.resx">
+      <DependentUpon>201408241518236_ticket-reservedSeat2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201408241639491_ticketSeatChange.resx">
+      <DependentUpon>201408241639491_ticketSeatChange.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

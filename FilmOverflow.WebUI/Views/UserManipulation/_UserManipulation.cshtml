@@ -42,26 +42,26 @@
 						<td class="fixed-cell">
 							@*You can ban if you are admin or if you are moderator and target is not admin or moderator*@
 							@if (!userManagerService.IsInRole(item.Id, "Administrator")
-							 && !userManagerService.IsInRole(item.Id, "Moderator")
-							 || User.IsInRole("Administrator"))
+							     && !userManagerService.IsInRole(item.Id, "Moderator")
+							     || User.IsInRole("Administrator"))
 							{
 								if (!item.IsBanned)
 								{
-									@Ajax.ActionLink(" ", "ChangeUserAccess", "UserManipulation", new { name = item.UserName }, new AjaxOptions
-								{
-									UpdateTargetId = "UsersAndRoles",
-									InsertionMode = InsertionMode.Replace,
-									HttpMethod = "Post",
-								}, new { @class = "btn btn-success fa fa-unlock" })
+									@Ajax.ActionLink(" ", "ChangeUserAccess", "UserManipulation", new {name = item.UserName}, new AjaxOptions
+									{
+										UpdateTargetId = "UsersAndRoles",
+										InsertionMode = InsertionMode.Replace,
+										HttpMethod = "Post",
+									}, new {@class = "btn btn-success fa fa-unlock"})
 								}
 								else
 								{
-									@Ajax.ActionLink(" ", "ChangeUserAccess", "UserManipulation", new { name = item.UserName }, new AjaxOptions
-								{
-									UpdateTargetId = "UsersAndRoles",
-									InsertionMode = InsertionMode.Replace,
-									HttpMethod = "Post",
-								}, new { @class = "btn btn-default fa fa-lock" })
+									@Ajax.ActionLink(" ", "ChangeUserAccess", "UserManipulation", new {name = item.UserName}, new AjaxOptions
+									{
+										UpdateTargetId = "UsersAndRoles",
+										InsertionMode = InsertionMode.Replace,
+										HttpMethod = "Post",
+									}, new {@class = "btn btn-default fa fa-lock"})
 								}
 							}
 						</td>
@@ -71,21 +71,21 @@
 							<td class="fixed-cell">
 								@if (!userManagerService.IsInRole(item.Id, "Moderator"))
 								{
-									@Ajax.ActionLink(" ", "SetToRole", "UserManipulation", new { name = item.UserName }, new AjaxOptions
-								{
-									UpdateTargetId = "UsersAndRoles",
-									InsertionMode = InsertionMode.Replace,
-									HttpMethod = "Post",
-								}, new { @class = "btn btn-default fa fa-arrow-up" })
+									@Ajax.ActionLink(" ", "SetToRole", "UserManipulation", new {name = item.UserName}, new AjaxOptions
+									{
+										UpdateTargetId = "UsersAndRoles",
+										InsertionMode = InsertionMode.Replace,
+										HttpMethod = "Post",
+									}, new {@class = "btn btn-default fa fa-arrow-up"})
 								}
 								else
 								{
-									@Ajax.ActionLink(" ", "SetToRole", "UserManipulation", new { name = item.UserName }, new AjaxOptions
-								{
-									UpdateTargetId = "UsersAndRoles",
-									InsertionMode = InsertionMode.Replace,
-									HttpMethod = "Post",
-								}, new { @class = "btn btn-success fa fa-arrow-down" })
+									@Ajax.ActionLink(" ", "SetToRole", "UserManipulation", new {name = item.UserName}, new AjaxOptions
+									{
+										UpdateTargetId = "UsersAndRoles",
+										InsertionMode = InsertionMode.Replace,
+										HttpMethod = "Post",
+									}, new {@class = "btn btn-success fa fa-arrow-down"})
 								}
 							</td>
 						}
@@ -96,15 +96,14 @@
 									@role
 								}
 								@if (!userManagerService.IsInRole(item.Id, "Administrator") &&
-								 !userManagerService.IsInRole(item.Id, "Moderator"))
+								     !userManagerService.IsInRole(item.Id, "Moderator"))
 								{
 									@:User
-							}
+								}
 							</div>
 						</td>
 					}
 				</tr>
-
 			}
 		</table>
 	</div>

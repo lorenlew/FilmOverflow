@@ -4,16 +4,16 @@ using System.Web.Routing;
 
 namespace FilmOverflow.WebUI
 {
-    public class MvcApplication : System.Web.HttpApplication
-    {
-        protected void Application_Start()
-        {
-            AreaRegistration.RegisterAllAreas();
-            FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
-            RouteConfig.RegisterRoutes(RouteTable.Routes);
-            BundleConfig.RegisterBundles(BundleTable.Bundles);
-            MapperConfig.RegisterMaps();
-            Services.Config.MapperConfig.RegisterMaps();
-        }
-    }
+	public class MvcApplication : System.Web.HttpApplication
+	{
+		protected void Application_Start()
+		{
+			AreaRegistration.RegisterAllAreas();
+			FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
+			RouteConfig.RegisterRoutes(RouteTable.Routes);
+			BundleConfig.RegisterBundles(BundleTable.Bundles);
+			MapperConfig.RegisterMaps();
+			Services.Config.MapperConfig.RegisterMaps();
+		}
+	}
 }

@@ -1,9 +1,8 @@
+using System.Data.Entity.Migrations;
+
 namespace FilmOverflow.DAL.Migrations
 {
-    using System;
-    using System.Data.Entity.Migrations;
-    
-    public partial class AddedInfoFieldsIntoSeanceAndHallEntities : DbMigration
+	public partial class AddedInfoFieldsIntoSeanceAndHallEntities : DbMigration
     {
         public override void Up()
         {

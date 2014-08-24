@@ -8,5 +8,6 @@
 
 		public virtual Hall Hall { get; set; }
 		public long HallId { get; set; }
+
 	}
 }

@@ -1,5 +1,4 @@
-﻿using System;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
 using AutoMapper;
 using FilmOverflow.Domain.Models;
 using FilmOverflow.Services.Interfaces;
