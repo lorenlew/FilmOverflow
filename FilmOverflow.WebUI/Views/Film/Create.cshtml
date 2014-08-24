@@ -6,6 +6,10 @@
 
 <h1 class="text-center well well-lg">@ViewBag.Title</h1>
 
+<aside>
+	@Html.ActionLink(" ", "Index", "Film", null, new { @class = "fa fa-caret-left fa-4x back-nav", title = "Back to films" })
+</aside>
+
 @using (Html.BeginForm("Create", "Film", FormMethod.Post, new { @class = "form-horizontal", role = "form", enctype = "multipart/form-data" }))
 {
 	@Html.AntiForgeryToken()
@@ -42,7 +46,6 @@
 
 	<div class="form-group">
 		<div class="col-sm-offset-2 col-sm-10">
-			@Html.ActionLink("Cancel", "Index", "Film", null, new { @class = "btn btn-default no-shadow" })
 			<button type="submit" class="btn btn-primary no-shadow">Create</button>
 		</div>
 	</div>

@@ -18,8 +18,8 @@
 		@foreach (var seance in Model)
 		{
 			<tr>
-				<td>@seance.Date</td>
-				<td>@seance.Time</td>
+				<td>@seance.Date.ToShortDateString()</td>
+				<td>@seance.Time.ToShortTimeString()</td>
 				<td>@seance.Price</td>
 				<td>@seance.Hall.Cinema.Name - @seance.Hall.Name</td>
 				<td>

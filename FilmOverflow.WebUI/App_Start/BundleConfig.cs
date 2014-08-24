@@ -10,12 +10,18 @@ namespace FilmOverflow.WebUI
 			bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
 						"~/Scripts/jquery-{version}.js"));
 
+			bundles.Add(new ScriptBundle("~/bundles/moment").Include(
+						"~/Scripts/moment.js"));
+
 			bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
 						"~/Scripts/jquery.validate*"));
 
 			bundles.Add(new ScriptBundle("~/bundles/ajax").Include(
 						"~/Scripts/jquery.unobtrusive-ajax.js"));
 
+			bundles.Add(new ScriptBundle("~/bundles/jquerydatetimepicker").Include(
+						"~/Scripts/jquery.datetimepicker.js"));
+			
 			bundles.Add(new ScriptBundle("~/bundles/knockout").Include(
 						"~/Scripts/knockout-3.1.0.debug.js",
 						"~/Scripts/knockout.mapping-latest.debug.js",
@@ -35,6 +41,9 @@ namespace FilmOverflow.WebUI
 			bundles.Add(new StyleBundle("~/Content/css").Include(
 					  "~/Content/bootstrap-united.css",
 					  "~/Content/site.css"));
+
+			bundles.Add(new StyleBundle("~/Content/jquerydatetimepickercss").Include(
+					  "~/Content/jquery.datetimepicker.css"));
 
 			bundles.Add(new StyleBundle("~/Content/font-css").Include(
 					  "~/Content/font-awesome.css"));

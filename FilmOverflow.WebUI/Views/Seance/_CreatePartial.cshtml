@@ -1,7 +1,7 @@
 ﻿@model FilmOverflow.WebUI.ViewModels.SeanceViewModel
 
 @{
-	ViewBag.Title = "Create seance";
+	ViewBag.Title = "Create Seance";
 }
 
 <div class="modal-header">
@@ -19,17 +19,19 @@
 		<div class="form-group">
 			@Html.LabelFor(m => m.Date, new { @class = "col-md-2 control-label" })
 			<div class="col-md-10">
-				@Html.TextBoxFor(m => m.Date, new { @class = "form-control" })
+				@Html.TextBoxFor(m => m.Date, new { @class = "form-control", id = "seanceDatePicker" })
 				@Html.ValidationMessageFor(m => m.Date, "", new { @class = "text-danger" })
 			</div>
 		</div>
+
 		<div class="form-group">
 			@Html.LabelFor(m => m.Time, new { @class = "col-md-2 control-label" })
 			<div class="col-md-10">
-				@Html.TextBoxFor(m => m.Time, new { @class = "form-control" })
+				@Html.TextBoxFor(m => m.Time, new { @class = "form-control", id = "seanceTimePicker" })
 				@Html.ValidationMessageFor(m => m.Time, "", new { @class = "text-danger" })
 			</div>
 		</div>
+
 		<div class="form-group">
 			@Html.LabelFor(m => m.Price, new { @class = "col-md-2 control-label" })
 			<div class="col-md-10">
