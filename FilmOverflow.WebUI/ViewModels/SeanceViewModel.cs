@@ -8,14 +8,11 @@ namespace FilmOverflow.WebUI.ViewModels
 	public class SeanceViewModel : EntityViewModel
 	{
 		[Required(ErrorMessage = "Add date")]
-		[DataType(DataType.Date)]
-		[DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
-		public DateTime Date { get; set; }
+		//[RegularExpression(@"^(0[1-9]|1[012])[- /.](0[1-9]|[12][0-9]|3[01])[- /.](19|20)\d\d+$",ErrorMessage = "Date is not valid")]
+		public string Date { get; set; }
 
 		[Required(ErrorMessage = "Add time")]
-		[DataType(DataType.Time)]
-		[DisplayFormat(DataFormatString = "{0:HH:mm}", ApplyFormatInEditMode = true)]
-		public DateTime Time { get; set; }
+		public string Time { get; set; }
 
 		[Required(ErrorMessage = "Add price")]
 		public decimal Price { get; set; }

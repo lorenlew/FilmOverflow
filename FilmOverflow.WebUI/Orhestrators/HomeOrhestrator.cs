@@ -13,14 +13,11 @@ namespace FilmOverflow.WebUI.Orhestrators
 	{
 		private readonly ICinemaService _cinemaService;
 		private readonly IFilmService _filmService;
-		private readonly ISeanceService _seanceService;
 
-		public HomeOrhestrator(ICinemaService cinemaService, 
-			IFilmService filmService, ISeanceService seanceService)
+		public HomeOrhestrator(ICinemaService cinemaService, IFilmService filmService)
 		{
 			_cinemaService = cinemaService;
 			_filmService = filmService;
-			_seanceService = seanceService;
 		}
 
 		public IEnumerable<CinemaRowViewModel> GetBrowsePage()

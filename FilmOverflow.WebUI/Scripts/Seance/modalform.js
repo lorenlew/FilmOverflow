@@ -10,7 +10,7 @@
 
 	$('#seanceModal').on('shown.bs.modal', function () {
 		$('#seanceDatePicker', this).datetimepicker({
-			format: 'Y/m/d',
+			format: 'd.m.Y',
 			timepicker: false,
 		});
 

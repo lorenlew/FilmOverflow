@@ -1,4 +1,5 @@
-﻿using AutoMapper;
+﻿using System;
+using AutoMapper;
 using FilmOverflow.Domain.Models;
 using FilmOverflow.WebUI.ViewModels;
 
@@ -20,8 +21,12 @@ namespace FilmOverflow.WebUI
 			Mapper.CreateMap<ReviewDomainModel, ReviewViewModel>();
 			Mapper.CreateMap<ReviewViewModel, ReviewDomainModel>();
 
-			Mapper.CreateMap<SeanceDomainModel, SeanceViewModel>();
-			Mapper.CreateMap<SeanceViewModel, SeanceDomainModel>();
+			Mapper.CreateMap<SeanceDomainModel, SeanceViewModel>()
+				.ForMember(x => x.Date, opt => opt.MapFrom(src => src.Date.ToShortDateString()))
+				.ForMember(x => x.Time, opt => opt.MapFrom(src => src.Time.ToShortTimeString()));
+			Mapper.CreateMap<SeanceViewModel, SeanceDomainModel>()
+				.ForMember(x => x.Date, opt => opt.MapFrom(src => Convert.ToDateTime(src.Date)))
+				.ForMember(x => x.Time, opt => opt.MapFrom(src => Convert.ToDateTime(src.Time)));
 
 			Mapper.CreateMap<TicketDomainModel, TicketViewModel>();
 			Mapper.CreateMap<TicketViewModel, TicketDomainModel>();
