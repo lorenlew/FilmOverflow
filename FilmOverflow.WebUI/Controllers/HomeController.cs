@@ -5,6 +5,7 @@ using System.Web.Mvc;
 using AutoMapper;
 using FilmOverflow.Domain.Models;
 using FilmOverflow.Services.Interfaces;
+using FilmOverflow.WebUI.Orhestrators;
 using FilmOverflow.WebUI.ViewModels;
 
 namespace FilmOverflow.WebUI.Controllers
@@ -13,11 +14,13 @@ namespace FilmOverflow.WebUI.Controllers
 	{
 		private readonly IUserManagerService _userManagerService;
 		private readonly IFilmService _filmService;
+		private readonly HomeOrhestrator _homeOrhestrator;
 
-		public HomeController(IUserManagerService userManagerService, IFilmService filmService)
+		public HomeController(IUserManagerService userManagerService, IFilmService filmService, HomeOrhestrator homeOrhestrator)
 		{
 			_userManagerService = userManagerService;
 			_filmService = filmService;
+			_homeOrhestrator = homeOrhestrator;
 		}
 
 		public ActionResult Index()
@@ -25,12 +28,12 @@ namespace FilmOverflow.WebUI.Controllers
 			return View();
 		}
 
-		public ActionResult List()
+		public ActionResult FilmList()
 		{
 			IEnumerable<FilmDomainModel> filmsDomainModel = _filmService.Read();
 			IEnumerable<FilmViewModel> filmsViewModel = Mapper.Map<IEnumerable<FilmDomainModel>, IEnumerable<FilmViewModel>>(filmsDomainModel);
 
-			return PartialView("_ListPartial", filmsViewModel);
+			return PartialView("_FilmListPartial", filmsViewModel);
 		}
 
 		public ActionResult Details(long? filmId)
@@ -53,7 +56,14 @@ namespace FilmOverflow.WebUI.Controllers
 
 		public ActionResult Browse()
 		{
-			return View();
+			return View("Browse");
+		}
+
+		public ActionResult CinemaRowList()
+		{
+			IEnumerable<CinemaRowViewModel> cinemaRows = _homeOrhestrator.GetBrowsePage();
+
+			return PartialView("_CinemaRowListPartial", cinemaRows);
 		}
 
 		public ActionResult UserInfo()
