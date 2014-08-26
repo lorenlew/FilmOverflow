@@ -1,0 +1,36 @@
+﻿@model IEnumerable<FilmOverflow.WebUI.ViewModels.CinemaRowViewModel>
+
+<table class="table table-bordered tab-content table-hover table-condensed">
+	<tr>
+		<th>Cinema</th>
+		<th>Films</th>
+		<th>Seances</th>
+	</tr>
+
+	@foreach (var row in Model)
+	{
+		var filmList = row.Films.ToList();
+		var filmCount = filmList.Count;
+		for (var i = 0; i < filmCount; i++)
+		{
+			var film = filmList[i];
+
+			<tr>
+				@if (i == 0)
+				{
+					<td rowspan="@filmCount">@row.Cinema.Name</td>
+				}
+
+				<td>@film.Title</td>
+				<td>
+					<div class="pull-left">
+						@foreach (var seance in film.Seances)
+						{
+							<a class="btn btn-sm btn-success" href="@Url.Action("Index","Home")" role="button">@seance.Time.ToString("HH:mm")</a>
+						}
+					</div>
+				</td>
+			</tr>
+		}
+	}
+</table>

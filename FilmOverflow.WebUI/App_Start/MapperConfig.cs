@@ -1,4 +1,6 @@
-﻿using AutoMapper;
+﻿using System;
+using System.Globalization;
+using AutoMapper;
 using FilmOverflow.Domain.Models;
 using FilmOverflow.WebUI.ViewModels;
 
@@ -20,8 +22,8 @@ namespace FilmOverflow.WebUI
 			Mapper.CreateMap<ReviewDomainModel, ReviewViewModel>();
 			Mapper.CreateMap<ReviewViewModel, ReviewDomainModel>();
 
-			Mapper.CreateMap<SeanceDomainModel, SeanceViewModel>();
-			Mapper.CreateMap<SeanceViewModel, SeanceDomainModel>();
+			Mapper.CreateMap<SeanceDomainModel, SeanceViewModel>();				
+			Mapper.CreateMap<SeanceViewModel, SeanceDomainModel>();				
 
 			Mapper.CreateMap<TicketDomainModel, TicketViewModel>();
 			Mapper.CreateMap<TicketViewModel, TicketDomainModel>();

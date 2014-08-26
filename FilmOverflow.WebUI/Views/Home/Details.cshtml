@@ -1,14 +1,17 @@
 ﻿@model FilmOverflow.WebUI.ViewModels.FilmViewModel
 
 @{
-	ViewBag.Title = "Are you sure you want to delete this film?";
+	ViewBag.Title = "Film Details";
 }
 
 <h2>@ViewBag.Title</h2>
+<hr />
 
-<div>
-	<hr />
+<aside>
+	@Html.ActionLink(" ", "Index", "Home", null, new { @class = "fa fa-caret-left fa-4x back-nav", title = "Back to films" })
+</aside>
 
+<div class="container">
 	<div class="row">
 		<div class="col-md-2">
 			<div class="form-group">
@@ -37,20 +40,8 @@
 			</dt>
 
 			<dd>
-				@Html.DisplayFor(model => model.Duration)
+				@Html.DisplayFor(model => model.Duration) min
 			</dd>
 		</dl>
 	</div>
-
-	@using (Html.BeginForm("Delete", "Film", new {filmId = Model.Id}, FormMethod.Post))
-	{
-		@Html.AntiForgeryToken()
-
-		<div class="form-group">
-			<div class="col-sm-offset-2 col-sm-10">
-				@Html.ActionLink("No", "Index", "Film", null, new {@class = "btn btn-default no-shadow"})				
-				<button type="submit" class="btn btn-danger no-shadow">Yes</button>
-			</div>
-		</div>
-	}
 </div>

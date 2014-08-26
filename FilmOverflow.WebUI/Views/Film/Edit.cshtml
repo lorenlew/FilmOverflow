@@ -1,8 +1,12 @@
 ﻿@model FilmOverflow.WebUI.ViewModels.FilmViewModel
 
 @{
-	ViewBag.Title = "Edit film form";
+	ViewBag.Title = "Edit Film Form";
 }
+
+<aside>
+	@Html.ActionLink(" ", "Index", "Film", null, new { @class = "fa fa-caret-left fa-4x back-nav", title = "Back to films" })
+</aside>
 
 <div class="container">
 	<div class="row">
@@ -22,7 +26,7 @@
 						<div class="col-md-2">
 							<img src="@Model.ImagePath" class="img-responsive img-thumbnail" alt="No image" />
 						</div>
-						<div class="col-md-5">
+						<div class="col-md-3">
 							<div class="form-group">
 								@Html.LabelFor(m => m.Title)
 								@Html.TextBoxFor(m => m.Title, new {@class = "form-control"})
@@ -39,7 +43,7 @@
 								@Html.ValidationMessageFor(m => m.Image, "", new {@class = "text-danger"})
 							</div>
 						</div>
-						<div class="col-md-5">
+						<div class="col-md-7">
 							<div class="form-group">
 								@Html.LabelFor(m => m.Description)
 								@Html.TextAreaFor(m => m.Description, new {@class = "form-control", rows = 9, cols = 25})
@@ -48,7 +52,6 @@
 						</div>
 						<div class="col-md-12">
 							<div class="pull-right">
-								@Html.ActionLink("Back to list", "Index", "Film", null, new {@class = "btn btn-default no-shadow"})
 								<button type="submit" class="btn btn-primary no-shadow">Save</button>
 							</div>
 						</div>

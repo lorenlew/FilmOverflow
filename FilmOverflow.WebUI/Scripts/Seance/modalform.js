@@ -1,16 +1,30 @@
 ﻿(function ($) {
 	'use strict';
 
+	$('#seanceModal').on('shown.bs.modal', function () {
+		$('#seanceDatePicker', this).datetimepicker({
+			format: 'MM/DD/YYYY',
+			pickTime: false,
+		});
+
+		$('#seanceTimePicker', this).datetimepicker({
+			format: 'HH:mm',
+			pickDate: false
+		});
+	});
+
 	$('#SeanceManagement').on('click', 'a[data-modal]', function () {
 		$('#seanceModalContent').load(this.href, function () {
 			$.validator.unobtrusive.parse(this);
+
 			$('#seanceModal').modal({
 				keyboard: true
 			}, 'show');
 		});
+
 		return false;
 	});
-	
+
 	$('#seanceModalContent').on('submit', 'form', function (e) {
 		e.preventDefault();
 		var data = $(this).serialize();
