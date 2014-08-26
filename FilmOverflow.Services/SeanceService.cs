@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity.Infrastructure;
 using AutoMapper;
 using FilmOverflow.DAL.Models;
 using FilmOverflow.DAL.UnitOfWork;
@@ -32,7 +33,8 @@ namespace FilmOverflow.Services
 
 		public SeanceDomainModel ReadById(object id)
 		{
-			var seance = Uow.GetRepository<Seance>().ReadById(id);
+			Seance seance = Uow.GetRepository<Seance>().ReadById(id);
+			//seance = Uow.GetRepository<Seance>().Refresh(seance);
 			var seanceDomain = Mapper.Map<Seance, SeanceDomainModel>(seance);
 			return seanceDomain;
 		}

@@ -30,6 +30,7 @@ namespace FilmOverflow.WebUI.Controllers
 			return View(ticketViewModel);
 		}
 
+		[Authorize]
 		public ActionResult Create(long? id)
 		{
 			if (id == null)

@@ -1,11 +1,16 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Net;
+using System.Threading;
 using System.Web.Mvc;
 using AutoMapper;
 using FilmOverflow.Domain.Models;
 using FilmOverflow.Services.Interfaces;
+using FilmOverflow.WebUI.Attributes;
 using FilmOverflow.WebUI.ViewModels;
+using Microsoft.AspNet.Identity;
+using Newtonsoft.Json;
 
 namespace FilmOverflow.WebUI.Controllers
 {
@@ -13,11 +18,13 @@ namespace FilmOverflow.WebUI.Controllers
 	{
 		private readonly ISeanceService _seanceService;
 		private readonly IHallService _hallService;
+		private readonly IReservedSeatService _reservedSeatService;
 
-		public SeanceController(ISeanceService seanceService, IHallService hallService)
+		public SeanceController(ISeanceService seanceService, IHallService hallService, IReservedSeatService reservedSeatService)
 		{
 			_seanceService = seanceService;
 			_hallService = hallService;
+			_reservedSeatService = reservedSeatService;
 		}
 
 		public ActionResult Index(long filmId)
@@ -78,7 +85,7 @@ namespace FilmOverflow.WebUI.Controllers
 
 			SeanceDomainModel seanceDomianModel = _seanceService.ReadById(seanceId);
 			SeanceViewModel seanceViewModel = Mapper.Map<SeanceDomainModel, SeanceViewModel>(seanceDomianModel);
-			
+
 			if (seanceViewModel == null)
 			{
 				return HttpNotFound();
@@ -86,7 +93,7 @@ namespace FilmOverflow.WebUI.Controllers
 
 			IEnumerable<SelectListItem> hallsCinemas = GetHallsCinemas();
 			ViewBag.HallsCinemas = hallsCinemas;
-			
+
 			return PartialView("_EditPartial", seanceViewModel);
 		}
 
@@ -152,14 +159,14 @@ namespace FilmOverflow.WebUI.Controllers
 		public ActionResult Delete(long seanceId)
 		{
 			SeanceDomainModel seanceDomainModel = _seanceService.ReadById(seanceId);
-			
+
 			if (seanceDomainModel == null)
 			{
 				return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
 			}
-			
+
 			SeanceViewModel seanceViewModel = Mapper.Map<SeanceDomainModel, SeanceViewModel>(seanceDomainModel);
-			
+
 			if (!ModelState.IsValid)
 			{
 				return PartialView("_DeletePartial", seanceViewModel);
@@ -169,6 +176,70 @@ namespace FilmOverflow.WebUI.Controllers
 
 			var url = Url.Action("List", "Seance", routeValues: new { filmId = seanceViewModel.FilmId });
 			return Json(new { success = true, url = url, replaceTarget = "#SeanceList" });
+		}
+
+		public string GetSeanceSeats(long seanceId)
+		{
+			SeanceDomainModel currentSeance = _seanceService.ReadById(seanceId);
+			if (currentSeance == null)
+			{
+				HttpNotFound();
+			}
+			else
+			{
+				var seanceHall = currentSeance.Hall;
+				if (seanceHall == null)
+				{
+					HttpNotFound();
+				}
+				else
+				{
+					string jsonData = JsonConvert.SerializeObject(seanceHall.Seats);
+					return jsonData;
+				}
+			}
+			return null;
+		}
+
+		[HttpPost]
+		[Authorize]
+		public ActionResult ToogleReservationStatus([FromJson] SeatViewModel seatViewModel, long seanceId)
+		{
+			SeanceDomainModel currentSeance = _seanceService.ReadById(seanceId);
+			string currentUserId = User.Identity.GetUserId();
+
+			if (currentSeance == null || seatViewModel == null)
+			{
+				HttpNotFound();
+			}
+			else
+			{
+				var reservedSeat = (from seat in currentSeance.ReservedSeats
+									where seat.RowNumber == seatViewModel.RowNumber
+									  && seat.ColumnNumber == seatViewModel.ColumnNumber
+									select seat).SingleOrDefault();
+				if (reservedSeat == null)
+				{
+					ReservedSeatDomainModel currentReservedSeat = new ReservedSeatDomainModel
+					{
+						RowNumber = seatViewModel.RowNumber,
+						ColumnNumber = seatViewModel.ColumnNumber,
+						ReservationTime = DateTime.Now,
+						SeanceId = seanceId,
+						ApplicationUserId = currentUserId
+					};
+					_reservedSeatService.Add(currentReservedSeat);
+				}
+				else
+				{
+					if (reservedSeat.ApplicationUserId != currentUserId)
+					{
+						return new HttpStatusCodeResult(HttpStatusCode.Forbidden);
+					}
+					_reservedSeatService.Delete(reservedSeat);
+				}
+			}
+			return new HttpStatusCodeResult(HttpStatusCode.OK); ;
 		}
 
 		#region Helpers
@@ -183,7 +254,7 @@ namespace FilmOverflow.WebUI.Controllers
 				});
 
 			return hallsCinemas;
-		} 
+		}
 		#endregion
 	}
 }

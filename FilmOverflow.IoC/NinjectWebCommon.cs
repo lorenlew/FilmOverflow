@@ -1,5 +1,6 @@
 using System;
 using System.Web;
+using FilmOverflow.DAL;
 using FilmOverflow.DAL.UnitOfWork;
 using FilmOverflow.IoC;
 using FilmOverflow.Services;
@@ -50,7 +51,8 @@ namespace FilmOverflow.IoC
 			{
 				kernel.Bind<Func<IKernel>>().ToMethod(ctx => () => new Bootstrapper().Kernel);
 				kernel.Bind<IHttpModule>().To<HttpApplicationInitializationHttpModule>();
-				kernel.Bind<IUnitOfWork>().To<UnitOfWork>().InRequestScope();
+				kernel.Bind<IUnitOfWork>().To<UnitOfWork>().InTransientScope();
+				kernel.Bind<ApplicationDbContext>().ToSelf().InTransientScope();
 				RegisterServices(kernel);
 				return kernel;
 			}
@@ -74,7 +76,7 @@ namespace FilmOverflow.IoC
 			kernel.Bind<IFilmService>().To<FilmService>().InRequestScope();
 			kernel.Bind<IPaymentMethodService>().To<PaymentMethodService>().InRequestScope();
 			kernel.Bind<IReviewService>().To<ReviewService>().InRequestScope();
-			kernel.Bind<ISeanceService>().To<SeanceService>().InRequestScope();
+			kernel.Bind<ISeanceService>().To<SeanceService>().InTransientScope();
 			kernel.Bind<ITicketService>().To<TicketService>().InRequestScope();
 			kernel.Bind<IHallService>().To<HallService>().InRequestScope();
 			kernel.Bind<ISeatService>().To<SeatService>().InRequestScope();

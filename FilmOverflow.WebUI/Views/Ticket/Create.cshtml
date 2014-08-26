@@ -8,43 +8,34 @@
 	@ViewBag.Title
 </h2>
 
+	@Html.HiddenFor(model => model.PaymentDate)
+	@Html.HiddenFor(model => model.ApplicationUserId)
+	@Html.HiddenFor(model => model.SeanceId, new { data_id = ViewBag.SeanceId })
 
-<div class="well well-lg">
-	@using (Html.BeginForm())
-	{
-		@Html.AntiForgeryToken()
+<div data-bind="foreach: Seats" class="hall col-md-offset-2">
+	<span data-bind="css: { deselected: !$root.isSeatSelected($data), selected: $root.isSeatSelected($data), reserved: !$root.isSeatSelected($data) && $root.isSeatReserved($data)},
+						click: $root.toogleSeatStatus,
+						style:{top: $data.RowNumber()*39+'px', left: $data.ColumnNumber()*35+'px'}" class="seat fa fa-user fa-2x">
 
-		<div class="form-horizontal">
-			@Html.ValidationSummary(true, "", new {@class = "text-danger"})
-			@Html.HiddenFor(model => model.PaymentDate)
-			@Html.HiddenFor(model => model.ApplicationUserId)
-			@Html.HiddenFor(model => model.SeanceId, new {data_id = ViewBag.SeanceId})
+	</span>
+</div>
 
-			<div class=" form-control">
-				@Html.LabelFor(model => model.PaymentMethodId, htmlAttributes: new {@class = "font-bordered control-label col-md-2"})
-				<div class="col-md-10">
-					@Html.DropDownList("PaymentMethodId", (IEnumerable<SelectListItem>) ViewBag.PaymentMethods, "--Select payment method--")
-					@Html.ValidationMessageFor(model => model.PaymentMethodId, "", new {@class = "text-danger"})
-				</div>
-			</div>
+<div data-bind="fadeVisible: PaymentMethodsVisable()" class="form-group fixedInput">
+	<div class="col-md-10">
+		@Html.DropDownList("PaymentMethodId", (IEnumerable<SelectListItem>)ViewBag.PaymentMethods, "--Select payment method--", new { @class = "form-control" })
+	</div>
+</div>		
 
-			<div class="form-group">
-				<div class="col-md-offset-2 col-md-10">
-					<input type="submit" value="Create" class="btn btn-default" />
-				</div>
-			</div>
-		</div>
-	}
-</div> 
-
-<div id="test"></div>  
+<div data-bind="visible:NumberOfSelectedSeats > 0, text: NumberOfSelectedSeats"></div>	 
 
 <aside>
-	@Html.ActionLink(" ", "Index", "Ticket", null, new {@class = "fa fa-caret-left fa-4x back-nav", title = "Back to tickets"})
+	@Html.ActionLink(" ", "Index", "Ticket", null, new { @class = "fa fa-caret-left fa-4x back-nav", title = "Back to tickets" })
 </aside>
 
 @section Scripts {
-	<script src="~/signalr/hubs"></script>
-	<script src="~/SignalR/signalR.Seance.js"></script>
+	<script src="~/signalr/hubs"></script>	 
+<script src="~/Scripts/knockout-app/Ticket/CustomBindings.js"></script>
+	<script src="~/Scripts/knockout-app/Ticket/koModels.js"></script>
+	<script src="~/Scripts/knockout-app/Ticket/app.js"></script>
 	@Scripts.Render("~/bundles/jqueryval")
 }

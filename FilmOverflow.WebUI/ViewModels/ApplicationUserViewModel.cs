@@ -20,5 +20,7 @@ namespace FilmOverflow.WebUI.ViewModels
 
 		public ICollection<ReviewViewModel> Reviews { get; set; }
 
+		public ICollection<ReservedSeatViewModel> ReservedSeats { get; set; }
+
 	}
 }

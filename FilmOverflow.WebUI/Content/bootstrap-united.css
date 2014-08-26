@@ -21,6 +21,7 @@ body {
 	color: #333333;
 	background: url('Images/Background-images/Elegant_Background-6.jpg') no-repeat;
 	background-size: cover;
+	background-position:fixed;
 }
 
 article,

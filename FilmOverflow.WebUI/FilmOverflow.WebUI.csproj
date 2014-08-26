@@ -216,12 +216,14 @@
     <Compile Include="ViewModels\TicketViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App_Data\aspnet-FilmOverflow.WebUI-20140814042149.mdf" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-united.css" />
     <Content Include="Content\font-awesome.css" />
     <Content Include="Content\Images\Background-images\Elegant_Background-6.jpg" />
     <Content Include="Content\Images\Background-images\main.jpg" />
     <Content Include="favicon.ico" />
+    <Content Include="FilmOverflow.WebUI.csproj.DotSettings.user" />
     <Content Include="fonts\fontawesome-webfont.svg" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -246,12 +248,16 @@
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\knockout-app\Halls\app.js" />
+    <Content Include="Scripts\knockout-app\Halls\koModels.js" />
+    <Content Include="Scripts\knockout-app\Ticket\app.js" />
+    <Content Include="Scripts\knockout-app\Ticket\CustomBindings.js" />
+    <Content Include="Scripts\knockout-app\Ticket\koModels.js" />
     <Content Include="Scripts\Seance\modalform.js" />
     <Content Include="Scripts\knockout-3.1.0.debug.js" />
     <Content Include="Scripts\knockout-3.1.0.js" />
     <Content Include="Scripts\knockout.mapping-latest.debug.js" />
     <Content Include="Scripts\knockout.validation.js" />
-    <Content Include="Scripts\modalform.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
@@ -335,7 +341,6 @@
     <None Include="Project_Readme.html" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="App_Data\" />
     <Folder Include="Content\Images\Cinema-images\" />
     <Folder Include="Content\Images\Film-images\" />
     <Folder Include="Models\" />

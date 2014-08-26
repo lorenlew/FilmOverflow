@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Data;
 using System.Data.Entity;
+using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Linq.Expressions;
 using FilmOverflow.DAL.Models;
@@ -46,6 +47,14 @@ namespace FilmOverflow.DAL.UnitOfWork
 		{
 			if (id == null) throw new NoNullAllowedException();
 			return _dbSet.Find(id);
+		}
+
+		TEntity IRepository<TEntity>.Refresh(TEntity entity)
+		{
+			if (entity == null) throw new NoNullAllowedException();
+			((IObjectContextAdapter)_context).ObjectContext.Detach(entity);
+			entity = ((IRepository<TEntity>) this).ReadById(entity.Id);
+			return entity;
 		}
 
 		void IRepository<TEntity>.Update(TEntity entity)

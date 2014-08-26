@@ -25,8 +25,8 @@ namespace FilmOverflow.DAL
 		public DbSet<Hall> Halls { get; set; }
 
 		public ApplicationDbContext()
-		// while using localDB
-		//: base("", throwIfV1Schema: false)
+		 //while using localDB
+			//: base("FilmOverflowString", throwIfV1Schema: false)
 		{
 		}
 

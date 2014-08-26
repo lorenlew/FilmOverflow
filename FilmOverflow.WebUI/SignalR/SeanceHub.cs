@@ -1,12 +1,13 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
-using AutoMapper;
+using System.Threading;
 using FilmOverflow.Domain.Models;
 using FilmOverflow.Services.Interfaces;
-using FilmOverflow.WebUI.ViewModels;
 using Microsoft.AspNet.SignalR;
 using Microsoft.AspNet.SignalR.Hubs;
 using Newtonsoft.Json;
+using Ninject;
 
 namespace FilmOverflow.WebUI.SignalR
 {
@@ -19,20 +20,30 @@ namespace FilmOverflow.WebUI.SignalR
 		{
 			_seanceService = seanceService;
 		}
-		public string GetReservedSeatsForSeance(long id)
-		{
-			var reservedSeatDomainModel =
-				_seanceService.ReadById(id).ReservedSeats.ToList();
-			var reservedSeats = from seat in reservedSeatDomainModel
-								select new
-								{
-									seat.RowNumber,
-									seat.ColumnNumber,
-									seat.ReservationTime
-								};
-			var jsonData = JsonConvert.SerializeObject(reservedSeats);
-			return jsonData;
-		}
 
+		public void GetReservedSeatsForSeance(long id, bool isInit)
+		{
+
+			IEnumerable<ReservedSeatDomainModel> reservedSeatDomainModel =
+				_seanceService.ReadById(id).ReservedSeats;
+
+			var reservedSeats = (from seat in reservedSeatDomainModel
+								 select new
+								 {
+									 seat.Id,
+									 seat.RowNumber,
+									 seat.ColumnNumber,
+									 seat.ReservationTime
+								 }).ToList();
+			string jsonData = JsonConvert.SerializeObject(reservedSeats);
+			if (isInit)
+			{
+				Clients.All.notify(jsonData);
+			}
+			else
+			{
+				Clients.Others.notify(jsonData);
+			}
+		}
 	}
 }

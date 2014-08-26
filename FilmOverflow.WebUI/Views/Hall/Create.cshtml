@@ -9,10 +9,10 @@
 </h2>
 
 <aside>
-	@Html.ActionLink(" ", "Details", "Cinema", new {id = ViewBag.CinemaId}, new {@class = "fa fa-caret-left fa-4x back-nav", title = "Back to hall create"})
+	@Html.ActionLink(" ", "Details", "Cinema", new { id = ViewBag.CinemaId }, new { @class = "fa fa-caret-left fa-4x back-nav", title = "Back to hall create" })
 </aside>
 
-@Html.HiddenFor(model => model.CinemaId, new {data_id = ViewBag.CinemaId})
+@Html.HiddenFor(model => model.CinemaId, new { data_id = ViewBag.CinemaId })
 
 
 <div class="form-horizontal well well-lg clear">
@@ -27,21 +27,21 @@
 
 
 	<div class="form-group">
-		@Html.LabelFor(model => model.Name, htmlAttributes: new {@class = "control-label col-md-2"})
+		@Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-2" })
 		<div class="col-md-10">
 			<input data-bind="value: Name" class="form-control" type="text" required />
 		</div>
 	</div>
 
 	<div class="form-group">
-		@Html.LabelFor(model => model.RowAmount, htmlAttributes: new {@class = "control-label col-md-2"})
+		@Html.LabelFor(model => model.RowAmount, htmlAttributes: new { @class = "control-label col-md-2" })
 		<div class="col-md-10">
 			<input data-bind="value: RowAmount" class="form-control" type="number" required />
 		</div>
 	</div>
 
 	<div class="form-group">
-		@Html.LabelFor(model => model.ColumnAmount, htmlAttributes: new {@class = "control-label col-md-2"})
+		@Html.LabelFor(model => model.ColumnAmount, htmlAttributes: new { @class = "control-label col-md-2" })
 		<div class="col-md-10">
 			<input data-bind="value: ColumnAmount" class="form-control" type="number" required />
 		</div>
@@ -58,13 +58,14 @@
 	<span class="fa fa-refresh fa-spin fa-3x"></span>
 </div>
 
-<div data-bind="foreach: HallTemplate,
-				visible: isHallConfigured" class="cinema col-md-offset-2">
+	<div data-bind="foreach: HallTemplate,
+				visible: isHallConfigured" class="hall">
 
-	<span data-bind="css: { selected: $root.isSeatIncluded($data), deselected: !$root.isSeatIncluded($data)},
+		<span data-bind="css: { selected: $root.isSeatIncluded($data), deselected: !$root.isSeatIncluded($data)},
 						click: $root.toogleSeatStatus,
-						style:{top: $data.rowNumber()*20+'px', left: $data.columnNumber()*20+'px'}" class="seat fa fa-user"></span>
-</div>
+						style:{top: $data.rowNumber()*25+'px', left: $data.columnNumber()*23+'px'}" class="seat fa fa-user"></span>
+	</div>
+
 
 
 
@@ -74,7 +75,7 @@
 
 
 @section Scripts {
-	<script src="~/Scripts/Halls/koModels.js"></script>
-	<script src="~/Scripts/Halls/app.js"></script>
+	<script src="~/Scripts/knockout-app/Halls/koModels.js"></script>
+	<script src="~/Scripts/knockout-app/Halls/app.js"></script>
 	@Scripts.Render("~/bundles/jqueryval")
 }

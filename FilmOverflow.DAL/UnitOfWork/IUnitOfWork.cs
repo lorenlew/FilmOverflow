@@ -14,8 +14,6 @@ namespace FilmOverflow.DAL.UnitOfWork
 
 		IRepository<TEntity> GetRepository<TEntity>() where TEntity : Entity;
 
-		void DisableValidationOnSave();
-
 		void Save();
 	}
 }

@@ -14,6 +14,8 @@ namespace FilmOverflow.DAL.UnitOfWork
 
 		TEntity ReadById(Object id);
 
+		TEntity Refresh(TEntity entity);
+
 		void Update(TEntity entity);
 
 		void Delete(TEntity entity);

@@ -14,16 +14,15 @@ namespace FilmOverflow.DAL.UnitOfWork
 
 		public RoleManager<IdentityRole> RoleManager { get; private set; }
 
-		public UnitOfWork()
+		public UnitOfWork(ApplicationDbContext applicationDbContext)
 		{
+			Context = applicationDbContext;
 			Database.SetInitializer(new MigrateDatabaseToLatestVersion<ApplicationDbContext, Configuration>());
 			Init();
 		}
 
 		private void Init()
 		{
-			var dbContext = ApplicationDbContext.Create();
-			Context = Context ?? dbContext;
 			var userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(Context));
 			UserManager = UserManager ?? userManager;
 			var roleManager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(Context));
@@ -35,15 +34,9 @@ namespace FilmOverflow.DAL.UnitOfWork
 			return new BaseRepository<TEntity>(Context);
 		}
 
-		public void DisableValidationOnSave()
-		{
-			Context.Configuration.ValidateOnSaveEnabled = false;
-		}
-
 		public void Save()
 		{
 			Context.SaveChanges();
 		}
-
 	}
 }

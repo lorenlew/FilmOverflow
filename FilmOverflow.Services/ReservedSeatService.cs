@@ -17,8 +17,8 @@ namespace FilmOverflow.Services
 
 		public void Add(ReservedSeatDomainModel entity)
 		{
-			if (entity == null) throw new ArgumentNullException("entity");
 			var reservedSeat = Mapper.Map<ReservedSeatDomainModel, ReservedSeat>(entity);
+
 			Uow.GetRepository<ReservedSeat>().Add(reservedSeat);
 			Uow.Save();
 		}

@@ -20,5 +20,7 @@ namespace FilmOverflow.Domain.Models
 
 		public ICollection<ReviewDomainModel> Reviews { get; set; }
 
+		public ICollection<ReservedSeatDomainModel> ReservedSeats { get; set; }
+
 	}
 }

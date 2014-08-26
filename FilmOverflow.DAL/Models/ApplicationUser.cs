@@ -24,6 +24,7 @@ namespace FilmOverflow.DAL.Models
 
 		public virtual ICollection<Review> Reviews { get; set; }
 
+		public virtual ICollection<ReservedSeat> ReservedSeats { get; set; }
 
 		public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager)
 		{

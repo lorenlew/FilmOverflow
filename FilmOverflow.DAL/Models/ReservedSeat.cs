@@ -10,8 +10,12 @@ namespace FilmOverflow.DAL.Models
 
 		public DateTime ReservationTime { get; set; }
 
+		public bool IsSold { get; set; }
+
 		public virtual Seance Seance { get; set; }
 		public long SeanceId { get; set; }
+
+		public string ApplicationUserId { get; set; }
 
 	}
 }
