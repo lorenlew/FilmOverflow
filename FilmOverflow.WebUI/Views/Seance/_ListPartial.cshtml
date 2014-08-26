@@ -17,9 +17,9 @@
 	@foreach (var seance in Model)
 	{
 		<tr>
-			<td>@seance.Date</td>
-			<td>@seance.Time</td>
-			<td>@seance.Price</td>
+			<td>@seance.Date.ToString("MM/dd/yyyy")</td>
+			<td>@seance.Time.ToString("HH:mm")</td>
+			<td>@seance.Price.ToString("C")</td>
 			<td>@seance.Hall.Cinema.Name - @seance.Hall.Name</td>
 			<td>
 				<div class="pull-right">

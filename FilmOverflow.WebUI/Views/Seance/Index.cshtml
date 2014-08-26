@@ -5,9 +5,7 @@
 <!-- modal placeholder-->
 <div id="seanceModal" class="modal fade" role="dialog" aria-labelledby="seanceModalLabel" aria-hidden="true">
 	<div class="modal-dialog">
-		<div class="modal-content">
-			<div id="seanceModalContent"></div>
-		</div>
+		<div id="seanceModalContent" class="modal-content"></div>
 	</div>
 </div>
 
@@ -17,7 +15,6 @@
 		@{ Html.RenderAction("List", "Seance", routeValues: new { filmId = ViewBag.FilmId }); }
 	</div>
 </div>
-
 
 @section Scripts {
 	<script src="~/Scripts/Seance/modalform.js"></script>

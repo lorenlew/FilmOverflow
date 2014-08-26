@@ -9,12 +9,15 @@ namespace FilmOverflow.WebUI.ViewModels
 	{
 		[Required(ErrorMessage = "Add date")]
 		//[RegularExpression(@"^(0[1-9]|1[012])[- /.](0[1-9]|[12][0-9]|3[01])[- /.](19|20)\d\d+$",ErrorMessage = "Date is not valid")]
-		public string Date { get; set; }
+		[DataType(DataType.Date)]
+		public DateTime Date { get; set; }
 
 		[Required(ErrorMessage = "Add time")]
-		public string Time { get; set; }
+		[DataType(DataType.Time)]
+		public DateTime Time { get; set; }
 
 		[Required(ErrorMessage = "Add price")]
+		[Range(0, 256)]
 		public decimal Price { get; set; }
 
 		public long FilmId { get; set; }

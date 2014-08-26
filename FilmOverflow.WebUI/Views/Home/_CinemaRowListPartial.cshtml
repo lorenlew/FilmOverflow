@@ -23,10 +23,12 @@
 
 				<td>@film.Title</td>
 				<td>
-					@foreach (var seance in film.Seances)
-					{
-						<a class="btn btn-sm btn-success" href="@Url.Action("Index","Home")" role="button">@seance.Time.ToShortTimeString()</a>
-					}
+					<div class="pull-left">
+						@foreach (var seance in film.Seances)
+						{
+							<a class="btn btn-sm btn-success" href="@Url.Action("Index","Home")" role="button">@seance.Time.ToString("HH:mm")</a>
+						}
+					</div>
 				</td>
 			</tr>
 		}

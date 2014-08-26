@@ -21,7 +21,7 @@
 		<div class="form-group">
 			@Html.LabelFor(m => m.Date, new { @class = "col-md-2 control-label" })
 			<div class="col-md-10">
-				@Html.TextBoxFor(m => m.Date, new { @class = "form-control", id = "seanceDatePicker" })
+				@Html.TextBoxFor(m => m.Date, Model.Date.ToString("MM/dd/yyyy"), new { @class = "form-control", id = "seanceDatePicker" })
 				@Html.ValidationMessageFor(m => m.Date, "", new { @class = "text-danger" })
 			</div>
 		</div>
@@ -29,7 +29,7 @@
 		<div class="form-group">
 			@Html.LabelFor(m => m.Time, new { @class = "col-md-2 control-label" })
 			<div class="col-md-10">
-				@Html.TextBoxFor(m => m.Time, new { @class = "form-control", id = "seanceTimePicker" })
+				@Html.TextBoxFor(m => m.Time, Model.Time.ToString("HH:mm"), new { @class = "form-control", id = "seanceTimePicker" })
 				@Html.ValidationMessageFor(m => m.Time, "", new { @class = "text-danger" })
 			</div>
 		</div>

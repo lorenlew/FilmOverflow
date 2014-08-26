@@ -1,32 +1,27 @@
 ﻿(function ($) {
 	'use strict';
 
-	Date.parseDate = function (input, format) {
-		return moment(input, format).toDate();
-	};
-	Date.prototype.dateFormat = function (format) {
-		return moment(this).format(format);
-	};
-
 	$('#seanceModal').on('shown.bs.modal', function () {
 		$('#seanceDatePicker', this).datetimepicker({
-			format: 'd.m.Y',
-			timepicker: false,
+			format: 'MM/DD/YYYY',
+			pickTime: false,
 		});
 
 		$('#seanceTimePicker', this).datetimepicker({
-			format: 'H:i',
-			datepicker: false
+			format: 'HH:mm',
+			pickDate: false
 		});
 	});
 
 	$('#SeanceManagement').on('click', 'a[data-modal]', function () {
 		$('#seanceModalContent').load(this.href, function () {
 			$.validator.unobtrusive.parse(this);
+
 			$('#seanceModal').modal({
 				keyboard: true
 			}, 'show');
 		});
+
 		return false;
 	});
 
