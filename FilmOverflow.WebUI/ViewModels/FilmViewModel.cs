@@ -23,7 +23,7 @@ namespace FilmOverflow.WebUI.ViewModels
 		public string ImagePath { get; set; }
 
 		[Required(ErrorMessage = "Add duration")]
-		[Range(0, 300, ErrorMessage = "Out of range")]
+		[Range(0, 200, ErrorMessage = "Out of range")]
 		public int Duration { get; set; }
 
 		public ICollection<ReviewViewModel> Reviews { get; set; }

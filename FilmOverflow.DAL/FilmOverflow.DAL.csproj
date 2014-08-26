@@ -105,6 +105,10 @@
     <Compile Include="Migrations\201408241639491_ticketSeatChange.Designer.cs">
       <DependentUpon>201408241639491_ticketSeatChange.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201408260500057_IsSoldAndApplUserInReservedSeat.cs" />
+    <Compile Include="Migrations\201408260500057_IsSoldAndApplUserInReservedSeat.Designer.cs">
+      <DependentUpon>201408260500057_IsSoldAndApplUserInReservedSeat.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\ApplicationUser.cs" />
     <Compile Include="Models\Cinema.cs" />
@@ -157,6 +161,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201408241639491_ticketSeatChange.resx">
       <DependentUpon>201408241639491_ticketSeatChange.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201408260500057_IsSoldAndApplUserInReservedSeat.resx">
+      <DependentUpon>201408260500057_IsSoldAndApplUserInReservedSeat.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

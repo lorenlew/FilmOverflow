@@ -3,7 +3,7 @@
 
 	$('#seanceModal').on('shown.bs.modal', function () {
 		$('#seanceDatePicker', this).datetimepicker({
-			format: 'MM/DD/YYYY',
+			format: 'DD/MM/YYYY',
 			pickTime: false,
 		});
 

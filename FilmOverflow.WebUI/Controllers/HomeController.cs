@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Net;
 using System.Web.Mvc;
 using AutoMapper;
@@ -61,7 +62,7 @@ namespace FilmOverflow.WebUI.Controllers
 		public ActionResult CinemaRowList()
 		{
 			IEnumerable<CinemaRowViewModel> cinemaRows = _homeOrhestrator.GetBrowsePage();
-
+			
 			return PartialView("_CinemaRowListPartial", cinemaRows);
 		}
 

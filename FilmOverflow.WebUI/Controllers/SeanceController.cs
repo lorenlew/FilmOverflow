@@ -59,13 +59,6 @@ namespace FilmOverflow.WebUI.Controllers
 		[ValidateAntiForgeryToken]
 		public ActionResult Create(SeanceViewModel seanceViewModel)
 		{
-			//var dateString = seanceViewModel.Date;
-			//var timeString = seanceViewModel.Time;
-			//var date = DateTime.ParseExact(dateString, "dd/MM/yyyy", CultureInfo.InvariantCulture);
-			//var time = DateTime.Today.Add(TimeSpan.Parse(timeString));
-
-			//Console.Write(date);
-
 			if (seanceViewModel == null)
 			{
 				return new HttpStatusCodeResult(HttpStatusCode.BadRequest);

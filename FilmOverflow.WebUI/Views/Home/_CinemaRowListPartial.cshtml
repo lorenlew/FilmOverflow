@@ -26,7 +26,7 @@
 					<div class="pull-left">
 						@foreach (var seance in film.Seances)
 						{
-							<a class="btn btn-sm btn-success" href="@Url.Action("Index","Home")" role="button">@seance.Time.ToString("HH:mm")</a>
+							<a class="btn btn-sm btn-success" href="@Url.Action("Index","Home")" role="button">@seance.Time</a>
 						}
 					</div>
 				</td>

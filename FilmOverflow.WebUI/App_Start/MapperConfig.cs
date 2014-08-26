@@ -22,8 +22,10 @@ namespace FilmOverflow.WebUI
 			Mapper.CreateMap<ReviewDomainModel, ReviewViewModel>();
 			Mapper.CreateMap<ReviewViewModel, ReviewDomainModel>();
 
-			Mapper.CreateMap<SeanceDomainModel, SeanceViewModel>();				
-			Mapper.CreateMap<SeanceViewModel, SeanceDomainModel>();				
+			Mapper.CreateMap<SeanceDomainModel, SeanceViewModel>()
+				.ForMember(dest => dest.Date, opt => opt.MapFrom(src => String.Format("{0:dd/MM/yyyy}", Convert.ToDateTime(src.Date))))
+				.ForMember(dest => dest.Time, opt => opt.MapFrom(src => String.Format("{0:HH:mm}", Convert.ToDateTime(src.Time))));
+			Mapper.CreateMap<SeanceViewModel, SeanceDomainModel>();
 
 			Mapper.CreateMap<TicketDomainModel, TicketViewModel>();
 			Mapper.CreateMap<TicketViewModel, TicketDomainModel>();
