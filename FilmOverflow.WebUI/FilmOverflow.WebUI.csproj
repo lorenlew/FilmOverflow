@@ -47,6 +47,9 @@
     <Reference Include="AutoMapper.Net4">
       <HintPath>..\packages\AutoMapper.3.2.1\lib\net40\AutoMapper.Net4.dll</HintPath>
     </Reference>
+    <Reference Include="MarkdownDeep">
+      <HintPath>..\packages\MarkdownDeep.NET.1.4\lib\.NetFramework 3.5\MarkdownDeep.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.AspNet.SignalR.Core">
       <HintPath>..\packages\Microsoft.AspNet.SignalR.Core.2.1.1\lib\net45\Microsoft.AspNet.SignalR.Core.dll</HintPath>
     </Reference>
@@ -199,6 +202,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Helpers\MarkdownHelper.cs" />
     <Compile Include="Helpers\StringHelper.cs" />
     <Compile Include="Orhestrators\HomeOrhestrator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -229,7 +233,6 @@
     <Content Include="Content\Images\Background-images\Elegant_Background-6.jpg" />
     <Content Include="Content\Images\Background-images\main.jpg" />
     <Content Include="favicon.ico" />
-    <Content Include="FilmOverflow.WebUI.csproj.DotSettings.user" />
     <Content Include="fonts\fontawesome-webfont.svg" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
