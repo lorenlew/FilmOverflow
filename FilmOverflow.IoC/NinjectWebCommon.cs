@@ -47,13 +47,17 @@ namespace FilmOverflow.IoC
 		private static IKernel CreateKernel()
 		{
 			var kernel = new StandardKernel();
+
 			try
 			{
-				kernel.Bind<Func<IKernel>>().ToMethod(ctx => () => new Bootstrapper().Kernel);
-				kernel.Bind<IHttpModule>().To<HttpApplicationInitializationHttpModule>();
-				kernel.Bind<IUnitOfWork>().To<UnitOfWork>().InTransientScope();
-				kernel.Bind<ApplicationDbContext>().ToSelf().InTransientScope();
-				RegisterServices(kernel);
+				kernel = new StandardKernel();
+				RegisterHubServices(kernel);
+				RegisterCommonServices(kernel);
+
+				kernel = new StandardKernel();
+				RegisterWebServices(kernel);
+				RegisterCommonServices(kernel);
+
 				return kernel;
 			}
 			catch
@@ -63,13 +67,16 @@ namespace FilmOverflow.IoC
 			}
 		}
 
-		/// <summary>
-		/// Load your modules or register your services here!
-		/// </summary>
-		/// <param name="kernel">The kernel.</param>
-		private static void RegisterServices(IKernel kernel)
+		private static void RegisterWebServices(IKernel kernel)
 		{
-			GlobalHost.DependencyResolver.Register(typeof(IHubActivator), () => new HubActivator(kernel));
+			kernel.Bind<Func<IKernel>>().ToMethod(ctx => () => new Bootstrapper().Kernel);
+			kernel.Bind<IHttpModule>().To<HttpApplicationInitializationHttpModule>();
+			kernel.Bind<IUnitOfWork>().To<UnitOfWork>().InRequestScope();
+			kernel.Bind<ApplicationDbContext>().ToSelf().InRequestScope();
+		}
+
+		private static void RegisterCommonServices(IKernel kernel)
+		{
 			kernel.Bind<IUserManagerService>().To<UserManagerService>().InRequestScope();
 			kernel.Bind<IRoleManagerService>().To<RoleManagerService>().InRequestScope();
 			kernel.Bind<ICinemaService>().To<CinemaService>().InRequestScope();
@@ -81,6 +88,16 @@ namespace FilmOverflow.IoC
 			kernel.Bind<IHallService>().To<HallService>().InRequestScope();
 			kernel.Bind<ISeatService>().To<SeatService>().InRequestScope();
 			kernel.Bind<IReservedSeatService>().To<ReservedSeatService>().InRequestScope();
+		}
+
+		private static void RegisterHubServices(IKernel kernel)
+		{
+			kernel.Bind<Func<IKernel>>().ToMethod(ctx => () => new Bootstrapper().Kernel);
+			kernel.Bind<IHttpModule>().To<HttpApplicationInitializationHttpModule>();
+			kernel.Bind<IUnitOfWork>().To<UnitOfWork>().InTransientScope();
+			kernel.Bind<ApplicationDbContext>().ToSelf().InTransientScope();
+
+			GlobalHost.DependencyResolver.Register(typeof(IHubActivator), () => new HubActivator(kernel));
 		}
 	}
 }
