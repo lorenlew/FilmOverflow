@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using AutoMapper;
 using FilmOverflow.Domain.Models;
 using FilmOverflow.Services.Interfaces;
+using FilmOverflow.WebUI.Attributes;
 using FilmOverflow.WebUI.ViewModels;
 using Microsoft.AspNet.Identity;
 
@@ -42,7 +43,7 @@ namespace FilmOverflow.WebUI.Controllers
 			SeanceDomainModel currentSeance = _seanceService.ReadById(id);
 			if (currentSeance == null)
 			{
-				HttpNotFound();
+				return new HttpStatusCodeResult(HttpStatusCode.NotFound);
 			} 
 			ViewBag.SeanceId = id;
 			ViewBag.PaymentMethods = _paymentMethodService.GetSelectListItems();
@@ -50,18 +51,16 @@ namespace FilmOverflow.WebUI.Controllers
 		}
 
 		[HttpPost]
-		[ValidateAntiForgeryToken]
-		public ActionResult Create([Bind(Include = "SeanceId,PaymentMethodId")] TicketViewModel ticketViewModel)
+		public ActionResult Create([FromJson] OrderViewModel orderViewModel)
 		{
-
 			if (!ModelState.IsValid)
 			{
-				return View(ticketViewModel);
+				//return View(ticketViewModel);
 			}
-			TicketDomainModel ticketDomainModel = Mapper.Map<TicketViewModel, TicketDomainModel>(ticketViewModel);
-			ticketDomainModel.PaymentDate = DateTime.Now;
-			ticketDomainModel.ApplicationUserId = User.Identity.GetUserId();
-			_ticketService.Add(ticketDomainModel);
+			//TicketDomainModel ticketDomainModel = Mapper.Map<TicketViewModel, TicketDomainModel>(ticketViewModel);
+			//ticketDomainModel.PaymentDate = DateTime.Now;
+			//ticketDomainModel.ApplicationUserId = User.Identity.GetUserId();
+			//_ticketService.Add(ticketDomainModel);
 			return RedirectToAction("Index");
 		}
 	}

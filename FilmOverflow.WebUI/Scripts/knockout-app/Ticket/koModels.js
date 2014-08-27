@@ -7,23 +7,52 @@
 		var price = parseInt($('#Price').val());
 		var urlGetSeats = '/Seance/GetSeanceSeats?seanceId=' + seanceId;
 		var urlReserveSeat = '/Seance/ToogleReservationStatus?seanceId=' + seanceId;
+		var urlGetTicket = '/Ticket/Create';
 		var seanceService = $.connection.seanceService;
+		var $html = $('html, body');
+		$.connection.hub.logging = true;
+
+		$.connection.hub.start()
+			.then(init);
+
+		$("#PaymentMethodId").change(function () {
+			self.checkPaymentMethod();
+		});
+
+		$("#numberOfSeats").change(function () {
+			if (self.NumberOfSelectedSeats() > 0) {
+				$html.animate({ scrollTop: 0 }, 'slow');
+			}
+		});
+
+		$('#numberOfSeats').on('DOMSubtreeModified', function (){
+			if (self.NumberOfSelectedSeats() > 0) {
+				$html.animate({ scrollTop: 400 }, 1000);
+			} else {
+			}
+		});
+
+
 		self.Seats = ko.observableArray([]);
 		self.ReservedSeats = ko.observableArray([]);
 		self.SelectedSeats = ko.observableArray([]);
-		self.StartTime = ko.observable();;
-
+		self.StartTime = ko.observable();
+		self.SelectedPaymentMethod = ko.observable(-1);
 		self.NumberOfSelectedSeats = ko.computed(function () {
 			return self.SelectedSeats().length;
 		});
 
+		self.checkPaymentMethod = function () {
+			var selected = parseInt($('#PaymentMethodId :selected').val());
+			if (isNaN(selected)) {
+				self.SelectedPaymentMethod(-1);
+			}
+			self.SelectedPaymentMethod(selected);
+		};
+
 		self.TotalPrice = ko.computed(function () {
 			return self.SelectedSeats().length * price;
 		});
-
-		$.connection.hub.logging = true;
-		$.connection.hub.start()
-			.then(init);
 
 		function init() {
 			$.getJSON(urlGetSeats, function (data) {
@@ -70,7 +99,6 @@
 					seanceService.server.getReservedSeatsForSeance(seanceId, false);
 				}
 			});
-
 			return true;
 		};
 
@@ -85,7 +113,19 @@
 		};
 
 		self.submit = function () {
-			//post
+			var koTiketModel = {};
+			koTiketModel.SeanceId = seanceId;
+			koTiketModel.PaymentMethodId = self.SelectedPaymentMethod();
+			koTiketModel.Seats = self.SelectedSeats();
+			var orderViewModel = ko.mapping.toJSON(koTiketModel);
+			$.ajax({
+				type: 'POST',
+				url: urlGetTicket,
+				data: { orderViewModel: orderViewModel },
+				success: function () {
+					seanceService.server.getReservedSeatsForSeance(seanceId, false);
+				}
+			});
 		};
 
 	};

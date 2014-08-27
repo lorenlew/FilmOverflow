@@ -21,18 +21,23 @@
 </div>
 
 
-<div data-bind="visible:NumberOfSelectedSeats() > 0" class="fa fa-2x modal-body">
-	<div class ="modal-body">
-		Number of selected seats <span data-bind="text: NumberOfSelectedSeats()" class="label label-info"></span>
-	</div>
-	<div class ="modal-body">
-		Total price<span data-bind="text: TotalPrice()" class="label label-info"></span>
-	</div>
-</div>
+<div class="well-lg" data-bind="visible:NumberOfSelectedSeats() > 0">
+	<div data-bind="visible:NumberOfSelectedSeats() > 0" class="fa fa-2x ">
+		<div class="modal-body">
+			  <span id="numberOfSeats" data-bind="text: NumberOfSelectedSeats()" class="label label-info"></span>  <span class="fa fa-tachometer"></span>
+		</div>
+		<div class="modal-body">
+			<span data-bind="text: TotalPrice()" class="label label-info"></span>  <span class="fa fa-dollar"></span>
+		</div>
 
-<div data-bind="fadeVisible: NumberOfSelectedSeats() > 0" class="form-group fixedInput">
-	<div class="col-md-10">
-		@Html.DropDownList("PaymentMethodId", (IEnumerable<SelectListItem>)ViewBag.PaymentMethods, "--Select payment method--", new { @class = "form-control" })
+	</div>
+
+	<div data-bind="fadeVisible: NumberOfSelectedSeats() > 0" class="form-group pull-right">	  
+		<div class=" fixedInput">
+			@Html.DropDownList("PaymentMethodId", (IEnumerable<SelectListItem>)ViewBag.PaymentMethods, "--Select payment method--", new { @class = "form-control" })
+		</div><span class="fa fa-credit-card fa-2x"></span>
+		<button data-bind="visible:SelectedPaymentMethod() > 0,
+					click: submit" type="button" class="btn btn-success fa fa-check " title="Create"></button>
 	</div>
 </div>
 
