@@ -251,8 +251,6 @@
     <Content Include="Scripts\bootstrap-datetimepicker.js" />
     <Content Include="Scripts\bootstrap-datetimepicker.min.js" />
     <Content Include="Scripts\bootstrap.js" />
-    <Content Include="Scripts\Halls\app.js" />
-    <Content Include="Scripts\Halls\koModels.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
@@ -281,7 +279,6 @@
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\_references.js" />
-    <Content Include="SignalR\signalR.Seance.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>

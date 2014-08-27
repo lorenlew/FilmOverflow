@@ -51,6 +51,7 @@ ul {
 
 .no-shadow {
 	text-shadow: none;
+	color: #000000;
 }
 
 .img-content {
@@ -77,7 +78,7 @@ ul {
 }
 
 .img-main {
-	width: 75%;
+	width: 85%;
 	-moz-border-radius-topleft: 29px;
 	-webkit-border-top-left-radius: 29px;
 	border-top-left-radius: 29px;
@@ -141,7 +142,7 @@ article.tile:hover {
 	position: relative;
 	cursor: pointer;
 	width: 700px;
-	height: 400px;
+	height: 300px;
 	margin: 0 auto;
 }
 

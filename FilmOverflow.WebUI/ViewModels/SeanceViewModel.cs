@@ -18,6 +18,7 @@ namespace FilmOverflow.WebUI.ViewModels
 		[Range(0, 256)]
 		public decimal Price { get; set; }
 
+		public FilmViewModel Film { get; set; }
 		public long FilmId { get; set; }
 
 		public HallViewModel Hall { get; set; }

@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Threading;
+using System.Web.Mvc;
 using FilmOverflow.Domain.Models;
 using FilmOverflow.Services.Interfaces;
 using Microsoft.AspNet.SignalR;
@@ -23,11 +25,13 @@ namespace FilmOverflow.WebUI.SignalR
 
 		public void GetReservedSeatsForSeance(long id, bool isInit)
 		{
-
-			IEnumerable<ReservedSeatDomainModel> reservedSeatDomainModel =
-				_seanceService.ReadById(id).ReservedSeats;
-
-			var reservedSeats = (from seat in reservedSeatDomainModel
+			SeanceDomainModel currentSeance =
+				_seanceService.ReadById(id);
+			if (currentSeance ==null)
+			{
+				return;
+			}
+			var reservedSeats = (from seat in currentSeance.ReservedSeats
 								 select new
 								 {
 									 seat.Id,

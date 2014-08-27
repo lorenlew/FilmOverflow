@@ -15,11 +15,13 @@ namespace FilmOverflow.WebUI.Controllers
 	{
 		private readonly ITicketService _ticketService;
 		private readonly IPaymentMethodService _paymentMethodService;
+		private readonly ISeanceService _seanceService;
 
-		public TicketController(ITicketService ticketService, IPaymentMethodService paymentMethodService)
+		public TicketController(ITicketService ticketService, IPaymentMethodService paymentMethodService, ISeanceService seanceService)
 		{
 			_ticketService = ticketService;
 			_paymentMethodService = paymentMethodService;
+			_seanceService = seanceService;
 		}
 
 		public ActionResult Index()
@@ -37,6 +39,11 @@ namespace FilmOverflow.WebUI.Controllers
 			{
 				return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
 			}
+			SeanceDomainModel currentSeance = _seanceService.ReadById(id);
+			if (currentSeance == null)
+			{
+				HttpNotFound();
+			} 
 			ViewBag.SeanceId = id;
 			ViewBag.PaymentMethods = _paymentMethodService.GetSelectListItems();
 			return View();

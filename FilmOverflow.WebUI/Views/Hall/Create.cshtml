@@ -58,13 +58,13 @@
 	<span class="fa fa-refresh fa-spin fa-3x"></span>
 </div>
 
-	<div data-bind="foreach: HallTemplate,
+<div data-bind="foreach: HallTemplate,
 				visible: isHallConfigured" class="hall">
 
-		<span data-bind="css: { selected: $root.isSeatIncluded($data), deselected: !$root.isSeatIncluded($data)},
+	<span data-bind="css: { selected: $root.isSeatIncluded($data), deselected: !$root.isSeatIncluded($data)},
 						click: $root.toogleSeatStatus,
 						style:{top: $data.rowNumber()*25+'px', left: $data.columnNumber()*23+'px'}" class="seat fa fa-user"></span>
-	</div>
+</div>
 
 
 

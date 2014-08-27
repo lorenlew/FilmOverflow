@@ -4,20 +4,21 @@
 	koModels.HallViewModel = function () {
 		var self = this;
 		var seanceId = $('#SeanceId').attr('data-id');
+		var price = parseInt($('#Price').val());
 		var urlGetSeats = '/Seance/GetSeanceSeats?seanceId=' + seanceId;
 		var urlReserveSeat = '/Seance/ToogleReservationStatus?seanceId=' + seanceId;
 		var seanceService = $.connection.seanceService;
 		self.Seats = ko.observableArray([]);
 		self.ReservedSeats = ko.observableArray([]);
 		self.SelectedSeats = ko.observableArray([]);
+		self.StartTime = ko.observable();;
 
-		self.PaymentMethodsVisable = ko.computed(function () {
-			return self.SelectedSeats().length > 0;
+		self.NumberOfSelectedSeats = ko.computed(function () {
+			return self.SelectedSeats().length;
 		});
 
-		self.NumberOfSelectedSeats = ko.computed(function ()
-		{
-			return self.SelectedSeats().length;
+		self.TotalPrice = ko.computed(function () {
+			return self.SelectedSeats().length * price;
 		});
 
 		$.connection.hub.logging = true;
@@ -68,7 +69,7 @@
 				success: function () {
 					seanceService.server.getReservedSeatsForSeance(seanceId, false);
 				}
-		});
+			});
 
 			return true;
 		};

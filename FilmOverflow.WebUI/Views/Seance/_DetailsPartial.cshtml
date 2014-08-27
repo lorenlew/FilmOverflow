@@ -4,14 +4,10 @@
 	ViewBag.Title = "Seance Details";
 }
 
-<div class="modal-header">
-	<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-	<h4 class="modal-title" id="seanceModalLabel">@ViewBag.Title</h4>
-</div>
-
-<div class="modal-body">
+<div class="well-lg">
+	<h4 class="text-danger" id="seanceModalLabel">@ViewBag.Title</h4>	
 	<dl class="dl-horizontal">
-		<dt>
+		<dt class="text-info">
 			@Html.DisplayNameFor(model => model.Date)
 		</dt>
 
@@ -19,7 +15,7 @@
 			@Html.DisplayFor(model => model.Date)
 		</dd>
 
-		<dt>
+		<dt class="text-info">
 			@Html.DisplayNameFor(model => model.Time)
 		</dt>
 
@@ -27,24 +23,33 @@
 			@Html.DisplayFor(model => model.Time)
 		</dd>
 
-		<dt>
+		<dt class="text-info">
 			@Html.DisplayNameFor(model => model.Price)
 		</dt>
 
 		<dd>
-			@Html.DisplayFor(model => model.Price)
+			@Html.DisplayFor(model => model.Price)	  
+			@Html.HiddenFor(model => model.Price)
 		</dd>
 
-		<dt>
+		<dt class="text-info">
 			@Html.DisplayNameFor(x => x.Hall.Cinema) - @Html.DisplayNameFor(x => x.Hall)
 		</dt>
 
 		<dd>
 			@Model.Hall.Cinema.Name - @Model.Hall.Name
 		</dd>
+
+		<dt class="text-warning">
+			@Html.DisplayNameFor(x => x.Film)
+		</dt>
+
+		<dd>
+			@Model.Film.Title
+		</dd>
 	</dl>
 </div>
 
-<div class="modal-footer">
+@*<div class="modal-footer">
 	<button class="btn btn-default" type="button" data-dismiss="modal">Close</button>
-</div>
+</div>*@

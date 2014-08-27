@@ -8,9 +8,9 @@
 	@ViewBag.Title
 </h2>
 
-	@Html.HiddenFor(model => model.PaymentDate)
-	@Html.HiddenFor(model => model.ApplicationUserId)
-	@Html.HiddenFor(model => model.SeanceId, new { data_id = ViewBag.SeanceId })
+
+@{ Html.RenderAction("Details", "Seance", new { seanceId = ViewBag.SeanceId }); }
+@Html.HiddenFor(model => model.SeanceId, new { data_id = ViewBag.SeanceId })
 
 <div data-bind="foreach: Seats" class="hall col-md-offset-2">
 	<span data-bind="css: { deselected: !$root.isSeatSelected($data), selected: $root.isSeatSelected($data), reserved: !$root.isSeatSelected($data) && $root.isSeatReserved($data)},
@@ -20,21 +20,32 @@
 	</span>
 </div>
 
-<div data-bind="fadeVisible: PaymentMethodsVisable()" class="form-group fixedInput">
+
+<div data-bind="visible:NumberOfSelectedSeats() > 0" class="fa fa-2x modal-body">
+	<div class ="modal-body">
+		Number of selected seats <span data-bind="text: NumberOfSelectedSeats()" class="label label-info"></span>
+	</div>
+	<div class ="modal-body">
+		Total price<span data-bind="text: TotalPrice()" class="label label-info"></span>
+	</div>
+</div>
+
+<div data-bind="fadeVisible: NumberOfSelectedSeats() > 0" class="form-group fixedInput">
 	<div class="col-md-10">
 		@Html.DropDownList("PaymentMethodId", (IEnumerable<SelectListItem>)ViewBag.PaymentMethods, "--Select payment method--", new { @class = "form-control" })
 	</div>
-</div>		
+</div>
 
-<div data-bind="visible:NumberOfSelectedSeats > 0, text: NumberOfSelectedSeats"></div>	 
+
 
 <aside>
 	@Html.ActionLink(" ", "Index", "Ticket", null, new { @class = "fa fa-caret-left fa-4x back-nav", title = "Back to tickets" })
 </aside>
 
+
 @section Scripts {
-	<script src="~/signalr/hubs"></script>	 
-<script src="~/Scripts/knockout-app/Ticket/CustomBindings.js"></script>
+	<script src="~/signalr/hubs"></script>
+	<script src="~/Scripts/knockout-app/Ticket/CustomBindings.js"></script>
 	<script src="~/Scripts/knockout-app/Ticket/koModels.js"></script>
 	<script src="~/Scripts/knockout-app/Ticket/app.js"></script>
 	@Scripts.Render("~/bundles/jqueryval")
