@@ -171,3 +171,9 @@ article.tile:hover {
 .fixedInput {
 	width: 400px;
 }
+
+.bottom-right {
+	position: absolute;
+	bottom: 22px;
+	right: 17px;
+}

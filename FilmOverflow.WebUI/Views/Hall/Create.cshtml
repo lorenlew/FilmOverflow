@@ -17,7 +17,7 @@
 
 <div class="form-horizontal well well-lg clear">
 	<button data-bind="click: createHallTemplate,
-					 visible: isHallConfigured" type="button" class="btn btn-primary fa fa-magic" title="Generate hall"></button>
+					 visible: isHallConfigured" type="button" class="btn btn-primary fa fa-magic fa-lg">Generate hall</button>
 
 	<span data-bind="visible: HallTemplate().length > 0 && isHallConfigured" class="clear">
 		<span class="pull-right fa fa-2x">
@@ -51,7 +51,7 @@
 	<button data-bind="click: removeAllSeats,
 					 visible: HallTemplate().length > 0 && isHallConfigured" type="button" class="btn btn-danger fa fa-minus-square" title="Remove all seats"></button>
 	<button data-bind="click: submit,
-					 visible: Seats().length > 0 && isHallConfigured" type="button" class="btn btn-success fa fa-check pull-right" title="Create"></button>
+					 visible: Seats().length > 0 && isHallConfigured" type="button" class="btn btn-success fa fa-check pull-right">Add hall</button>
 </div>
 
 <div data-bind="visible: IsProcessing" class="text-center">
