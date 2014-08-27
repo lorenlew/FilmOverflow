@@ -19,20 +19,6 @@
 			self.checkPaymentMethod();
 		});
 
-		$("#numberOfSeats").change(function () {
-			if (self.NumberOfSelectedSeats() > 0) {
-				$html.animate({ scrollTop: 0 }, 'slow');
-			}
-		});
-
-		$('#numberOfSeats').on('DOMSubtreeModified', function (){
-			if (self.NumberOfSelectedSeats() > 0) {
-				$html.animate({ scrollTop: 400 }, 1000);
-			} else {
-			}
-		});
-
-
 		self.Seats = ko.observableArray([]);
 		self.ReservedSeats = ko.observableArray([]);
 		self.SelectedSeats = ko.observableArray([]);

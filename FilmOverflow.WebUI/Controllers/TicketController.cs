@@ -46,6 +46,7 @@ namespace FilmOverflow.WebUI.Controllers
 				return new HttpStatusCodeResult(HttpStatusCode.NotFound);
 			} 
 			ViewBag.SeanceId = id;
+			ViewBag.Hall = currentSeance.Hall;
 			ViewBag.PaymentMethods = _paymentMethodService.GetSelectListItems();
 			return View();
 		}

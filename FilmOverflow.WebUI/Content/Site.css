@@ -139,24 +139,62 @@ article.tile:hover {
 }
 
 .hall {
+	-moz-box-sizing: content-box;
+	-webkit-box-sizing: content-box;
+	box-sizing: content-box;
 	position: relative;
-	cursor: pointer;
-	width: 700px;
-	height: 300px;
 	margin: 0 auto;
+	margin-bottom: 30px;
+	margin-top: 20px;
+	border-top: 15px solid #000000;
+	border-top: 15px solid rgba(0, 0, 0, 0.8);
+	-moz-border-radius-topleft: 80px;
+	-webkit-border-top-left-radius: 80px;
+	border-top-left-radius: 80px;
+	-moz-border-radius-topright: 80px;
+	-webkit-border-top-right-radius: 80px;
+	border-top-right-radius: 80px;
+	border-left: 10px solid rgba(255, 255, 255, 0.7);
+	border-right: 10px solid rgba(255, 255, 255, 0.7);
+	border-bottom: 10px solid rgba(255, 255, 255, 0.7);
+	background-color: rgba(255, 255, 255, 0.3);
+	-webkit-transition: all 0.7s cubic-bezier(.04,.86,0,.29);
+	-moz-transition: all 0.7s cubic-bezier(.04,.86,0,.29);
+	-o-transition: all 0.7s cubic-bezier(.04,.86,0,.29);
+	transition: all 0.7s ease-in;
 }
+
+	.hall:hover {
+		-moz-transform: rotate(0.05deg) scale(1.3);
+		-ms-transform: rotate(0.05deg) scale(1.3);
+		-o-transform: rotate(0.05deg) scale(1.3);
+		-webkit-transform: rotate(0.05deg) scale(1.3);
+		transform: rotate(0.05deg) scale(1.3);
+	}
+
+
 
 .hallFrame {
 	position: relative;
 }
 
 .seat {
+	cursor: pointer;
 	position: absolute;
 	-webkit-box-shadow: 0px 0px 0px 5px #ffffff;
 	-moz-box-shadow: 0px 0px 0px 5px #ffffff;
 	box-shadow: 0px 0px 0px 5px #ffffff;
 	box-shadow: 0px 0px 0px 5px rgba(255, 255, 255, 0.6);
+	-webkit-transition: all 0.2s ease;
+	-moz-transition: all 0.2s ease;
+	-o-transition: all 0.2s ease;
+	transition: all 0.2s ease;
 }
+
+	.seat:hover {
+		box-shadow: 0px 0px 0px 5px #ffd800;
+		box-shadow: 0px 0px 0px 5px rgba(255, 216, 0, 0.47);
+	}
 
 .back-nav {
 	position: fixed;
@@ -180,4 +218,8 @@ article.tile:hover {
 
 section {
 	margin-top: 15px;
+}
+
+.margin-clear {
+	margin: 0;
 }

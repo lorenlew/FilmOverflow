@@ -59,11 +59,13 @@
 </div>
 
 <div data-bind="foreach: HallTemplate,
-				visible: isHallConfigured" class="hall">
+				visible: isHallConfigured,
+				style:{width: $root.ColumnAmount()*23+33+'px', height: $root.RowAmount()*25+45+'px'},
+				css: { hall: $root.HallTemplate().length > 0 && isHallConfigured}">
 
 	<span data-bind="css: { selected: $root.isSeatIncluded($data), deselected: !$root.isSeatIncluded($data)},
 						click: $root.toogleSeatStatus,
-						style:{top: $data.rowNumber()*25+'px', left: $data.columnNumber()*23+'px'}" class="seat fa fa-user"></span>
+						style:{top: $data.rowNumber()*26+'px', left: $data.columnNumber()*23+'px'}" class="seat fa fa-user"></span>
 </div>
 
 
