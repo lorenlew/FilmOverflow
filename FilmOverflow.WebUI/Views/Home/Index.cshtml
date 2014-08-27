@@ -2,18 +2,29 @@
 	ViewBag.Title = "FilmOverflow";
 }
 
-<div class="container">
-	<figure class="well well-lg text-center font-bordered ">
-		<figcaption>
-			<h1>@ViewBag.Title</h1>
-		</figcaption>
-		<img class="img-main" src="@Url.Content("~/Content/Images/Background-images/main.jpg")" />
-		@Html.ActionLink(" Schedule", "Browse", "Home", null, new { @class = "btn  btn-primary fa fa-lg fa-film" })
-	</figure>
-</div>
+@section AddToHead{
+	<link href="~/Content/onepage-scroll.css" rel="stylesheet" />
+}
 
-<div class="container">
-	<div class="row">
-		@{ Html.RenderAction("FilmList", "Home"); }
+<section>
+	<div class="container">
+		<figure class="well well-lg text-center font-bordered ">
+			<figcaption>
+				<h1>@ViewBag.Title</h1>
+			</figcaption>
+			<img class="img-main" src="@Url.Content("~/Content/Images/Background-images/main.jpg")" />
+			@Html.ActionLink(" Schedule", "Browse", "Home", null, new { @class = "btn  btn-primary fa fa-lg fa-film" })
+		</figure>
 	</div>
-</div>
+
+	<div class="container">
+		<div class="row">
+			@{ Html.RenderAction("FilmList", "Home"); }
+		</div>
+	</div>
+</section>
+
+@section Scripts {
+	<script src="~/Scripts/jquery.onepage-scroll.js"></script>
+	<script src="~/Scripts/custom/onePageScrollRegister.js"></script>
+}

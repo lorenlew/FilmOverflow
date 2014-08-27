@@ -1,8 +1,15 @@
 ﻿@using FilmOverflow.WebUI.Helpers
 @model IEnumerable<FilmOverflow.WebUI.ViewModels.FilmViewModel>
+@{
+	var counter = 1;
+}  
 
 @foreach (var film in Model)
 {
+	if ((counter + 2) % 3 == 0)
+	{
+		@Html.Raw("<section>")
+	}
 	<div class="col-sm-6 col-md-4">
 		<div class="thumbnail no-shadow" style="height: 540px">
 			<img src=@film.ImagePath class="img-thumbnail" alt="..." />
@@ -13,4 +20,9 @@
 			</div>
 		</div>
 	</div>
+	if (counter % 3 == 0)
+	{
+		@Html.Raw("</section>")
+	}
+	counter++;
 }

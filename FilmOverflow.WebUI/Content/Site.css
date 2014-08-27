@@ -177,3 +177,7 @@ article.tile:hover {
 	bottom: 22px;
 	right: 17px;
 }
+
+section {
+	margin-top: 15px;
+}

@@ -3,7 +3,12 @@
 <head>
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>@ViewBag.Title </title>
+	<title>@ViewBag.Title </title>	
+	@if (IsSectionDefined("AddToHead"))
+	{
+		@RenderSection("AddToHead")
+	}
+
 	@Styles.Render("~/Content/css")
 	@Styles.Render("~/Content/bootstrapdatetimepickercss")
 	@Styles.Render("~/Content/font-css")
@@ -29,7 +34,7 @@
 			</div>
 		</div>
 	</div>
-	<div class="container body-content font-bordered">
+	<div class="container body-content font-bordered main">
 		@RenderBody()
 
 		<footer></footer>
