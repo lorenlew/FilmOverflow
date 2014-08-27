@@ -119,7 +119,7 @@ namespace FilmOverflow.WebUI.Controllers
 			return Json(new { success = true, url = url, replaceTarget = "#SeanceList" });
 		}
 
-		public ActionResult Details(long? seanceId)
+		public ActionResult Details(long? seanceId,bool isCommon)
 		{
 			if (seanceId == null)
 			{
@@ -133,7 +133,10 @@ namespace FilmOverflow.WebUI.Controllers
 			{
 				return HttpNotFound();
 			}
-
+			if (isCommon)
+			{
+				return PartialView("_Details", seanceViewModel);
+			}
 			return PartialView("_DetailsPartial", seanceViewModel);
 		}
 

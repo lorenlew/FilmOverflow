@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Web.Mvc;
@@ -6,6 +7,7 @@ using AutoMapper;
 using FilmOverflow.Domain.Models;
 using FilmOverflow.Services.Interfaces;
 using FilmOverflow.WebUI.ViewModels;
+using Microsoft.AspNet.Identity;
 
 namespace FilmOverflow.WebUI.Controllers
 {
@@ -18,30 +20,40 @@ namespace FilmOverflow.WebUI.Controllers
 			_reviewService = reviewService;
 		}
 
-		public ActionResult Index()
+		public ActionResult Index(long? filmId)
 		{
 			IEnumerable<ReviewDomainModel> reviewDomainModel = _reviewService.Read();
+			if (filmId != null)
+			{
+				reviewDomainModel = reviewDomainModel.Where(model => model.FilmId == filmId);
+			}
 			IEnumerable<ReviewViewModel> reviewViewModel =
 				(Mapper.Map<IEnumerable<ReviewDomainModel>, IEnumerable<ReviewViewModel>>(reviewDomainModel)).ToList();
-			return View(reviewViewModel);
+			return PartialView("_Index",reviewViewModel);
 		}
 
-		public ActionResult Create()
+		public ActionResult Create(long filmId)
 		{
+			ViewBag.filmId = filmId;
 			return View();
 		}
 
 		[HttpPost]
 		[ValidateAntiForgeryToken]
-		public ActionResult Create(ReviewViewModel reviewViewModel)
+		public ActionResult Create(ReviewViewModel reviewViewModel, long filmId)
 		{
+			reviewViewModel.FilmId = filmId;
+			reviewViewModel.ApplicationUserId = User.Identity.GetUserId();
+			reviewViewModel.ReviewDate = DateTime.Now;
+			ModelState.Remove("ReviewDate");
+
 			if (!ModelState.IsValid)
 			{
 				return View(reviewViewModel);
 			}
 			ReviewDomainModel reviewDomainModel = Mapper.Map<ReviewViewModel, ReviewDomainModel>(reviewViewModel);
 			_reviewService.Add(reviewDomainModel);
-			return RedirectToAction("Index");
+			return RedirectToAction("Details", "Home", new { filmId = filmId });
 		}
 
 		public ActionResult Edit(long? id)
@@ -56,6 +68,7 @@ namespace FilmOverflow.WebUI.Controllers
 			{
 				return HttpNotFound();
 			}
+			ViewBag.filmId = id;
 			return View(reviewViewModel);
 		}
 
@@ -63,13 +76,14 @@ namespace FilmOverflow.WebUI.Controllers
 		[ValidateAntiForgeryToken]
 		public ActionResult Edit(ReviewViewModel reviewViewModel)
 		{
+			reviewViewModel.ReviewDate = DateTime.Now;
 			if (!ModelState.IsValid)
 			{
 				return View(reviewViewModel);
 			}
 			ReviewDomainModel reviewDomainModel = Mapper.Map<ReviewViewModel, ReviewDomainModel>(reviewViewModel);
 			_reviewService.Update(reviewDomainModel);
-			return RedirectToAction("Index");
+			return RedirectToAction("Details", "Home", new { filmId = reviewViewModel.FilmId });
 		}
 
 		public ActionResult Delete(long? id)

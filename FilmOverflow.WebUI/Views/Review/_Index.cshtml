@@ -1,0 +1,37 @@
+﻿@model IEnumerable<FilmOverflow.WebUI.ViewModels.ReviewViewModel>
+
+@{
+	ViewBag.Title = "Reviews";
+}
+
+<h2>
+	@ViewBag.Title
+</h2>
+
+@foreach (var item in Model)
+{
+	<p>
+		@Html.DisplayNameFor(model => model.Rate)
+		@Html.DisplayFor(modelItem => item.Rate)
+	</p>
+	<p>
+		@Html.DisplayNameFor(model => model.Description)
+		@Html.Markdown(item.Description)
+	</p>
+	<p>
+		@Html.DisplayNameFor(model => model.ReviewDate)
+		@Html.DisplayFor(modelItem => item.ReviewDate)
+	</p>
+	<p>
+		@Html.DisplayNameFor(model => model.ApplicationUser)
+		@Html.DisplayFor(modelItem => item.ApplicationUser.FirstName) @Html.DisplayFor(modelItem => item.ApplicationUser.LastName)
+	</p>
+	<p>
+		@Html.DisplayNameFor(model => model.Film)
+		@Html.DisplayFor(modelItem => item.Film.Title)
+	</p>
+	<p>
+		@Html.ActionLink("Edit", "Edit", new { id = item.Id })
+		@Html.ActionLink("Delete", "Delete", new { id = item.Id })
+	</p>
+}

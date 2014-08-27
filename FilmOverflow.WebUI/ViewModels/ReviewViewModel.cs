@@ -13,8 +13,10 @@ namespace FilmOverflow.WebUI.ViewModels
 
 		public DateTime ReviewDate { get; set; }
 
+		public ApplicationUserViewModel ApplicationUser { get; set; }
 		public string ApplicationUserId { get; set; }
 
+		public FilmViewModel Film { get; set; }
 		public long FilmId { get; set; }
 	}
 }

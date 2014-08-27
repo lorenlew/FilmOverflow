@@ -13,8 +13,10 @@ namespace FilmOverflow.Domain.Models
 
 		public DateTime ReviewDate { get; set; }
 
+		public ApplicationUserDomainModel ApplicationUser { get; set; }
 		public string ApplicationUserId { get; set; }
 
+		public FilmDomainModel Film { get; set; }
 		public long FilmId { get; set; }
 	}
 }

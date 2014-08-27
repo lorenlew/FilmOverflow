@@ -9,7 +9,7 @@
 </h2>
 
 
-@{ Html.RenderAction("Details", "Seance", new { seanceId = ViewBag.SeanceId }); }
+@{ Html.RenderAction("Details", "Seance", new { seanceId = ViewBag.SeanceId, isCommon = true }); }
 @Html.HiddenFor(model => model.SeanceId, new { data_id = ViewBag.SeanceId })
 
 <div data-bind="foreach: Seats" class="hall col-md-offset-2">

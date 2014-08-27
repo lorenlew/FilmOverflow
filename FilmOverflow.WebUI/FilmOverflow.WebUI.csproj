@@ -347,7 +347,8 @@
     <Content Include="Views\Review\Create.cshtml" />
     <Content Include="Views\Review\Delete.cshtml" />
     <Content Include="Views\Review\Edit.cshtml" />
-    <Content Include="Views\Review\Index.cshtml" />
+    <Content Include="Views\Review\_Index.cshtml" />
+    <Content Include="Views\Seance\_Details.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\FilmOverflow.Domain\FilmOverflow.Domain.csproj">

@@ -44,4 +44,10 @@
 			</dd>
 		</dl>
 	</div>
+	@Html.ActionLink("  Create review", "Create", "Review",
+															new { filmId = Model.Id },
+															new { @class = "btn btn-success fa fa-plus", data_modal = "" })
+
+
+	@{ Html.RenderAction("Index", "Review", new { filmId = ViewBag.filmId }); }
 </div>
