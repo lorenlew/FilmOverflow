@@ -1,20 +1,19 @@
 ﻿@{
 	ViewBag.Title = "Manage Account";
+	Layout = "~/Views/Account/_AccountLayout.cshtml";
 }
 
-
-<div class="well well-lg">
-	<div class="col-md-12">
-		@if (ViewBag.HasLocalPassword)
-		{
-			@Html.Partial("_ChangePasswordPartial")
-		}
-		else
-		{
-			@Html.Partial("_SetPasswordPartial")
-		}
-	</div>
+<div class="">
+	@if (ViewBag.HasLocalPassword)
+	{
+		@Html.Partial("_ChangePasswordPartial")
+	}
+	else
+	{
+		@Html.Partial("_SetPasswordPartial")
+	}
 </div>
+
 @section Scripts {
 	@Scripts.Render("~/bundles/jqueryval")
 }

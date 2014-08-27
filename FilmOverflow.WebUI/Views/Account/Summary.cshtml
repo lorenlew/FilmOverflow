@@ -1,12 +1,13 @@
 ﻿@model FilmOverflow.WebUI.ViewModels.ApplicationUserViewModel
-@{
-	ViewBag.Title = "User information";
-}
-<h1 class="well well-lg text-center font-bordered">
-	User information
-</h1>
 
-<div class="well well-lg no-shadow">
+@{
+	ViewBag.Title = "Summary";
+	Layout = "~/Views/Account/_AccountLayout.cshtml";
+}
+
+<div class="">
+	<h2>@ViewBag.Title</h2>
+
 	<div class="block text-warning">
 		@Html.DisplayNameFor(model => model.FirstName) -
 		@Html.DisplayFor(model => model.FirstName)
@@ -22,9 +23,5 @@
 	<div class="block text-warning">
 		@Html.DisplayNameFor(model => model.PhoneNumber) -
 		@Html.DisplayFor(model => model.PhoneNumber)
-	</div>
-	<div class="block text-warning">
-		@Html.DisplayNameFor(model => model.Id) -
-		@Html.DisplayFor(model => model.Id)
 	</div>
 </div>

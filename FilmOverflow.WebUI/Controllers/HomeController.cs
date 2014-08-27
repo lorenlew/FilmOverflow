@@ -67,12 +67,5 @@ namespace FilmOverflow.WebUI.Controllers
 			
 			return PartialView("_CinemaRowListPartial", cinemaRows);
 		}
-
-		public ActionResult UserInfo()
-		{
-			var currentUser = _userManagerService.FindByName(User.Identity.Name);
-			var applicationUserViewModel = Mapper.Map<ApplicationUserDomainModel, ApplicationUserViewModel>(currentUser);
-			return View(applicationUserViewModel);
-		}
 	}
 }

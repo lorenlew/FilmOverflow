@@ -312,7 +312,7 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Account\CheckEmail.cshtml" />
     <Content Include="Views\Account\Manage.cshtml" />
-    <Content Include="Views\Home\UserInfo.cshtml" />
+    <Content Include="Views\Account\Summary.cshtml" />
     <Content Include="Views\UserManipulation\UserManagement.cshtml" />
     <Content Include="Views\UserManipulation\_UserManipulation.cshtml" />
     <Content Include="Views\Film\Index.cshtml" />
@@ -343,6 +343,7 @@
     <Content Include="Views\Home\Details.cshtml" />
     <Content Include="Views\Home\Browse.cshtml" />
     <Content Include="Views\Home\_CinemaRowListPartial.cshtml" />
+    <Content Include="Views\Account\_AccountLayout.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\FilmOverflow.Domain\FilmOverflow.Domain.csproj">
@@ -365,7 +366,6 @@
   <ItemGroup>
     <Folder Include="Content\Images\Cinema-images\" />
     <Folder Include="Content\Images\Film-images\" />
-    <Folder Include="Models\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

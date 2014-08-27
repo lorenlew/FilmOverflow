@@ -2,6 +2,7 @@
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
+using AutoMapper;
 using FilmOverflow.Domain.Models;
 using FilmOverflow.Services.Interfaces;
 using FilmOverflow.WebUI.ViewModels;
@@ -21,13 +22,20 @@ namespace FilmOverflow.WebUI.Controllers
 
 		}
 
+		public ActionResult Summary()
+		{
+			var currentUser = _userManagerService.FindByName(User.Identity.Name);
+			var applicationUserViewModel = Mapper.Map<ApplicationUserDomainModel, ApplicationUserViewModel>(currentUser);
+			return View(applicationUserViewModel);
+		}
+
 		[AllowAnonymous]
 		public ActionResult Login(string returnUrl)
 		{
 			ViewBag.ReturnUrl = returnUrl;
 			return View();
 		}
-
+		
 		[HttpPost]
 		[AllowAnonymous]
 		[ValidateAntiForgeryToken]
