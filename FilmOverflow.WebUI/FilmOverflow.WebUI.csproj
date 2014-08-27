@@ -207,7 +207,6 @@
     </Compile>
     <Compile Include="Helpers\MarkdownHelper.cs" />
     <Compile Include="Helpers\StringHelper.cs" />
-    <Compile Include="Models\FilmOverflowWebUIContext.cs" />
     <Compile Include="Orhestrators\HomeOrhestrator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SignalR\SeanceHub.cs" />

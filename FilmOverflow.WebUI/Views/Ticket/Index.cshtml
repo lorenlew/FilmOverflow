@@ -15,30 +15,31 @@
 						@Html.DisplayNameFor(model => model.PaymentDate)
 					</th>
 					<th>
-						@Html.DisplayNameFor(model => model.ApplicationUserId)
+						@Html.DisplayNameFor(model => model.Seance.Hall.Cinema)
 					</th>
 					<th>
-						@Html.DisplayNameFor(model => model.SeanceId)
+						@Html.DisplayNameFor(model => model.PaymentMethod)
 					</th>
 					<th>
-						@Html.DisplayNameFor(model => model.PaymentMethodId)
+						@Html.DisplayNameFor(model => model.Seance.Film)
 					</th>
 				</tr>
 
 				@foreach (var item in Model)
 				{
+					var cinemaName = item.Seance.Hall.Cinema.Name + " " + item.Seance.Hall.Name;
 					<tr>
 						<td>
 							@Html.DisplayFor(modelItem => item.PaymentDate)
 						</td>
 						<td>
-							@Html.DisplayFor(modelItem => item.ApplicationUserId)
+							@Html.Display(cinemaName)
 						</td>
 						<td>
-							@Html.DisplayFor(modelItem => item.SeanceId)
+							@Html.DisplayFor(modelItem => item.PaymentMethod.Name)
 						</td>
 						<td>
-							@Html.DisplayFor(modelItem => item.PaymentMethodId)
+							@Html.DisplayFor(modelItem => item.Seance.Film.Title)
 						</td>
 					</tr>
 				}

@@ -10,7 +10,8 @@
 }
 
 input,
-select {
+select,
+textarea {
 	max-width: 280px;
 }
 
