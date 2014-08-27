@@ -10,6 +10,7 @@ using FilmOverflow.Domain.Models;
 using FilmOverflow.Services.Interfaces;
 using FilmOverflow.WebUI.Attributes;
 using FilmOverflow.WebUI.ViewModels;
+using FilmOverflow.WebUI.ViewModels.Seance;
 using Microsoft.AspNet.Identity;
 using Newtonsoft.Json;
 
@@ -57,9 +58,9 @@ namespace FilmOverflow.WebUI.Controllers
 
 		[HttpPost]
 		[ValidateAntiForgeryToken]
-		public ActionResult Create(SeanceViewModel seanceViewModel)
+		public ActionResult Create(CreateSeanceViewModel createSeanceViewModel)
 		{
-			if (seanceViewModel == null)
+			if (createSeanceViewModel == null)
 			{
 				return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
 			}
@@ -67,13 +68,29 @@ namespace FilmOverflow.WebUI.Controllers
 			if (!ModelState.IsValid)
 			{
 				ViewBag.HallsCinemas = GetHallsCinemas();
-				return PartialView("_CreatePartial", seanceViewModel);
+				return PartialView("_CreatePartial", createSeanceViewModel);
 			}
 
-			SeanceDomainModel seanceDomainModel = Mapper.Map<SeanceViewModel, SeanceDomainModel>(seanceViewModel);
-			_seanceService.Add(seanceDomainModel);
-
-			var url = Url.Action("List", "Seance", routeValues: new { filmId = seanceViewModel.FilmId });
+			if (createSeanceViewModel.IsMultipleDateSelect)
+			{
+				var startDate = DateTime.ParseExact(createSeanceViewModel.Date, "dd/MM/yyyy", CultureInfo.InvariantCulture);
+				var endDate = DateTime.ParseExact(createSeanceViewModel.EndDate, "dd/MM/yyyy", CultureInfo.InvariantCulture);
+				for (var date = startDate; date <= endDate; date = date.AddDays(1.0))
+				{
+					SeanceViewModel baseSeanceViewModel = createSeanceViewModel;
+					SeanceDomainModel newSeanceDomainModel = Mapper.Map<SeanceViewModel, SeanceDomainModel>(baseSeanceViewModel);
+					newSeanceDomainModel.Date = date;
+					_seanceService.Add(newSeanceDomainModel);
+				}
+			}
+			else
+			{
+				SeanceViewModel seanceViewModel = createSeanceViewModel;
+				SeanceDomainModel seanceDomainModel = Mapper.Map<SeanceViewModel, SeanceDomainModel>(seanceViewModel);
+				_seanceService.Add(seanceDomainModel);
+			}
+			
+			var url = Url.Action("List", "Seance", routeValues: new { filmId = createSeanceViewModel.FilmId });
 			return Json(new { success = true, url = url, replaceTarget = "#SeanceList" });
 		}
 
@@ -119,7 +136,7 @@ namespace FilmOverflow.WebUI.Controllers
 			return Json(new { success = true, url = url, replaceTarget = "#SeanceList" });
 		}
 
-		public ActionResult Details(long? seanceId,bool isCommon)
+		public ActionResult Details(long? seanceId, bool isCommon)
 		{
 			if (seanceId == null)
 			{

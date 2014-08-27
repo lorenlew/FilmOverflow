@@ -1,8 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
-namespace FilmOverflow.WebUI.ViewModels
+namespace FilmOverflow.WebUI.ViewModels.Seance
 {
 	public class SeanceViewModel : EntityViewModel
 	{

@@ -1,4 +1,5 @@
 ﻿using System;
+using FilmOverflow.WebUI.ViewModels.Seance;
 
 namespace FilmOverflow.WebUI.ViewModels
 {

@@ -1,4 +1,4 @@
-﻿@model FilmOverflow.WebUI.ViewModels.SeanceViewModel
+﻿@model FilmOverflow.WebUI.ViewModels.Seance.CreateSeanceViewModel
 
 @{
 	ViewBag.Title = "Create Seance";
@@ -15,12 +15,30 @@
 		@Html.AntiForgeryToken()
 
 		@Html.ValidationSummary(true, "", new { @class = "text-danger" })
-
+		
 		<div class="form-group">
 			@Html.LabelFor(m => m.Date, new { @class = "col-md-2 control-label" })
 			<div class="col-md-10">
-				@Html.TextBoxFor(m => m.Date, new { @class = "form-control", id = "seanceDatePicker" })
+				@Html.TextBoxFor(m => m.Date, new { @class = "form-control", id = "seanceStartDatePicker" })
 				@Html.ValidationMessageFor(m => m.Date, "", new { @class = "text-danger" })
+			</div>
+		</div>
+		
+		<div class="form-group">
+			@Html.LabelFor(m => m.EndDate, new { @class = "col-md-2 control-label" })
+			<div class="col-md-10">
+				@Html.TextBoxFor(m => m.EndDate, new { @class = "form-control", id = "seanceEndDatePicker" })
+				@Html.ValidationMessageFor(m => m.EndDate, "", new { @class = "text-danger" })
+			</div>
+		</div>
+
+		<div class="form-group">
+			<div class="col-md-offset-2 col-md-10">
+				<div class="checkbox">
+					<label>
+						@Html.CheckBoxFor(m =>m.IsMultipleDateSelect) Multiple date select
+					</label>
+				</div>
 			</div>
 		</div>
 
@@ -39,6 +57,7 @@
 				@Html.ValidationMessageFor(m => m.Price, "", new { @class = "text-danger" })
 			</div>
 		</div>
+
 		<div class="form-group">
 			@Html.LabelFor(m => m.Hall, new { @class = "col-md-2 control-label" })
 			<div class="col-md-10">

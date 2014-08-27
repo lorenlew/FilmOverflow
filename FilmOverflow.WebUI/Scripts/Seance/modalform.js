@@ -2,9 +2,22 @@
 	'use strict';
 
 	$('#seanceModal').on('shown.bs.modal', function () {
-		$('#seanceDatePicker', this).datetimepicker({
+		$('#seanceStartDatePicker', this).datetimepicker({
 			format: 'DD/MM/YYYY',
 			pickTime: false,
+		});
+		$('#seanceEndDatePicker', this).datetimepicker({
+			format: 'DD/MM/YYYY',
+			pickTime: false,
+		});
+
+		$('#seanceStartDatePicker', this).on('dp.change', function (e) {
+			//Uncaught TypeError: Cannot read property 'setMinDate' of null
+			$('#seanceEndDatePicker', this).data('DateTimePicker').setMinDate(e.date);
+		});
+		$('#seanceEndDatePicker', this).on('dp.change', function (e) {
+			//Uncaught TypeError: Cannot read property 'setMaxDate' of null 
+			$('#seanceStartDatePicker', this).data('DateTimePicker').setMaxDate(e.date);
 		});
 
 		$('#seanceTimePicker', this).datetimepicker({

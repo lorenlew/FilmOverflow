@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
+using FilmOverflow.WebUI.ViewModels.Seance;
 
 namespace FilmOverflow.WebUI.ViewModels
 {

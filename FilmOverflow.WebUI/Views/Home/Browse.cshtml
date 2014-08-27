@@ -8,14 +8,6 @@
 	<div class="row well">
 		<div class="col-md-12">
 			<ul id="DatePagination" class="pagination pagination">
-				<li>
-					@Ajax.ActionLink(" ", "CinemaRowList", "Home", null, ajaxOptions: new AjaxOptions()
-					{
-						UpdateTargetId = "cinemaRowList",
-						HttpMethod = "Get",
-						InsertionMode = InsertionMode.Replace
-					}, htmlAttributes: new { @class = "fa fa-list-alt" })
-				</li>
 				@foreach (var date in Model)
 				{
 					<li>
@@ -35,9 +27,13 @@
 			<div class="panel panel-primary">
 				<div class="panel-heading text-center">@ViewBag.ListTitle</div>
 				<div id="cinemaRowList" class="table-responsive">
-					@{ Html.RenderAction("CinemaRowList", "Home", null); }
+					@{ Html.RenderAction("CinemaRowList", "Home", new { date = Model.FirstOrDefault() }); }
 				</div>
 			</div>
 		</div>
 	</div>
 </div>
+
+@section scripts{
+	<script src="~/Scripts/Home/home.js"></script>
+}

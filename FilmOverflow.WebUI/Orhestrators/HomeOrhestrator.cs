@@ -6,6 +6,7 @@ using AutoMapper;
 using FilmOverflow.Domain.Models;
 using FilmOverflow.Services.Interfaces;
 using FilmOverflow.WebUI.ViewModels;
+using FilmOverflow.WebUI.ViewModels.Seance;
 
 namespace FilmOverflow.WebUI.Orhestrators
 {
@@ -61,6 +62,10 @@ namespace FilmOverflow.WebUI.Orhestrators
 							var domainFilm = _filmService.ReadById(filmId);
 							var viewFilm = Mapper.Map<FilmDomainModel, FilmViewModel>(domainFilm);
 							viewFilm.Seances = viewFilm.Seances.Where(s => s.Hall.CinemaId == cinema.Id).ToList();
+							if (date != null)
+							{
+								viewFilm.Seances = viewFilm.Seances.Where(s => s.Date == date).ToList();
+							}
 							return viewFilm;
 						});
 

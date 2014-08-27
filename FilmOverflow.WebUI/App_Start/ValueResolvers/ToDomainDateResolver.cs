@@ -5,6 +5,7 @@ using System.Linq;
 using System.Web;
 using AutoMapper;
 using FilmOverflow.WebUI.ViewModels;
+using FilmOverflow.WebUI.ViewModels.Seance;
 
 namespace FilmOverflow.WebUI.App_Start.ValueResolvers
 {

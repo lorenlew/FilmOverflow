@@ -2,6 +2,7 @@
 using System.ComponentModel.DataAnnotations;
 using System.Web;
 using FilmOverflow.WebUI.Attributes;
+using FilmOverflow.WebUI.ViewModels.Seance;
 
 namespace FilmOverflow.WebUI.ViewModels
 {

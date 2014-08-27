@@ -5,6 +5,7 @@ using AutoMapper;
 using FilmOverflow.Domain.Models;
 using FilmOverflow.WebUI.App_Start.ValueResolvers;
 using FilmOverflow.WebUI.ViewModels;
+using FilmOverflow.WebUI.ViewModels.Seance;
 
 namespace FilmOverflow.WebUI
 {
