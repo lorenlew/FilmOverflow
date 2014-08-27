@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Globalization;
+using System.Security.Cryptography;
 using AutoMapper;
 using FilmOverflow.Domain.Models;
+using FilmOverflow.WebUI.App_Start.ValueResolvers;
 using FilmOverflow.WebUI.ViewModels;
 
 namespace FilmOverflow.WebUI
@@ -25,7 +27,9 @@ namespace FilmOverflow.WebUI
 			Mapper.CreateMap<SeanceDomainModel, SeanceViewModel>()
 				.ForMember(dest => dest.Date, opt => opt.MapFrom(src => String.Format("{0:dd/MM/yyyy}", Convert.ToDateTime(src.Date))))
 				.ForMember(dest => dest.Time, opt => opt.MapFrom(src => String.Format("{0:HH:mm}", Convert.ToDateTime(src.Time))));
-			Mapper.CreateMap<SeanceViewModel, SeanceDomainModel>();
+			Mapper.CreateMap<SeanceViewModel, SeanceDomainModel>()
+				.ForMember(dest => dest.Date, opt => opt.ResolveUsing<ToDomainDateResolver>())
+				.ForMember(dest => dest.Time, opt => opt.ResolveUsing<ToDomainTimeResolver>());
 
 			Mapper.CreateMap<TicketDomainModel, TicketViewModel>();
 			Mapper.CreateMap<TicketViewModel, TicketDomainModel>();

@@ -1,52 +1,48 @@
 ﻿@model IEnumerable<FilmOverflow.WebUI.ViewModels.TicketViewModel>
 
 @{
-	ViewBag.Title = "Index";
+	ViewBag.Title = "Tickets";
+	Layout = "~/Views/Account/_AccountLayout.cshtml";
 }
 
-<h2>Index</h2>
+<div class="well">
+	<div class="panel panel-primary">
+		<div class="panel-heading text-center">@ViewBag.Title</div>
+		<div class="table-responsive">			
+			<table class="table table-bordered tab-content table-hover table-condensed">
+				<tr>
+					<th>
+						@Html.DisplayNameFor(model => model.PaymentDate)
+					</th>
+					<th>
+						@Html.DisplayNameFor(model => model.ApplicationUserId)
+					</th>
+					<th>
+						@Html.DisplayNameFor(model => model.SeanceId)
+					</th>
+					<th>
+						@Html.DisplayNameFor(model => model.PaymentMethodId)
+					</th>
+				</tr>
 
-<p>
-	@Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-	<tr>
-		<th>
-			@Html.DisplayNameFor(model => model.PaymentDate)
-		</th>
-		<th>
-			@Html.DisplayNameFor(model => model.ApplicationUserId)
-		</th>
-		<th>
-			@Html.DisplayNameFor(model => model.SeanceId)
-		</th>
-		<th>
-			@Html.DisplayNameFor(model => model.PaymentMethodId)
-		</th>
-		<th></th>
-	</tr>
-
-	@foreach (var item in Model)
-	{
-		<tr>
-			<td>
-				@Html.DisplayFor(modelItem => item.PaymentDate)
-			</td>
-			<td>
-				@Html.DisplayFor(modelItem => item.ApplicationUserId)
-			</td>
-			<td>
-				@Html.DisplayFor(modelItem => item.SeanceId)
-			</td>
-			<td>
-				@Html.DisplayFor(modelItem => item.PaymentMethodId)
-			</td>
-			<td>
-				@Html.ActionLink("Edit", "Edit", new {id = item.Id}) |
-				@Html.ActionLink("Details", "Details", new {id = item.Id}) |
-				@Html.ActionLink("Delete", "Delete", new {id = item.Id})
-			</td>
-		</tr>
-	}
-
-</table>
+				@foreach (var item in Model)
+				{
+					<tr>
+						<td>
+							@Html.DisplayFor(modelItem => item.PaymentDate)
+						</td>
+						<td>
+							@Html.DisplayFor(modelItem => item.ApplicationUserId)
+						</td>
+						<td>
+							@Html.DisplayFor(modelItem => item.SeanceId)
+						</td>
+						<td>
+							@Html.DisplayFor(modelItem => item.PaymentMethodId)
+						</td>
+					</tr>
+				}
+			</table>
+		</div>
+	</div>
+</div>

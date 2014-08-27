@@ -56,21 +56,16 @@ namespace FilmOverflow.WebUI.Controllers
 
 		public ActionResult Browse()
 		{
-			return View("Browse");
-		}
+			var dates = _homeOrhestrator.GetAllSeancesDates();
 
-		public ActionResult CinemaRowList()
+			return View("Browse", dates);
+		}
+		
+		public ActionResult CinemaRowList(string date)
 		{
-			IEnumerable<CinemaRowViewModel> cinemaRows = _homeOrhestrator.GetBrowsePage();
+			IEnumerable<CinemaRowViewModel> cinemaRows = _homeOrhestrator.GetCinemaSchedule(date);
 			
 			return PartialView("_CinemaRowListPartial", cinemaRows);
-		}
-
-		public ActionResult UserInfo()
-		{
-			var currentUser = _userManagerService.FindByName(User.Identity.Name);
-			var applicationUserViewModel = Mapper.Map<ApplicationUserDomainModel, ApplicationUserViewModel>(currentUser);
-			return View(applicationUserViewModel);
 		}
 	}
 }

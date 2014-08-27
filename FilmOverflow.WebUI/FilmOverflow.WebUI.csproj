@@ -188,6 +188,8 @@
     <Compile Include="App_Start\MapperConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
+    <Compile Include="App_Start\ValueResolvers\ToDomainDateResolver.cs" />
+    <Compile Include="App_Start\ValueResolvers\ToDomainTimeResolver.cs" />
     <Compile Include="Attributes\FileSizeAttribute.cs" />
     <Compile Include="Attributes\FileTypesAttribute.cs" />
     <Compile Include="Attributes\FromJsonAttribute.cs" />
@@ -313,7 +315,7 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Account\CheckEmail.cshtml" />
     <Content Include="Views\Account\Manage.cshtml" />
-    <Content Include="Views\Home\UserInfo.cshtml" />
+    <Content Include="Views\Account\Summary.cshtml" />
     <Content Include="Views\UserManipulation\UserManagement.cshtml" />
     <Content Include="Views\UserManipulation\_UserManipulation.cshtml" />
     <Content Include="Views\Film\Index.cshtml" />
@@ -349,6 +351,7 @@
     <Content Include="Views\Review\Edit.cshtml" />
     <Content Include="Views\Review\_Index.cshtml" />
     <Content Include="Views\Seance\_Details.cshtml" />
+    <Content Include="Views\Account\_AccountLayout.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\FilmOverflow.Domain\FilmOverflow.Domain.csproj">
