@@ -188,6 +188,8 @@
     <Compile Include="App_Start\MapperConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
+    <Compile Include="App_Start\ValueResolvers\ToDomainDateResolver.cs" />
+    <Compile Include="App_Start\ValueResolvers\ToDomainTimeResolver.cs" />
     <Compile Include="Attributes\FileSizeAttribute.cs" />
     <Compile Include="Attributes\FileTypesAttribute.cs" />
     <Compile Include="Attributes\FromJsonAttribute.cs" />

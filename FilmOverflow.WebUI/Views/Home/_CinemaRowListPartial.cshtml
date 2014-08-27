@@ -2,7 +2,7 @@
 
 <table class="table table-bordered tab-content table-hover table-condensed">
 	<tr>
-		<th>Cinema</th>
+		<th>Cinemas</th>
 		<th>Films</th>
 		<th>Seances</th>
 	</tr>
@@ -24,9 +24,9 @@
 				<td>@film.Title</td>
 				<td>
 					<div class="pull-left">
-						@foreach (var seance in film.Seances)
+						@foreach (var seance in film.Seances.OrderBy(x => x.Time))
 						{
-							<a class="btn btn-sm btn-success" href="@Url.Action("Index","Home")" role="button">@seance.Time</a>
+							<a class="btn btn-sm btn-success" href="@Url.Action("Create", "Ticket", routeValues: new { id = seance.Id })" role="button">@seance.Time</a>
 						}
 					</div>
 				</td>

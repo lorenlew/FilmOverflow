@@ -13,14 +13,28 @@ namespace FilmOverflow.WebUI.Orhestrators
 	{
 		private readonly ICinemaService _cinemaService;
 		private readonly IFilmService _filmService;
+		private readonly ISeanceService _seanceService;
 
-		public HomeOrhestrator(ICinemaService cinemaService, IFilmService filmService)
+		public HomeOrhestrator(ICinemaService cinemaService, IFilmService filmService, ISeanceService seanceService)
 		{
 			_cinemaService = cinemaService;
 			_filmService = filmService;
+			_seanceService = seanceService;
 		}
 
-		public IEnumerable<CinemaRowViewModel> GetBrowsePage()
+		public IEnumerable<string> GetAllSeancesDates()
+		{
+			IEnumerable<string> dates = _seanceService
+				.Read()
+				.Select(Mapper.Map<SeanceDomainModel, SeanceViewModel>)
+				.Select(x => x.Date)
+				.Distinct()
+				.OrderBy(x => x);
+
+			return dates;
+		}
+
+		public IEnumerable<CinemaRowViewModel> GetCinemaSchedule(string date)
 		{
 			IEnumerable<CinemaRowViewModel> cinemaRows = _cinemaService
 				.Read()
@@ -33,18 +47,23 @@ namespace FilmOverflow.WebUI.Orhestrators
 					{
 						list.AddRange(hall.Seances);
 					}
-					var seances = list;
+
+					var seances = list.AsEnumerable();
+					if (date != null)
+					{
+						seances = seances.Where(h => h.Date == date);
+					}
 					var films = seances
 						.Select(s => s.FilmId)
 						.Distinct()
 						.Select(filmId => Mapper.Map<FilmDomainModel, FilmViewModel>(_filmService.ReadById(filmId)));
-					
+
 					var cinemaRowViewModel = new CinemaRowViewModel()
 					{
 						Cinema = cinema,
 						Films = films
 					};
-					
+
 					return cinemaRowViewModel;
 				});
 

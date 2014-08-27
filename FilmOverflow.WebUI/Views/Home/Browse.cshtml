@@ -1,4 +1,4 @@
-﻿@model IEnumerable<FilmOverflow.WebUI.ViewModels.CinemaRowViewModel>
+﻿@model IEnumerable<string>
 
 @{
 	ViewBag.ListTitle = "Cinemas | Films | Seances";
@@ -7,14 +7,26 @@
 <div class="container no-shadow">
 	<div class="row well">
 		<div class="col-md-12">
-			<ul class="pagination pagination-lg">
-				<li><a href="#">&laquo;</a></li>
-				<li><a href="#">@String.Format("{0:dd MMM}", DateTime.Today)</a></li>
-				<li><a href="#">2</a></li>
-				<li><a href="#">3</a></li>
-				<li><a href="#">4</a></li>
-				<li><a href="#">5</a></li>
-				<li><a href="#">&raquo;</a></li>
+			<ul id="DatePagination" class="pagination pagination">
+				<li>
+					@Ajax.ActionLink(" ", "CinemaRowList", "Home", null, ajaxOptions: new AjaxOptions()
+					{
+						UpdateTargetId = "cinemaRowList",
+						HttpMethod = "Get",
+						InsertionMode = InsertionMode.Replace
+					}, htmlAttributes: new { @class = "fa fa-list-alt" })
+				</li>
+				@foreach (var date in Model)
+				{
+					<li>
+						@Ajax.ActionLink(date, "CinemaRowList", "Home", routeValues: new { date = date }, ajaxOptions: new AjaxOptions()
+						{
+							UpdateTargetId = "cinemaRowList",
+							HttpMethod = "Get",
+							InsertionMode = InsertionMode.Replace
+						})
+					</li>
+				}
 			</ul>
 		</div>
 	</div>
@@ -22,8 +34,8 @@
 		<div class="col-md-12">
 			<div class="panel panel-primary">
 				<div class="panel-heading text-center">@ViewBag.ListTitle</div>
-				<div id="cineRowList" class="table-responsive">
-					@{ Html.RenderAction("CinemaRowList", "Home"); }
+				<div id="cinemaRowList" class="table-responsive">
+					@{ Html.RenderAction("CinemaRowList", "Home", null); }
 				</div>
 			</div>
 		</div>
