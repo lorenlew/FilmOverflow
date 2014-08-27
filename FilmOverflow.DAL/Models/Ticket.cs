@@ -16,6 +16,5 @@ namespace FilmOverflow.DAL.Models
 		public long PaymentMethodId { get; set; }
 
 		public long SeatId { get; set; }
-
 	}
 }

@@ -56,8 +56,15 @@ namespace FilmOverflow.WebUI.Orhestrators
 					var films = seances
 						.Select(s => s.FilmId)
 						.Distinct()
-						.Select(filmId => Mapper.Map<FilmDomainModel, FilmViewModel>(_filmService.ReadById(filmId)));
+						.Select(filmId =>
+						{
+							var domainFilm = _filmService.ReadById(filmId);
+							var viewFilm = Mapper.Map<FilmDomainModel, FilmViewModel>(domainFilm);
+							viewFilm.Seances = viewFilm.Seances.Where(s => s.Hall.CinemaId == cinema.Id).ToList();
+							return viewFilm;
+						});
 
+					//.Select(filmId => Mapper.Map<FilmDomainModel, FilmViewModel>(_filmService.ReadById(filmId)));
 					var cinemaRowViewModel = new CinemaRowViewModel()
 					{
 						Cinema = cinema,
