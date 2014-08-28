@@ -10,35 +10,37 @@
 		<div class="panel-heading text-center">@ViewBag.Title</div>
 		<div class="table-responsive">
 			<table class="table table-bordered tab-content table-hover table-condensed">
-				<tr>
-					<th>
-						@Html.DisplayNameFor(model => model.PaymentDate)
-					</th>
-					<th>
-						@Html.DisplayNameFor(model => model.Seance.Hall.Cinema)
-					</th>
-					<th>
-						@Html.DisplayNameFor(model => model.PaymentMethod)
-					</th>
-					<th>
-						@Html.DisplayNameFor(model => model.Seance.Film)
-					</th>
-				</tr>
-
+				<thead>
+					<tr>
+						<th>
+							@Html.DisplayNameFor(model => model.Seance.Date)
+						</th>
+						<th>
+							@Html.DisplayNameFor(model => model.Seance.Hall.Cinema)
+						</th>
+						<th>
+							@Html.DisplayNameFor(model => model.PaymentMethod)
+						</th>
+						<th>
+							@Html.DisplayNameFor(model => model.Seance.Film)
+						</th>
+					</tr>
+				</thead>
+				
 				@foreach (var item in Model)
 				{
 					<tr>
 						<td>
-							@Html.DisplayFor(modelItem => item.PaymentDate)
+							@item.Seance.Date @item.Seance.Time
 						</td>
 						<td>
 							@item.Seance.Hall.Cinema.Name - @item.Seance.Hall.Name
 						</td>
 						<td>
-							@Html.DisplayFor(modelItem => item.PaymentMethod.Name)
+							@item.PaymentMethod.Name
 						</td>
 						<td>
-							@Html.DisplayFor(modelItem => item.Seance.Film.Title)
+							@item.Seance.Film.Title
 						</td>
 					</tr>
 				}

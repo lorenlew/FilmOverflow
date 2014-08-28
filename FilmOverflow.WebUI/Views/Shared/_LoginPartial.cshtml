@@ -14,7 +14,7 @@
 				</li>
 			}
 			<li>
-				@Html.ActionLink("Hello " + User.Identity.GetUserName() + "!", "Manage", "Account", routeValues: null, htmlAttributes: new { title = "Security" })
+				@Html.ActionLink("Hello " + User.Identity.GetUserName() + "!", "Summary", "Account", routeValues: null, htmlAttributes: new { title = "Summary" })
 			</li>
 			<li><a class="fa fa-sign-out fa-2x" title="Log off" href="javascript:document.getElementById('logoutForm').submit()"></a></li>
 		</ul>
