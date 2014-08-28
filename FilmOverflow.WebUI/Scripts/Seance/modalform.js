@@ -11,13 +11,28 @@
 			pickTime: false,
 		});
 
+		$('#IsMultipleDateSelect', this).on('change', function (e) {
+			if (e.target.checked) {
+				var startDate = $('#seanceStartDatePicker').data('DateTimePicker').getDate();
+				$('#seanceEndDatePicker').data('DateTimePicker').setDate(startDate);
+
+				var endDate = $('#seanceEndDatePicker').data('DateTimePicker').getDate();
+				$('#seanceStartDatePicker').data('DateTimePicker').setMaxDate(endDate);
+
+				$('#seanceEndDatePicker').on('dp.change', function (ev) {
+					$('#seanceStartDatePicker').data('DateTimePicker').setMaxDate(ev.date);
+				});
+			}
+			else {
+				$('#seanceStartDatePicker').data('DateTimePicker').setMaxDate(moment().add(100, 'y'));
+				$('#seanceEndDatePicker').off('dp.change');
+			}
+		});
 		$('#seanceStartDatePicker', this).on('dp.change', function (e) {
-			//Uncaught TypeError: Cannot read property 'setMinDate' of null
-			$('#seanceEndDatePicker', this).data('DateTimePicker').setMinDate(e.date);
+			$('#seanceEndDatePicker').data('DateTimePicker').setMinDate(e.date);
 		});
 		$('#seanceEndDatePicker', this).on('dp.change', function (e) {
-			//Uncaught TypeError: Cannot read property 'setMaxDate' of null 
-			$('#seanceStartDatePicker', this).data('DateTimePicker').setMaxDate(e.date);
+			$('#seanceStartDatePicker').data('DateTimePicker').setMaxDate(e.date);
 		});
 
 		$('#seanceTimePicker', this).datetimepicker({
@@ -29,6 +44,10 @@
 	$('#SeanceManagement').on('click', 'a[data-modal]', function () {
 		$('#seanceModalContent').load(this.href, function () {
 			$.validator.unobtrusive.parse(this);
+
+			var element = $('#seanceModalContent')[0];
+			ko.cleanNode(element);
+			ko.applyBindings(new koModels.CreateSeanceViewModel(), document.getElementById('seanceModalContent'));
 
 			$('#seanceModal').modal({
 				keyboard: true

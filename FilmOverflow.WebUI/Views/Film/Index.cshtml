@@ -6,7 +6,7 @@
 }
 
 <div class="well">
-	<div class="panel panel-primary">
+	<div class="panel panel-primary no-shadow">
 		<div class="panel-heading text-center">@ViewBag.Title</div>
 		<div class="table-responsive">
 			<table class="table table-bordered tab-content table-hover table-condensed">
@@ -15,7 +15,7 @@
 					<th>@Html.DisplayNameFor(x => x.Duration)</th>
 					<th>
 						<div class="pull-right">
-							@Html.ActionLink(" ", "Create", "Film", null, new {@class = "btn btn-success fa fa-plus"})
+							@Html.ActionLink(" Add", "Create", "Film", null, new {@class = "btn btn-success fa fa-plus"})
 						</div>
 					</th>
 				</tr>
@@ -26,9 +26,9 @@
 						<td>@film.Duration</td>
 						<td>
 							<div class="pull-right">
-								@Html.ActionLink(" ", "Edit", "Film", new {filmId = film.Id}, new {@class = "btn btn-default fa fa-pencil-square-o"})
-								@Html.ActionLink(" ", "Details", "Film", new {filmId = film.Id}, new {@class = "btn btn-info fa fa-info"})
-								@Html.ActionLink(" ", "Delete", "Film", new {filmId = film.Id}, new {@class = "btn btn-danger fa fa-trash-o"})
+								@Html.ActionLink(" Edit", "Edit", "Film", new {filmId = film.Id}, new {@class = "btn btn-default fa fa-pencil-square-o"})
+								@Html.ActionLink(" Details", "Details", "Film", new {filmId = film.Id}, new {@class = "btn btn-info fa fa-info"})
+								@Html.ActionLink(" Delete", "Delete", "Film", new {filmId = film.Id}, new {@class = "btn btn-danger fa fa-trash-o"})
 							</div>
 						</td>
 					</tr>
