@@ -15,7 +15,7 @@
 		@Html.AntiForgeryToken()
 
 		@Html.ValidationSummary(true, "", new { @class = "text-danger" })
-		
+
 		<div class="form-group">
 			@Html.LabelFor(m => m.Date, new { @class = "col-md-2 control-label" })
 			<div class="col-md-10">
@@ -23,8 +23,8 @@
 				@Html.ValidationMessageFor(m => m.Date, "", new { @class = "text-danger" })
 			</div>
 		</div>
-		
-		<div class="form-group">
+
+		<div class="form-group" data-bind="visible: IsMultipleDateSelect()">
 			@Html.LabelFor(m => m.EndDate, new { @class = "col-md-2 control-label" })
 			<div class="col-md-10">
 				@Html.TextBoxFor(m => m.EndDate, new { @class = "form-control", id = "seanceEndDatePicker" })
@@ -36,7 +36,7 @@
 			<div class="col-md-offset-2 col-md-10">
 				<div class="checkbox">
 					<label>
-						@Html.CheckBoxFor(m =>m.IsMultipleDateSelect) Multiple date select
+						@Html.CheckBoxFor(m => m.IsMultipleDateSelect, new { id = "IsMultipleDateSelect", data_bind = "checked: IsMultipleDateSelect" }) Multiple date select
 					</label>
 				</div>
 			</div>

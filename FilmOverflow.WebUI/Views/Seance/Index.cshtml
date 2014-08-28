@@ -3,13 +3,13 @@
 }
 
 <!-- modal placeholder-->
-<div id="seanceModal" class="modal fade" role="dialog" aria-labelledby="seanceModalLabel" aria-hidden="true">
+<div id="seanceModal" class="modal fade no-shadow" role="dialog" aria-labelledby="seanceModalLabel" aria-hidden="true">
 	<div class="modal-dialog">
 		<div id="seanceModalContent" class="modal-content"></div>
 	</div>
 </div>
 
-<div class="panel panel-primary">
+<div class="panel panel-primary no-shadow">
 	<div class="panel-heading text-center">@ViewBag.Title</div>
 	<div id="SeanceList" class="table-responsive">
 		@{ Html.RenderAction("List", "Seance", routeValues: new { filmId = ViewBag.FilmId }); }
@@ -19,3 +19,5 @@
 @section scripts {
 	<script src="~/Scripts/Seance/modalform.js"></script>
 }
+
+<script src="~/Scripts/Seance/koModels.js"></script>
