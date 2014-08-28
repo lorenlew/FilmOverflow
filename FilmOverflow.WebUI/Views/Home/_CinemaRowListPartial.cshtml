@@ -1,11 +1,13 @@
 ﻿@model IEnumerable<FilmOverflow.WebUI.ViewModels.CinemaRowViewModel>
 
 <table class="table table-bordered tab-content table-hover table-condensed">
-	<tr>
-		<th>Cinemas</th>
-		<th>Films</th>
-		<th>Seances</th>
-	</tr>
+	<thead>
+		<tr class="info">
+			<th>Cinemas</th>
+			<th>Films</th>
+			<th>Seances</th>
+		</tr>
+	</thead>
 
 	@foreach (var row in Model)
 	{
@@ -20,8 +22,7 @@
 				{
 					<td rowspan="@filmCount">@row.Cinema.Name</td>
 				}
-
-				<td>@film.Title</td>
+				<td>@Html.ActionLink(film.Title, "Details", "Home", new { filmId = film.Id }, new { @class = "btn-link" })</td>
 				<td>
 					<div class="pull-left">
 						@foreach (var seance in film.Seances.OrderBy(x => x.Time))

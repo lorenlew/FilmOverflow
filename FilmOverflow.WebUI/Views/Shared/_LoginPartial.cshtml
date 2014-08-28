@@ -6,11 +6,11 @@
 		@Html.AntiForgeryToken()
 
 		<ul class="nav navbar-nav navbar-right">
-			<li>@Html.ActionLink(" User Account", "Summary", "Account", null, new {@class = "fa fa-user fa-lg"})</li>
+			@*<li>@Html.ActionLink(" Account", "Summary", "Account", null, new {@class = "fa fa-user fa-lg"})</li>*@
 			@if (User.IsInRole("Administrator") || User.IsInRole("Moderator"))
 			{
 				<li>
-					@Html.ActionLink(" Content management", "UserManagement", "UserManipulation", null, new {@class = "fa fa-exchange fa-lg"})
+					@Html.ActionLink(" Admin Area", "UserManagement", "UserManipulation", null, new {@class = "fa fa-exchange fa-lg"})
 				</li>
 			}
 			<li>
