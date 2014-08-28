@@ -25,27 +25,32 @@
 	</span>
 </div>
 
+<div data-bind="visible: !IsProcessing()">
+	<div class="well-lg" data-bind="visible:NumberOfSelectedSeats() > 0">
+		<div data-bind="visible:NumberOfSelectedSeats() > 0" class="fa fa-2x ">
+			<span class="modal-body">
+				<span id="numberOfSeats" data-bind="text: NumberOfSelectedSeats()" class="label label-info"></span>  <span class="fa fa-tachometer"></span>
+			</span>
+			<span class="modal-body">
+				<span data-bind="text: TotalPrice()" class="label label-info"></span>  <span class="fa fa-dollar"></span>
+			</span>
 
-<div class="well-lg" data-bind="visible:NumberOfSelectedSeats() > 0">
-	<div data-bind="visible:NumberOfSelectedSeats() > 0" class="fa fa-2x ">
-		<span class="modal-body">
-			<span id="numberOfSeats" data-bind="text: NumberOfSelectedSeats()" class="label label-info"></span>  <span class="fa fa-tachometer"></span>
-		</span>
-		<span class="modal-body">
-			<span data-bind="text: TotalPrice()" class="label label-info"></span>  <span class="fa fa-dollar"></span>
-		</span>
+		</div>
 
-	</div>
-
-	<div data-bind="fadeVisible: NumberOfSelectedSeats() > 0" class="form-group pull-right">
-		<button data-bind="visible:SelectedPaymentMethod() > 0,
-					click: submit" type="button" class="btn btn-success fa fa-check pull-left" title="Create">Buy ticket</button>
-		<div class=" fixedInput">
-			@Html.DropDownList("PaymentMethodId", (IEnumerable<SelectListItem>)ViewBag.PaymentMethods, "--Select payment method--", new { @class = "form-control inline" })
+		<div data-bind="fadeVisible: NumberOfSelectedSeats() > 0" class="form-group pull-right">
+			<button data-bind="visible:SelectedPaymentMethod() > 0,
+					click: submit" type="button" class="btn btn-success fa fa-check pull-left" title="Create">
+				Buy ticket
+			</button>
+			<div class=" fixedInput">
+				@Html.DropDownList("PaymentMethodId", (IEnumerable<SelectListItem>)ViewBag.PaymentMethods, "--Select payment method--", new { @class = "form-control inline" })
+			</div>
 		</div>
 	</div>
 </div>
-
+<div data-bind="visible: IsProcessing" class="text-center">
+	<span class="fa fa-refresh fa-spin fa-3x"></span>
+</div>
 
 
 <aside>

@@ -5,10 +5,10 @@
 	Layout = "~/Views/Account/_AccountLayout.cshtml";
 }
 
-<div class="well">
+<div class="well no-shadow">
 	<div class="panel panel-primary">
 		<div class="panel-heading text-center">@ViewBag.Title</div>
-		<div class="table-responsive">			
+		<div class="table-responsive">
 			<table class="table table-bordered tab-content table-hover table-condensed">
 				<tr>
 					<th>
@@ -27,13 +27,12 @@
 
 				@foreach (var item in Model)
 				{
-					var cinemaName = item.Seance.Hall.Cinema.Name + " " + item.Seance.Hall.Name;
 					<tr>
 						<td>
 							@Html.DisplayFor(modelItem => item.PaymentDate)
 						</td>
 						<td>
-							@Html.Display(cinemaName)
+							@item.Seance.Hall.Cinema.Name - @item.Seance.Hall.Name
 						</td>
 						<td>
 							@Html.DisplayFor(modelItem => item.PaymentMethod.Name)

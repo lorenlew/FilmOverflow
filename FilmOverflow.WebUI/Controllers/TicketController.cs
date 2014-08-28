@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Net;
 using System.Web.Mvc;
@@ -48,7 +49,7 @@ namespace FilmOverflow.WebUI.Controllers
 			if (currentSeance == null)
 			{
 				return new HttpStatusCodeResult(HttpStatusCode.NotFound);
-			} 
+			}
 			ViewBag.SeanceId = id;
 			ViewBag.Hall = currentSeance.Hall;
 			ViewBag.PaymentMethods = _paymentMethodService.GetSelectListItems();
@@ -58,15 +59,46 @@ namespace FilmOverflow.WebUI.Controllers
 		[HttpPost]
 		public ActionResult Create([FromJson] OrderViewModel orderViewModel)
 		{
-			if (!ModelState.IsValid)
+			ModelState.Clear();
+			string currentUserId = User.Identity.GetUserId();
+
+			var permittedUserSeats = (from seat in _seanceService.ReadById(orderViewModel.SeanceId).ReservedSeats
+									  where seat.ApplicationUserId == currentUserId
+										  && seat.IsSold == false
+										  && DateTime.Compare(DateTime.Now, seat.ReservationTime.AddSeconds(10)) < 0
+									  select seat).ToList();
+
+			List<SeatViewModel> targetSeats = new List<SeatViewModel>();
+
+			foreach (var seat in permittedUserSeats)
 			{
-				//return View(ticketViewModel);
+				SeatViewModel seatModel = (from seatToBuy in orderViewModel.Seats
+										   where seatToBuy.ColumnNumber == seat.ColumnNumber
+											   && seatToBuy.RowNumber == seat.RowNumber
+
+										   select seatToBuy).SingleOrDefault();
+				if (seatModel != null)
+				{
+					targetSeats.Add(seatModel);
+				}
 			}
-			//TicketDomainModel ticketDomainModel = Mapper.Map<TicketViewModel, TicketDomainModel>(ticketViewModel);
-			//ticketDomainModel.PaymentDate = DateTime.Now;
-			//ticketDomainModel.ApplicationUserId = User.Identity.GetUserId();
-			//_ticketService.Add(ticketDomainModel);
-			return RedirectToAction("Index");
+			bool areAllSeatsAccepted = orderViewModel.Seats.Count() == targetSeats.Count();
+			if (areAllSeatsAccepted)
+			{
+				
+				foreach (var seat in targetSeats)
+				{
+					TicketDomainModel ticket = new TicketDomainModel();
+					ticket.SeatId = seat.Id;
+					ticket.ApplicationUserId = currentUserId;
+					ticket.PaymentDate = DateTime.Now;
+					ticket.PaymentMethodId = orderViewModel.PaymentMethodId;
+					ticket.SeanceId = orderViewModel.SeanceId;
+					_ticketService.Add(ticket);
+				}
+				return Json(Url.Action("Index", "Ticket"));
+			}
+			return Json(Url.Action("TimeIsOut", "Home"));
 		}
 	}
 }

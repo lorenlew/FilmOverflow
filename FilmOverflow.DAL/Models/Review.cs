@@ -5,6 +5,7 @@ namespace FilmOverflow.DAL.Models
 {
 	public class Review : Entity
 	{
+		[Range(0,10)]
 		public int Rate { get; set; }
 
 		[Required]

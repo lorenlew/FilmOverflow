@@ -5,6 +5,7 @@ namespace FilmOverflow.Domain.Models
 {
 	public class ReviewDomainModel : EntityDomainModel
 	{
+		[Range(0, 10)]
 		public int Rate { get; set; }
 
 		[Required]

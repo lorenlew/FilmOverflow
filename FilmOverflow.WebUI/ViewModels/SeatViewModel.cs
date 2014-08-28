@@ -1,6 +1,6 @@
 ﻿namespace FilmOverflow.WebUI.ViewModels
 {
-	public class SeatViewModel
+	public class SeatViewModel : EntityViewModel
 	{
 		public int RowNumber { get; set; }
 

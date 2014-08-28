@@ -67,5 +67,10 @@ namespace FilmOverflow.WebUI.Controllers
 			
 			return PartialView("_CinemaRowListPartial", cinemaRows);
 		}
+
+		public ActionResult TimeIsOut()
+		{
+			return View("TimeIsOut");
+		}
 	}
 }

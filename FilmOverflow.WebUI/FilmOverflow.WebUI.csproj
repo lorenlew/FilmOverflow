@@ -357,6 +357,7 @@
     <Content Include="Views\Review\_Index.cshtml" />
     <Content Include="Views\Seance\_Details.cshtml" />
     <Content Include="Views\Account\_AccountLayout.cshtml" />
+    <Content Include="Views\Home\TimeIsOut.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\FilmOverflow.Domain\FilmOverflow.Domain.csproj">
