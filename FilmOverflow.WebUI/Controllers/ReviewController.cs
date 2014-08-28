@@ -22,7 +22,7 @@ namespace FilmOverflow.WebUI.Controllers
 
 		public ActionResult Index(long? filmId)
 		{
-			IEnumerable<ReviewDomainModel> reviewDomainModel = _reviewService.Read();
+			IEnumerable<ReviewDomainModel> reviewDomainModel = _reviewService.Read().OrderByDescending(model => model.ReviewDate);
 			if (filmId != null)
 			{
 				reviewDomainModel = reviewDomainModel.Where(model => model.FilmId == filmId);
@@ -107,7 +107,7 @@ namespace FilmOverflow.WebUI.Controllers
 		{
 			ReviewDomainModel reviewDomainModel = _reviewService.ReadById(id);
 			_reviewService.Delete(reviewDomainModel);
-			return RedirectToAction("Index");
+			return RedirectToAction("Details", "Home", new { filmId = id });
 		}
 	}
 }

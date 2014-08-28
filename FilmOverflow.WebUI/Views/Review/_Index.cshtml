@@ -4,34 +4,38 @@
 	ViewBag.Title = "Reviews";
 }
 
-<h2>
+<h2 class="text-center">
 	@ViewBag.Title
 </h2>
 
 @foreach (var item in Model)
 {
-	<p>
-		@Html.DisplayNameFor(model => model.Rate)
-		@Html.DisplayFor(modelItem => item.Rate)
-	</p>
-	<p>
-		@Html.DisplayNameFor(model => model.Description)
-		@Html.Markdown(item.Description)
-	</p>
-	<p>
-		@Html.DisplayNameFor(model => model.ReviewDate)
-		@Html.DisplayFor(modelItem => item.ReviewDate)
-	</p>
-	<p>
-		@Html.DisplayNameFor(model => model.ApplicationUser)
-		@Html.DisplayFor(modelItem => item.ApplicationUser.FirstName) @Html.DisplayFor(modelItem => item.ApplicationUser.LastName)
-	</p>
-	<p>
-		@Html.DisplayNameFor(model => model.Film)
-		@Html.DisplayFor(modelItem => item.Film.Title)
-	</p>
-	<p>
-		@Html.ActionLink("Edit", "Edit", new { id = item.Id })
-		@Html.ActionLink("Delete", "Delete", new { id = item.Id })
-	</p>
+	<article class="well well-lg review">
+		<div class="review-content">
+			<div class="clear">
+				<p class="pull-right text-warning">
+					@Html.DisplayNameFor(model => model.Rate)
+					@Html.DisplayFor(modelItem => item.Rate)
+				</p>
+			</div>
+			<div class="clear">
+				<p class="pull-right label label-info">
+					@Html.DisplayNameFor(model => model.ApplicationUser)
+					@Html.DisplayFor(modelItem => item.ApplicationUser.FirstName) @Html.DisplayFor(modelItem => item.ApplicationUser.LastName)
+				</p>
+			</div>
+			<div class="text-primary no-shadow">
+				@Html.Markdown(item.Description)
+			</div>
+			<p>
+				@Html.ActionLink(" Edit", "Edit", new { id = item.Id }, new { @class = "btn btn-warning fa fa-pencil-square-o" })
+				@Html.ActionLink(" Delete", "Delete", new { id = item.Id }, new { @class = "btn btn-danger fa fa-trash-o" })
+			</p>
+			<div class="clear">
+				<div class="text-warning label label-success pull-right">
+					@Html.DisplayFor(modelItem => item.ReviewDate)
+				</div>
+			</div>
+		</div>
+	</article>
 }

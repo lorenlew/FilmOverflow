@@ -235,6 +235,7 @@
     <Content Include="Content\bootstrap-united.css" />
     <Content Include="Content\font-awesome.css" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Content\Images\Background-images\AppIcon.512x512-75.png" />
     <Content Include="Content\Images\Background-images\Elegant_Background-6.jpg" />
     <Content Include="Content\Images\Background-images\main.jpg" />
     <Content Include="Content\onepage-scroll.css" />

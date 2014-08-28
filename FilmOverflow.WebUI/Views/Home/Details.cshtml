@@ -4,50 +4,52 @@
 	ViewBag.Title = "Film Details";
 }
 
-<h2>@ViewBag.Title</h2>
-<hr />
+<h2 class="text-center text-danger">
+	@ViewBag.Title
+</h2>
 
 <aside>
 	@Html.ActionLink(" ", "Index", "Home", null, new { @class = "fa fa-caret-left fa-4x back-nav", title = "Back to films" })
 </aside>
 
 <div class="container">
-	<div class="row">
-		<div class="col-md-2">
-			<div class="form-group">
-				<img src="@Model.ImagePath" class="img-responsive img-thumbnail" alt="No image" />
-			</div>
-		</div>
-		<dl class="dl-horizontal col-md-10">
-			<dt>
-				@Html.DisplayNameFor(model => model.Title)
-			</dt>
+	<div class="well-lg">
+			<div class="row">
+					<div class="col-md-2">
+						<div class="form-group">
+							<img src="@Model.ImagePath" class="img-responsive img-thumbnail" alt="No image" />
+						</div>
+					</div>
+					<dl class="dl-horizontal col-md-10">
+						<dt class="text-warning">
+							@Html.DisplayNameFor(model => model.Title)
+						</dt>
 
-			<dd>
-				@Html.DisplayFor(model => model.Title)
-			</dd>
+						<dd>
+							@Html.DisplayFor(model => model.Title)
+						</dd>
 
-			<dt>
-				@Html.DisplayNameFor(model => model.Description)
-			</dt>
+						<dt class="text-info">
+							@Html.DisplayNameFor(model => model.Description)
+						</dt>
 
-			<dd>
-				@Html.DisplayFor(model => model.Description)
-			</dd>
+						<dd>
+							@Html.DisplayFor(model => model.Description)
+						</dd>
 
-			<dt>
-				@Html.DisplayNameFor(model => model.Duration)
-			</dt>
+						<dt class="text-info">
+							@Html.DisplayNameFor(model => model.Duration)
+						</dt>
 
-			<dd>
-				@Html.DisplayFor(model => model.Duration) min
-			</dd>
-		</dl>
+						<dd>
+							@Html.DisplayFor(model => model.Duration) min
+						</dd>
+					</dl>
+				</div>
+		@Html.ActionLink("  Create review", "Create", "Review",
+			new { filmId = Model.Id },
+			new { @class = "btn btn-success fa fa-plus", data_modal = "" })
 	</div>
-	@Html.ActionLink("  Create review", "Create", "Review",
-															new { filmId = Model.Id },
-															new { @class = "btn btn-success fa fa-plus", data_modal = "" })
-
 
 	@{ Html.RenderAction("Index", "Review", new { filmId = ViewBag.filmId }); }
 </div>
