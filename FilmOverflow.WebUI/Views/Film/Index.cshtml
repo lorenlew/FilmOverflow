@@ -10,15 +10,18 @@
 		<div class="panel-heading text-center">@ViewBag.Title</div>
 		<div class="table-responsive">
 			<table class="table table-bordered tab-content table-hover table-condensed">
-				<tr>
-					<th>@Html.DisplayNameFor(x => x.Title)</th>
-					<th>@Html.DisplayNameFor(x => x.Duration)</th>
-					<th>
-						<div class="pull-right">
-							@Html.ActionLink(" Add", "Create", "Film", null, new {@class = "btn btn-success fa fa-plus"})
-						</div>
-					</th>
-				</tr>
+				<thead>
+					<tr class="info">
+						<th>@Html.DisplayNameFor(x => x.Title)</th>
+						<th>@Html.DisplayNameFor(x => x.Duration)</th>
+						<th>
+							<div class="pull-right">
+								@Html.ActionLink(" Add", "Create", "Film", null, new { @class = "btn btn-success fa fa-plus" })
+							</div>
+						</th>
+					</tr>
+				</thead>
+				
 				@foreach (var film in Model)
 				{
 					<tr>

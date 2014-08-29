@@ -34,8 +34,8 @@ namespace FilmOverflow.WebUI.Controllers
 			IEnumerable<TicketDomainModel> ticketDomainModel = _ticketService
 				.Read()
 				.Where(ticket => ticket.ApplicationUserId == applicationUserId);
-			IEnumerable<TicketViewModel> ticketViewModel =
-				(Mapper.Map<IEnumerable<TicketDomainModel>, IEnumerable<TicketViewModel>>(ticketDomainModel)).ToList();
+			
+			IEnumerable<TicketViewModel> ticketViewModel = Mapper.Map<IEnumerable<TicketDomainModel>, IEnumerable<TicketViewModel>>(ticketDomainModel);
 
 			return View(ticketViewModel);
 		}

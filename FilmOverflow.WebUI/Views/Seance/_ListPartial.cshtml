@@ -1,19 +1,22 @@
 ﻿@model IEnumerable<FilmOverflow.WebUI.ViewModels.Seance.SeanceViewModel>
 
 <table class="table table-bordered tab-content table-hover table-condensed">
-	<tr>
-		<th>@Html.DisplayNameFor(x => x.Date)</th>
-		<th>@Html.DisplayNameFor(x => x.Time)</th>
-		<th>@Html.DisplayNameFor(x => x.Price)</th>
-		<th>@Html.DisplayNameFor(x => x.Hall.Cinema) - @Html.DisplayNameFor(x => x.Hall)</th>
-		<th>
-			<div class="pull-right">
-				@Html.ActionLink(" Add", "Create", "Seance",
+	<thead>
+		<tr class="info">
+			<th>@Html.DisplayNameFor(x => x.Date)</th>
+			<th>@Html.DisplayNameFor(x => x.Time)</th>
+			<th>@Html.DisplayNameFor(x => x.Price)</th>
+			<th>@Html.DisplayNameFor(x => x.Hall.Cinema) - @Html.DisplayNameFor(x => x.Hall)</th>
+			<th>
+				<div class="pull-right">
+					@Html.ActionLink(" Add", "Create", "Seance",
 					routeValues: new { filmId = ViewBag.FilmId },
 					htmlAttributes: new { @class = "btn btn-success fa fa-plus", data_modal = "" })
-			</div>
-		</th>
-	</tr>
+				</div>
+			</th>
+		</tr>
+	</thead>
+	
 	@foreach (var seance in Model)
 	{
 		<tr>
