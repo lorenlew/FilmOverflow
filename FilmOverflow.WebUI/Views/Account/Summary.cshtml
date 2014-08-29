@@ -6,23 +6,23 @@
 	ViewBag.Flag = 1;
 }
 
-<div class="">
-	<h2>@ViewBag.Title</h2>
+<div class="fa-lg well-lg">
+	<h2 >@ViewBag.Title</h2>
 
-	<div class="block text-warning">
+	<p class="block text-warning">
 		@Html.DisplayNameFor(model => model.FirstName) -
 		@Html.DisplayFor(model => model.FirstName)
-	</div>
-	<div class="block text-warning">
+	</p>
+	<p class="block text-warning">
 		@Html.DisplayNameFor(model => model.LastName) -
 		@Html.DisplayFor(model => model.LastName)
-	</div>
-	<div class="block text-warning">
+	</p>
+	<p class="block text-warning">
 		@Html.DisplayNameFor(model => model.Email) -
 		@Html.DisplayFor(model => model.Email)
-	</div>
-	<div class="block text-warning">
+	</p>
+	<p class="block text-warning">
 		@Html.DisplayNameFor(model => model.PhoneNumber) -
 		@Html.DisplayFor(model => model.PhoneNumber)
-	</div>
+	</p>
 </div>

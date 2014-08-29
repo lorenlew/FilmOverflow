@@ -43,6 +43,7 @@ namespace FilmOverflow.WebUI.Controllers
 			return View(hallViewModel);
 		}
 
+		[Authorize(Roles = "Administrator, Moderator")]
 		public ActionResult Create(long? id)
 		{
 			if (id == null)
@@ -53,6 +54,7 @@ namespace FilmOverflow.WebUI.Controllers
 			return View();
 		}
 
+		[Authorize(Roles = "Administrator, Moderator")]
 		[HttpPost]
 		public ActionResult Create([FromJson] HallViewModel hallViewModel)
 		{
@@ -65,6 +67,7 @@ namespace FilmOverflow.WebUI.Controllers
 			return RedirectToAction("Details", "Cinema", new { id = hallDomainModel.CinemaId });
 		}
 
+		[Authorize(Roles = "Administrator, Moderator")]
 		public ActionResult Edit(long? id)
 		{
 			if (id == null)
@@ -80,6 +83,7 @@ namespace FilmOverflow.WebUI.Controllers
 			return View(hallViewModel);
 		}
 
+		[Authorize(Roles = "Administrator, Moderator")]
 		[HttpPost]
 		[ValidateAntiForgeryToken]
 		public ActionResult Edit([Bind(Include = "Id,Name,RowAmount,ColumnAmoun,CinemaId")] HallViewModel hallViewModel)
@@ -93,6 +97,7 @@ namespace FilmOverflow.WebUI.Controllers
 			return RedirectToAction("Index");
 		}
 
+		[Authorize(Roles = "Administrator, Moderator")]
 		public ActionResult Delete(long? id)
 		{
 			if (id == null)
@@ -108,6 +113,7 @@ namespace FilmOverflow.WebUI.Controllers
 			return View(hallViewModel);
 		}
 
+		[Authorize(Roles = "Administrator, Moderator")]
 		[HttpPost, ActionName("Delete")]
 		[ValidateAntiForgeryToken]
 		public ActionResult DeleteConfirmed(long id)

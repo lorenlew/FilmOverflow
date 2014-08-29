@@ -9,7 +9,7 @@ namespace FilmOverflow.WebUI.ViewModels
 		public int Rate { get; set; }
 
 		[Required(ErrorMessage = "Add description")]
-		[StringLength(1000)]
+		[StringLength(10000)]
 		public string Description { get; set; }
 
 		public DateTime ReviewDate { get; set; }

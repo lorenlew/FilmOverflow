@@ -23,6 +23,7 @@ namespace FilmOverflow.WebUI.Controllers
 			_filmService = filmService;
 		}
 
+		[Authorize(Roles = "Administrator, Moderator")]
 		public ActionResult Index()
 		{
 			IEnumerable<FilmDomainModel> filmsDomainModel = _filmService.Read();
@@ -34,11 +35,13 @@ namespace FilmOverflow.WebUI.Controllers
 			return View("Index", filmsViewModel);
 		}
 
+		[Authorize(Roles = "Administrator, Moderator")]
 		public ActionResult Create()
 		{
 			return View("Create");
 		}
 
+		[Authorize(Roles = "Administrator, Moderator")]
 		[HttpPost]
 		[ValidateAntiForgeryToken]
 		public ActionResult Create(FilmViewModel filmViewModel)
@@ -77,6 +80,7 @@ namespace FilmOverflow.WebUI.Controllers
 			return RedirectToAction("Index", "Film");
 		}
 
+		[Authorize(Roles = "Administrator, Moderator")]
 		public ActionResult Edit(long? filmId)
 		{
 			if (filmId == null)
@@ -95,6 +99,7 @@ namespace FilmOverflow.WebUI.Controllers
 			return View("Edit", filmViewModel);
 		}
 
+		[Authorize(Roles = "Administrator, Moderator")]
 		[HttpPost]
 		[ValidateAntiForgeryToken]
 		public ActionResult Edit(FilmViewModel filmViewModel)
@@ -159,6 +164,7 @@ namespace FilmOverflow.WebUI.Controllers
 			return View("Details", filmViewModel);
 		}
 
+		[Authorize(Roles = "Administrator, Moderator")]
 		public ActionResult Delete(long? filmId)
 		{
 			if (filmId == null)
@@ -177,6 +183,7 @@ namespace FilmOverflow.WebUI.Controllers
 			return View("Delete", filmViewModel);
 		}
 
+		[Authorize(Roles = "Administrator, Moderator")]
 		[HttpPost]
 		[ValidateAntiForgeryToken]
 		public ActionResult Delete(long filmId)

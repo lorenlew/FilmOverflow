@@ -29,6 +29,7 @@ namespace FilmOverflow.WebUI.Controllers
 			_reservedSeatService = reservedSeatService;
 		}
 
+		[Authorize(Roles = "Administrator, Moderator")]
 		public ActionResult Index(long filmId)
 		{
 			ViewBag.FilmId = filmId;
@@ -36,6 +37,7 @@ namespace FilmOverflow.WebUI.Controllers
 			return View("Index");
 		}
 
+		[Authorize(Roles = "Administrator, Moderator")]
 		public ActionResult List(long filmId)
 		{
 			var seancesDomainModel = _seanceService
@@ -47,6 +49,7 @@ namespace FilmOverflow.WebUI.Controllers
 			return PartialView("_ListPartial", seancesViewModel);
 		}
 
+		[Authorize(Roles = "Administrator, Moderator")]
 		public ActionResult Create(long filmId)
 		{
 			IEnumerable<SelectListItem> hallsCinemas = GetHallsCinemas();
@@ -56,6 +59,7 @@ namespace FilmOverflow.WebUI.Controllers
 			return PartialView("_CreatePartial");
 		}
 
+		[Authorize(Roles = "Administrator, Moderator")]
 		[HttpPost]
 		[ValidateAntiForgeryToken]
 		public ActionResult Create(CreateSeanceViewModel createSeanceViewModel)
@@ -94,6 +98,7 @@ namespace FilmOverflow.WebUI.Controllers
 			return Json(new { success = true, url = url, replaceTarget = "#SeanceList" });
 		}
 
+		[Authorize(Roles = "Administrator, Moderator")]
 		public ActionResult Edit(long? seanceId)
 		{
 			if (seanceId == null)
@@ -115,6 +120,7 @@ namespace FilmOverflow.WebUI.Controllers
 			return PartialView("_EditPartial", seanceViewModel);
 		}
 
+		[Authorize(Roles = "Administrator, Moderator")]
 		[HttpPost]
 		[ValidateAntiForgeryToken]
 		public ActionResult Edit(SeanceViewModel seanceViewModel)
@@ -157,6 +163,7 @@ namespace FilmOverflow.WebUI.Controllers
 			return PartialView("_DetailsPartial", seanceViewModel);
 		}
 
+		[Authorize(Roles = "Administrator, Moderator")]
 		public ActionResult Delete(long? seanceId)
 		{
 			if (seanceId == null)
@@ -175,6 +182,7 @@ namespace FilmOverflow.WebUI.Controllers
 			return PartialView("_DeletePartial", seanceViewModel);
 		}
 
+		[Authorize(Roles = "Administrator, Moderator")]
 		[HttpPost]
 		[ValidateAntiForgeryToken]
 		public ActionResult Delete(long seanceId)
@@ -199,6 +207,7 @@ namespace FilmOverflow.WebUI.Controllers
 			return Json(new { success = true, url = url, replaceTarget = "#SeanceList" });
 		}
 
+		[Authorize]
 		public string GetSeanceSeats(long seanceId)
 		{
 			SeanceDomainModel currentSeance = _seanceService.ReadById(seanceId);

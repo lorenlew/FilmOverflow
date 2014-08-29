@@ -56,7 +56,7 @@ ul {
 }
 
 	ul.small > li {
-		width: 200px;
+		width: 250px;
 		background-color: gray;
 		background-color: rgba(0, 0, 0, 0.15);
 	}

@@ -11,6 +11,7 @@ using FilmOverflow.WebUI.ViewModels;
 
 namespace FilmOverflow.WebUI.Controllers
 {
+
 	public class CinemaController : Controller
 	{
 		private readonly ICinemaService _cinemaService;
@@ -43,11 +44,13 @@ namespace FilmOverflow.WebUI.Controllers
 			return View(cinemaViewModel);
 		}
 
+		[Authorize(Roles = "Administrator, Moderator")]
 		public ActionResult Create()
 		{
 			return View();
 		}
 
+		[Authorize(Roles = "Administrator, Moderator")]
 		[HttpPost]
 		[ValidateAntiForgeryToken]
 		public ActionResult Create([Bind(Include = "Id,Image,Name,Address,PhoneNumber")] CinemaViewModel cinemaViewModel)
@@ -72,6 +75,7 @@ namespace FilmOverflow.WebUI.Controllers
 			return RedirectToAction("Index");
 		}
 
+		[Authorize(Roles = "Administrator, Moderator")]
 		public ActionResult Edit(long? id)
 		{
 			if (id == null)
@@ -87,6 +91,7 @@ namespace FilmOverflow.WebUI.Controllers
 			return View(cinemaViewModel);
 		}
 
+		[Authorize(Roles = "Administrator, Moderator")]
 		[HttpPost]
 		[ValidateAntiForgeryToken]
 		public ActionResult Edit([Bind(Include = "Id,Name,Address,ImagePath,PhoneNumber")] CinemaViewModel cinemaViewModel)
@@ -101,6 +106,7 @@ namespace FilmOverflow.WebUI.Controllers
 			return RedirectToAction("Index");
 		}
 
+		[Authorize(Roles = "Administrator, Moderator")]
 		public ActionResult Delete(long? id)
 		{
 			if (id == null)
@@ -116,6 +122,7 @@ namespace FilmOverflow.WebUI.Controllers
 			return View(cinemaViewModel);
 		}
 
+		[Authorize(Roles = "Administrator, Moderator")]
 		[HttpPost, ActionName("Delete")]
 		[ValidateAntiForgeryToken]
 		public ActionResult DeleteConfirmed(long id)

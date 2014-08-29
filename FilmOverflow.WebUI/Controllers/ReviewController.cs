@@ -11,6 +11,7 @@ using Microsoft.AspNet.Identity;
 
 namespace FilmOverflow.WebUI.Controllers
 {
+	[Authorize]
 	public class ReviewController : Controller
 	{
 		private readonly IReviewService _reviewService;
@@ -20,6 +21,7 @@ namespace FilmOverflow.WebUI.Controllers
 			_reviewService = reviewService;
 		}
 
+		[AllowAnonymous]
 		public ActionResult Index(long? filmId)
 		{
 			IEnumerable<ReviewDomainModel> reviewDomainModel = _reviewService.Read().OrderByDescending(model => model.ReviewDate);

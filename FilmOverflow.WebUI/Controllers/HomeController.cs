@@ -36,6 +36,7 @@ namespace FilmOverflow.WebUI.Controllers
 			return PartialView("_FilmListPartial", filmsViewModel);
 		}
 
+		[AllowAnonymous]
 		public ActionResult Details(long? filmId)
 		{
 			if (filmId == null)

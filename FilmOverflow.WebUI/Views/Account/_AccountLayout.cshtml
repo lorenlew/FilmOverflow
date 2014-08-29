@@ -10,10 +10,10 @@
 			<h1 class="well well-lg text-center font-bordered">@ViewBag.Title</h1>
 		</div>
 		<div class="col-md-3">
-			<ul class="well nav nav-pills nav-stacked small font-bordered">
-				<li @(ViewBag.Flag == 1 ? Html.Raw("class='active'") : Html.Raw(""))><a href="@Url.Action("Summary", "Account")"><i class="fa fa-home fa-2x fa-lg"></i> Summary</a></li>
-				<li @(ViewBag.Flag == 2 ? Html.Raw("class='active'") : Html.Raw(""))><a href="@Url.Action("Index", "Ticket")"><i class="fa fa-ticket fa-2x fa-lg"></i> Tickets</a></li>
-				<li @(ViewBag.Flag == 3 ? Html.Raw("class='active'") : Html.Raw(""))><a href="@Url.Action("Manage", "Account")"><i class="fa fa-lock fa-2x fa-lg"></i> Change Password</a></li>
+			<ul class="well nav nav-pills nav-stacked small">
+				<li @(ViewBag.Flag == 1 ? Html.Raw("class='active'") : Html.Raw(""))><a class="text-warning fa-lg" href="@Url.Action("Summary", "Account")"><i class="fa fa-home fa-2x fa-lg "></i> Summary</a></li>
+				<li @(ViewBag.Flag == 2 ? Html.Raw("class='active'") : Html.Raw(""))><a class="text-warning fa-lg" href="@Url.Action("Index", "Ticket")"><i class="fa fa-ticket fa-2x fa-lg"></i> Tickets</a></li>
+				<li @(ViewBag.Flag == 3 ? Html.Raw("class='active'") : Html.Raw(""))><a class="text-warning fa-lg" href="@Url.Action("Manage", "Account")"><i class="fa fa-lock fa-2x fa-lg"></i> Change Password</a></li>
 			</ul>
 		</div>
 		<div class="col-md-9">
