@@ -50,7 +50,7 @@ namespace FilmOverflow.WebUI.Controllers
 			{
 				return HttpNotFound();
 			}
-
+			ViewBag.filmId = filmId;
 			return View("Details", filmViewModel);
 		}
 

@@ -1,50 +1,52 @@
 ﻿@model FilmOverflow.WebUI.ViewModels.ReviewViewModel
 
 @{
-	ViewBag.Title = "Edit review";
+	ViewBag.Title = "Edit Review";
 }
 
-<h2>
+<h2 class="text-center">
 	@ViewBag.Title
 </h2>
 
 
-@using (Html.BeginForm())
-{
-	@Html.AntiForgeryToken()
+<div class="well-lg">
+	@using (Html.BeginForm())
+	{
+		@Html.AntiForgeryToken()
 
-	<div class="form-horizontal">
+		<div class="form-horizontal">
 
-		@Html.ValidationSummary(true, "", new { @class = "text-danger" })
-		@Html.HiddenFor(model => model.Id)
+			@Html.ValidationSummary(true, "", new { @class = "text-danger" })
+			@Html.HiddenFor(model => model.Id)
 
-		<div class="form-group">
-			@Html.LabelFor(model => model.Rate, htmlAttributes: new { @class = "control-label col-md-2" })
-			<div class="col-md-10">
-				@Html.EditorFor(model => model.Rate, new { htmlAttributes = new { @class = "form-control" } })
-				@Html.ValidationMessageFor(model => model.Rate, "", new { @class = "text-danger" })
+			<div class="form-group">
+				@Html.LabelFor(model => model.Rate, htmlAttributes: new { @class = "control-label col-md-2" })
+				<div class="col-md-10">
+					@Html.EditorFor(model => model.Rate, new { htmlAttributes = new { @class = "form-control" } })
+					@Html.ValidationMessageFor(model => model.Rate, "", new { @class = "text-danger" })
+				</div>
+			</div>
+
+			<div class="form-group">
+				@Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "control-label col-md-2" })
+				<div class="col-md-10 no-shadow review-form">
+					@Html.TextAreaFor(model => model.Description, new { htmlAttributes = new { @class = "form-control" } })
+					@Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
+				</div>
+			</div>
+
+			@Html.HiddenFor(model => model.ReviewDate)
+			@Html.HiddenFor(model => model.ApplicationUserId)
+			@Html.HiddenFor(model => model.FilmId)
+
+			<div class="form-group">
+				<div class="col-md-offset-2 col-md-10">
+					<button type="submit" value="Save" class="btn btn-success fa fa-check">Save</button>
+				</div>
 			</div>
 		</div>
-
-		<div class="form-group">
-			@Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "control-label col-md-2" })
-			<div class="col-md-10 no-shadow review-form">
-				@Html.TextAreaFor(model => model.Description, new { htmlAttributes = new { @class = "form-control" } })
-				@Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
-			</div>
-		</div>
-
-		@Html.HiddenFor(model => model.ReviewDate)
-		@Html.HiddenFor(model => model.ApplicationUserId)
-		@Html.HiddenFor(model => model.FilmId)
-
-		<div class="form-group">
-			<div class="col-md-offset-2 col-md-10">
-				<input type="submit" value="Save" class="btn btn-default" />
-			</div>
-		</div>
-	</div>
-}
+	}
+</div>
 
 <aside>
 	@Html.ActionLink(" ", "Details", "Home", new { filmId = ViewBag.filmId }, new { @class = "fa fa-caret-left fa-4x back-nav", title = "Back to film details" })

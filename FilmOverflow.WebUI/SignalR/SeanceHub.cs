@@ -27,10 +27,24 @@ namespace FilmOverflow.WebUI.SignalR
 		{
 			SeanceDomainModel currentSeance =
 				_seanceService.ReadById(id);
-			if (currentSeance ==null)
+			if (currentSeance == null)
 			{
 				return;
 			}
+			var seatsToDelete = (from seat in currentSeance.ReservedSeats
+								where DateTime.Compare(DateTime.Now, seat.ReservationTime.AddMinutes(10)) > 0
+								&& !seat.IsSold
+								select seat).ToList();
+
+			foreach (var seat in seatsToDelete)
+			{
+				currentSeance.ReservedSeats.Remove(seat);
+			}
+			var seatsToDeleteAfter = (from seat in currentSeance.ReservedSeats
+								 where DateTime.Compare(DateTime.Now, seat.ReservationTime.AddMinutes(10)) > 0
+								 && !seat.IsSold
+								 select seat).ToList();
+
 			var reservedSeats = (from seat in currentSeance.ReservedSeats
 								 select new
 								 {

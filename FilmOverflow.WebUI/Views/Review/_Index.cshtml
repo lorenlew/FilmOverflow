@@ -13,14 +13,13 @@
 	<article class="well well-lg review">
 		<div class="review-content">
 			<div class="clear">
-				<p class="pull-right text-warning">
+				<p class="pull-right label label-primary text-warning fa-lg">
 					@Html.DisplayNameFor(model => model.Rate)
 					@Html.DisplayFor(modelItem => item.Rate)
 				</p>
 			</div>
 			<div class="clear">
-				<p class="pull-right label label-info">
-					@Html.DisplayNameFor(model => model.ApplicationUser)
+				<p class="pull-right label label-info fa-lg">
 					@Html.DisplayFor(modelItem => item.ApplicationUser.FirstName) @Html.DisplayFor(modelItem => item.ApplicationUser.LastName)
 				</p>
 			</div>
@@ -32,7 +31,7 @@
 				@Html.ActionLink(" Delete", "Delete", new { id = item.Id }, new { @class = "btn btn-danger fa fa-trash-o" })
 			</p>
 			<div class="clear">
-				<div class="text-warning label label-success pull-right">
+				<div class="text-warning label label-success pull-right fa-lg">
 					@Html.DisplayFor(modelItem => item.ReviewDate)
 				</div>
 			</div>

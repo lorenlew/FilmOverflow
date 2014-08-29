@@ -43,6 +43,7 @@
 		});
 
 		function init() {
+			$('#PaymentMethodId :selected').val('') ;
 			$.getJSON(urlGetSeats, function (data) {
 				ko.mapping.fromJS(data, {}, self.Seats);
 			});
@@ -51,6 +52,7 @@
 
 		seanceService.client.notify = function (data) {
 			ko.mapping.fromJSON(data, {}, self.ReservedSeats);
+			var temp = self.isInit();
 			if (self.isInit() == null) {
 				self.IsProcessing(false);
 				self.isInit(false);
@@ -117,8 +119,9 @@
 				url: urlGetTicket,
 				data: { orderViewModel: orderViewModel },
 				success: function (data) {
-					window.location.href = data;
 					seanceService.server.getReservedSeatsForSeance(seanceId, false);
+					window.location.href = data;
+
 				}
 			});
 		};

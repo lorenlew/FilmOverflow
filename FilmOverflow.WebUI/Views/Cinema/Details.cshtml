@@ -4,7 +4,7 @@
 	ViewBag.Title = "Details";
 }
 
-<div class="well well-lg">
+<div class="well well-lg clear">
 	<article>
 		<h1 class="text-center text-warning">
 			@Html.DisplayFor(model => model.Name)
@@ -23,24 +23,36 @@
 			@Html.DisplayFor(model => model.PhoneNumber)
 		</h4>
 		<div>
-			@Html.ActionLink(" ", "Edit", new {id = Model.Id}, new {@class = "btn btn-warning fa fa-pencil-square-o", title = "Edit"})
-			@Html.ActionLink(" ", "Delete", new {id = Model.Id}, new {@class = "btn btn-danger fa fa-trash-o", title = "Delete"})
-			@Html.ActionLink(" ", "Create", "Hall", new {id = Model.Id}, new {@class = "btn btn-success fa fa-cube", title = "Add hall"})
+			@Html.ActionLink(" ", "Edit", new { id = Model.Id }, new { @class = "btn btn-warning fa fa-pencil-square-o", title = "Edit" })
+			@Html.ActionLink(" ", "Delete", new { id = Model.Id }, new { @class = "btn btn-danger fa fa-trash-o", title = "Delete" })
+			@Html.ActionLink(" ", "Create", "Hall", new { id = Model.Id }, new { @class = "btn btn-success fa fa-cube", title = "Add hall" })
 		</div>
-		<img class="img-content big" src=@Model.ImagePath />
+		<img class="img-content big " src=@Model.ImagePath />
 	</article>
-	<article>
-		<h3>Halls</h3>
+	<article class="info-panel small fa-lg">
+		<h3 class="text-center text-info">Halls</h3>
+		<div class="clear">
+			<p class="pull-left">Name</p>
+			<div class="clear">
+				<p class="pull-right">Size</p>
+			</div>
+		</div>
 		@foreach (var hall in Model.Halls)
 		{
 			<div>
-				<p class="label label-success">@hall.Name</p>
-				<p class="label label-info">@hall.RowAmount</p>
-				<p class="label label-info">@hall.ColumnAmount</p>
+				<div class="clear">
+					<p class="label label-success" title="Hall name">@hall.Name</p>
+				</div>
+				<div class="clear">
+					<span class="label label-info pull-right" title="Row amount">@hall.RowAmount</span>
+				</div>
+				<div class="clear">
+					<span class="label label-info pull-right" title="Column amount">@hall.ColumnAmount</span>
+				</div>
 			</div>
 		}
 	</article>
 	<aside>
-		@Html.ActionLink(" ", "Index", "Cinema", null, new {@class = "fa fa-caret-left fa-4x back-nav", title = "Back to cinemas"})
+		@Html.ActionLink(" ", "Index", "Cinema", null, new { @class = "fa fa-caret-left fa-4x back-nav", title = "Back to cinemas" })
 	</aside>
 </div>

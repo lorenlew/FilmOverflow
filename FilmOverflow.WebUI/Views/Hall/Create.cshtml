@@ -47,9 +47,9 @@
 		</div>
 	</div>
 	<button data-bind="click: addAllSeats,
-					 visible: HallTemplate().length > 0 && isHallConfigured" type="button" class="btn btn-success fa fa-plus-square" title="Add all seats"></button>
+					 visible: HallTemplate().length > 0 && isHallConfigured" type="button" class="btn btn-success fa fa-plus-square" title="Add all seats"> Fill Hall</button>
 	<button data-bind="click: removeAllSeats,
-					 visible: HallTemplate().length > 0 && isHallConfigured" type="button" class="btn btn-danger fa fa-minus-square" title="Remove all seats"></button>
+					 visible: HallTemplate().length > 0 && isHallConfigured" type="button" class="btn btn-danger fa fa-minus-square" title="Remove all seats"> Clear Hall</button>
 	<button data-bind="click: submit,
 					 visible: Seats().length > 0 && isHallConfigured" type="button" class="btn btn-success fa fa-check pull-right">Add hall</button>
 </div>

@@ -1,10 +1,12 @@
 ﻿@model FilmOverflow.WebUI.ViewModels.CinemaViewModel
 
 @{
-	ViewBag.Title = "Edit";
+	ViewBag.Title = "Edit Cinema";
 }
 
-<h2 class="text-center">Edit</h2>
+<h2 class="text-center">
+	@ViewBag.Title
+</h2>
 
 <div class="well well-lg">
 	@using (Html.BeginForm())

@@ -68,7 +68,7 @@ namespace FilmOverflow.WebUI.Controllers
 			{
 				return HttpNotFound();
 			}
-			ViewBag.filmId = id;
+			ViewBag.filmId = _reviewService.ReadById(id).FilmId; ;
 			return View(reviewViewModel);
 		}
 
@@ -98,6 +98,7 @@ namespace FilmOverflow.WebUI.Controllers
 			{
 				return HttpNotFound();
 			}
+			ViewBag.filmId = _reviewService.ReadById(id).FilmId;
 			return View(reviewViewModel);
 		}
 

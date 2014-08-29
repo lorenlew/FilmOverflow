@@ -1,17 +1,12 @@
 ﻿@model FilmOverflow.WebUI.ViewModels.ReviewViewModel
 
 @{
-	ViewBag.Title = "Add review";
+	ViewBag.Title = "Add Review";
 }
 
 <h2 class="text-center">
 	@ViewBag.Title
 </h2>	
-
-<figure class="icon_frame margin-clear">
-	<figure class="icon icon_md margin-clear">
-	</figure>
-</figure>
 
 @using (Html.BeginForm())
 {
@@ -41,12 +36,16 @@
 
 		<div class="form-group">
 			<div class="col-md-offset-2 col-md-10">
-				<input type="submit" value="Create" class="btn btn-default" />
+				<button type="submit" value="Save" class="btn btn-success fa fa-check">Create</button>
 			</div>
 		</div>
 	</div>
 }
-
+<figure class="well-sm info-panel pull-right no-shadow">
+	<figure class="icon icon_md">
+	</figure>
+	<figcaption class="text-info fa-lg">Markdown text formatting available </figcaption>
+</figure>
 <aside>
 	@Html.ActionLink(" ", "Details", "Home", new { filmId = ViewBag.filmId }, new { @class = "fa fa-caret-left fa-4x back-nav", title = "Back to film details" })
 </aside>

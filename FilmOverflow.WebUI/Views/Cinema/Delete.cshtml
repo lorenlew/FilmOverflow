@@ -7,16 +7,16 @@
 
 <div class="well well-lg">
 	<h3 class="text-center">
-		Are you sure you want to delete @Model.Name?
+		Are you sure you want to delete '@Model.Name'?
 	</h3>
 
 	@using (Html.BeginForm())
 	{
 		@Html.AntiForgeryToken()
 
-		<div>
+		<div class="clear">
 			@Html.ActionLink(" ", "Index", null, new {@class = "fa fa-caret-left fa-4x back-nav", title = "Back to cinemas"})
-			<button class="btn btn-danger fa fa-trash-o" > </button>
+			<button class="btn btn-danger fa fa-trash-o pull-right" >Delete</button>
 		</div>
 	}
 </div>

@@ -18,12 +18,14 @@ namespace FilmOverflow.WebUI.Controllers
 		private readonly ITicketService _ticketService;
 		private readonly IPaymentMethodService _paymentMethodService;
 		private readonly ISeanceService _seanceService;
+		private readonly IReservedSeatService _reservedSeatService;
 
-		public TicketController(ITicketService ticketService, IPaymentMethodService paymentMethodService, ISeanceService seanceService)
+		public TicketController(ITicketService ticketService, IPaymentMethodService paymentMethodService, ISeanceService seanceService, IReservedSeatService reservedSeatService)
 		{
 			_ticketService = ticketService;
 			_paymentMethodService = paymentMethodService;
 			_seanceService = seanceService;
+			_reservedSeatService = reservedSeatService;
 		}
 
 		public ActionResult Index()
@@ -61,11 +63,12 @@ namespace FilmOverflow.WebUI.Controllers
 		{
 			ModelState.Clear();
 			string currentUserId = User.Identity.GetUserId();
+			var currentSeance = _seanceService.ReadById(orderViewModel.SeanceId);
 
-			var permittedUserSeats = (from seat in _seanceService.ReadById(orderViewModel.SeanceId).ReservedSeats
+			var permittedUserSeats = (from seat in currentSeance.ReservedSeats
 									  where seat.ApplicationUserId == currentUserId
 										  && seat.IsSold == false
-										  && DateTime.Compare(DateTime.Now, seat.ReservationTime.AddSeconds(10)) < 0
+										  && DateTime.Compare(DateTime.Now, seat.ReservationTime.AddMinutes(10)) < 0
 									  select seat).ToList();
 
 			List<SeatViewModel> targetSeats = new List<SeatViewModel>();
@@ -83,22 +86,30 @@ namespace FilmOverflow.WebUI.Controllers
 				}
 			}
 			bool areAllSeatsAccepted = orderViewModel.Seats.Count() == targetSeats.Count();
-			if (areAllSeatsAccepted)
+			if (!areAllSeatsAccepted)
 			{
-				
-				foreach (var seat in targetSeats)
-				{
-					TicketDomainModel ticket = new TicketDomainModel();
-					ticket.SeatId = seat.Id;
-					ticket.ApplicationUserId = currentUserId;
-					ticket.PaymentDate = DateTime.Now;
-					ticket.PaymentMethodId = orderViewModel.PaymentMethodId;
-					ticket.SeanceId = orderViewModel.SeanceId;
-					_ticketService.Add(ticket);
-				}
-				return Json(Url.Action("Index", "Ticket"));
+				return Json(Url.Action("TimeIsOut", "Home"));
 			}
-			return Json(Url.Action("TimeIsOut", "Home"));
+			foreach (var seat in targetSeats)
+			{
+				ReservedSeatDomainModel payedSeat = (from reservedSeat in currentSeance.ReservedSeats
+								 where reservedSeat.RowNumber == seat.RowNumber
+									 && reservedSeat.ColumnNumber == seat.ColumnNumber
+								 select reservedSeat).SingleOrDefault();
+
+				TicketDomainModel ticket = new TicketDomainModel();
+				ticket.SeatId = seat.Id;
+				ticket.ApplicationUserId = currentUserId;
+				ticket.PaymentDate = DateTime.Now;
+				ticket.PaymentMethodId = orderViewModel.PaymentMethodId;
+				ticket.SeanceId = orderViewModel.SeanceId;
+				payedSeat.IsSold = true;
+				//_seanceService.Update(currentSeance);
+				_ticketService.Add(ticket);
+				payedSeat.Seance = null;
+				_reservedSeatService.Update(payedSeat);
+			}
+			return Json(Url.Action("Index", "Ticket"));
 		}
 	}
 }

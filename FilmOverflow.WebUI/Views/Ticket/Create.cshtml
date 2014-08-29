@@ -13,19 +13,20 @@
 
 @{ Html.RenderAction("Details", "Seance", new { seanceId = ViewBag.SeanceId, isCommon = true }); }
 @Html.HiddenFor(model => model.SeanceId, new { data_id = ViewBag.SeanceId })
+<div data-bind="visible: !IsProcessing()">
+	
+	<div data-bind="foreach: Seats,
+		 style:{width: @columnAmount*23+33+'px',height: @rowAmount*25+45+'px'},
+		 css: {hall: $root.Seats().length}" class="col-md-offset-2">
 
-<div data-bind="foreach: Seats,
-	 style:{width: @columnAmount*23+33+'px',height : @rowAmount*25+45+'px'},
-	 css :{ hall: $root.Seats().length}" class="col-md-offset-2">
-
-	<span data-bind="css: { deselected: !$root.isSeatSelected($data), selected: $root.isSeatSelected($data), reserved: !$root.isSeatSelected($data) && $root.isSeatReserved($data)},
+		<span data-bind="css: { deselected: !$root.isSeatSelected($data), selected: $root.isSeatSelected($data), reserved: !$root.isSeatSelected($data) && $root.isSeatReserved($data)},
 						click: $root.toogleSeatStatus,
 						style:{top: $data.RowNumber()*26+'px', left: $data.ColumnNumber()*23+'px'}" class="seat fa fa-user">
 
-	</span>
-</div>
+		</span>
+	</div>
 
-<div data-bind="visible: !IsProcessing()">
+
 	<div class="well-lg" data-bind="visible:NumberOfSelectedSeats() > 0">
 		<div data-bind="visible:NumberOfSelectedSeats() > 0" class="fa fa-2x ">
 			<span class="modal-body">
@@ -42,7 +43,7 @@
 					click: submit" type="button" class="btn btn-success fa fa-check pull-left" title="Create">
 				Buy ticket
 			</button>
-			<div class=" fixedInput">
+			<div class="fixedInput pull-right">
 				@Html.DropDownList("PaymentMethodId", (IEnumerable<SelectListItem>)ViewBag.PaymentMethods, "--Select payment method--", new { @class = "form-control inline" })
 			</div>
 		</div>
@@ -64,4 +65,5 @@
 	<script src="~/Scripts/knockout-app/Ticket/koModels.js"></script>
 	<script src="~/Scripts/knockout-app/Ticket/app.js"></script>
 	@Scripts.Render("~/bundles/jqueryval")
-}
+} 
+
