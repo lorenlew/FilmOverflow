@@ -28,6 +28,7 @@ namespace FilmOverflow.WebUI.Controllers
 			{
 				return PartialView("_UserManipulation", usersViewModel);
 			}
+
 			return View(usersViewModel);
 		}
 

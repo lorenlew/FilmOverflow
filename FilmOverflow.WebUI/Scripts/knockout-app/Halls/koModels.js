@@ -11,12 +11,12 @@
 		self.Seats = ko.observableArray([]);
 		self.IsProcessing = ko.observable(false);
 		self.Errors = ko.validation.group(self);
-
 		self.seatNumber = ko.computed(function () {
 			var size = self.Seats().length;
 			return size;
 		});
-
+		self.InitRow = null;
+		self.InitCol = null;
 		self.isHallConfigured = ko.computed(function () {
 			return self.Errors().length == 0;
 		});
@@ -35,15 +35,16 @@
 			self.IsProcessing(true);
 			self.HallTemplate.removeAll();
 			setTimeout(function () {
-				for (var i = 1; i <= self.RowAmount(); i++) {
-					for (var j = 1; j <= self.ColumnAmount(); j++) {
+				for (var i = 1; i <= self.RowAmount() ; i++) {
+					for (var j = 1; j <= self.ColumnAmount() ; j++) {
 						self.HallTemplate.push(new koModels.Seat(i, j));
 					}
 				}
 				self.addAllSeats();
 				self.IsProcessing(false);
 			}, 1000);
-
+			self.InitRow = self.RowAmount();
+			self.InitCol = self.ColumnAmount();
 		};
 
 		self.toogleSeatStatus = function (seatTemplate) {
@@ -66,14 +67,16 @@
 		};
 
 		self.submit = function () {
-			var koHallModel = {};
-			koHallModel.Name = self.Name();
-			koHallModel.RowAmount = self.RowAmount();
-			koHallModel.ColumnAmount = self.ColumnAmount();
-			koHallModel.CinemaId = $('#CinemaId').attr('data-id');
-			koHallModel.Seats = self.Seats();
-			var hallModel = ko.mapping.toJS(koHallModel);
-			ko.utils.postJson(' ', { hallViewModel: hallModel });
+			if (self.InitRow == self.RowAmount() && self.InitCol == self.ColumnAmount()) {
+				var koHallModel = {};
+				koHallModel.Name = self.Name();
+				koHallModel.RowAmount = self.RowAmount();
+				koHallModel.ColumnAmount = self.ColumnAmount();
+				koHallModel.CinemaId = $('#CinemaId').attr('data-id');
+				koHallModel.Seats = self.Seats();
+				var hallModel = ko.mapping.toJS(koHallModel);
+				ko.utils.postJson(' ', { hallViewModel: hallModel });
+			}
 		};
 	};
 

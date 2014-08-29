@@ -23,6 +23,3 @@
 /// <reference path="knockout-app/ticket/app.js" />
 /// <reference path="knockout-app/ticket/custombindings.js" />
 /// <reference path="knockout-app/ticket/komodels.js" />
-/// <reference path="jquery.onepage-scroll.js" />
-/// <reference path="custom/onepagescrollregister.js" />
-/// <reference path="home/home.js" />

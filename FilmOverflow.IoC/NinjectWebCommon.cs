@@ -73,6 +73,7 @@ namespace FilmOverflow.IoC
 			kernel.Bind<IUnitOfWork>().To<UnitOfWork>().InRequestScope();
 			kernel.Bind<ApplicationDbContext>().ToSelf().InRequestScope();
 			kernel.Bind<ISeanceService>().To<SeanceService>().InRequestScope();
+			kernel.Bind<IReservedSeatService>().To<ReservedSeatService>().InRequestScope();
 		}
 
 		private static void RegisterCommonServices(IKernel kernel)
@@ -86,7 +87,6 @@ namespace FilmOverflow.IoC
 			kernel.Bind<ITicketService>().To<TicketService>().InRequestScope();
 			kernel.Bind<IHallService>().To<HallService>().InRequestScope();
 			kernel.Bind<ISeatService>().To<SeatService>().InRequestScope();
-			kernel.Bind<IReservedSeatService>().To<ReservedSeatService>().InRequestScope();
 		}
 
 		private static void RegisterHubServices(IKernel kernel)
@@ -97,6 +97,7 @@ namespace FilmOverflow.IoC
 			kernel.Bind<ApplicationDbContext>().ToSelf().InTransientScope();
 			GlobalHost.DependencyResolver.Register(typeof(IHubActivator), () => new HubActivator(kernel));
 			kernel.Bind<ISeanceService>().To<SeanceService>().InTransientScope();
+			kernel.Bind<IReservedSeatService>().To<ReservedSeatService>().InTransientScope();
 		}
 	}
 }

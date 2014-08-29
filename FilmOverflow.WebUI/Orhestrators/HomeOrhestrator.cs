@@ -25,10 +25,12 @@ namespace FilmOverflow.WebUI.Orhestrators
 
 		public IEnumerable<string> GetAllSeancesDates()
 		{
+			var todayString = String.Format("{0:dd/MM/yyyy}", DateTime.Today);
 			IEnumerable<string> dates = _seanceService
 				.Read()
 				.Select(Mapper.Map<SeanceDomainModel, SeanceViewModel>)
-				.Select(x => x.Date)
+				.Where(x => x.Date.CompareTo(todayString) >= 0)
+				.Select(x => x.Date)				
 				.Distinct()
 				.OrderBy(x => x);
 

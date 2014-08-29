@@ -29,6 +29,8 @@ namespace FilmOverflow.WebUI.Controllers
 			IEnumerable<FilmViewModel> filmsViewModel =
 				Mapper.Map<IEnumerable<FilmDomainModel>, IEnumerable<FilmViewModel>>(filmsDomainModel);
 
+			ViewBag.Flag = "2";
+
 			return View("Index", filmsViewModel);
 		}
 

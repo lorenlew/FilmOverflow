@@ -18,9 +18,13 @@ namespace FilmOverflow.WebUI.SignalR
 	{
 		private readonly ISeanceService _seanceService;
 
-		public SeanceHub(ISeanceService seanceService)
+		private readonly IReservedSeatService _reservedSeatService;
+
+
+		public SeanceHub(ISeanceService seanceService, IReservedSeatService reservedSeatService)
 		{
 			_seanceService = seanceService;
+			_reservedSeatService = reservedSeatService;
 		}
 
 		public void GetReservedSeatsForSeance(long id, bool isInit)
@@ -38,14 +42,14 @@ namespace FilmOverflow.WebUI.SignalR
 
 			foreach (var seat in seatsToDelete)
 			{
-				currentSeance.ReservedSeats.Remove(seat);
+				_reservedSeatService.Delete(seat);
 			}
 			var seatsToDeleteAfter = (from seat in currentSeance.ReservedSeats
 								 where DateTime.Compare(DateTime.Now, seat.ReservationTime.AddMinutes(10)) > 0
 								 && !seat.IsSold
 								 select seat).ToList();
 
-			var reservedSeats = (from seat in currentSeance.ReservedSeats
+			var reservedSeats = (from seat in _seanceService.ReadById(id).ReservedSeats
 								 select new
 								 {
 									 seat.Id,
