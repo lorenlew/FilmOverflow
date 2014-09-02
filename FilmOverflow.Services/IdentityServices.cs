@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
 using Microsoft.AspNet.Identity;
 
 namespace FilmOverflow.Services
@@ -7,6 +8,10 @@ namespace FilmOverflow.Services
 	{
 		public Task SendAsync(IdentityMessage message)
 		{
+			if (message == null)
+			{
+				throw new ArgumentNullException("message");
+			}
 			const string credentialUserName = "rentservicegg@gmail.com";
 			const string sentFrom = "noreply@effective-rent.com";
 			const string pwd = "bdfbdr34523gsdfh6DD";

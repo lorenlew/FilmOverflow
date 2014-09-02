@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using AutoMapper;
 using FilmOverflow.DAL.Models;
 using FilmOverflow.DAL.UnitOfWork;
@@ -17,38 +18,52 @@ namespace FilmOverflow.Services
 
 		public void Add(SeatDomainModel entity)
 		{
-			if (entity == null) throw new ArgumentNullException("entity");
-			var seat = Mapper.Map<SeatDomainModel, Seat>(entity);
+			if (entity == null)
+			{
+				throw new ArgumentNullException("entity");
+			}
+			Seat seat = Mapper.Map<SeatDomainModel, Seat>(entity);
 			Uow.GetRepository<Seat>().Add(seat);
 			Uow.Save();
 		}
 
 		public IEnumerable<SeatDomainModel> Read()
 		{
-			var seats = Uow.GetRepository<Seat>().Read();
-			var seatsDomain = Mapper.Map<IEnumerable<Seat>, IEnumerable<SeatDomainModel>>(seats);
+			IQueryable<Seat> seats = Uow.GetRepository<Seat>().Read();
+			IEnumerable<SeatDomainModel> seatsDomain = Mapper.Map<IEnumerable<Seat>,
+				IEnumerable<SeatDomainModel>>(seats);
 			return seatsDomain;
 		}
 
 		public SeatDomainModel ReadById(object id)
 		{
-			var seat = Uow.GetRepository<Seat>().ReadById(id);
-			var seatDomain = Mapper.Map<Seat, SeatDomainModel>(seat);
+			if (id == null)
+			{
+				throw new ArgumentNullException("id");
+			}
+			Seat seat = Uow.GetRepository<Seat>().ReadById(id);
+			SeatDomainModel seatDomain = Mapper.Map<Seat, SeatDomainModel>(seat);
 			return seatDomain;
 		}
 
 		public void Update(SeatDomainModel entity)
 		{
-			if (entity == null) throw new ArgumentNullException("entity");
-			var seat = Mapper.Map<SeatDomainModel, Seat>(entity);
+			if (entity == null)
+			{
+				throw new ArgumentNullException("entity");
+			}
+			Seat seat = Mapper.Map<SeatDomainModel, Seat>(entity);
 			Uow.GetRepository<Seat>().Update(seat);
 			Uow.Save();
 		}
 
 		public void Delete(SeatDomainModel entity)
 		{
-			if (entity == null) throw new ArgumentNullException("entity");
-			var seat = Mapper.Map<SeatDomainModel, Seat>(entity);
+			if (entity == null)
+			{
+				throw new ArgumentNullException("entity");
+			}
+			Seat seat = Mapper.Map<SeatDomainModel, Seat>(entity);
 			Uow.GetRepository<Seat>().Delete(seat);
 			Uow.Save();
 		}

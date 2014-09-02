@@ -31,7 +31,7 @@ namespace FilmOverflow.WebUI.Controllers
 			}
 			IEnumerable<ReviewViewModel> reviewViewModel =
 				(Mapper.Map<IEnumerable<ReviewDomainModel>, IEnumerable<ReviewViewModel>>(reviewDomainModel)).ToList();
-			return PartialView("_Index",reviewViewModel);
+			return PartialView("_Index", reviewViewModel);
 		}
 
 		public ActionResult Create(long filmId)
@@ -48,7 +48,6 @@ namespace FilmOverflow.WebUI.Controllers
 			reviewViewModel.ApplicationUserId = User.Identity.GetUserId();
 			reviewViewModel.ReviewDate = DateTime.Now;
 			ModelState.Remove("ReviewDate");
-
 			if (!ModelState.IsValid)
 			{
 				return View(reviewViewModel);
@@ -65,12 +64,12 @@ namespace FilmOverflow.WebUI.Controllers
 				return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
 			}
 			ReviewDomainModel reviewDomainModel = _reviewService.ReadById(id);
-			ReviewViewModel reviewViewModel = Mapper.Map<ReviewDomainModel, ReviewViewModel>(reviewDomainModel);
-			if (reviewViewModel == null)
+			if (reviewDomainModel == null)
 			{
-				return HttpNotFound();
+				return new HttpStatusCodeResult(HttpStatusCode.NotFound);
 			}
-			ViewBag.filmId = _reviewService.ReadById(id).FilmId; ;
+			ReviewViewModel reviewViewModel = Mapper.Map<ReviewDomainModel, ReviewViewModel>(reviewDomainModel);
+			ViewBag.filmId = reviewDomainModel.FilmId; ;
 			return View(reviewViewModel);
 		}
 
@@ -95,12 +94,12 @@ namespace FilmOverflow.WebUI.Controllers
 				return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
 			}
 			ReviewDomainModel reviewDomainModel = _reviewService.ReadById(id);
-			ReviewViewModel reviewViewModel = Mapper.Map<ReviewDomainModel, ReviewViewModel>(reviewDomainModel);
-			if (reviewViewModel == null)
+			if (reviewDomainModel == null)
 			{
-				return HttpNotFound();
+				return new HttpStatusCodeResult(HttpStatusCode.NotFound);
 			}
-			ViewBag.filmId = _reviewService.ReadById(id).FilmId;
+			ReviewViewModel reviewViewModel = Mapper.Map<ReviewDomainModel, ReviewViewModel>(reviewDomainModel);
+			ViewBag.filmId = reviewDomainModel.FilmId;
 			return View(reviewViewModel);
 		}
 
@@ -109,6 +108,10 @@ namespace FilmOverflow.WebUI.Controllers
 		public ActionResult DeleteConfirmed(long id)
 		{
 			ReviewDomainModel reviewDomainModel = _reviewService.ReadById(id);
+			if (reviewDomainModel == null)
+			{
+				return new HttpStatusCodeResult(HttpStatusCode.NotFound);
+			}
 			_reviewService.Delete(reviewDomainModel);
 			return RedirectToAction("Details", "Home", new { filmId = id });
 		}

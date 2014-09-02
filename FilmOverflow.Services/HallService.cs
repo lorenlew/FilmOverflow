@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using AutoMapper;
 using FilmOverflow.DAL.Models;
 using FilmOverflow.DAL.UnitOfWork;
@@ -17,38 +18,52 @@ namespace FilmOverflow.Services
 
 		public void Add(HallDomainModel entity)
 		{
-			if (entity == null) throw new ArgumentNullException("entity");
-			var hall = Mapper.Map<HallDomainModel, Hall>(entity);
+			if (entity == null)
+			{
+				throw new ArgumentNullException("entity");
+			}
+			Hall hall = Mapper.Map<HallDomainModel, Hall>(entity);
 			Uow.GetRepository<Hall>().Add(hall);
 			Uow.Save();
 		}
 
 		public IEnumerable<HallDomainModel> Read()
 		{
-			var halls = Uow.GetRepository<Hall>().Read();
-			var hallsDomain = Mapper.Map<IEnumerable<Hall>, IEnumerable<HallDomainModel>>(halls);
+			IQueryable<Hall> halls = Uow.GetRepository<Hall>().Read();
+			IEnumerable<HallDomainModel> hallsDomain = Mapper.Map<IEnumerable<Hall>,
+				IEnumerable<HallDomainModel>>(halls);
 			return hallsDomain;
 		}
 
 		public HallDomainModel ReadById(object id)
 		{
-			var hall = Uow.GetRepository<Hall>().ReadById(id);
-			var hallDomain = Mapper.Map<Hall, HallDomainModel>(hall);
+			if (id == null)
+			{
+				throw new ArgumentNullException("id");
+			}
+			Hall hall = Uow.GetRepository<Hall>().ReadById(id);
+			HallDomainModel hallDomain = Mapper.Map<Hall, HallDomainModel>(hall);
 			return hallDomain;
 		}
 
 		public void Update(HallDomainModel entity)
 		{
-			if (entity == null) throw new ArgumentNullException("entity");
-			var hall = Mapper.Map<HallDomainModel, Hall>(entity);
+			if (entity == null)
+			{
+				throw new ArgumentNullException("entity");
+			}
+			Hall hall = Mapper.Map<HallDomainModel, Hall>(entity);
 			Uow.GetRepository<Hall>().Update(hall);
 			Uow.Save();
 		}
 
 		public void Delete(HallDomainModel entity)
 		{
-			if (entity == null) throw new ArgumentNullException("entity");
-			var hall = Mapper.Map<HallDomainModel, Hall>(entity);
+			if (entity == null)
+			{
+				throw new ArgumentNullException("entity");
+			}
+			Hall hall = Mapper.Map<HallDomainModel, Hall>(entity);
 			Uow.GetRepository<Hall>().Delete(hall);
 			Uow.Save();
 		}

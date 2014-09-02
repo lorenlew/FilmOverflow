@@ -156,11 +156,7 @@ namespace FilmOverflow.WebUI.Controllers
 			{
 				return HttpNotFound();
 			}
-			if (isCommon)
-			{
-				return PartialView("_Details", seanceViewModel);
-			}
-			return PartialView("_DetailsPartial", seanceViewModel);
+			return PartialView(isCommon ? "_Details" : "_DetailsPartial", seanceViewModel);
 		}
 
 		[Authorize(Roles = "Administrator, Moderator")]

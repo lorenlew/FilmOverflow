@@ -35,21 +35,9 @@ namespace FilmOverflow.WebUI.SignalR
 			{
 				return;
 			}
-			var seatsToDelete = (from seat in currentSeance.ReservedSeats
-								where DateTime.Compare(DateTime.Now, seat.ReservationTime.AddMinutes(10)) > 0
-								&& !seat.IsSold
-								select seat).ToList();
+			_reservedSeatService.ExemptExpiredSeats(id);
 
-			foreach (var seat in seatsToDelete)
-			{
-				_reservedSeatService.Delete(seat);
-			}
-			var seatsToDeleteAfter = (from seat in currentSeance.ReservedSeats
-								 where DateTime.Compare(DateTime.Now, seat.ReservationTime.AddMinutes(10)) > 0
-								 && !seat.IsSold
-								 select seat).ToList();
-
-			var reservedSeats = (from seat in _seanceService.ReadById(id).ReservedSeats
+			var reservedSeats = (from seat in currentSeance.ReservedSeats
 								 select new
 								 {
 									 seat.Id,
@@ -58,6 +46,7 @@ namespace FilmOverflow.WebUI.SignalR
 									 seat.ReservationTime
 								 }).ToList();
 			string jsonData = JsonConvert.SerializeObject(reservedSeats);
+
 			if (isInit)
 			{
 				Clients.All.notify(jsonData);
@@ -67,5 +56,6 @@ namespace FilmOverflow.WebUI.SignalR
 				Clients.Others.notify(jsonData);
 			}
 		}
+
 	}
 }

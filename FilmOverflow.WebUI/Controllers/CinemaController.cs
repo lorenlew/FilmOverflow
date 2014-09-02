@@ -36,11 +36,11 @@ namespace FilmOverflow.WebUI.Controllers
 				return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
 			}
 			CinemaDomainModel cinemaDomainModel = _cinemaService.ReadById(id);
-			CinemaViewModel cinemaViewModel = Mapper.Map<CinemaDomainModel, CinemaViewModel>(cinemaDomainModel);
-			if (cinemaViewModel == null)
+			if (cinemaDomainModel == null)
 			{
-				return HttpNotFound();
+				return new HttpStatusCodeResult(HttpStatusCode.NotFound);
 			}
+			CinemaViewModel cinemaViewModel = Mapper.Map<CinemaDomainModel, CinemaViewModel>(cinemaDomainModel);
 			return View(cinemaViewModel);
 		}
 
@@ -59,13 +59,12 @@ namespace FilmOverflow.WebUI.Controllers
 			{
 				return View(cinemaViewModel);
 			}
-			var extension = Path.GetExtension((cinemaViewModel.Image.FileName));
+			string extension = Path.GetExtension((cinemaViewModel.Image.FileName));
 			if (extension == null)
 			{
 				return RedirectToAction("Index");
 			}
-			string fileName = Guid.NewGuid() + "." + extension.Substring(1);
-			string virtualPath = "/Content/Images/Cinema-images/" + fileName;
+			string virtualPath = FormVirtualPath(extension);
 			string physicalPath = HttpContext.Server.MapPath(virtualPath);
 			cinemaViewModel.ImagePath = virtualPath;
 
@@ -83,11 +82,11 @@ namespace FilmOverflow.WebUI.Controllers
 				return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
 			}
 			CinemaDomainModel cinemaDomainModel = _cinemaService.ReadById(id);
-			CinemaViewModel cinemaViewModel = Mapper.Map<CinemaDomainModel, CinemaViewModel>(cinemaDomainModel);
-			if (cinemaViewModel == null)
+			if (cinemaDomainModel == null)
 			{
-				return HttpNotFound();
+				return new HttpStatusCodeResult(HttpStatusCode.NotFound);
 			}
+			CinemaViewModel cinemaViewModel = Mapper.Map<CinemaDomainModel, CinemaViewModel>(cinemaDomainModel);
 			return View(cinemaViewModel);
 		}
 
@@ -114,11 +113,11 @@ namespace FilmOverflow.WebUI.Controllers
 				return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
 			}
 			CinemaDomainModel cinemaDomainModel = _cinemaService.ReadById(id);
-			CinemaViewModel cinemaViewModel = Mapper.Map<CinemaDomainModel, CinemaViewModel>(cinemaDomainModel);
-			if (cinemaViewModel == null)
+			if (cinemaDomainModel == null)
 			{
-				return HttpNotFound();
+				return new HttpStatusCodeResult(HttpStatusCode.NotFound);
 			}
+			CinemaViewModel cinemaViewModel = Mapper.Map<CinemaDomainModel, CinemaViewModel>(cinemaDomainModel);
 			return View(cinemaViewModel);
 		}
 
@@ -128,11 +127,23 @@ namespace FilmOverflow.WebUI.Controllers
 		public ActionResult DeleteConfirmed(long id)
 		{
 			CinemaDomainModel cinemaDomainModel = _cinemaService.ReadById(id);
+			if (cinemaDomainModel == null)
+			{
+				return new HttpStatusCodeResult(HttpStatusCode.NotFound);
+			}
 			string physicalPath = HttpContext.Server.MapPath(cinemaDomainModel.ImagePath);
 			System.IO.File.Delete(physicalPath);
 			_cinemaService.Delete(cinemaDomainModel);
 			return RedirectToAction("Index");
 		}
 
+		#region serviceMethods
+		private string FormVirtualPath(string extension)
+		{
+			string fileName = Guid.NewGuid() + "." + extension.Substring(1);
+			string virtualPath = "/Content/Images/Cinema-images/" + fileName;
+			return virtualPath;
+		}
+		#endregion
 	}
 }

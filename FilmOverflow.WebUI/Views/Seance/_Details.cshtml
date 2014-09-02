@@ -4,9 +4,10 @@
 	ViewBag.Title = "Seance Details";
 }
 
-<div class="well-lg">
-	<h3 class="text-danger text-center margin-clear" id="seanceModalLabel">@ViewBag.Title</h3>	
-	<dl class="dl-horizontal">
+<div class="well-lg clear">
+	<h3 class="text-danger text-center margin-clear" id="seanceModalLabel">@ViewBag.Title</h3>
+	<dl class="dl-horizontal medium-block pull-left">
+
 		<dt class="text-info">
 			@Html.DisplayNameFor(model => model.Date)
 		</dt>
@@ -28,7 +29,7 @@
 		</dt>
 
 		<dd>
-			@Html.DisplayFor(model => model.Price)	  
+			@Html.DisplayFor(model => model.Price)
 			@Html.HiddenFor(model => model.Price)
 		</dd>
 
@@ -39,7 +40,6 @@
 		<dd>
 			@Model.Hall.Cinema.Name - @Model.Hall.Name
 		</dd>
-
 		<dt class="text-warning">
 			@Html.DisplayNameFor(x => x.Film)
 		</dt>
@@ -47,5 +47,8 @@
 		<dd>
 			@Model.Film.Title
 		</dd>
-	</dl>
+	</dl>  
+	<span class="clear">
+		<img src="@Model.Film.ImagePath" class="img-content pull-right" alt="No image" />
+	</span>
 </div>

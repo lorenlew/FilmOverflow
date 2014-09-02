@@ -10,7 +10,6 @@ namespace FilmOverflow.Services
 
 		public BaseService(IUnitOfWork unitOfWork)
 		{
-			if (unitOfWork == null) throw new ArgumentNullException("unitOfWork");
 			Uow = unitOfWork;
 		}
 	}

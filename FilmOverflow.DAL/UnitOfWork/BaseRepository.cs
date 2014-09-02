@@ -16,14 +16,20 @@ namespace FilmOverflow.DAL.UnitOfWork
 
 		public BaseRepository(ApplicationDbContext context)
 		{
-			if (context == null) throw new ArgumentNullException("context");
+			if (context == null)
+			{
+				throw new ArgumentNullException("context");
+			}
 			_context = context;
 			_dbSet = context.Set<TEntity>();
 		}
 
 		void IRepository<TEntity>.Add(TEntity entity)
 		{
-			if (entity == null) throw new NoNullAllowedException();
+			if (entity == null)
+			{
+				throw new NoNullAllowedException();
+			}
 			_dbSet.Add(entity);
 		}
 
@@ -37,30 +43,38 @@ namespace FilmOverflow.DAL.UnitOfWork
 
 			query = includeProperties.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries).Aggregate(query, (current, includeProperty) => current.Include(includeProperty));
 
-			if (orderBy != null)
-				return orderBy(query).ToList().AsQueryable();
-
-			return query.AsQueryable();
+			return orderBy != null
+				? orderBy(query).ToList().AsQueryable()
+				: query.AsQueryable();
 		}
 
 		TEntity IRepository<TEntity>.ReadById(object id)
 		{
-			if (id == null) throw new NoNullAllowedException();
+			if (id == null)
+			{
+				throw new NoNullAllowedException();
+			}
 			return _dbSet.Find(id);
 		}
 
 		TEntity IRepository<TEntity>.Refresh(TEntity entity)
 		{
-			if (entity == null) throw new NoNullAllowedException();
+			if (entity == null)
+			{
+				throw new NoNullAllowedException();
+			}
 			((IObjectContextAdapter)_context).ObjectContext.Detach(entity);
-			entity = ((IRepository<TEntity>) this).ReadById(entity.Id);
+			entity = ((IRepository<TEntity>)this).ReadById(entity.Id);
 			return entity;
 		}
 
 		void IRepository<TEntity>.Update(TEntity entity)
 		{
-			if (entity == null) throw new NoNullAllowedException();
-			var entityToUpdate = _dbSet.Find(entity.Id);
+			if (entity == null)
+			{
+				throw new NoNullAllowedException();
+			}
+			TEntity entityToUpdate = _dbSet.Find(entity.Id);
 			if (entityToUpdate == null) return;
 			_context.Entry(entityToUpdate).State = EntityState.Detached;
 			_dbSet.Attach(entity);
@@ -69,10 +83,16 @@ namespace FilmOverflow.DAL.UnitOfWork
 
 		void IRepository<TEntity>.Delete(TEntity entity)
 		{
-			if (entity == null) throw new NoNullAllowedException();
+			if (entity == null)
+			{
+				throw new NoNullAllowedException();
+			}
 
-			var entityToDelete = _dbSet.Find(entity.Id);
-			if (entityToDelete == null) return;
+			TEntity entityToDelete = _dbSet.Find(entity.Id);
+			if (entityToDelete == null)
+			{
+				return;
+			}
 			_dbSet.Remove(entityToDelete);
 		}
 	}

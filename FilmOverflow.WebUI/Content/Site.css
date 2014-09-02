@@ -138,6 +138,10 @@ article.tile:hover {
 	width: 20%;
 }
 
+.medium-block {
+	width: 50%;
+}
+
 .selected {
 	color: #00ff00;
 	color: rgba(0, 255, 0, 0.6);

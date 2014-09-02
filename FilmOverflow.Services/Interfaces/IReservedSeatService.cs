@@ -14,5 +14,7 @@ namespace FilmOverflow.Services.Interfaces
 		void Update(ReservedSeatDomainModel entity);
 
 		void Delete(ReservedSeatDomainModel entity);
+
+		void ExemptExpiredSeats(long currentSeanceId);
 	}
 }

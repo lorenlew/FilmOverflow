@@ -35,11 +35,11 @@ namespace FilmOverflow.WebUI.Controllers
 				return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
 			}
 			HallDomainModel hallDomainModel = _hallService.ReadById(id);
-			HallViewModel hallViewModel = Mapper.Map<HallDomainModel, HallViewModel>(hallDomainModel);
-			if (hallViewModel == null)
+			if (hallDomainModel == null)
 			{
-				return HttpNotFound();
+				return new HttpStatusCodeResult(HttpStatusCode.NotFound);
 			}
+			HallViewModel hallViewModel = Mapper.Map<HallDomainModel, HallViewModel>(hallDomainModel);
 			return View(hallViewModel);
 		}
 
@@ -75,11 +75,11 @@ namespace FilmOverflow.WebUI.Controllers
 				return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
 			}
 			HallDomainModel hallDomainModel = _hallService.ReadById(id);
-			HallViewModel hallViewModel = Mapper.Map<HallDomainModel, HallViewModel>(hallDomainModel);
-			if (hallViewModel == null)
+			if (hallDomainModel == null)
 			{
-				return HttpNotFound();
+				return new HttpStatusCodeResult(HttpStatusCode.NotFound);
 			}
+			HallViewModel hallViewModel = Mapper.Map<HallDomainModel, HallViewModel>(hallDomainModel);
 			return View(hallViewModel);
 		}
 
@@ -105,11 +105,11 @@ namespace FilmOverflow.WebUI.Controllers
 				return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
 			}
 			HallDomainModel hallDomainModel = _hallService.ReadById(id);
-			HallViewModel hallViewModel = Mapper.Map<HallDomainModel, HallViewModel>(hallDomainModel);
-			if (hallViewModel == null)
+			if (hallDomainModel == null)
 			{
-				return HttpNotFound();
+				return new HttpStatusCodeResult(HttpStatusCode.NotFound);
 			}
+			HallViewModel hallViewModel = Mapper.Map<HallDomainModel, HallViewModel>(hallDomainModel);
 			return View(hallViewModel);
 		}
 
@@ -119,6 +119,10 @@ namespace FilmOverflow.WebUI.Controllers
 		public ActionResult DeleteConfirmed(long id)
 		{
 			HallDomainModel hallDomainModel = _hallService.ReadById(id);
+			if (hallDomainModel == null)
+			{
+				return new HttpStatusCodeResult(HttpStatusCode.NotFound);
+			}
 			_hallService.Delete(hallDomainModel);
 			return RedirectToAction("Index");
 		}

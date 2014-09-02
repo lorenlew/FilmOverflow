@@ -23,9 +23,9 @@ namespace FilmOverflow.DAL.UnitOfWork
 
 		private void Init()
 		{
-			var userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(Context));
+			UserManager<ApplicationUser> userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(Context));
 			UserManager = UserManager ?? userManager;
-			var roleManager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(Context));
+			RoleManager<IdentityRole> roleManager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(Context));
 			RoleManager = RoleManager ?? roleManager;
 		}
 

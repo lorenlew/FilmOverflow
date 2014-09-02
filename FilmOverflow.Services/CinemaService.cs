@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using AutoMapper;
 using FilmOverflow.DAL.Models;
 using FilmOverflow.DAL.UnitOfWork;
@@ -17,38 +18,52 @@ namespace FilmOverflow.Services
 
 		public void Add(CinemaDomainModel entity)
 		{
-			if (entity == null) throw new ArgumentNullException("entity");
-			var cinema = Mapper.Map<CinemaDomainModel, Cinema>(entity);
+			if (entity == null)
+			{
+				throw new ArgumentNullException("entity");
+			}
+			Cinema cinema = Mapper.Map<CinemaDomainModel, Cinema>(entity);
 			Uow.GetRepository<Cinema>().Add(cinema);
 			Uow.Save();
 		}
 
 		public IEnumerable<CinemaDomainModel> Read()
 		{
-			var cinemas = Uow.GetRepository<Cinema>().Read();
-			var cinemasDomain = Mapper.Map<IEnumerable<Cinema>, IEnumerable<CinemaDomainModel>>(cinemas);
+			IQueryable<Cinema> cinemas = Uow.GetRepository<Cinema>().Read();
+			IEnumerable<CinemaDomainModel> cinemasDomain = Mapper.Map<IEnumerable<Cinema>,
+				IEnumerable<CinemaDomainModel>>(cinemas);
 			return cinemasDomain;
 		}
 
 		public CinemaDomainModel ReadById(object id)
 		{
-			var cinema = Uow.GetRepository<Cinema>().ReadById(id);
-			var cinemaDomain = Mapper.Map<Cinema, CinemaDomainModel>(cinema);
+			if (id == null)
+			{
+				throw new ArgumentNullException("id");
+			}
+			Cinema cinema = Uow.GetRepository<Cinema>().ReadById(id);
+			CinemaDomainModel cinemaDomain = Mapper.Map<Cinema, CinemaDomainModel>(cinema);
 			return cinemaDomain;
 		}
 
 		public void Update(CinemaDomainModel entity)
 		{
-			if (entity == null) throw new ArgumentNullException("entity");
-			var cinema = Mapper.Map<CinemaDomainModel, Cinema>(entity);
+			if (entity == null)
+			{
+				throw new ArgumentNullException("entity");
+			}
+			Cinema cinema = Mapper.Map<CinemaDomainModel, Cinema>(entity);
 			Uow.GetRepository<Cinema>().Update(cinema);
 			Uow.Save();
 		}
 
 		public void Delete(CinemaDomainModel entity)
 		{
-			if (entity == null) throw new ArgumentNullException("entity");
-			var cinema = Mapper.Map<CinemaDomainModel, Cinema>(entity);
+			if (entity == null)
+			{
+				throw new ArgumentNullException("entity");
+			}
+			Cinema cinema = Mapper.Map<CinemaDomainModel, Cinema>(entity);
 			Uow.GetRepository<Cinema>().Delete(cinema);
 			Uow.Save();
 		}

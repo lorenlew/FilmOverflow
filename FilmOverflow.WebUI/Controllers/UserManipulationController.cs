@@ -42,7 +42,7 @@ namespace FilmOverflow.WebUI.Controllers
 			var targetUserId = GetUserId(name);
 			if (targetUserId == null)
 			{
-				return HttpNotFound();
+				return new HttpStatusCodeResult(HttpStatusCode.NotFound);
 			}
 			var isTargetUserModerator = _userManagerService.IsInRole(targetUserId, "Moderator");
 			if (isTargetUserModerator)
@@ -66,7 +66,7 @@ namespace FilmOverflow.WebUI.Controllers
 			var targetUser = _userManagerService.FindByName(name);
 			if (targetUser == null)
 			{
-				return HttpNotFound();
+				return new HttpStatusCodeResult(HttpStatusCode.NotFound);
 			}
 			var isUserPerformingActionModerator = _userManagerService.IsInRole(User.Identity.GetUserId(), "Moderator");
 			var isTargetUserModerator = _userManagerService.IsInRole(targetUser.Id, "Moderator");
