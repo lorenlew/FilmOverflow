@@ -10,8 +10,12 @@ namespace FilmOverflow.WebUI.ViewModels
 		[StringLength(60)]
 		public string Name { get; set; }
 
+		[Display(Name = "Row amount")]
+		[Range(1, 50)]
 		public int RowAmount { get; set; }
 
+		[Display(Name = "Column amount")]
+		[Range(1, 50)]
 		public int ColumnAmount { get; set; }
 
 		public CinemaViewModel Cinema { get; set; }

@@ -68,6 +68,10 @@ namespace FilmOverflow.WebUI.Controllers
 			{
 				return new HttpStatusCodeResult(HttpStatusCode.NotFound);
 			}
+			if (reviewDomainModel.ApplicationUserId != User.Identity.GetUserId())
+			{
+				return new HttpStatusCodeResult(HttpStatusCode.Forbidden);
+			}
 			ReviewViewModel reviewViewModel = Mapper.Map<ReviewDomainModel, ReviewViewModel>(reviewDomainModel);
 			ViewBag.filmId = reviewDomainModel.FilmId; ;
 			return View(reviewViewModel);
@@ -81,6 +85,10 @@ namespace FilmOverflow.WebUI.Controllers
 			if (!ModelState.IsValid)
 			{
 				return View(reviewViewModel);
+			}
+			if (reviewViewModel.ApplicationUserId != User.Identity.GetUserId())
+			{
+				return new HttpStatusCodeResult(HttpStatusCode.Forbidden);
 			}
 			ReviewDomainModel reviewDomainModel = Mapper.Map<ReviewViewModel, ReviewDomainModel>(reviewViewModel);
 			_reviewService.Update(reviewDomainModel);
@@ -98,6 +106,10 @@ namespace FilmOverflow.WebUI.Controllers
 			{
 				return new HttpStatusCodeResult(HttpStatusCode.NotFound);
 			}
+			if (reviewDomainModel.ApplicationUserId != User.Identity.GetUserId())
+			{
+				return new HttpStatusCodeResult(HttpStatusCode.Forbidden);
+			}
 			ReviewViewModel reviewViewModel = Mapper.Map<ReviewDomainModel, ReviewViewModel>(reviewDomainModel);
 			ViewBag.filmId = reviewDomainModel.FilmId;
 			return View(reviewViewModel);
@@ -111,6 +123,10 @@ namespace FilmOverflow.WebUI.Controllers
 			if (reviewDomainModel == null)
 			{
 				return new HttpStatusCodeResult(HttpStatusCode.NotFound);
+			}
+			if (reviewDomainModel.ApplicationUserId != User.Identity.GetUserId())
+			{
+				return new HttpStatusCodeResult(HttpStatusCode.Forbidden);
 			}
 			_reviewService.Delete(reviewDomainModel);
 			return RedirectToAction("Details", "Home", new { filmId = id });

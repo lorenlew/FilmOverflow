@@ -48,7 +48,6 @@ namespace FilmOverflow.WebUI.Controllers
 				return new HttpStatusCodeResult(HttpStatusCode.NotFound);
 			}
 			FilmViewModel filmViewModel = Mapper.Map<FilmDomainModel, FilmViewModel>(filmDomainModel);
-			ViewBag.filmId = filmId;
 			return View("Details", filmViewModel);
 		}
 

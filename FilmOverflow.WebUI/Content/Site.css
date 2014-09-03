@@ -222,7 +222,7 @@ article.tile:hover {
 	left: 0;
 }
 
-.validationMessage {
+.validationMessage,.validation-summary-errors {
 	color: rgb(247, 105, 105);
 }
 

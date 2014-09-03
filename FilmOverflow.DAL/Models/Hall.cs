@@ -9,8 +9,10 @@ namespace FilmOverflow.DAL.Models
 		[StringLength(60)]
 		public string Name { get; set; }
 
+		[Range(1, 50)]
 		public int RowAmount { get; set; }
 
+		[Range(1, 50)]
 		public int ColumnAmount { get; set; }
 
 		public virtual Cinema Cinema { get; set; }

@@ -1,4 +1,5 @@
-﻿@model IEnumerable<FilmOverflow.WebUI.ViewModels.ReviewViewModel>
+﻿@using Microsoft.AspNet.Identity
+@model IEnumerable<FilmOverflow.WebUI.ViewModels.ReviewViewModel>
 
 @{
 	ViewBag.Title = "Reviews";
@@ -26,10 +27,13 @@
 			<div class="text-primary no-shadow">
 				@Html.Markdown(item.Description)
 			</div>
-			<p>
-				@Html.ActionLink(" Edit", "Edit", new { id = item.Id }, new { @class = "btn btn-warning fa fa-pencil-square-o" })
-				@Html.ActionLink(" Delete", "Delete", new { id = item.Id }, new { @class = "btn btn-danger fa fa-trash-o" })
-			</p>
+			@if (item.ApplicationUserId == User.Identity.GetUserId())
+			{
+				<p>
+					@Html.ActionLink(" Edit", "Edit", new { id = item.Id }, new { @class = "btn btn-warning fa fa-pencil-square-o" })
+					@Html.ActionLink(" Delete", "Delete", new { id = item.Id }, new { @class = "btn btn-danger fa fa-trash-o" })
+				</p>
+			}
 			<div class="clear">
 				<div class="text-warning label label-success pull-right fa-lg">
 					@Html.DisplayFor(modelItem => item.ReviewDate)
