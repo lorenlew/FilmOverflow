@@ -2,37 +2,39 @@
 	'use strict';
 
 	$('#seanceModal').on('shown.bs.modal', function () {
-		$('#seanceStartDatePicker', this).datetimepicker({
+		var $StartDatePicker = $('#seanceStartDatePicker', this);
+		var $EndDatePicker = $('#seanceEndDatePicker', this);
+
+		$StartDatePicker.datetimepicker({
 			format: 'DD/MM/YYYY',
 			pickTime: false,
+			useCurrent: false
 		});
-		$('#seanceEndDatePicker', this).datetimepicker({
+		$EndDatePicker.datetimepicker({
 			format: 'DD/MM/YYYY',
-			pickTime: false,
+			pickTime: false,			
 		});
 
 		$('#IsMultipleDateSelect', this).on('change', function (e) {
 			if (e.target.checked) {
-				var startDate = $('#seanceStartDatePicker').data('DateTimePicker').getDate();
-				$('#seanceEndDatePicker').data('DateTimePicker').setDate(startDate);
+				var startDate = $StartDatePicker.data('DateTimePicker').getDate();
+				$EndDatePicker.data('DateTimePicker').setDate(startDate);
 
-				var endDate = $('#seanceEndDatePicker').data('DateTimePicker').getDate();
-				$('#seanceStartDatePicker').data('DateTimePicker').setMaxDate(endDate);
+				var endDate = $EndDatePicker.data('DateTimePicker').getDate();
+				$StartDatePicker.data('DateTimePicker').setMaxDate(endDate);
 
-				$('#seanceEndDatePicker').on('dp.change', function (ev) {
-					$('#seanceStartDatePicker').data('DateTimePicker').setMaxDate(ev.date);
+				$EndDatePicker.on('dp.change', function (ev) {
+					$StartDatePicker.data('DateTimePicker').setMaxDate(ev.date);
 				});
 			}
 			else {
-				$('#seanceStartDatePicker').data('DateTimePicker').setMaxDate(moment().add(100, 'y'));
-				$('#seanceEndDatePicker').off('dp.change');
+				$StartDatePicker.data('DateTimePicker').setMaxDate(moment().add(100, 'y'));
+				$EndDatePicker.off('dp.change');
 			}
 		});
-		$('#seanceStartDatePicker', this).on('dp.change', function (e) {
-			$('#seanceEndDatePicker').data('DateTimePicker').setMinDate(e.date);
-		});
-		$('#seanceEndDatePicker', this).on('dp.change', function (e) {
-			$('#seanceStartDatePicker').data('DateTimePicker').setMaxDate(e.date);
+
+		$StartDatePicker.on('dp.change', function (e) {
+			$EndDatePicker.data('DateTimePicker').setMinDate(e.date);
 		});
 
 		$('#seanceTimePicker', this).datetimepicker({
