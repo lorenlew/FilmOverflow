@@ -13,7 +13,7 @@
 
 @{ Html.RenderAction("Details", "Seance", new { seanceId = ViewBag.SeanceId, isCommon = true }); }
 @Html.HiddenFor(model => model.SeanceId, new { data_id = ViewBag.SeanceId })
-<div data-bind="visible: !IsProcessing()">
+<div data-bind="visible: !IsProcessing()" style="display: none;">
 	
 	<div data-bind="foreach: Seats,
 		 style:{width: @columnAmount*23+33+'px',height: @rowAmount*25+45+'px'},
