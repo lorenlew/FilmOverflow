@@ -7,6 +7,7 @@ using FilmOverflow.Domain.Models;
 using FilmOverflow.Services.Interfaces;
 using FilmOverflow.WebUI.ViewModels;
 using FilmOverflow.WebUI.ViewModels.Seance;
+using Ninject.Infrastructure.Language;
 
 namespace FilmOverflow.WebUI.Orhestrators
 {
@@ -25,12 +26,11 @@ namespace FilmOverflow.WebUI.Orhestrators
 
 		public IEnumerable<string> GetAllSeancesDates()
 		{
-			var todayString = String.Format("{0:dd/MM/yyyy}", DateTime.Today);
 			IEnumerable<string> dates = _seanceService
 				.Read()
+				.Where(x => x.Date >= DateTime.Today)
 				.Select(Mapper.Map<SeanceDomainModel, SeanceViewModel>)
-				.Where(x => x.Date.CompareTo(todayString) >= 0)
-				.Select(x => x.Date)				
+				.Select(x => x.Date)
 				.Distinct()
 				.OrderBy(x => x);
 
@@ -41,45 +41,32 @@ namespace FilmOverflow.WebUI.Orhestrators
 		{
 			IEnumerable<CinemaRowViewModel> cinemaRows = _cinemaService
 				.Read()
-				.Select(x =>
+				.Select(c =>
+			{
+				var cinema = Mapper.Map<CinemaDomainModel, CinemaViewModel>(c);
+
+				var films = _seanceService
+					.Read()
+					.Select(Mapper.Map<SeanceDomainModel, SeanceViewModel>)
+					.Where(s => s.Hall.CinemaId == cinema.Id && s.Date == date)
+					.GroupBy(s => s.FilmId)
+					.Select(g =>
+					{
+						var domainFilm = _filmService.ReadById(g.Key);
+						var viewFilm = Mapper.Map<FilmDomainModel, FilmViewModel>(domainFilm);
+						viewFilm.Seances = g.ToList();
+
+						return viewFilm;
+					});
+
+				var cinemaRowViewModel = new CinemaRowViewModel()
 				{
-					var cinema = Mapper.Map<CinemaDomainModel, CinemaViewModel>(x);
+					Cinema = cinema,
+					Films = films
+				};
 
-					var list = new List<SeanceViewModel>();
-					foreach (var hall in cinema.Halls)
-					{
-						list.AddRange(hall.Seances);
-					}
-
-					var seances = list.AsEnumerable();
-					if (date != null)
-					{
-						seances = seances.Where(h => h.Date == date);
-					}
-					var films = seances
-						.Select(s => s.FilmId)
-						.Distinct()
-						.Select(filmId =>
-						{
-							var domainFilm = _filmService.ReadById(filmId);
-							var viewFilm = Mapper.Map<FilmDomainModel, FilmViewModel>(domainFilm);
-							viewFilm.Seances = viewFilm.Seances.Where(s => s.Hall.CinemaId == cinema.Id).ToList();
-							if (date != null)
-							{
-								viewFilm.Seances = viewFilm.Seances.Where(s => s.Date == date).ToList();
-							}
-							return viewFilm;
-						});
-
-					//.Select(filmId => Mapper.Map<FilmDomainModel, FilmViewModel>(_filmService.ReadById(filmId)));
-					var cinemaRowViewModel = new CinemaRowViewModel()
-					{
-						Cinema = cinema,
-						Films = films
-					};
-
-					return cinemaRowViewModel;
-				});
+				return cinemaRowViewModel;
+			});
 
 			return cinemaRows;
 		}

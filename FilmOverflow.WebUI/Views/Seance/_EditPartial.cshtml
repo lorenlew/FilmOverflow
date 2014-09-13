@@ -1,4 +1,5 @@
-﻿@model FilmOverflow.WebUI.ViewModels.Seance.SeanceViewModel
+﻿@using System.Collections.Generic
+@model FilmOverflow.WebUI.ViewModels.Seance.SeanceViewModel
 
 @{
 	ViewBag.Title = "Edit Seance";
@@ -21,7 +22,7 @@
 		<div class="form-group">
 			@Html.LabelFor(m => m.Date, new { @class = "col-md-2 control-label" })
 			<div class="col-md-10">
-				@Html.TextBoxFor(m => m.Date, new { @class = "form-control", id = "seanceDatePicker" })
+				@Html.TextBoxFor(m => m.Date, new { @class = "form-control", id = "seanceStartDatePicker" })
 				@Html.ValidationMessageFor(m => m.Date, "", new { @class = "text-danger" })
 			</div>
 		</div>
