@@ -3,11 +3,11 @@ Film Overflow
 
 Specification:
 
-Develop the system for online purchase of tickets in cinemas.
+Develop the system for an online purchase of tickets in cinemas.
 The system must have 4-level access layer.
 
 
--For anonymous users there is available movie list, seance list, tickets' prices, movies' details and movies' reviews browsing.
+-For anonymous users there is available movies' list, seances' list, tickets' prices, movies' details and movies' reviews browsing.
 
 
 -There must be an ability for registered users to estimate movies, write reviews, reserve and buy tickets.
