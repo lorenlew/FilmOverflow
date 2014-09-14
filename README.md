@@ -7,18 +7,18 @@ Develop the system for an online purchase of tickets in cinemas.
 The system must have 4-level access layer.
 
 
--For anonymous users there is available movies' list, seances' list, tickets' prices, movies' details and movies' reviews browsing.
+- For anonymous users there is available movies' list, seances' list, tickets' prices, movies' details and movies' reviews browsing.
 
 
--There must be an ability for registered users to estimate movies, write reviews, reserve and buy tickets.
+- There must be an ability for registered users to estimate movies, write reviews, reserve and buy tickets.
 There must be provided an ability to view free/sold/reserved seats for a certain seance,
 personal user's profile, purchased tickets.
 
 
--Moderators must have an ability to view list with users, manage movies, seances, access of users.
+- Moderators must have an ability to view list with users, manage movies, seances, access of users.
 
 
--Administrators must have an ability to view list with users,
+- Administrators must have an ability to view list with users,
 manage roles and access of users and, in particular, moderators,
 change the list of cinemas.
 
